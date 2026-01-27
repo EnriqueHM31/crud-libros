@@ -26,7 +26,7 @@ export default function MosaicoBooks() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 "
         >
             {books.map((book) => {
                 const info = book.volumeInfo;
@@ -37,15 +37,14 @@ export default function MosaicoBooks() {
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
                         onClick={() => selectBook(book)}
-                        className="group bg-background flex cursor-pointer flex-col justify-between rounded-2xl from-blue-600 from-10% to-white to-100% shadow-sm hover:bg-linear-to-b hover:shadow-lg"
+                        className="group bg-background flex cursor-pointer flex-col justify-between rounded-2xl from-primary from-10% to-white to-100% shadow-sm hover:bg-primary hover:shadow-lg hover:text-background"
                     >
                         <div className="relative h-56">
                             {info.imageLinks?.thumbnail ? (
                                 <motion.img
                                     src={info.imageLinks.thumbnail}
                                     alt={info.title}
-                                    className="h-full w-full object-contain"
-                                    whileHover={{ scale: 1.1, y: -20 }}
+                                    className="h-full w-full object-contain mx-auto group-hover:scale-115 duration-400 transition-all group-hover:-translate-y-4"
                                 />
                             ) : (
                                 <div className="flex h-full items-center justify-center text-gray-400">
@@ -58,8 +57,8 @@ export default function MosaicoBooks() {
                             <h3 className="line-clamp-1 flex-1 font-semibold">{info.title}</h3>
 
                             {info.authors && (
-                                <p className="text-secondary mt-2 flex items-center gap-2 text-sm">
-                                    <FaUser className="text-primary" />
+                                <p className="text-secondary group-hover:text-background mt-2 flex items-center gap-2 text-sm">
+                                    <FaUser className="text-primary group-hover:text-background" />
                                     {info.authors.join(", ")}
                                 </p>
                             )}
