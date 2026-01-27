@@ -65,7 +65,7 @@ export default function Libros() {
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 "
                 >
                     {books.map((book) => {
                         const info = book.volumeInfo;
@@ -76,15 +76,15 @@ export default function Libros() {
                                 variants={itemVariants}
                                 whileHover={{ y: -6 }}
                                 onClick={() => selectBook(book)}
-                                className="group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-lg"
+                                className="group cursor-pointer  rounded-2xl bg-background shadow-sm hover:shadow-lg flex justify-between flex-col"
                             >
                                 <div className="relative h-56 bg-gray-100">
                                     {info.imageLinks?.thumbnail ? (
                                         <motion.img
                                             src={info.imageLinks.thumbnail}
                                             alt={info.title}
-                                            className="h-full w-full object-cover"
-                                            whileHover={{ scale: 1.05 }}
+                                            className="h-full w-full object-contain"
+                                            whileHover={{ scale: 1.1, y: -10 }}
                                         />
                                     ) : (
                                         <div className="flex h-full items-center justify-center text-gray-400">
@@ -93,12 +93,12 @@ export default function Libros() {
                                     )}
                                 </div>
 
-                                <div className="p-4">
-                                    <h3 className="line-clamp-2 font-semibold">{info.title}</h3>
+                                <div className="p-4 flex flex-col gap-2 h-full">
+                                    <h3 className="line-clamp-1 font-semibold flex-1 ">{info.title}</h3>
 
                                     {info.authors && (
-                                        <p className="mt-2 flex items-center gap-2 text-sm text-gray-500">
-                                            <FaUser />
+                                        <p className="mt-2 flex items-center gap-2 text-sm text-secondary ">
+                                            <FaUser className="text-primary" />
                                             {info.authors.join(", ")}
                                         </p>
                                     )}
