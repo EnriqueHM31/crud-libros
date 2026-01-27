@@ -18,6 +18,7 @@ interface BooksState {
 
     /* acciones */
     searchBooks: (query: string) => Promise<void>;
+    cargarLibros: () => Promise<void>;
     selectBook: (book: GoogleBook | null) => void;
     clearBooks: () => void;
 }
@@ -43,6 +44,20 @@ export const useBooksStore = create<BooksState>((set) => ({
     isLoading: false,
     error: null,
 
+    /* =========================
+       BUSCAR LIBROS
+    ========================= */
+
+    cargarLibros: async () => {
+        const data = LIBROS as GoogleBooksResponse;
+        set({
+            books: data.items ?? [],
+            page: 1,
+            hasMore:
+                (data.items?.length ?? 0) === MAX_RESULTS,
+            isLoading: false,
+        });
+    },
     /* =========================
        BUSCAR LIBROS
     ========================= */
