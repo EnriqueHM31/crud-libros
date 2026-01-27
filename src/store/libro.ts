@@ -49,13 +49,16 @@ export const useBooksStore = create<BooksState>((set) => ({
     ========================= */
 
     cargarLibros: async () => {
-        const data = LIBROS as GoogleBooksResponse;
-        set({
-            books: data.items ?? [],
-            page: 1,
-            hasMore: (data.items?.length ?? 0) === MAX_RESULTS,
-            isLoading: false,
-        });
+        set({ isLoading: true });
+        setTimeout(() => {
+            const data = LIBROS as GoogleBooksResponse;
+            set({
+                books: data.items ?? [],
+                page: 1,
+                hasMore: (data.items?.length ?? 0) === MAX_RESULTS,
+                isLoading: false,
+            });
+        }, 5000);
     },
     /* =========================
        BUSCAR LIBROS
