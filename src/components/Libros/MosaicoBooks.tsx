@@ -38,15 +38,15 @@ export default function MosaicoBooks() {
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
                         onClick={() => selectBook(book)}
-                        className="group cursor-pointer  rounded-2xl bg-background shadow-sm hover:shadow-lg flex justify-between flex-col"
+                        className="group cursor-pointer  rounded-2xl bg-background hover:bg-linear-to-b from-blue-600 from-10% to-white to-100% shadow-sm hover:shadow-lg flex justify-between flex-col"
                     >
-                        <div className="relative h-56 bg-gray-100">
+                        <div className="relative h-56 ">
                             {info.imageLinks?.thumbnail ? (
                                 <motion.img
                                     src={info.imageLinks.thumbnail}
                                     alt={info.title}
                                     className="h-full w-full object-contain"
-                                    whileHover={{ scale: 1.1, y: -10 }}
+                                    whileHover={{ scale: 1.1, y: -20 }}
                                 />
                             ) : (
                                 <div className="flex h-full items-center justify-center text-gray-400">
