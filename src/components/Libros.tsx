@@ -1,9 +1,12 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaBookOpen, FaUser, FaChevronRight, FaThLarge, FaList } from "react-icons/fa";
-import { useBooksStore } from "../store/libro";
-import { IoCalendarNumberOutline } from "react-icons/io5";
+import { useState } from "react";
+import { FaBookOpen, FaChevronRight, FaUser } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
+import { IoCalendarNumberOutline } from "react-icons/io5";
+import { useBooksStore } from "../store/libro";
+import HeaderTypeFormatBook from "./Libros/HeaderTypeFormatBook";
+import Error from "./Atomos/Error";
+import LoadingBooks from "./Atomos/Loading";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -22,40 +25,28 @@ const itemVariants = {
     },
 };
 
+type ViewMode = "list" | "grid";
+
 export default function Libros() {
     const { books, isLoading, error, selectBook } = useBooksStore();
-    const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+    const [viewMode, setViewMode] = useState<ViewMode>("list");
+
+    const handleViewMode = (viewMode: ViewMode) => {
+        setViewMode(viewMode);
+    };
 
     if (isLoading) {
-        return <div className="flex h-full items-center justify-center">Cargando libros…</div>;
+        return <LoadingBooks />;
     }
 
     if (error) {
-        return <div className="rounded-xl bg-red-500/10 p-6 text-red-500">{error}</div>;
+        return <Error error={error} />;
     }
 
     return (
         <section className="flex flex-col gap-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold">Libros</h2>
-
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => setViewMode("list")}
-                        className={`rounded-lg p-2 ${viewMode === "list" ? "bg-primary text-background" : "text-primary hover:bg-background"}`}
-                    >
-                        <FaList />
-                    </button>
-
-                    <button
-                        onClick={() => setViewMode("grid")}
-                        className={`rounded-lg p-2 ${viewMode === "grid" ? "bg-primary text-background" : "text-primary hover:bg-background"}`}
-                    >
-                        <FaThLarge />
-                    </button>
-                </div>
-            </div>
+            <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
             {/* =======================
                GRID VIEW
