@@ -61,9 +61,8 @@ export default function AsideNav() {
                                 window.history.pushState({}, "", path);
                                 setIsOpen(false); // cierra en mobile
                             }}
-                            className={`group flex w-full cursor-pointer items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors ${
-                                currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                            } `}
+                            className={`group flex w-full cursor-pointer items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                         >
                             <Icon className="text-xl opacity-90 group-hover:opacity-100" />
                             <span>{name}</span>
@@ -80,7 +79,7 @@ export default function AsideNav() {
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleMode}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="bg-primary-soft text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
+                        className="bg-background text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
                     >
                         <FaMoon />
                         Cambiar tema
