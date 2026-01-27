@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { FaBookOpen, FaUser, FaChevronRight } from "react-icons/fa";
+import { FaBookOpen, FaChevronRight, FaUser } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoCalendarNumberOutline } from "react-icons/io5";
-import { useBooksStore } from "../../store/libro";
+import { useFilteredBooks } from "../../hooks/Filters";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -22,7 +22,7 @@ const itemVariants = {
 };
 
 export default function ListBooks() {
-    const { books, selectBook } = useBooksStore();
+    const books = useFilteredBooks();
     return (
         <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4">
             {books.map((book) => {
@@ -33,7 +33,6 @@ export default function ListBooks() {
                         key={book.id}
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
-                        onClick={() => selectBook(book)}
                         className="group bg-surface hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl px-8 py-4 shadow-sm hover:shadow-md"
                     >
                         {/* Imagen */}
