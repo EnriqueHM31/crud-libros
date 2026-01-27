@@ -36,7 +36,7 @@ export default function AsideNav() {
                     <header className="px-6">
                         <motion.h1
                             variants={itemVariants}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 0.2 }}
                             initial="hidden"
                             animate="visible"
                             className="text-2xl font-bold tracking-tight"
@@ -54,7 +54,7 @@ export default function AsideNav() {
                                 animate="visible"
                                 transition={{
                                     delay: index * 0.3,
-                                    duration: 0.8,
+                                    duration: 0.2,
                                 }}
                                 whileHover={{ x: 6 }}
                                 whileTap={{ scale: 0.97 }}
@@ -78,11 +78,11 @@ export default function AsideNav() {
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        whileHover={{ scale: 1.05, animationDuration: 0.2, transitionDuration: 0.2 }}
+                        whileHover={{ scale: 1.05, }}
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleMode}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="bg-background text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
+                        transition={{ duration: 0.2, delay: 1.6 }}
+                        className="bg-background text-primary flex w-full duration-150 cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
                     >
                         <FaMoon />
                         Cambiar tema
