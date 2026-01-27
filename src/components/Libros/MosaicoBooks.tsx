@@ -26,7 +26,7 @@ export default function MosaicoBooks() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 "
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
             {books.map((book) => {
                 const info = book.volumeInfo;
@@ -37,14 +37,14 @@ export default function MosaicoBooks() {
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
                         onClick={() => selectBook(book)}
-                        className="group bg-background flex cursor-pointer flex-col justify-between rounded-2xl from-primary from-10% to-white to-100% shadow-sm hover:bg-primary hover:shadow-lg hover:text-background"
+                        className="group bg-background from-primary hover:bg-primary hover:text-background flex cursor-pointer flex-col justify-between rounded-2xl from-10% to-white to-100% shadow-sm hover:shadow-lg"
                     >
                         <div className="relative h-56">
                             {info.imageLinks?.thumbnail ? (
                                 <motion.img
                                     src={info.imageLinks.thumbnail}
                                     alt={info.title}
-                                    className="h-full w-full object-contain mx-auto group-hover:scale-115 duration-400 transition-all group-hover:-translate-y-4"
+                                    className="mx-auto h-full w-full object-contain transition-all duration-400 group-hover:-translate-y-4 group-hover:scale-115"
                                 />
                             ) : (
                                 <div className="flex h-full items-center justify-center text-gray-400">
