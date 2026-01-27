@@ -3,39 +3,20 @@ import { useBooksFiltersStore } from "../store/filtros";
 
 export function useFilteredBooks() {
     const { books } = useBooksStore();
-    const {
-        search,
-        category,
-        author,
-        language,
-        maxPages,
-    } = useBooksFiltersStore();
+    const { search, category, author, language, maxPages } = useBooksFiltersStore();
 
     return books.filter((book) => {
         const info = book.volumeInfo;
 
-        if (
-            search &&
-            !info.title.toLowerCase().includes(search.toLowerCase())
-        ) {
+        if (search && !info.title.toLowerCase().includes(search.toLowerCase())) {
             return false;
         }
 
-        if (
-            category &&
-            !info.categories?.some((c) =>
-                c.toLowerCase().includes(category.toLowerCase())
-            )
-        ) {
+        if (category && !info.categories?.some((c) => c.toLowerCase().includes(category.toLowerCase()))) {
             return false;
         }
 
-        if (
-            author &&
-            !info.authors?.some((a) =>
-                a.toLowerCase().includes(author.toLowerCase())
-            )
-        ) {
+        if (author && !info.authors?.some((a) => a.toLowerCase().includes(author.toLowerCase()))) {
             return false;
         }
 
