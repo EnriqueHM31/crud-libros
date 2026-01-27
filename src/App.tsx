@@ -1,9 +1,10 @@
+import AsideNav from "./components/AsideNav"
 
 function App() {
 
   return (
     <>
-      <h1>hola</h1>
+      <AsideNav />
     </>
   )
 }
