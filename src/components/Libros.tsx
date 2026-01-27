@@ -5,6 +5,7 @@ import LoadingBooks from "./Atomos/Loading";
 import HeaderTypeFormatBook from "./Libros/HeaderTypeFormatBook";
 import ListBooks from "./Libros/ListBooks";
 import MosaicoBooks from "./Libros/MosaicoBooks";
+import BooksFilters from "./Libros/Filters";
 
 type ViewMode = "list" | "grid";
 const viewModes = {
@@ -31,6 +32,7 @@ export default function Libros() {
     return (
         <section className="flex flex-col gap-6">
             {/* Header */}
+            <BooksFilters />
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
             {/* GRID VIEW */}
