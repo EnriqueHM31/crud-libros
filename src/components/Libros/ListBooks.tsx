@@ -34,7 +34,7 @@ export default function ListBooks() {
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
                         onClick={() => selectBook(book)}
-                        className="group bg-surface hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl py-4 px-8 shadow-sm hover:shadow-md"
+                        className="group bg-surface hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl px-8 py-4 shadow-sm hover:shadow-md"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -50,7 +50,7 @@ export default function ListBooks() {
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
                             <div>
-                                <h3 className="text-lg font-semibold text-primary/80 group-hover:text-background">{info.title}</h3>
+                                <h3 className="text-primary/80 group-hover:text-background text-lg font-semibold">{info.title}</h3>
 
                                 {info.authors && (
                                     <p className="group-hover:text-background mt-1 flex items-center gap-2 text-sm text-gray-500">
@@ -62,17 +62,17 @@ export default function ListBooks() {
 
                             <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap gap-4 text-sm">
                                 {info.publishedDate && (
-                                    <span className="flex items-center gap-2 ">
+                                    <span className="flex items-center gap-2">
                                         <IoCalendarNumberOutline className="text-primary/70 group-hover:text-background" /> {info.publishedDate}
                                     </span>
                                 )}
                                 {info.pageCount && (
-                                    <span className="flex items-center gap-2 ms-2">
+                                    <span className="ms-2 flex items-center gap-2">
                                         <FaBookOpen className="text-primary/70 group-hover:text-background" /> {info.pageCount} páginas
                                     </span>
                                 )}
                                 {info.language && (
-                                    <span className="flex items-center gap-2 ms-2">
+                                    <span className="ms-2 flex items-center gap-2">
                                         <GrLanguage className="text-primary/70 group-hover:text-background" /> {info.language.toUpperCase()}
                                     </span>
                                 )}
