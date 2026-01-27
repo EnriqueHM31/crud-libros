@@ -1,12 +1,7 @@
 import { motion } from "framer-motion";
+import { FaMoon } from "react-icons/fa";
+import { useMenuStore } from "../store/menu";
 import { useThemeStore } from "../store/theme";
-import { FaHome, FaBook, FaComment, FaMoon } from "react-icons/fa";
-
-const links = [
-    { name: "Home", href: "#", icon: FaHome },
-    { name: "Libros", href: "#", icon: FaBook },
-    { name: "Contact", href: "#", icon: FaComment },
-];
 
 const itemVariants = {
     hidden: { x: -30, opacity: 0 },
@@ -18,9 +13,10 @@ const itemVariants = {
 
 export default function AsideNav() {
     const { toggleMode } = useThemeStore();
+    const { menuItems, setMenu, currentMenu } = useMenuStore();
 
     return (
-        <motion.aside className="bg-primary text-text-inverse flex h-screen w-72 flex-col justify-between py-6">
+        <motion.aside className="bg-primary text-text-inverse flex h-screen w-full flex-col justify-between py-6">
             <header className="px-6">
                 <motion.h1
                     variants={itemVariants}
@@ -34,22 +30,33 @@ export default function AsideNav() {
             </header>
 
             <nav className="mt-8 flex flex-col gap-1 px-2" aria-label="Main navigation">
-                {links.map(({ name, href, icon: Icon }, index) => (
-                    <motion.a
-                        key={name}
-                        href={href}
-                        variants={itemVariants}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ delay: index * 0.2, duration: 0.8 }}
-                        whileHover={{ x: 6 }}
-                        whileTap={{ scale: 0.97 }}
-                        className="group text-text-inverse hover:bg-primary-hover flex items-center gap-4 rounded-xl px-4 py-3 text-lg font-medium transition-colors"
-                    >
-                        <Icon className="text-xl opacity-90 group-hover:opacity-100" />
-                        <span>{name}</span>
-                    </motion.a>
-                ))}
+                {menuItems.map(({ name, path, icon: Icon, key }, index) => {
+                    return (
+                        <motion.button
+                            key={name}
+                            variants={itemVariants}
+                            initial="hidden"
+                            animate="visible"
+                            transition={{ delay: index * 0.3, duration: 0.8 }}
+                            whileHover={{ x: 6 }}
+                            whileTap={{ scale: 0.97 }}
+                            onClick={() => {
+                                setMenu(key);
+                                window.history.pushState({}, "", path);
+                            }}
+                            className={`group flex w-full items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors cursor-pointer
+                                ${currentMenu === key
+                                    ? 'bg-primary-hover text-text-inverse'
+                                    : 'text-text-inverse hover:bg-primary-hover'
+                                }
+                            `}
+
+                        >
+                            <Icon className="text-xl opacity-90 group-hover:opacity-100" />
+                            <span>{name}</span>
+                        </motion.button>
+                    );
+                })}
             </nav>
 
             <footer className="px-4">
