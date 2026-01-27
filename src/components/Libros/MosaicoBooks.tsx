@@ -19,7 +19,6 @@ const itemVariants = {
     },
 };
 
-
 export default function MosaicoBooks() {
     const { books, selectBook } = useBooksStore();
     return (
@@ -27,7 +26,7 @@ export default function MosaicoBooks() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 "
+            className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
             {books.map((book) => {
                 const info = book.volumeInfo;
@@ -38,9 +37,9 @@ export default function MosaicoBooks() {
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
                         onClick={() => selectBook(book)}
-                        className="group cursor-pointer  rounded-2xl bg-background hover:bg-linear-to-b from-blue-600 from-10% to-white to-100% shadow-sm hover:shadow-lg flex justify-between flex-col"
+                        className="group bg-background flex cursor-pointer flex-col justify-between rounded-2xl from-blue-600 from-10% to-white to-100% shadow-sm hover:bg-linear-to-b hover:shadow-lg"
                     >
-                        <div className="relative h-56 ">
+                        <div className="relative h-56">
                             {info.imageLinks?.thumbnail ? (
                                 <motion.img
                                     src={info.imageLinks.thumbnail}
@@ -55,11 +54,11 @@ export default function MosaicoBooks() {
                             )}
                         </div>
 
-                        <div className="p-4 flex flex-col gap-2 h-full">
-                            <h3 className="line-clamp-1 font-semibold flex-1 ">{info.title}</h3>
+                        <div className="flex h-full flex-col gap-2 p-4">
+                            <h3 className="line-clamp-1 flex-1 font-semibold">{info.title}</h3>
 
                             {info.authors && (
-                                <p className="mt-2 flex items-center gap-2 text-sm text-secondary ">
+                                <p className="text-secondary mt-2 flex items-center gap-2 text-sm">
                                     <FaUser className="text-primary" />
                                     {info.authors.join(", ")}
                                 </p>
