@@ -1,9 +1,9 @@
 import type React from "react";
-import { FaBook, FaComment, FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaBook, FaComment, FaHome, FaInfo, FaShoppingCart } from "react-icons/fa";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export type MenuKey = "home" | "libros" | "contacto" | "pedidos";
+export type MenuKey = "home" | "libros" | "contacto" | "pedidos" | "informacion";
 
 type MenuItem = {
     key: MenuKey;
@@ -27,6 +27,7 @@ export const useMenuStore = create<MenuState>()(
         (set, get) => ({
             menuItems: [
                 { key: "home", name: "Home", path: "/", icon: FaHome },
+                { key: "informacion", name: "Información", path: "/informacion", icon: FaInfo },
                 { key: "libros", name: "Libros", path: "/libros", icon: FaBook },
                 { key: "contacto", name: "Contacto", path: "/contacto", icon: FaComment },
                 { key: "pedidos", name: "Pedidos", path: "/pedidos", icon: FaShoppingCart },
