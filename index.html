@@ -15,3 +15,23 @@
 </body>
 
 </html>
+<script>
+  (() => {
+    try {
+      const raw = localStorage.getItem("theme-mode");
+      if (!raw) return;
+
+      const parsed = JSON.parse(raw);
+      const mode = parsed?.state?.mode;
+      console.log(mode);
+
+      if (mode === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } catch (e) {
+      document.documentElement.classList.remove("dark");
+    }
+  })();
+</script>
