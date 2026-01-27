@@ -78,8 +78,8 @@ export default function AsideNav() {
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                        whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                         onClick={toggleMode}
                         transition={{ duration: 0.2, delay: 1.6 }}
                         className="bg-background text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors duration-150 hover:bg-white"
