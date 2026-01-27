@@ -6,7 +6,6 @@ import HeaderTypeFormatBook from "./Libros/HeaderTypeFormatBook";
 import ListBooks from "./Libros/ListBooks";
 import MosaicoBooks from "./Libros/MosaicoBooks";
 
-
 type ViewMode = "list" | "grid";
 const viewModes = {
     list: "list",
@@ -35,14 +34,10 @@ export default function Libros() {
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
             {/* GRID VIEW */}
-            {viewMode === viewModes.grid && (
-                <MosaicoBooks />
-            )}
+            {viewMode === viewModes.grid && <MosaicoBooks />}
 
             {/* LIST VIEW */}
-            {viewMode === viewModes.list && (
-                <ListBooks />
-            )}
+            {viewMode === viewModes.list && <ListBooks />}
         </section>
     );
 }
