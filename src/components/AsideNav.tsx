@@ -12,7 +12,7 @@ const itemVariants = {
     hidden: { x: -30, opacity: 0 },
     visible: {
         x: 0,
-        opacity: 1
+        opacity: 1,
     },
 };
 
@@ -20,30 +20,19 @@ export default function AsideNav() {
     const { toggleMode } = useThemeStore();
 
     return (
-        <motion.aside
-            className="
-        h-screen w-72
-        bg-primary
-        text-text-inverse
-        flex flex-col
-        justify-between
-        py-6
-      "
-        >
-            {/* Header */}
+        <motion.aside className="bg-primary text-text-inverse flex h-screen w-72 flex-col justify-between py-6">
             <header className="px-6">
                 <motion.h1
                     variants={itemVariants}
                     transition={{ duration: 0.8 }}
                     initial="hidden"
                     animate="visible"
-                    className="text-2xl font-bold tracking-tight">
-                    <span className="opacity-90">Libros</span>{" "}
-                    <span className="text-primary-soft">HM</span>
+                    className="text-2xl font-bold tracking-tight"
+                >
+                    <span className="opacity-90">Libros</span> <span className="text-primary-soft">HM</span>
                 </motion.h1>
             </header>
 
-            {/* Navigation */}
             <nav className="mt-8 flex flex-col gap-1 px-2" aria-label="Main navigation">
                 {links.map(({ name, href, icon: Icon }, index) => (
                     <motion.a
@@ -55,14 +44,7 @@ export default function AsideNav() {
                         transition={{ delay: index * 0.2, duration: 0.8 }}
                         whileHover={{ x: 6 }}
                         whileTap={{ scale: 0.97 }}
-                        className="
-              group flex items-center gap-4
-              rounded-xl px-4 py-3
-              text-lg font-medium
-              text-text-inverse
-              hover:bg-primary-hover
-              transition-colors
-            "
+                        className="group text-text-inverse hover:bg-primary-hover flex items-center gap-4 rounded-xl px-4 py-3 text-lg font-medium transition-colors"
                     >
                         <Icon className="text-xl opacity-90 group-hover:opacity-100" />
                         <span>{name}</span>
@@ -70,7 +52,6 @@ export default function AsideNav() {
                 ))}
             </nav>
 
-            {/* Footer */}
             <footer className="px-4">
                 <motion.button
                     variants={itemVariants}
@@ -80,15 +61,7 @@ export default function AsideNav() {
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleMode}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="
-            w-full flex items-center justify-center gap-3
-            rounded-xl py-3
-            bg-primary-soft
-            text-primary
-            font-semibold
-            hover:bg-white
-            transition-colors
-          "
+                    className="bg-primary-soft text-primary flex w-full items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
                 >
                     <FaMoon />
                     Cambiar tema
