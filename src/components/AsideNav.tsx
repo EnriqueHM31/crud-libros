@@ -27,13 +27,6 @@ export default function AsideNav() {
 
     return (
         <>
-            {/* Overlay mobile */}
-            {isOpen && (
-                <div
-                    onClick={() => setIsOpen(false)}
-                    className="fixed inset-0 z-30 bg-black/40 md:hidden"
-                />
-            )}
 
             {/* Botón menú mobile */}
             <button
@@ -106,11 +99,11 @@ export default function AsideNav() {
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, animationDuration: 0.2, transitionDuration: 0.2 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleMode}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="bg-primary-soft text-primary flex w-full items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
+                        className="bg-primary-soft text-primary flex w-full items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white cursor-pointer"
                     >
                         <FaMoon />
                         Cambiar tema
