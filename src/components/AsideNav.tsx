@@ -31,8 +31,7 @@ export default function AsideNav() {
             <motion.aside
                 className={`bg-primary text-text-inverse fixed z-40 h-screen w-full flex-col justify-between py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
             >
-                <div className="flex-1 flex flex-col gap-6">
-
+                <div className="flex flex-1 flex-col gap-6">
                     <header className="px-6">
                         <motion.h1
                             variants={itemVariants}
@@ -63,8 +62,9 @@ export default function AsideNav() {
                                     window.history.pushState({}, "", path);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                    } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors ${
+                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                             >
                                 <Icon className="text-xl opacity-90 group-hover:opacity-100" />
                                 <span>{name}</span>
@@ -78,11 +78,11 @@ export default function AsideNav() {
                         variants={itemVariants}
                         initial="hidden"
                         animate="visible"
-                        whileHover={{ scale: 1.05, }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={toggleMode}
                         transition={{ duration: 0.2, delay: 1.6 }}
-                        className="bg-background text-primary flex w-full duration-150 cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors hover:bg-white"
+                        className="bg-background text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors duration-150 hover:bg-white"
                     >
                         <FaMoon />
                         Cambiar tema
