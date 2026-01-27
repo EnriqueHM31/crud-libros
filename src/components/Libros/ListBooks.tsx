@@ -34,7 +34,7 @@ export default function ListBooks() {
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
                         onClick={() => selectBook(book)}
-                        className="group flex cursor-pointer gap-5 rounded-2xl bg-surface  p-4 shadow-sm hover:shadow-md"
+                        className="group flex cursor-pointer gap-5 rounded-2xl bg-surface  p-4 shadow-sm hover:shadow-md hover:bg-primary text-background"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -54,17 +54,17 @@ export default function ListBooks() {
                                 <h3 className="text-lg font-semibold">{info.title}</h3>
 
                                 {info.authors && (
-                                    <p className="mt-1 flex items-center gap-2 text-sm text-gray-500">
-                                        <FaUser className="text-primary" />
+                                    <p className="mt-1 flex items-center gap-2 text-sm text-gray-500 group-hover:text-background">
+                                        <FaUser className="text-primary group-hover:text-background " />
                                         {info.authors.join(", ")}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="mt-5 flex flex-wrap gap-4 text-sm text-primary-soft">
-                                {info.publishedDate && <span className="flex items-center gap-1"><IoCalendarNumberOutline className="text-primary/70" /> {info.publishedDate}</span>}
-                                {info.pageCount && <span className="flex items-center gap-1"><FaBookOpen className="text-primary/70" /> {info.pageCount} páginas</span>}
-                                {info.language && <span className="flex items-center gap-1"><GrLanguage className="text-primary/70" /> {info.language.toUpperCase()}</span>}
+                            <div className="mt-5 flex flex-wrap gap-4 text-sm text-primary-soft group-hover:text-background">
+                                {info.publishedDate && <span className="flex items-center gap-1"><IoCalendarNumberOutline className="text-primary/70 group-hover:text-background" /> {info.publishedDate}</span>}
+                                {info.pageCount && <span className="flex items-center gap-1"><FaBookOpen className="text-primary/70 group-hover:text-background" /> {info.pageCount} páginas</span>}
+                                {info.language && <span className="flex items-center gap-1"><GrLanguage className="text-primary/70 group-hover:text-background" /> {info.language.toUpperCase()}</span>}
                             </div>
                         </div>
 
