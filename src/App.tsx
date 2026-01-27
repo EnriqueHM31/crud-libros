@@ -1,12 +1,11 @@
-import AsideNav from "./components/AsideNav"
+import AsideNav from "./components/AsideNav";
 
 function App() {
-
-  return (
-    <>
-      <AsideNav />
-    </>
-  )
+    return (
+        <>
+            <AsideNav />
+        </>
+    );
 }
 
-export default App
+export default App;
