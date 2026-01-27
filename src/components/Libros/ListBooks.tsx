@@ -34,12 +34,12 @@ export default function ListBooks() {
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
                         onClick={() => selectBook(book)}
-                        className="group flex cursor-pointer gap-5 rounded-2xl bg-surface  p-4 shadow-sm hover:shadow-md hover:bg-primary text-background"
+                        className="group bg-surface hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl p-4 shadow-sm hover:shadow-md"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                             {info.imageLinks?.thumbnail ? (
-                                <img src={info.imageLinks.thumbnail} alt={info.title} className="h-full w-full object-contain rounded-lg" />
+                                <img src={info.imageLinks.thumbnail} alt={info.title} className="h-full w-full rounded-lg object-contain" />
                             ) : (
                                 <div className="flex h-full items-center justify-center text-gray-400">
                                     <FaBookOpen />
@@ -50,21 +50,32 @@ export default function ListBooks() {
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
                             <div>
-
                                 <h3 className="text-lg font-semibold">{info.title}</h3>
 
                                 {info.authors && (
-                                    <p className="mt-1 flex items-center gap-2 text-sm text-gray-500 group-hover:text-background">
-                                        <FaUser className="text-primary group-hover:text-background " />
+                                    <p className="group-hover:text-background mt-1 flex items-center gap-2 text-sm text-gray-500">
+                                        <FaUser className="text-primary group-hover:text-background" />
                                         {info.authors.join(", ")}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="mt-5 flex flex-wrap gap-4 text-sm text-primary-soft group-hover:text-background">
-                                {info.publishedDate && <span className="flex items-center gap-1"><IoCalendarNumberOutline className="text-primary/70 group-hover:text-background" /> {info.publishedDate}</span>}
-                                {info.pageCount && <span className="flex items-center gap-1"><FaBookOpen className="text-primary/70 group-hover:text-background" /> {info.pageCount} páginas</span>}
-                                {info.language && <span className="flex items-center gap-1"><GrLanguage className="text-primary/70 group-hover:text-background" /> {info.language.toUpperCase()}</span>}
+                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap gap-4 text-sm">
+                                {info.publishedDate && (
+                                    <span className="flex items-center gap-1">
+                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-background" /> {info.publishedDate}
+                                    </span>
+                                )}
+                                {info.pageCount && (
+                                    <span className="flex items-center gap-1">
+                                        <FaBookOpen className="text-primary/70 group-hover:text-background" /> {info.pageCount} páginas
+                                    </span>
+                                )}
+                                {info.language && (
+                                    <span className="flex items-center gap-1">
+                                        <GrLanguage className="text-primary/70 group-hover:text-background" /> {info.language.toUpperCase()}
+                                    </span>
+                                )}
                             </div>
                         </div>
 
