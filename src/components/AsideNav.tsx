@@ -44,7 +44,7 @@ export default function AsideNav() {
                         </motion.h1>
                     </header>
 
-                    <nav className="my-10 mt-8 flex flex-col gap-1 px-2 md:my-0" aria-label="Main navigation">
+                    <nav className="my-10 mt-8 flex flex-col  md:my-0" aria-label="Main navigation">
                         {menuItems.map(({ name, path, icon: Icon, key }, index) => (
                             <motion.button
                                 key={name}
@@ -55,19 +55,19 @@ export default function AsideNav() {
                                     delay: index * 0.3,
                                     duration: 0.2,
                                 }}
-                                whileHover={{ x: 6 }}
-                                whileTap={{ scale: 0.97 }}
                                 onClick={() => {
                                     setMenu(key);
                                     window.history.pushState({}, "", path);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 rounded-xl px-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
-                                <Icon className="text-xl opacity-90 group-hover:opacity-100" />
-                                <span>{name}</span>
+                                <div className="flex flex-1 items-center gap-2 px-4">
+                                    <Icon className="text-xl opacity-90 group-hover:opacity-100" />
+                                    <span>{name}</span>
+
+                                </div>
                             </motion.button>
                         ))}
                     </nav>
