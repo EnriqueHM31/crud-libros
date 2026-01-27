@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";
-import { useBooksStore } from "../../store/libro";
+import { useFilteredBooks } from "../../hooks/Filters";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -20,7 +20,7 @@ const itemVariants = {
 };
 
 export default function MosaicoBooks() {
-    const { books, selectBook } = useBooksStore();
+    const books = useFilteredBooks();
     return (
         <motion.section
             variants={containerVariants}
@@ -36,7 +36,6 @@ export default function MosaicoBooks() {
                         key={book.id}
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
-                        onClick={() => selectBook(book)}
                         className="group bg-background from-primary hover:bg-primary hover:text-background flex cursor-pointer flex-col justify-between rounded-2xl from-10% to-white to-100% shadow-sm hover:shadow-lg"
                     >
                         <div className="relative h-56">
