@@ -12,14 +12,13 @@ function App() {
 
     useEffect(() => {
         cargarLibros();
-    },
-        [cargarLibros]);
+    }, [cargarLibros]);
     return (
         <main className="flex h-screen w-screen">
             <div className="flex-1">
                 <AsideNav />
             </div>
-            <div className="flex-4 p-5 overflow-y-auto h-screen">
+            <div className="h-screen flex-4 overflow-y-auto p-5">
                 {currentMenu === "home" && <Home />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "contacto" && <Contacto />}

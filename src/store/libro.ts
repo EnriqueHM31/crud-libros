@@ -53,8 +53,7 @@ export const useBooksStore = create<BooksState>((set) => ({
         set({
             books: data.items ?? [],
             page: 1,
-            hasMore:
-                (data.items?.length ?? 0) === MAX_RESULTS,
+            hasMore: (data.items?.length ?? 0) === MAX_RESULTS,
             isLoading: false,
         });
     },
@@ -80,8 +79,7 @@ export const useBooksStore = create<BooksState>((set) => ({
             set({
                 books: data.items ?? [],
                 page: 1,
-                hasMore:
-                    (data.items?.length ?? 0) === MAX_RESULTS,
+                hasMore: (data.items?.length ?? 0) === MAX_RESULTS,
                 isLoading: false,
             });
         } catch (err) {
@@ -91,7 +89,6 @@ export const useBooksStore = create<BooksState>((set) => ({
             });
         }
     },
-
 
     /* =========================
        SELECCIONAR LIBRO

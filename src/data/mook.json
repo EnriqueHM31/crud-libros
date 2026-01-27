@@ -9,9 +9,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/aaa6EAAAQBAJ",
             "volumeInfo": {
                 "title": "Diseño de páginas Web con XHTML, JavaScript y CSS. 3ª edición",
-                "authors": [
-                    "Juan Carlos Orós Cabello"
-                ],
+                "authors": ["Juan Carlos Orós Cabello"],
                 "publisher": "Ra-Ma Editorial",
                 "publishedDate": "2010-11-03",
                 "description": "XHTML es el lenguaje nacido para sustituir al HTML como estándar para la programación de páginas web. Su objetivo es lograr una web semántica, donde la información y la forma de presentarla estén claramente separadas. En este sentido, XHTML se usaría para concretar el contenido del documento dejando para las hojas de estilo y JavaScript la definición, su aspecto y diseño. Como se indicó anteriormente, esta obra respeta las recomendaciones del W3C relacionadas con el estándar XHTML y las CSS, explicando de manera clara y con multitud de ejemplos las características fundamentales de JavaScript, para que el lector pueda aprender las bases de su programación y añadir a sus propias páginas interactividad y multimedia. Su contenido es de inestimable ayuda tanto para los usuarios que ya saben diseñar páginas Web con HTML (diseñadores, Webmasters, programadores, etc.) como para aquellos que nunca han creado un programa, ya que introduce de manera paulatina y sin esfuerzo el lenguaje JavaScript. Los primeros pasos consisten en afianzar los conocimientos necesarios de XHTML para que después, poco a poco, el lector se vaya familiarizando con la terminología de JavaScript hasta terminar con las CSS (Hojas de Estilo en Cascada), con las que podremos configurar el aspecto del documento. La obra se complementa con multitud de ejemplos que pueden ser descagados desde la página web de la Editorial Ra-Ma. Con esos ejercicios estudiados en los capítulos e infinidad de ejemplos, el usuario podrá ver, entender, aprender y afianzar todas las explicaciones.",
@@ -31,9 +29,7 @@
                 },
                 "pageCount": 376,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": false,
                 "contentVersion": "0.3.0.0.preview.1",
@@ -107,9 +103,7 @@
             "volumeInfo": {
                 "title": "Javascript Práctico - Vol.2",
                 "subtitle": "Usa Javascript para crear aplicaciones web completas para organizar y mostrar datos de forma atractiva.",
-                "authors": [
-                    "Román Arenas"
-                ],
+                "authors": ["Román Arenas"],
                 "publisher": "RedUSERS",
                 "publishedDate": "2024-01-23",
                 "description": "En este enfoque específico, nos adentraremos en la exploración de diversas metodologías para adquirir datos de un servidor, que en este contexto será una API de terceros, y en cómo integrar estos datos en nuestra aplicación frontend. El objetivo es comprender las múltiples formas en que podemos obtener información valiosa de fuentes externas y mostrarla de manera efectiva en nuestra aplicación web. En este volumen 2 profundizarás en el uso de JavaScript y trabajarás con modelos para crear aplicaciones web que te permitan organizar y mostrar datos de forma atractiva.",
@@ -119,9 +113,7 @@
                 },
                 "pageCount": 108,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": false,
                 "contentVersion": "0.1.2.0.preview.1",
@@ -194,9 +186,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/B47tCgAAQBAJ",
             "volumeInfo": {
                 "title": "La Guia Básica de JavaScript",
-                "authors": [
-                    "Miguel A. Arias"
-                ],
+                "authors": ["Miguel A. Arias"],
                 "publisher": "IT Campus Academy",
                 "publishedDate": "2013-08-29",
                 "description": "JavaScript es un lenguaje de programación interpretado, que define como orientado a objetos,3 basado en prototipos, imperativo, débilmente tipado y dinámico. Se utiliza principalmente en su forma del lado del cliente (client-side), implementado como parte de un navegador web permitiendo mejoras en la interfaz de usuario y páginas web dinámicas aunque existe una forma de JavaScript del lado del servidor (Server-side JavaScript o SSJS). Su uso en aplicaciones externas a la web, por ejemplo en documentos PDF, aplicaciones de escritorio (mayoritariamente widgets) es también significativo. JavaScript se diseñó con una sintaxis similar al C, aunque adopta nombres y convenciones del lenguaje de programación Java. Sin embargo Java y JavaScript no están relacionados y tienen semánticas y propósitos diferentes. Todos los navegadores modernos interpretan el código JavaScript integrado en las páginas web. Para interactuar con una página web se provee al lenguaje JavaScript de una implementación del Document Object Model (DOM). Tradicionalmente se venía utilizando en páginas web HTML para realizar operaciones y únicamente en el marco de la aplicación cliente, sin acceso a funciones del servidor. JavaScript se interpreta en el agente de usuario, al mismo tiempo que las sentencias van descargándose junto con el código HTML. Este libro está pensado para que pueda ser desarrollado por una persona que no conoce lenguajes de programación, es decir, como primer lenguaje. El objetivo de este libro es poder aprender JavaScript en forma sencilla viendo un concepto teórico, con un poco de código para ver lo ejemplos.",
@@ -216,9 +206,7 @@
                 },
                 "pageCount": 78,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "averageRating": 3,
                 "ratingsCount": 1,
                 "maturityRating": "NOT_MATURE",
@@ -292,9 +280,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/1c-4EAAAQBAJ",
             "volumeInfo": {
                 "title": "Domine JavaScript 4ª Edición",
-                "authors": [
-                    "Pablo Enrique Fernández Casado"
-                ],
+                "authors": ["Pablo Enrique Fernández Casado"],
                 "publisher": "Ra-Ma Editorial",
                 "publishedDate": "2020-02-13",
                 "description": "Aunque JavaScript es un lenguaje capaz de manejar cosas tan increíbles como la geolocalización o de ejecutar subprogramas en segundo plano, casi, sin gastar recursos del sistema, para muchos, es el gran desconocido. Este libro va dirigido a todas aquellas personas, con o sin nivel, que quieren saber más sobre el mundo de la programación orientada a eventos o quieren iniciarse en el mundo de HTML5. Empezando desde un nivel cero, se van explicando de manera sencilla y concisa, todas y cada una de las características de JavaScript, desde los tipos de datos hasta las diferentes API de HTML5 y su posible integración con CSS. Después de la exposición teórica del lenguaje, se exponen veinticuatro ejemplos que pueden ser descargados a través de un repositorio de GitHub, los cuales están pensados desde un punto de vista didáctico para que, el alumno o lector, ponga en práctica varios de los aspectos más relevantes e importantes que ofrece JavaScript como son los Web Components, los elementos nativos o la API Canvas. Cuando se termine este libro se habrán adquirido los conocimientos necesarios para poder enfrentarse a cualquier desafío que JavaScript le pueda plantear y se le presentará una biblioteca de componentes de rápida instalación e integración sin derechos de uso dedicada, sobre todo, a los desarrolladores que desean seguir instruyéndose.",
@@ -314,9 +300,7 @@
                 },
                 "pageCount": 319,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": false,
                 "contentVersion": "1.2.2.0.preview.3",
@@ -390,9 +374,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/nDNwM_5IDLIC",
             "volumeInfo": {
                 "title": "Aprender a desarrollar con JavaScript",
-                "authors": [
-                    "Christian Vigouroux"
-                ],
+                "authors": ["Christian Vigouroux"],
                 "publisher": "Ediciones ENI",
                 "publishedDate": "2017",
                 "industryIdentifiers": [
@@ -457,9 +439,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/DADnDQAAQBAJ",
             "volumeInfo": {
                 "title": "La programación JavaScript",
-                "authors": [
-                    "Preston Prescott"
-                ],
+                "authors": ["Preston Prescott"],
                 "publisher": "Babelcube Inc.",
                 "publishedDate": "2017-02-01",
                 "description": "¿Estás cansado de intentar aprender a programar? ¿Estás listo para conseguirlo? Si ya has intentado aprender a programar, pero no has tenido mucho éxito, entonces dale una oportunidad a La programación JavaScript. Te enseñará exactamente todo lo que tienes que saber sobre cómo utilizar el lenguaje de programación más empleado en todo el mundo. Desde el comienzo, te enseñará lo básico y, a partir de allí, irás fortaleciendo tus conocimientos sobre la base de lo aprendido. Luego no pararás de utilizarlo... Incluso aunque JavaScript sea el lenguaje de programación del lado del cliente más popular de hoy día, también puede emplearse del lado del servidor. Node.js, Meteor, Wakanda, CouchDB, y MongoDB solo son unos pocos ejemplos de entornos donde encontrar y usar JavaScript del lado del servidor. El tiempo que inviertes en aprender JavaScript puede ser doblemente gratificante ya que JavaScript continúa avanzando en más y más áreas de la informática. Si estás buscando avanzar en tu carrera, JavaScript es una valiosa habilidad que puedes incorporar. Este tipo de conocimiento es muy demandado actualmente y esta necesidad no hará más que aumentar. Si deseas abrirte paso en el mercado laboral de la tecnología, ¿qué mejor habilidad para tener en tu currículum que algo que prácticamente puedes usar en cualquier lugar? ¿Quieres trabajar en la parte inicial de los sitios web? Aprende JavaScript. ¿Estás listo para encarar la programación de fondo de las aplicaciones web? Aprende JavaScript. ¿Quieres trabajar con la última tecnología de base de datos disponible? Entonces aprende JavaScript. Pero hazlo de la forma correcta, de una vez por todas. No importa si lo usas del lado del cliente en un navegador web o del lado del servidor. En cualquier caso, o en ambos, tendrás que aprender los fundamentos",
@@ -479,9 +459,7 @@
                 },
                 "pageCount": 72,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": true,
                 "contentVersion": "1.4.4.0.preview.3",
@@ -554,9 +532,7 @@
             "volumeInfo": {
                 "title": "Programación JavaScript",
                 "subtitle": "Javascript para Principiantes",
-                "authors": [
-                    "John Bach"
-                ],
+                "authors": ["John Bach"],
                 "publishedDate": "2021-03-03",
                 "description": "JavaScript fue creado en tan solo diez días por Brandan Eich, un empleado de Netscape, en septiembre de 1995. Inicialmente llamado Mocha, el nombre del lenguaje se cambió a Mona y luego a LiveScript antes de que finalmente fuera conocido como JavaScript. Las versiones iniciales del lenguaje se limitaban exclusivamente a Netscape y solo ofrecían una funcionalidad limitada, pero han seguido creciendo con el tiempo gracias en parte a la comunidad de desarrolladores que continúan trabajando con él.En 1996, JavaScript recibió oficialmente el nombre de ECMAScript, con ECMAScript 2 en 1998 y ECMAScript 3 apareció en 1999. Así evolucionó hasta convertirse en el JavaScript que conocemos hoy en día, que ahora funciona no solo en diferentes navegadores sino también en diferentes dispositivos, incluidos teléfonos móviles y computadoras de escritorio.JavaScript ha seguido creciendo desde entonces, hasta el punto en que el 92% de los sitios web usaba JavaScript en el 2016. En solo veinte años pasó de ser un lenguaje de programación primitivo a ser una de las herramientas más importantes en la caja de herramientas de todo desarrollador web. Si usas Internet, probablemente también te hayas encontrado con JavaScript.",
                 "industryIdentifiers": [
@@ -619,9 +595,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/SqikDwAAQBAJ",
             "volumeInfo": {
                 "title": "JavaScript - Aprende a programar en el lenguaje de la web",
-                "authors": [
-                    "Fernando Luna"
-                ],
+                "authors": ["Fernando Luna"],
                 "publisher": "RedUsers",
                 "publishedDate": "2019-07-23",
                 "description": "JavaScript es el lenguaje de programación más utilizado hoy. Junto a HTML y CSS, le da vida a la gran mayoría de los sitios Web que visitamos. Pero JavaScript ya no es exclusivo de la Web: proyectos como NodeJS, Electron y React Native lo llevaron al ámbito de los servidores, los programas de escritorio y las aplicaciones móviles. Además, cada día surgen nuevos frameworks (como los líderes y archienemigos React y Angular) para expandir las posibilidades de JavaScript. Esta guía introductoria, nos llevará en un viaje vertiginoso desde el primer \"Hola Mundo\" hasta aplicaciones que nos hablan y acceden a bases de datos. Obviamente, este no pretende ser un curso comprehensivo, sino un punto de partida para que el lector comience a programar en este excitante lenguaje.",
@@ -641,9 +615,7 @@
                 },
                 "pageCount": 146,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": true,
                 "contentVersion": "0.1.1.0.preview.1",
@@ -717,9 +689,7 @@
             "volumeInfo": {
                 "title": "Los API JavaScript de HTML5",
                 "subtitle": "Integre la potencia de HTML5 en sus aplicaciones Web",
-                "authors": [
-                    "Luc Van Lancker"
-                ],
+                "authors": ["Luc Van Lancker"],
                 "publisher": "Ediciones ENI",
                 "publishedDate": "2013",
                 "industryIdentifiers": [
@@ -738,9 +708,7 @@
                 },
                 "pageCount": 520,
                 "printType": "BOOK",
-                "categories": [
-                    "Computers"
-                ],
+                "categories": ["Computers"],
                 "averageRating": 5,
                 "ratingsCount": 1,
                 "maturityRating": "NOT_MATURE",
@@ -789,9 +757,7 @@
             "selfLink": "https://www.googleapis.com/books/v1/volumes/rpGutgAACAAJ",
             "volumeInfo": {
                 "title": "JavaScript y jQuery",
-                "authors": [
-                    "David Sawyer McFarland"
-                ],
+                "authors": ["David Sawyer McFarland"],
                 "publishedDate": "2012-03",
                 "description": "JavaScript es un lenguaje de programación para interactuar con los navegadores, que proporciona a los sitios Web dinamismo e inmediatez. Todos los navegadores importantes del mercado contienen un intérprete de JavaScript. Cuando aprenda a utilizar su biblioteca jQuery, obtendrá una programación más sencilla y potente que simplificará la manera de interactuar con los documento HTML, manejar eventos, desarrollar animaciones y agregar interacción a las páginas Web. Este libro le enseñará las bases de la programación con JavaScript. Hace énfasis en jQuery lo que le ayudará a liberarse de la complejidad de JavaScript y la naturaleza cambiante entre navegadores. Con este manual no tardará en crear páginas Web, sofisticadas y divertidas, que funcionarán como programas de escritorio, sin apenas programación.",
                 "industryIdentifiers": [
@@ -810,9 +776,7 @@
                 },
                 "pageCount": 560,
                 "printType": "BOOK",
-                "categories": [
-                    "Business & Economics"
-                ],
+                "categories": ["Business & Economics"],
                 "maturityRating": "NOT_MATURE",
                 "allowAnonLogging": false,
                 "contentVersion": "preview-1.0.0",

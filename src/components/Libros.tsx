@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-    FaBookOpen,
-    FaUser,
-    FaChevronRight,
-    FaThLarge,
-    FaList,
-} from "react-icons/fa";
+import { FaBookOpen, FaUser, FaChevronRight, FaThLarge, FaList } from "react-icons/fa";
 import { useBooksStore } from "../store/libro";
 
 const containerVariants = {
@@ -31,19 +25,11 @@ export default function Libros() {
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
 
     if (isLoading) {
-        return (
-            <div className="flex h-full items-center justify-center">
-                Cargando libros…
-            </div>
-        );
+        return <div className="flex h-full items-center justify-center">Cargando libros…</div>;
     }
 
     if (error) {
-        return (
-            <div className="rounded-xl bg-red-500/10 p-6 text-red-500">
-                {error}
-            </div>
-        );
+        return <div className="rounded-xl bg-red-500/10 p-6 text-red-500">{error}</div>;
     }
 
     return (
@@ -55,20 +41,14 @@ export default function Libros() {
                 <div className="flex gap-2">
                     <button
                         onClick={() => setViewMode("list")}
-                        className={`rounded-lg p-2 ${viewMode === "list"
-                            ? "bg-primary-soft text-primary"
-                            : "text-gray-400 hover:bg-gray-100"
-                            }`}
+                        className={`rounded-lg p-2 ${viewMode === "list" ? "bg-primary-soft text-primary" : "text-gray-400 hover:bg-gray-100"}`}
                     >
                         <FaList />
                     </button>
 
                     <button
                         onClick={() => setViewMode("grid")}
-                        className={`rounded-lg p-2 ${viewMode === "grid"
-                            ? "bg-primary-soft text-primary"
-                            : "text-gray-400 hover:bg-gray-100"
-                            }`}
+                        className={`rounded-lg p-2 ${viewMode === "grid" ? "bg-primary-soft text-primary" : "text-gray-400 hover:bg-gray-100"}`}
                     >
                         <FaThLarge />
                     </button>
@@ -112,9 +92,7 @@ export default function Libros() {
                                 </div>
 
                                 <div className="p-4">
-                                    <h3 className="line-clamp-2 font-semibold">
-                                        {info.title}
-                                    </h3>
+                                    <h3 className="line-clamp-2 font-semibold">{info.title}</h3>
 
                                     {info.authors && (
                                         <p className="mt-2 flex items-center gap-2 text-sm text-gray-500">
@@ -133,12 +111,7 @@ export default function Libros() {
                LIST VIEW
             ======================= */}
             {viewMode === "list" && (
-                <motion.section
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                    className="flex flex-col gap-4"
-                >
+                <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4">
                     {books.map((book) => {
                         const info = book.volumeInfo;
 
@@ -153,11 +126,7 @@ export default function Libros() {
                                 {/* Imagen */}
                                 <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                                     {info.imageLinks?.thumbnail ? (
-                                        <img
-                                            src={info.imageLinks.thumbnail}
-                                            alt={info.title}
-                                            className="h-full w-full object-cover"
-                                        />
+                                        <img src={info.imageLinks.thumbnail} alt={info.title} className="h-full w-full object-cover" />
                                     ) : (
                                         <div className="flex h-full items-center justify-center text-gray-400">
                                             <FaBookOpen />
@@ -167,9 +136,7 @@ export default function Libros() {
 
                                 {/* Info */}
                                 <div className="flex flex-1 flex-col">
-                                    <h3 className="text-lg font-semibold">
-                                        {info.title}
-                                    </h3>
+                                    <h3 className="text-lg font-semibold">{info.title}</h3>
 
                                     {info.authors && (
                                         <p className="mt-1 flex items-center gap-2 text-sm text-gray-500">
@@ -179,21 +146,9 @@ export default function Libros() {
                                     )}
 
                                     <div className="mt-2 flex flex-wrap gap-4 text-xs text-gray-400">
-                                        {info.publishedDate && (
-                                            <span>
-                                                📅 {info.publishedDate}
-                                            </span>
-                                        )}
-                                        {info.pageCount && (
-                                            <span>
-                                                📄 {info.pageCount} páginas
-                                            </span>
-                                        )}
-                                        {info.language && (
-                                            <span>
-                                                🌐 {info.language.toUpperCase()}
-                                            </span>
-                                        )}
+                                        {info.publishedDate && <span>📅 {info.publishedDate}</span>}
+                                        {info.pageCount && <span>📄 {info.pageCount} páginas</span>}
+                                        {info.language && <span>🌐 {info.language.toUpperCase()}</span>}
                                     </div>
                                 </div>
 
