@@ -18,7 +18,7 @@ function App() {
             <div className="flex-1">
                 <AsideNav />
             </div>
-            <div className="h-screen flex-4 overflow-y-auto p-5">
+            <div className="h-screen flex-4 overflow-y-auto">
                 {currentMenu === "home" && <Home />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "contacto" && <Contacto />}
