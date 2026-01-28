@@ -34,7 +34,7 @@ export default function Libros() {
     }
 
     return (
-        <section className="flex flex-col px-3">
+        <section className="flex flex-col py-6 px-8 bg-white dark:bg-primary-dark">
             {/* Header */}
             <HeaderLibro />
 
