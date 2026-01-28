@@ -4,22 +4,10 @@ import { useBooksFiltersStore } from "../../store/filtros";
 export default function NotResults() {
     const { resetFilters } = useBooksFiltersStore();
     return (
-        <section className="flex flex-col items-center justify-center gap-1  px-4">
+        <section className="flex flex-col items-center justify-center gap-1 px-4">
             {/* SVG Animado */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative"
-            >
-                <svg
-                    width="200"
-                    height="200"
-                    viewBox="0 0 200 200"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="drop-shadow-lg"
-                >
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="relative bg-red-400">
+                <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
                     {/* Círculo de fondo */}
                     <motion.circle
                         cx="100"
@@ -32,11 +20,7 @@ export default function NotResults() {
                     />
 
                     {/* Libro cerrado */}
-                    <motion.g
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
-                    >
+                    <motion.g initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}>
                         {/* Portada del libro */}
                         <rect x="60" y="70" width="80" height="90" rx="4" fill="#3B82F6" />
                         <rect x="60" y="70" width="40" height="90" rx="4" fill="#2563EB" />
@@ -48,11 +32,7 @@ export default function NotResults() {
                     </motion.g>
 
                     {/* Lupa animada */}
-                    <motion.g
-                        initial={{ x: -20, y: -20, opacity: 0 }}
-                        animate={{ x: 0, y: 0, opacity: 1 }}
-                        transition={{ delay: 0.6, duration: 0.5 }}
-                    >
+                    <motion.g initial={{ x: -20, y: -20, opacity: 0 }} animate={{ x: 0, y: 0, opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}>
                         {/* Círculo de la lupa */}
                         <motion.circle
                             cx="130"
@@ -72,32 +52,13 @@ export default function NotResults() {
                         />
 
                         {/* Mango de la lupa */}
-                        <motion.line
-                            x1="145"
-                            y1="72"
-                            x2="160"
-                            y2="87"
-                            stroke="#6B7280"
-                            strokeWidth="4"
-                            strokeLinecap="round"
-                        />
+                        <motion.line x1="145" y1="72" x2="160" y2="87" stroke="#6B7280" strokeWidth="4" strokeLinecap="round" />
                     </motion.g>
 
                     {/* Signo de interrogación */}
-                    <motion.g
-                        initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ delay: 0.8, duration: 0.6, type: "spring" }}
-                    >
+                    <motion.g initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.8, duration: 0.6, type: "spring" }}>
                         <circle cx="125" cy="135" r="18" fill="#FBBF24" />
-                        <text
-                            x="125"
-                            y="145"
-                            textAnchor="middle"
-                            fill="white"
-                            fontSize="24"
-                            fontWeight="bold"
-                        >
+                        <text x="125" y="145" textAnchor="middle" fill="white" fontSize="24" fontWeight="bold">
                             ?
                         </text>
                     </motion.g>
@@ -131,14 +92,11 @@ export default function NotResults() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-center space-y-3 max-w-md"
+                className="max-w-md space-y-2 text-center"
             >
-                <h2 className="text-2xl font-bold text-gray-800">
-                    No encontramos resultados
-                </h2>
-                <p className="text-gray-600 text-base">
-                    No hay libros que coincidan con tus criterios de búsqueda.
-                    Intenta ajustar los filtros o buscar con otros términos.
+                <h2 className="text-2xl font-bold text-gray-800">No encontramos resultados</h2>
+                <p className="text-base text-gray-600">
+                    No hay libros que coincidan con tus criterios de búsqueda. Intenta ajustar los filtros o buscar con otros términos.
                 </p>
             </motion.div>
 
@@ -147,9 +105,13 @@ export default function NotResults() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
-                className="flex flex-wrap justify-center gap-2 mt-2"
+                className="mt-2 flex flex-wrap justify-center gap-2"
             >
-                {[{ text: "Limpia los fi ́ltros", onClick: resetFilters }, { text: "Busca otra categoría", onClick: () => { } }, { text: "Prueba otro autor", onClick: () => { } }].map(({ text, onClick }, i) => (
+                {[
+                    { text: "Limpia los fi ́ltros", onClick: resetFilters },
+                    { text: "Busca otra categoría", onClick: () => { } },
+                    { text: "Prueba otro autor", onClick: () => { } },
+                ].map(({ text, onClick }, i) => (
                     <motion.span
                         key={i}
                         onClick={onClick}
@@ -157,7 +119,7 @@ export default function NotResults() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 1 + i * 0.1 }}
                         whileHover={{ scale: 1.05 }}
-                        className="px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-100 transition-colors"
+                        className="cursor-pointer rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-100"
                     >
                         {text}
                     </motion.span>
