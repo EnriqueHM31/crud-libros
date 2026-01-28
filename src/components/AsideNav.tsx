@@ -29,7 +29,7 @@ export default function AsideNav() {
             </button>
 
             <motion.aside
-                className={`bg-primary text-text-inverse fixed z-40 h-screen w-full flex-col justify-between py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
+                className={`bg-primary dark:bg-primary-dark dark:border-gray-700 border-r-2 text-text-inverse fixed z-40 h-screen w-full flex-col justify-between py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
             >
                 <div className="flex flex-1 flex-col gap-6">
                     <header className="px-6">
@@ -60,9 +60,8 @@ export default function AsideNav() {
                                     window.history.pushState({}, "", path);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
@@ -82,7 +81,7 @@ export default function AsideNav() {
                         whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                         onClick={toggleMode}
                         transition={{ duration: 0.2, delay: 1.6 }}
-                        className="bg-background text-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors duration-150 hover:bg-white"
+                        className="bg-background dark:bg-blue-600 text-primary dark:text-white flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl py-3 font-semibold transition-colors duration-150 hover:bg-white dark:hover:bg-blue-700 "
                     >
                         <FaMoon />
                         Cambiar tema
