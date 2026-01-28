@@ -11,7 +11,7 @@ export default function NotResults() {
                         cx="100"
                         cy="100"
                         r="90"
-                        className="fill-white dark:fill-primary-dark"
+                        className="dark:fill-primary-dark fill-white"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
