@@ -14,14 +14,14 @@ const typeViews = [
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     return (
         <div className="flex items-center justify-between">
-            <h2 className="my-10 text-xl font-semibold">Libros</h2>
+            <h2 className="my-10 text-3xl font-bold text-black dark:text-white">Libros</h2>
 
             <div className="flex gap-2">
                 {typeViews.map(({ name, value, icono }: (typeof typeViews)[number]) => (
                     <button
                         key={name}
                         onClick={() => handleViewMode(value as ViewMode)}
-                        className={`rounded-lg p-2 ${viewMode === value ? "bg-primary text-background" : "text-primary hover:bg-background"}`}
+                        className={`rounded-lg cursor-pointer p-2 ${viewMode === value ? "bg-primary dark:bg-blue-600 text-background" : "text-primary dark:text-white  hover:bg-background dark:hover:bg-blue-800"}`}
                     >
                         {icono}
                     </button>
