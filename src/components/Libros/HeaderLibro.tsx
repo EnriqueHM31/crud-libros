@@ -4,7 +4,7 @@ import { FaBook } from "react-icons/fa";
 
 export default function HeaderLibro() {
     return (
-        < div className="flex items-center justify-between" >
+        <div className="flex items-center justify-between">
             <div className="flex-5">
                 <HeaderSection title="Administracion de libros" description="Gestiona los libros disponibles de la aplicación." />
             </div>
@@ -22,6 +22,6 @@ export default function HeaderLibro() {
                     Crear libro
                 </motion.button>
             </div>
-        </div >
+        </div>
     );
 }
