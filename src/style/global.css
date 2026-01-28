@@ -25,4 +25,14 @@
     --color-success: #16a34a;
     --color-warning: #f59e0b;
     --color-error: #dc2626;
+
+    --color-primary-dark: #000c2b;
+}
+
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
