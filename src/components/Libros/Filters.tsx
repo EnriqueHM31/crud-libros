@@ -7,8 +7,6 @@ export default function BooksFilters() {
 
     return (
         <section className="border-background-secondary rounded-2xl border py-3 shadow-lg">
-
-
             <div className="space-y-4">
                 {/* Search destacado */}
                 <div className="group relative flex items-center justify-between gap-6">
@@ -24,7 +22,7 @@ export default function BooksFilters() {
                     </div>
 
                     {/* Reset mejorado */}
-                    <div className="flex justify-end flex-1">
+                    <div className="flex flex-1 justify-end">
                         <motion.button
                             onClick={resetFilters}
                             initial="hidden"
@@ -32,7 +30,7 @@ export default function BooksFilters() {
                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                             whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.2, delay: 1.6 }}
-                            className="bg-primary text-background hover:bg-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl px-4 font-semibold transition-colors duration-150 py-2.5"
+                            className="bg-primary text-background hover:bg-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-colors duration-150"
                         >
                             <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
                             Limpiar filtros
