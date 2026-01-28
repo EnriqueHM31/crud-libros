@@ -30,7 +30,7 @@ export default function AsideNav() {
                 className={`bg-primary dark:bg-primary-dark text-text-inverse fixed z-40 h-screen w-full flex-col justify-between border-r-2 py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 dark:border-gray-700 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
             >
                 <div className="flex flex-1 flex-col gap-6">
-                    <header className="px-6 flex items-center justify-between">
+                    <header className="flex items-center justify-between px-6">
                         <motion.h1
                             variants={itemVariants}
                             transition={{ duration: 0.2 }}
@@ -60,8 +60,9 @@ export default function AsideNav() {
                                     window.history.pushState({}, "", path);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                    } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
+                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
@@ -71,7 +72,6 @@ export default function AsideNav() {
                         ))}
                     </nav>
                 </div>
-
             </motion.aside>
         </>
     );
