@@ -11,7 +11,7 @@ export default function NotResults() {
                         cx="100"
                         cy="100"
                         r="90"
-                        fill="#EFF6FF"
+                        className="fill-white dark:fill-primary-dark"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -36,7 +36,7 @@ export default function NotResults() {
                             cx="130"
                             cy="60"
                             r="20"
-                            stroke="#6B7280"
+                            className="stroke-primary/80 dark:stroke-white"
                             strokeWidth="4"
                             fill="none"
                             animate={{
@@ -50,7 +50,7 @@ export default function NotResults() {
                         />
 
                         {/* Mango de la lupa */}
-                        <motion.line x1="145" y1="72" x2="160" y2="87" stroke="#6B7280" strokeWidth="4" strokeLinecap="round" />
+                        <motion.line x1="145" y1="72" x2="160" y2="87" className="stroke-primary/80 dark:stroke-white" strokeWidth="4" strokeLinecap="round" />
                     </motion.g>
 
                     {/* Signo de interrogación */}
@@ -68,7 +68,7 @@ export default function NotResults() {
                             cx={50 + i * 50}
                             cy={40}
                             r="3"
-                            fill="#93C5FD"
+                            className="fill-primary/80 dark:fill-white"
                             initial={{ y: 0, opacity: 0 }}
                             animate={{
                                 y: [-10, -25, -10],
@@ -92,8 +92,8 @@ export default function NotResults() {
                 transition={{ delay: 0.4, duration: 0.3 }}
                 className="max-w-md space-y-2 text-center"
             >
-                <h2 className="text-2xl font-bold text-gray-800">No encontramos resultados</h2>
-                <p className="text-base text-gray-600">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white">No encontramos resultados</h2>
+                <p className="text-base text-gray-600 dark:text-gray-400">
                     No hay libros que coincidan con tus criterios de búsqueda. Intenta ajustar los filtros o buscar con otros términos.
                 </p>
             </motion.div>
