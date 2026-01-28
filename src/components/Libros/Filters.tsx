@@ -6,7 +6,7 @@ export default function BooksFilters() {
     const { search, category, author, language, maxPages, setSearch, setCategory, setAuthor, setLanguage, setMaxPages, resetFilters } = useBooksFiltersStore();
 
     return (
-        <section className="rounded-2xl border border-gray-500 py-3 shadow-lg dark:border-0">
+        <section className="rounded-2xl border border-white dark:border-gray-500 py-3 shadow-lg dark:border-0">
             <div className="space-y-4">
                 {/* Search destacado */}
                 <div className="group relative flex items-center justify-between gap-6 pb-3">
@@ -17,7 +17,7 @@ export default function BooksFilters() {
                             placeholder="Buscar por título o descripción..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="dark:bg-primary-dark w-full rounded-xl border-2 border-gray-200 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-blue-100 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-primary-dark w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400 focus:ring-gray-600"
                         />
                     </div>
 
@@ -46,7 +46,7 @@ export default function BooksFilters() {
                         <select
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-200 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-blue-100 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1  focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400 focus:ring-gray-600"
                         >
                             <option value="">Todas las categorías</option>
                             <option value="computers">Computadoras</option>
@@ -61,7 +61,7 @@ export default function BooksFilters() {
                         </select>
                         <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                             <svg
-                                className="h-4 w-4 text-gray-400 group-hover:text-gray-400 dark:text-gray-600"
+                                className="h-4 w-4 text-text-secondary/80 group-hover:text-gray-600 dark:text-gray-600"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -79,7 +79,7 @@ export default function BooksFilters() {
                             placeholder="Autor"
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)}
-                            className="dark:bg-primary-dark w-full rounded-xl border-2 border-gray-200 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-blue-100 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-primary-dark w-full rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400 focus:ring-gray-600"
                         />
                     </div>
 
@@ -89,7 +89,7 @@ export default function BooksFilters() {
                         <select
                             value={language}
                             onChange={(e) => setLanguage(e.target.value)}
-                            className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-200 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-blue-100 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400 focus:ring-gray-600"
                         >
                             <option value="">Todos los idiomas</option>
                             <option value="es">🇪🇸 Español</option>
@@ -99,7 +99,7 @@ export default function BooksFilters() {
                         </select>
                         <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                             <svg
-                                className="h-4 w-4 text-gray-400 group-hover:text-gray-400 dark:text-gray-600"
+                                className="h-4 w-4 text-text-secondary/80 group-hover:text-gray-600 dark:text-gray-600"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ export default function BooksFilters() {
                             placeholder="Máx páginas"
                             value={maxPages ?? ""}
                             onChange={(e) => setMaxPages(e.target.value ? Number(e.target.value) : null)}
-                            className="dark:bg-primary-dark w-full appearance-none rounded-xl border-2 border-gray-200 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-blue-100 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-primary-dark w-full appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400 focus:ring-gray-600"
                         />
                     </div>
                 </div>
