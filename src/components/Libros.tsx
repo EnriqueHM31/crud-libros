@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useFilteredBooks } from "../hooks/Filters";
 import { useBooksStore } from "../store/libro";
 import Error from "./Atomos/Error";
 import LoadingBooks from "./Atomos/Loading";
-import HeaderTypeFormatBook from "./Libros/HeaderTypeFormatBook";
+import BooksFilters from "./Libros/Filters";
+import HeaderTypeFormatBook from "./Libros/FormatoBooks";
+import HeaderLibro from "./Libros/HeaderLibro";
 import ListBooks from "./Libros/ListBooks";
 import MosaicoBooks from "./Libros/MosaicoBooks";
-import BooksFilters from "./Libros/Filters";
-import { useFilteredBooks } from "../hooks/Filters";
 import NotResults from "./Libros/NotResults";
 
 type ViewMode = "list" | "grid";
@@ -33,9 +34,14 @@ export default function Libros() {
     }
 
     return (
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col px-3">
             {/* Header */}
+            <HeaderLibro />
+
+            {/* Filters */}
             <BooksFilters />
+
+            {/* Formato */}
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
             {!books || (books.length === 0 && <NotResults />)}
