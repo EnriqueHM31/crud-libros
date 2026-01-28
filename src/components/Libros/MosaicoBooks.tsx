@@ -43,7 +43,7 @@ export default function MosaicoBooks() {
                                 <motion.img
                                     src={info.imageLinks.thumbnail}
                                     alt={info.title}
-                                    className="mx-auto h-full w-full object-contain transition-all duration-400 group-hover:-translate-y-4 group-hover:scale-115"
+                                    className="mx-auto h-full w-full object-contain transition-all duration-400 group-hover:-translate-y-2 group-hover:scale-115"
                                 />
                             ) : (
                                 <div className="flex h-full items-center justify-center text-gray-400">
