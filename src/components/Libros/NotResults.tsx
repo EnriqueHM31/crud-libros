@@ -4,7 +4,7 @@ export default function NotResults() {
     return (
         <section className="flex flex-col items-center justify-center gap-1 px-4">
             {/* SVG Animado */}
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }} className="relative ">
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }} className="relative">
                 <svg width="150" height="150" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
                     {/* Círculo de fondo */}
                     <motion.circle
