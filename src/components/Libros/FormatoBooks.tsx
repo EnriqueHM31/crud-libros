@@ -13,8 +13,8 @@ const typeViews = [
 
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     return (
-        <div className="flex items-center justify-between ">
-            <h2 className="text-xl font-semibold my-10">Libros</h2>
+        <div className="flex items-center justify-between">
+            <h2 className="my-10 text-xl font-semibold">Libros</h2>
 
             <div className="flex gap-2">
                 {typeViews.map(({ name, value, icono }: (typeof typeViews)[number]) => (
