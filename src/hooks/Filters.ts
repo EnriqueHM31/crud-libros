@@ -34,7 +34,7 @@ export function useFilteredBooks() {
 
 export function normalizeText(text: string) {
     return text
-        .normalize("NFD")               // separa letras y acentos
+        .normalize("NFD") // separa letras y acentos
         .replace(/[\u0300-\u036f]/g, "") // elimina los acentos
-        .toLowerCase();                 // opcional
+        .toLowerCase(); // opcional
 }
