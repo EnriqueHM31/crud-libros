@@ -56,6 +56,7 @@ export default function BooksFilters() {
                             className="w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-200 bg-white py-3 pr-4 pl-10 text-sm shadow-sm transition-all hover:shadow-md focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none"
                         >
                             <option value="">Todas las categorías</option>
+                            <option value="computers">Computadoras</option>
                             <option value="ficcion">Ficción</option>
                             <option value="no-ficcion">No ficción</option>
                             <option value="ciencia">Ciencia</option>
