@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
-import { useBooksFiltersStore } from "../../store/filtros";
 
 export default function NotResults() {
-    const { resetFilters } = useBooksFiltersStore();
     return (
         <section className="flex flex-col items-center justify-center gap-1 px-4">
             {/* SVG Animado */}
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="relative bg-red-400">
-                <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="relative ">
+                <svg width="150" height="150" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
                     {/* Círculo de fondo */}
                     <motion.circle
                         cx="100"
@@ -98,32 +96,6 @@ export default function NotResults() {
                 <p className="text-base text-gray-600">
                     No hay libros que coincidan con tus criterios de búsqueda. Intenta ajustar los filtros o buscar con otros términos.
                 </p>
-            </motion.div>
-
-            {/* Sugerencias animadas */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="mt-2 flex flex-wrap justify-center gap-2"
-            >
-                {[
-                    { text: "Limpia los fi ́ltros", onClick: resetFilters },
-                    { text: "Busca otra categoría", onClick: () => { } },
-                    { text: "Prueba otro autor", onClick: () => { } },
-                ].map(({ text, onClick }, i) => (
-                    <motion.span
-                        key={i}
-                        onClick={onClick}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1 + i * 0.1 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="cursor-pointer rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-100"
-                    >
-                        {text}
-                    </motion.span>
-                ))}
             </motion.div>
         </section>
     );
