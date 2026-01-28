@@ -33,7 +33,7 @@ export default function ListBooks() {
                         key={book.id}
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
-                        className="group bg-surface hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl px-8 py-4 shadow-sm hover:shadow-md"
+                        className="group bg-surface border dark:border-gray-700 dark:bg-primary-dark/30 hover:bg-primary dark:hover:bg-blue-600 text-background flex cursor-pointer gap-5 rounded-2xl px-8 py-4 shadow-sm hover:shadow-md"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -49,37 +49,37 @@ export default function ListBooks() {
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
                             <div>
-                                <h3 className="text-primary/80 group-hover:text-background text-lg font-semibold">{info.title}</h3>
+                                <h3 className="text-primary/80 dark:text-white group-hover:text-background text-lg font-semibold">{info.title}</h3>
 
                                 {info.authors && (
-                                    <p className="group-hover:text-background mt-1 flex items-center gap-2 text-sm text-gray-500">
-                                        <FaUser className="text-primary group-hover:text-background" />
+                                    <p className="group-hover:text-background mt-1 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <FaUser className="text-primary dark:text-blue-500 group-hover:text-background" />
                                         {info.authors.join(", ")}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap gap-4 text-sm">
+                            <div className="text-primary-soft dark:text-gray-400 group-hover:text-background mt-5 flex flex-wrap gap-4 text-sm">
                                 {info.publishedDate && (
                                     <span className="flex items-center gap-2">
-                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-background" /> {info.publishedDate}
+                                        <IoCalendarNumberOutline className="text-primary/70 dark:text-blue-500 group-hover:text-background" /> {info.publishedDate}
                                     </span>
                                 )}
                                 {info.pageCount && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <FaBookOpen className="text-primary/70 group-hover:text-background" /> {info.pageCount} páginas
+                                        <FaBookOpen className="text-primary/70 dark:text-blue-500 group-hover:text-background" /> {info.pageCount} páginas
                                     </span>
                                 )}
                                 {info.language && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <GrLanguage className="text-primary/70 group-hover:text-background" /> {info.language.toUpperCase()}
+                                        <GrLanguage className="text-primary/70 dark:text-blue-500 group-hover:text-background" /> {info.language.toUpperCase()}
                                     </span>
                                 )}
                             </div>
                         </div>
 
                         {/* Arrow */}
-                        <FaChevronRight className="self-center text-gray-400 transition-transform group-hover:translate-x-1" />
+                        <FaChevronRight className="self-center text-gray-400 dark: dark:hover:text-gray-200 transition-transform group-hover:translate-x-1" />
                     </motion.article>
                 );
             })}
