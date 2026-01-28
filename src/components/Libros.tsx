@@ -6,6 +6,8 @@ import HeaderTypeFormatBook from "./Libros/HeaderTypeFormatBook";
 import ListBooks from "./Libros/ListBooks";
 import MosaicoBooks from "./Libros/MosaicoBooks";
 import BooksFilters from "./Libros/Filters";
+import { useFilteredBooks } from "../hooks/Filters";
+import NotResults from "./Libros/NotResults";
 
 type ViewMode = "list" | "grid";
 const viewModes = {
@@ -16,6 +18,7 @@ const viewModes = {
 export default function Libros() {
     const { isLoading, error } = useBooksStore();
     const [viewMode, setViewMode] = useState<ViewMode>("list");
+    const books = useFilteredBooks();
 
     const handleViewMode = (viewMode: ViewMode) => {
         setViewMode(viewMode);
@@ -35,6 +38,11 @@ export default function Libros() {
             <BooksFilters />
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
+            {
+                !books || books.length === 0 && (
+                    <NotResults />
+                )
+            }
             {/* GRID VIEW */}
             {viewMode === viewModes.grid && <MosaicoBooks />}
 
