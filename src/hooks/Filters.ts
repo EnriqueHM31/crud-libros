@@ -8,15 +8,15 @@ export function useFilteredBooks() {
     return books.filter((book) => {
         const info = book.volumeInfo;
 
-        if (search && !info.title.toLowerCase().includes(search.toLowerCase())) {
+        if (search && !normalizeText(info.title).includes(search.toLocaleLowerCase())) {
             return false;
         }
 
-        if (category && !info.categories?.some((c) => c.toLowerCase().includes(category.toLowerCase()))) {
+        if (category && !normalizeText(info.categories?.[0] ?? "").includes(category.toLocaleLowerCase())) {
             return false;
         }
 
-        if (author && !info.authors?.some((a) => a.toLowerCase().includes(author.toLowerCase()))) {
+        if (author && !normalizeText(info.authors?.join("") ?? "").includes(author.toLocaleLowerCase())) {
             return false;
         }
 
@@ -30,4 +30,11 @@ export function useFilteredBooks() {
 
         return true;
     });
+}
+
+export function normalizeText(text: string) {
+    return text
+        .normalize("NFD")               // separa letras y acentos
+        .replace(/[\u0300-\u036f]/g, "") // elimina los acentos
+        .toLowerCase();                 // opcional
 }
