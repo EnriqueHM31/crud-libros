@@ -36,7 +36,7 @@ export default function MosaicoBooks() {
                         key={book.id}
                         variants={itemVariants}
                         whileHover={{ y: -6 }}
-                        className="group bg-background dark:bg-primary-dark from-primary dark:hover:bg-blue-600 hover:bg-primary hover:text-background flex cursor-pointer flex-col justify-between rounded-2xl from-10% to-white to-100% shadow-sm hover:shadow-lg"
+                        className="group bg-background dark:bg-primary-dark from-primary hover:bg-primary hover:text-background flex cursor-pointer flex-col justify-between rounded-2xl from-10% to-white to-100% shadow-sm hover:shadow-lg dark:hover:bg-blue-600"
                     >
                         <div className="relative h-56">
                             {info.imageLinks?.thumbnail ? (
@@ -53,11 +53,13 @@ export default function MosaicoBooks() {
                         </div>
 
                         <div className="flex h-full flex-col gap-2 p-4">
-                            <h3 className="line-clamp-1 flex-1 font-semibold text-primary-dark dark:text-white group-hover:text-white dark:group-hover:text-white">{info.title}</h3>
+                            <h3 className="text-primary-dark line-clamp-1 flex-1 font-semibold group-hover:text-white dark:text-white dark:group-hover:text-white">
+                                {info.title}
+                            </h3>
 
                             {info.authors && (
-                                <p className="text-secondary dark:text-gray-400  group-hover:text-gray-300 mt-2 flex items-center gap-2 text-sm">
-                                    <FaUser className="text-primary dark:text-gray-400 group-hover:text-gray-300" />
+                                <p className="text-secondary mt-2 flex items-center gap-2 text-sm group-hover:text-gray-300 dark:text-gray-400">
+                                    <FaUser className="text-primary group-hover:text-gray-300 dark:text-gray-400" />
                                     {info.authors.join(", ")}
                                 </p>
                             )}
