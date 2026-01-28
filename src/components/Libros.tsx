@@ -38,11 +38,7 @@ export default function Libros() {
             <BooksFilters />
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
-            {
-                !books || books.length === 0 && (
-                    <NotResults />
-                )
-            }
+            {!books || (books.length === 0 && <NotResults />)}
             {/* GRID VIEW */}
             {viewMode === viewModes.grid && <MosaicoBooks />}
 
