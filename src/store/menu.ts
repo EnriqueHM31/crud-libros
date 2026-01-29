@@ -42,7 +42,6 @@ export const useMenuStore = create<MenuState>()(
             },
 
             setIsOpen: (isOpen) => set({ isOpen }),
-
         }),
         {
             name: "menu-store",
