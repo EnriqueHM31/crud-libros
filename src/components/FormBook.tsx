@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GoogleBook, SaleInfo, VolumeInfo } from "../types/libro";
 import { useBooksStore } from "../store/libro";
+import HeaderSection from "./Atomos/Header";
 
 /* =========================
    TIPOS
@@ -149,131 +150,137 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
         });
     };
 
+
     /* =========================
        UI
     ========================= */
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="grid gap-6 min-h-screen  border border-border bg-white p-6 shadow-lg dark:border-white/10 dark:bg-primary-dark md:grid-cols-[280px_1fr]"
-        >
-            {/* IMAGEN */}
-            <div className="space-y-3">
-                <div className="flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl bg-muted dark:bg-white/5">
-                    {formData.volumeInfo.imageLinks?.thumbnail ? (
-                        <img
-                            src={formData.volumeInfo.imageLinks.thumbnail}
-                            alt="preview"
-                            className="h-full w-full object-cover"
+        <main className="min-h-screen  border border-border bg-white p-6 shadow-lg dark:border-white/10 dark:bg-primary-dark">
+            <div className="mb-6">
+                <HeaderSection title="Editar libro" description="Gestiona los libros disponibles de la aplicación." />
+            </div>
+            <form
+                onSubmit={handleSubmit}
+                className="grid gap-6  md:grid-cols-[280px_1fr]"
+            >
+                {/* IMAGEN */}
+                <div className="space-y-3">
+                    <div className="flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl bg-muted dark:bg-white/5">
+                        {formData.volumeInfo.imageLinks?.thumbnail ? (
+                            <img
+                                src={formData.volumeInfo.imageLinks.thumbnail}
+                                alt="preview"
+                                className="h-full w-full object-cover"
+                            />
+                        ) : (
+                            <span className="text-sm text-muted-foreground dark:text-gray-400">
+                                Sin imagen
+                            </span>
+                        )}
+                    </div>
+
+                    <input
+                        type="url"
+                        placeholder="URL de la imagen"
+                        value={
+                            formData.volumeInfo.imageLinks?.thumbnail ?? ""
+                        }
+                        onChange={(e) =>
+                            handleImageChange(e.target.value)
+                        }
+                        className="w-full rounded-xl border bg-background px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 text-primary-dark dark:text-white"
+                    />
+                </div>
+
+                {/* FORM */}
+                <div className="space-y-4">
+                    <Input
+                        label="Título"
+                        name="title"
+                        required
+                        value={formData.volumeInfo.title}
+                        onChange={handleChange}
+                    />
+
+                    <Input
+                        label="Subtítulo"
+                        name="subtitle"
+                        value={formData.volumeInfo.subtitle ?? ""}
+                        onChange={handleChange}
+                    />
+
+                    <Input
+                        label="Autores (coma separados)"
+                        value={
+                            formData.volumeInfo.authors?.join(", ") ?? ""
+                        }
+                        onChange={(e) =>
+                            handleAuthorsChange(e.target.value)
+                        }
+                    />
+
+                    <div className="grid gap-4 md:grid-cols-3">
+                        <Input
+                            label="Editorial"
+                            name="publisher"
+                            value={formData.volumeInfo.publisher ?? ""}
+                            onChange={handleChange}
                         />
-                    ) : (
-                        <span className="text-sm text-muted-foreground dark:text-gray-400">
-                            Sin imagen
-                        </span>
-                    )}
-                </div>
 
-                <input
-                    type="url"
-                    placeholder="URL de la imagen"
-                    value={
-                        formData.volumeInfo.imageLinks?.thumbnail ?? ""
-                    }
-                    onChange={(e) =>
-                        handleImageChange(e.target.value)
-                    }
-                    className="w-full rounded-xl border bg-background px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 text-primary-dark dark:text-white"
-                />
-            </div>
+                        <Input
+                            label="Fecha publicación"
+                            name="publishedDate"
+                            value={
+                                formData.volumeInfo.publishedDate ?? ""
+                            }
+                            onChange={handleChange}
+                        />
 
-            {/* FORM */}
-            <div className="space-y-4">
-                <Input
-                    label="Título"
-                    name="title"
-                    required
-                    value={formData.volumeInfo.title}
-                    onChange={handleChange}
-                />
-
-                <Input
-                    label="Subtítulo"
-                    name="subtitle"
-                    value={formData.volumeInfo.subtitle ?? ""}
-                    onChange={handleChange}
-                />
-
-                <Input
-                    label="Autores (coma separados)"
-                    value={
-                        formData.volumeInfo.authors?.join(", ") ?? ""
-                    }
-                    onChange={(e) =>
-                        handleAuthorsChange(e.target.value)
-                    }
-                />
-
-                <div className="grid gap-4 md:grid-cols-3">
-                    <Input
-                        label="Editorial"
-                        name="publisher"
-                        value={formData.volumeInfo.publisher ?? ""}
-                        onChange={handleChange}
-                    />
+                        <Input
+                            label="Páginas"
+                            type="number"
+                            name="pageCount"
+                            value={formData.volumeInfo.pageCount ?? ""}
+                            onChange={handleChange}
+                        />
+                    </div>
 
                     <Input
-                        label="Fecha publicación"
-                        name="publishedDate"
-                        value={
-                            formData.volumeInfo.publishedDate ?? ""
-                        }
+                        label="Idioma"
+                        name="language"
+                        value={formData.volumeInfo.language ?? ""}
                         onChange={handleChange}
                     />
 
-                    <Input
-                        label="Páginas"
-                        type="number"
-                        name="pageCount"
-                        value={formData.volumeInfo.pageCount ?? ""}
-                        onChange={handleChange}
-                    />
-                </div>
+                    <div>
+                        <label className="text-sm font-medium text-primary-dark dark:text-gray-400">
+                            Descripción
+                        </label>
+                        <textarea
+                            name="description"
+                            rows={4}
+                            value={
+                                formData.volumeInfo.description ?? ""
+                            }
+                            onChange={handleChange}
+                            className="mt-1 w-full resize-y rounded-xl border bg-background px-3 py-2 dark:border-white/10 dark:bg-white/5 text-primary-dark dark:text-white"
+                        />
+                    </div>
 
-                <Input
-                    label="Idioma"
-                    name="language"
-                    value={formData.volumeInfo.language ?? ""}
-                    onChange={handleChange}
-                />
-
-                <div>
-                    <label className="text-sm font-medium text-primary-dark dark:text-gray-400">
-                        Descripción
-                    </label>
-                    <textarea
-                        name="description"
-                        rows={4}
-                        value={
-                            formData.volumeInfo.description ?? ""
-                        }
-                        onChange={handleChange}
-                        className="mt-1 w-full resize-none rounded-xl border bg-background px-3 py-2 dark:border-white/10 dark:bg-white/5 text-primary-dark dark:text-white"
-                    />
+                    <div className="flex justify-end">
+                        <button
+                            type="submit"
+                            className="rounded-xl bg-primary dark:bg-blue-600 px-6 py-2 font-medium text-white transition  hover:bg-gray-600 dark:hover:bg-blue-800 cursor-pointer"
+                        >
+                            {type === "edit"
+                                ? "Guardar cambios"
+                                : "Crear libro"}
+                        </button>
+                    </div>
                 </div>
-
-                <div className="flex justify-end">
-                    <button
-                        type="submit"
-                        className="rounded-xl bg-primary dark:bg-blue-600 px-6 py-2 font-medium text-white transition  hover:bg-gray-600 dark:hover:bg-blue-800 cursor-pointer"
-                    >
-                        {type === "edit"
-                            ? "Guardar cambios"
-                            : "Crear libro"}
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </main>
     );
 }
 
