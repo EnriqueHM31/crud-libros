@@ -8,7 +8,6 @@ export type MenuKey = "home" | "libros" | "contacto" | "pedidos" | "informacion"
 type MenuItem = {
     key: MenuKey;
     name: string;
-    path: string;
     icon: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
@@ -19,18 +18,17 @@ interface MenuState {
 
     setMenu: (menu: MenuKey) => void;
     setIsOpen: (open: boolean) => void;
-    syncFromUrl: () => void;
 }
 
 export const useMenuStore = create<MenuState>()(
     persist(
         (set, get) => ({
             menuItems: [
-                { key: "home", name: "Home", path: "/", icon: FaHome },
-                { key: "informacion", name: "Información", path: "/informacion", icon: FaInfo },
-                { key: "libros", name: "Libros", path: "/libros", icon: FaBook },
-                { key: "contacto", name: "Contacto", path: "/contacto", icon: FaComment },
-                { key: "pedidos", name: "Pedidos", path: "/pedidos", icon: FaShoppingCart },
+                { key: "home", name: "Home", icon: FaHome },
+                { key: "informacion", name: "Información", icon: FaInfo },
+                { key: "libros", name: "Libros", icon: FaBook },
+                { key: "contacto", name: "Contacto", icon: FaComment },
+                { key: "pedidos", name: "Pedidos", icon: FaShoppingCart },
             ],
 
             currentMenu: "home",
@@ -40,17 +38,11 @@ export const useMenuStore = create<MenuState>()(
                 const item = get().menuItems.find((i) => i.key === menu);
                 if (!item) return;
 
-                window.history.pushState({}, "", item.path);
                 set({ currentMenu: menu });
             },
 
             setIsOpen: (isOpen) => set({ isOpen }),
 
-            syncFromUrl: () => {
-                const path = window.location.pathname;
-                const found = get().menuItems.find((i) => i.path === path);
-                if (found) set({ currentMenu: found.key });
-            },
         }),
         {
             name: "menu-store",
