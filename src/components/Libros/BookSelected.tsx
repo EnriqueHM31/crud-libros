@@ -9,24 +9,11 @@ interface BookModalProps {
     onDelete: (bookId: string) => void;
 }
 
-export function BookModal({
-    book,
-    onEdit,
-    onDelete,
-}: BookModalProps) {
+export function BookModal({ book, onEdit, onDelete }: BookModalProps) {
     const { closeBookModal, isModalOpen } = useBooksStore();
     if (!book) return null;
 
-    const {
-        title,
-        subtitle,
-        authors,
-        description,
-        publishedDate,
-        pageCount,
-        language,
-        imageLinks,
-    } = book.volumeInfo;
+    const { title, subtitle, authors, description, publishedDate, pageCount, language, imageLinks } = book.volumeInfo;
 
     return (
         <AnimatePresence>
@@ -39,7 +26,7 @@ export function BookModal({
                 >
                     {/* MODAL */}
                     <motion.div
-                        className="relative w-full max-w-3xl rounded-2xl bg-white dark:bg-primary-dark p-8 shadow-xl border border-gray-700"
+                        className="dark:bg-primary-dark relative w-full max-w-3xl rounded-2xl border border-gray-700 bg-white p-8 shadow-xl"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
@@ -48,7 +35,7 @@ export function BookModal({
                         {/* CERRAR */}
                         <button
                             onClick={closeBookModal}
-                            className="absolute right-4 top-4 rounded-lg p-2 text-muted hover:bg-muted/20 cursor-pointer text-black dark:text-white"
+                            className="text-muted hover:bg-muted/20 absolute top-4 right-4 cursor-pointer rounded-lg p-2 text-black dark:text-white"
                         >
                             <FiX size={20} />
                         </button>
@@ -57,13 +44,9 @@ export function BookModal({
                             {/* IMAGEN */}
                             <div className="flex justify-center">
                                 {imageLinks?.thumbnail ? (
-                                    <img
-                                        src={imageLinks.thumbnail}
-                                        alt={title}
-                                        className="h-64 rounded-xl object-cover shadow-md"
-                                    />
+                                    <img src={imageLinks.thumbnail} alt={title} className="h-64 rounded-xl object-cover shadow-md" />
                                 ) : (
-                                    <div className="flex h-64 w-40 items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
+                                    <div className="bg-muted text-muted-foreground flex h-64 w-40 items-center justify-center rounded-xl text-sm">
                                         Sin imagen
                                     </div>
                                 )}
@@ -73,41 +56,24 @@ export function BookModal({
                             <div className="space-y-3">
                                 <h2 className="text-2xl font-bold text-black dark:text-white">{title}</h2>
 
-                                {subtitle && (
-                                    <p className="text-muted-foreground text-black dark:text-white">
-                                        {subtitle}
-                                    </p>
-                                )}
+                                {subtitle && <p className="text-muted-foreground text-black dark:text-white">{subtitle}</p>}
 
                                 {authors && (
                                     <p className="text-sm text-black dark:text-gray-400">
-                                        <span className="font-medium">
-                                            Autores:
-                                        </span>{" "}
-                                        {authors.join(", ")}
+                                        <span className="font-medium">Autores:</span> {authors.join(", ")}
                                     </p>
                                 )}
 
-                                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground text-black dark:text-gray-400">
-                                    {publishedDate && (
-                                        <span>📅 {publishedDate}</span>
-                                    )}
-                                    {pageCount && (
-                                        <span>📖 {pageCount} páginas</span>
-                                    )}
-                                    {language && (
-                                        <span>🌍 {language.toUpperCase()}</span>
-                                    )}
+                                <div className="text-muted-foreground flex flex-wrap gap-4 text-sm text-black dark:text-gray-400">
+                                    {publishedDate && <span>📅 {publishedDate}</span>}
+                                    {pageCount && <span>📖 {pageCount} páginas</span>}
+                                    {language && <span>🌍 {language.toUpperCase()}</span>}
                                 </div>
 
                                 {description ? (
-                                    <p className="line-clamp-5 text-sm leading-relaxed text-black dark:text-white">
-                                        {description}
-                                    </p>
+                                    <p className="line-clamp-5 text-sm leading-relaxed text-black dark:text-white">{description}</p>
                                 ) : (
-                                    <p className="line-clamp-5 text-sm leading-relaxed text-black dark:text-white">
-                                        Sin descripción
-                                    </p>
+                                    <p className="line-clamp-5 text-sm leading-relaxed text-black dark:text-white">Sin descripción</p>
                                 )}
                             </div>
                         </div>
@@ -116,7 +82,7 @@ export function BookModal({
                         <div className="mt-6 flex justify-end gap-3">
                             <button
                                 onClick={() => onEdit(book)}
-                                className="flex items-center gap-2 rounded-xl bg-primary dark:bg-blue-600 px-4 py-2 text-white transition hover:bg-gray-700 hover:text-white cursor-pointer dark:hover:bg-blue-800"
+                                className="bg-primary flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-white transition hover:bg-gray-700 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-800"
                             >
                                 <FiEdit />
                                 Editar
@@ -124,7 +90,7 @@ export function BookModal({
 
                             <button
                                 onClick={() => onDelete(book.id)}
-                                className="flex items-center gap-2 rounded-xl bg-destructive bg-red-500 hover:bg-red-400 text-white cursor-pointer px-4 py-2 text-destructive-foreground transition hover:opacity-90"
+                                className="bg-destructive text-destructive-foreground flex cursor-pointer items-center gap-2 rounded-xl bg-red-500 px-4 py-2 text-white transition hover:bg-red-400 hover:opacity-90"
                             >
                                 <FiTrash />
                                 Eliminar
