@@ -6,28 +6,37 @@ import LIBROS from "../data/mook.json";
    TIPOS
 ========================= */
 
+type ModalMode = "view" | "edit" | "create";
+
 interface BooksState {
+    /* data */
     books: GoogleBook[];
     selectedBook: GoogleBook | null;
 
     /* modal */
     isModalOpen: boolean;
+    modalMode: ModalMode;
 
+    /* paginación / búsqueda */
     query: string;
     page: number;
     hasMore: boolean;
 
+    /* estado */
     isLoading: boolean;
     error: string | null;
 
     /* acciones */
-    searchBooks: (query: string) => Promise<void>;
     cargarLibros: () => Promise<void>;
+    searchBooks: (query: string) => Promise<void>;
 
     openBookModal: (book: GoogleBook) => void;
+    openEditBook: (book: GoogleBook) => void;
+    openCreateBook: () => void;
     closeBookModal: () => void;
 
-    editBook: (book: GoogleBook) => void;
+    createBook: (book: GoogleBook) => void;
+    editBook: (id: string, updatedBook: Partial<GoogleBook>) => void;
     deleteBook: (id: string) => void;
 
     clearBooks: () => void;
@@ -44,10 +53,15 @@ const MAX_RESULTS = 12;
 ========================= */
 
 export const useBooksStore = create<BooksState>((set) => ({
+    /* =========================
+       STATE INICIAL
+    ========================= */
+
     books: [],
     selectedBook: null,
 
     isModalOpen: false,
+    modalMode: "view",
 
     query: "",
     page: 0,
@@ -79,7 +93,7 @@ export const useBooksStore = create<BooksState>((set) => ({
        BUSCAR LIBROS
     ========================= */
 
-    searchBooks: async (query: string) => {
+    searchBooks: async (query) => {
         if (!query.trim()) return;
 
         set({
@@ -113,9 +127,28 @@ export const useBooksStore = create<BooksState>((set) => ({
     ========================= */
 
     openBookModal: (book) => {
+        if (!book) return;
+
         set({
             selectedBook: book,
             isModalOpen: true,
+            modalMode: "view",
+        });
+    },
+
+    openEditBook: (book) => {
+        set({
+            selectedBook: book,
+            isModalOpen: true,
+            modalMode: "edit",
+        });
+    },
+
+    openCreateBook: () => {
+        set({
+            selectedBook: null,
+            isModalOpen: true,
+            modalMode: "create",
         });
     },
 
@@ -123,25 +156,57 @@ export const useBooksStore = create<BooksState>((set) => ({
         set({
             selectedBook: null,
             isModalOpen: false,
+            modalMode: "view",
         });
     },
 
     /* =========================
-       EDITAR / ELIMINAR
+       CRUD
     ========================= */
 
-    editBook: (updatedBook) => {
+    createBook: (newBook) => {
         set((state) => ({
-            books: state.books.map((book) => (book.id === updatedBook.id ? updatedBook : book)),
-            selectedBook: updatedBook,
+            books: [newBook, ...state.books],
+            isModalOpen: false,
+            modalMode: "view",
         }));
     },
+
+    editBook: (id, updatedFields) => {
+        set((state) => ({
+            books: state.books.map((book) =>
+                book.id === id
+                    ? {
+                        ...book,
+                        ...updatedFields,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...updatedFields.volumeInfo,
+                        },
+                    }
+                    : book
+            ),
+            selectedBook: state.selectedBook?.id === id
+                ? {
+                    ...state.selectedBook,
+                    ...updatedFields,
+                    volumeInfo: {
+                        ...state.selectedBook.volumeInfo,
+                        ...updatedFields.volumeInfo,
+                    },
+                }
+                : state.selectedBook,
+            modalMode: "view",
+        }));
+    },
+
 
     deleteBook: (id) => {
         set((state) => ({
             books: state.books.filter((book) => book.id !== id),
             selectedBook: null,
             isModalOpen: false,
+            modalMode: "view",
         }));
     },
 
@@ -154,6 +219,7 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: [],
             selectedBook: null,
             isModalOpen: false,
+            modalMode: "view",
             query: "",
             page: 0,
             hasMore: true,
