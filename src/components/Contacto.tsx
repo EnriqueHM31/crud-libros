@@ -3,7 +3,7 @@ import { FaEnvelope, FaCopy, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
 import HeaderSection from "./Atomos/Header";
 
-const EMAIL = "tucorreo@gmail.com";
+const EMAIL = "luisenriquehernandezmarin0@gmail.com";
 
 export default function Contacto() {
     const [copied, setCopied] = useState(false);
@@ -47,7 +47,8 @@ export default function Contacto() {
                             className="mt-6 inline-flex items-center gap-3 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700 w-fit cursor-pointer"
                         >
                             <FaEnvelope />
-                            {copied ? "Correo copiado" : EMAIL}
+                            {copied ? "Correo copiado" : "luisenriquxxxxxxxxxx@gmail.com"}
+
                             <FaCopy className="opacity-80" />
                         </motion.button>
                     </div>
