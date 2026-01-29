@@ -40,26 +40,16 @@ export default function Libros() {
         <section className="dark:bg-primary-dark flex min-h-screen flex-col bg-white px-8 py-6">
             {/* Header */}
             <HeaderLibro />
-
             {/* Filters */}
             <BooksFilters />
-
             {/* Formato */}
             <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
-
             {!books || (books.length === 0 && <NotResults />)}
             {/* GRID VIEW */}
             {viewMode === viewModes.grid && <MosaicoBooks />}
-
             {/* LIST VIEW */}
             {viewMode === viewModes.list && <ListBooks />}
-
-
-            <BookModal
-                book={selectedBook}
-                onEdit={(book) => console.log("Editar", book)}
-                onDelete={(id) => console.log("Eliminar", id)}
-            />;
+            <BookModal book={selectedBook} onEdit={(book) => console.log("Editar", book)} onDelete={(id) => console.log("Eliminar", id)} />;
         </section>
     );
 }
