@@ -177,29 +177,29 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                        ...book,
-                        ...updatedFields,
-                        volumeInfo: {
-                            ...book.volumeInfo,
-                            ...updatedFields.volumeInfo,
-                        },
-                    }
+                          ...book,
+                          ...updatedFields,
+                          volumeInfo: {
+                              ...book.volumeInfo,
+                              ...updatedFields.volumeInfo,
+                          },
+                      }
                     : book
             ),
-            selectedBook: state.selectedBook?.id === id
-                ? {
-                    ...state.selectedBook,
-                    ...updatedFields,
-                    volumeInfo: {
-                        ...state.selectedBook.volumeInfo,
-                        ...updatedFields.volumeInfo,
-                    },
-                }
-                : state.selectedBook,
+            selectedBook:
+                state.selectedBook?.id === id
+                    ? {
+                          ...state.selectedBook,
+                          ...updatedFields,
+                          volumeInfo: {
+                              ...state.selectedBook.volumeInfo,
+                              ...updatedFields.volumeInfo,
+                          },
+                      }
+                    : state.selectedBook,
             modalMode: "view",
         }));
     },
-
 
     deleteBook: (id) => {
         set((state) => ({
