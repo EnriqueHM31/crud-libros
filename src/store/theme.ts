@@ -17,30 +17,35 @@ export const useThemeStore = create(
             setMode: (mode) => {
                 const html = document.documentElement;
 
-                if (mode === "dark") {
-                    html.classList.add("dark");
-                } else {
-                    html.classList.remove("dark");
-                }
+                html.classList.toggle("dark", mode === "dark");
 
                 set({ mode });
             },
 
             toggleMode: () => {
-                const nextMode = get().mode === "light" ? "dark" : "light";
-                const html = document.documentElement;
+                const nextMode: ThemeMode =
+                    get().mode === "light" ? "dark" : "light";
 
-                if (nextMode === "dark") {
-                    html.classList.add("dark");
-                } else {
-                    html.classList.remove("dark");
-                }
+                document.documentElement.classList.toggle(
+                    "dark",
+                    nextMode === "dark"
+                );
 
                 set({ mode: nextMode });
             },
         }),
         {
             name: "theme-mode",
+
+            // 🔥 CLAVE: sincroniza el DOM al cargar desde localStorage
+            onRehydrateStorage: () => (state) => {
+                if (!state) return;
+
+                document.documentElement.classList.toggle(
+                    "dark",
+                    state.mode === "dark"
+                );
+            },
         }
     )
 );
