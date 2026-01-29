@@ -3,6 +3,7 @@ import { useFilteredBooks } from "../hooks/Filters";
 import { useBooksStore } from "../store/libro";
 import Error from "./Atomos/Error";
 import LoadingBooks from "./Atomos/Loading";
+import { BookModal } from "./Libros/BookSelected";
 import BooksFilters from "./Libros/Filters";
 import HeaderTypeFormatBook from "./Libros/FormatoBooks";
 import HeaderLibro from "./Libros/HeaderLibro";
@@ -20,6 +21,8 @@ export default function Libros() {
     const { isLoading, error } = useBooksStore();
     const [viewMode, setViewMode] = useState<ViewMode>("list");
     const books = useFilteredBooks();
+
+    const { selectedBook } = useBooksStore();
 
     const handleViewMode = (viewMode: ViewMode) => {
         setViewMode(viewMode);
@@ -50,6 +53,13 @@ export default function Libros() {
 
             {/* LIST VIEW */}
             {viewMode === viewModes.list && <ListBooks />}
+
+
+            <BookModal
+                book={selectedBook}
+                onEdit={(book) => console.log("Editar", book)}
+                onDelete={(id) => console.log("Eliminar", id)}
+            />;
         </section>
     );
 }
