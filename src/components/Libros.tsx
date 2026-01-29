@@ -23,8 +23,7 @@ const viewModes = {
 } as const;
 
 export default function Libros() {
-    const { isLoading, error, selectedBook, modalMode, isModalOpen } =
-        useBooksStore();
+    const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
 
     const books = useFilteredBooks();
     const [viewMode, setViewMode] = useState<ViewMode>("list");
@@ -37,53 +36,41 @@ export default function Libros() {
     if (error) return <Error error={error} />;
     const isFormMode = modalMode === "create" || modalMode === "edit";
 
-
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
-            {modalMode === "edit" && selectedBook && (
-                <BookForm book={selectedBook} type="edit" />
-            )}
+            {modalMode === "edit" && selectedBook && <BookForm book={selectedBook} type="edit" />}
 
             {modalMode === "create" && <BookForm />}
 
             {/* MODAL VIEW */}
-            {isModalOpen && modalMode === "view" && (
-                <BookModal book={selectedBook} />
+            {isModalOpen && modalMode === "view" && <BookModal book={selectedBook} />}
+
+            {!isFormMode && (
+                <section className="dark:bg-primary-dark flex min-h-screen flex-col bg-white px-8 py-6">
+                    {/* Header */}
+                    <HeaderLibro />
+
+                    {/* Filters */}
+                    <BooksFilters />
+
+                    {/* Selector de formato */}
+                    <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
+
+                    {/* Sin resultados */}
+                    {!books || books.length === 0 ? (
+                        <NotResults />
+                    ) : (
+                        <>
+                            {/* GRID VIEW */}
+                            {viewMode === viewModes.grid && <MosaicoBooks />}
+
+                            {/* LIST VIEW */}
+                            {viewMode === viewModes.list && <ListBooks />}
+                        </>
+                    )}
+                </section>
             )}
-
-            {
-                !isFormMode && (
-
-                    <section className="flex min-h-screen flex-col bg-white px-8 py-6 dark:bg-primary-dark">
-                        {/* Header */}
-                        <HeaderLibro />
-
-                        {/* Filters */}
-                        <BooksFilters />
-
-                        {/* Selector de formato */}
-                        <HeaderTypeFormatBook
-                            viewMode={viewMode}
-                            handleViewMode={handleViewMode}
-                        />
-
-                        {/* Sin resultados */}
-                        {!books || books.length === 0 ? (
-                            <NotResults />
-                        ) : (
-                            <>
-                                {/* GRID VIEW */}
-                                {viewMode === viewModes.grid && <MosaicoBooks />}
-
-                                {/* LIST VIEW */}
-                                {viewMode === viewModes.list && <ListBooks />}
-                            </>
-                        )}
-                    </section>
-                )
-            }
-
         </>
     );
 }
