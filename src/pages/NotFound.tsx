@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
     return (
-        <div className="flex min-h-screen items-center justify-center bg-primary-soft px-6 dark:bg-primary-dark">
+        <div className="bg-primary-soft dark:bg-primary-dark flex min-h-screen items-center justify-center px-6">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -32,21 +32,12 @@ export default function NotFound() {
                 </motion.h1>
 
                 {/* Texto */}
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-2xl text-gray-600 dark:text-gray-400"
-                >
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-2xl text-gray-600 dark:text-gray-400">
                     El libro que buscas no existe o fue movido a otra estantería.
                 </motion.p>
 
                 {/* Botón */}
-                <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-4"
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-4">
                     <Link
                         to="/"
                         className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-xl font-semibold text-white shadow-md transition hover:bg-blue-700"
