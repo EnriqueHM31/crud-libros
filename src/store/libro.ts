@@ -132,9 +132,7 @@ export const useBooksStore = create<BooksState>((set) => ({
 
     editBook: (updatedBook) => {
         set((state) => ({
-            books: state.books.map((book) =>
-                book.id === updatedBook.id ? updatedBook : book
-            ),
+            books: state.books.map((book) => (book.id === updatedBook.id ? updatedBook : book)),
             selectedBook: updatedBook,
         }));
     },
