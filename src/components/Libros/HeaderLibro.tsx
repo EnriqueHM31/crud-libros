@@ -4,7 +4,6 @@ import { FaBook } from "react-icons/fa";
 import { useBooksStore } from "../../store/libro";
 
 export default function HeaderLibro() {
-
     const { openCreateBook } = useBooksStore();
     return (
         <div className="flex items-center justify-between">
