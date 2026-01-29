@@ -18,7 +18,7 @@ export default function ButtonTheme() {
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.2, delay: 1.6 }}
-                className="dark:bg-primary-dark relative h-9 w-16 rounded-full border-2 border-gray-500 bg-none shadow-md transition-colors duration-500 peer-focus:outline-none dark:border-gray-400"
+                className="dark:bg-primary-dark bg-primary relative h-9 w-16 rounded-full border-2 border-gray-500 bg-none shadow-md transition-colors duration-500 peer-focus:outline-none dark:border-gray-400"
             >
                 {/* Switch */}
                 <span
