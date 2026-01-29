@@ -23,13 +23,9 @@ export const useThemeStore = create(
             },
 
             toggleMode: () => {
-                const nextMode: ThemeMode =
-                    get().mode === "light" ? "dark" : "light";
+                const nextMode: ThemeMode = get().mode === "light" ? "dark" : "light";
 
-                document.documentElement.classList.toggle(
-                    "dark",
-                    nextMode === "dark"
-                );
+                document.documentElement.classList.toggle("dark", nextMode === "dark");
 
                 set({ mode: nextMode });
             },
@@ -41,10 +37,7 @@ export const useThemeStore = create(
             onRehydrateStorage: () => (state) => {
                 if (!state) return;
 
-                document.documentElement.classList.toggle(
-                    "dark",
-                    state.mode === "dark"
-                );
+                document.documentElement.classList.toggle("dark", state.mode === "dark");
             },
         }
     )
