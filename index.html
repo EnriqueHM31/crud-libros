@@ -17,16 +17,17 @@
 </html>
 <script>
   (() => {
-    document.documentElement.classList.toggle(
-      "dark",
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-    );
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = "light";
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = "dark";
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem("theme");
+    const storedTheme = localStorage.getItem("theme");
+
+    if (storedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else if (storedTheme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      // Primera vez: usar preferencia del sistema
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", prefersDark);
+    }
   })();
+
 </script>
