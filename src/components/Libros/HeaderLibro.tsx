@@ -1,8 +1,11 @@
 import HeaderSection from "../Atomos/Header";
 import { motion } from "framer-motion";
 import { FaBook } from "react-icons/fa";
+import { useBooksStore } from "../../store/libro";
 
 export default function HeaderLibro() {
+
+    const { openCreateBook } = useBooksStore();
     return (
         <div className="flex items-center justify-between">
             <div className="flex-5">
@@ -11,6 +14,7 @@ export default function HeaderLibro() {
 
             <div className="flex-1">
                 <motion.button
+                    onClick={openCreateBook}
                     initial="hidden"
                     animate="visible"
                     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
