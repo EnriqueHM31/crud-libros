@@ -5,12 +5,11 @@ import { useBooksStore } from "../../store/libro";
 
 interface BookModalProps {
     book: GoogleBook | null;
-    onEdit: (book: GoogleBook) => void;
-    onDelete: (bookId: string) => void;
 }
 
-export function BookModal({ book, onEdit, onDelete }: BookModalProps) {
-    const { closeBookModal, isModalOpen } = useBooksStore();
+export function BookModal({ book }: BookModalProps) {
+    const { closeBookModal, isModalOpen, openEditBook, deleteBook } = useBooksStore();
+
     if (!book) return null;
 
     const { title, subtitle, authors, description, publishedDate, pageCount, language, imageLinks } = book.volumeInfo;
@@ -81,7 +80,7 @@ export function BookModal({ book, onEdit, onDelete }: BookModalProps) {
                         {/* ACCIONES */}
                         <div className="mt-6 flex justify-end gap-3">
                             <button
-                                onClick={() => onEdit(book)}
+                                onClick={() => openEditBook(book)}
                                 className="bg-primary flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-white transition hover:bg-gray-700 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-800"
                             >
                                 <FiEdit />
@@ -89,7 +88,7 @@ export function BookModal({ book, onEdit, onDelete }: BookModalProps) {
                             </button>
 
                             <button
-                                onClick={() => onDelete(book.id)}
+                                onClick={() => deleteBook}
                                 className="bg-destructive text-destructive-foreground flex cursor-pointer items-center gap-2 rounded-xl bg-red-500 px-4 py-2 text-white transition hover:bg-red-400 hover:opacity-90"
                             >
                                 <FiTrash />
