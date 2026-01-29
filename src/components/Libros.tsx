@@ -42,7 +42,7 @@ export default function Libros() {
         <>
             {/* FORMULARIO CREATE / EDIT */}
             {modalMode === "edit" && selectedBook && (
-                <BookForm book={selectedBook} />
+                <BookForm book={selectedBook} type="edit" />
             )}
 
             {modalMode === "create" && <BookForm />}
