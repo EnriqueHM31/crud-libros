@@ -3,6 +3,8 @@ import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useMenuStore } from "../store/menu";
 import ButtonTheme from "./Atomos/ButtonTheme";
+import { FaHome } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const itemVariants = {
     hidden: { x: -30, opacity: 0 },
@@ -14,6 +16,7 @@ const itemVariants = {
 
 export default function AsideNav() {
     const { menuItems, setMenu, currentMenu, isOpen, setIsOpen } = useMenuStore();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -59,9 +62,8 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
@@ -71,6 +73,20 @@ export default function AsideNav() {
                         ))}
                     </nav>
                 </div>
+
+                <footer>
+                    <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="flex items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800 cursor-pointer min-w-70 mx-auto"
+                        onClick={() => {
+                            navigate("/");
+                        }}
+                    >
+                        <FaHome size={18} />
+                        Inicio
+                    </motion.button>
+                </footer>
             </motion.aside>
         </>
     );
