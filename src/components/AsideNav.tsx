@@ -45,7 +45,7 @@ export default function AsideNav() {
                     </header>
 
                     <nav className="my-10 mt-8 flex flex-col md:my-0" aria-label="Main navigation">
-                        {menuItems.map(({ name, path, icon: Icon, key }, index) => (
+                        {menuItems.map(({ name, icon: Icon, key }, index) => (
                             <motion.button
                                 key={name}
                                 variants={itemVariants}
@@ -57,12 +57,10 @@ export default function AsideNav() {
                                 }}
                                 onClick={() => {
                                     setMenu(key);
-                                    window.history.pushState({}, "", path);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
