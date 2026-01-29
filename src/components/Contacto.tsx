@@ -15,7 +15,7 @@ export default function Contacto() {
     };
 
     return (
-        <main className="flex px-8 py-6 min-h-screen  flex-col gap-6 bg-white dark:bg-primary-dark">
+        <main className="dark:bg-primary-dark flex min-h-screen flex-col gap-6 bg-white px-8 py-6">
             <div>
                 <HeaderSection title="Contacto" description="¿Tienes alguna pregunta o propuesta? Escríbeme y con gusto te responderé." />
             </div>
@@ -23,20 +23,15 @@ export default function Contacto() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="grid w-full max-w-full flex-1 grid-cols-1  rounded-2xl  bg-white/80 shadow-xl  dark:bg-primary-dark md:grid-cols-2"
+                className="dark:bg-primary-dark grid w-full max-w-full flex-1 grid-cols-1 rounded-2xl bg-white/80 shadow-xl md:grid-cols-2"
             >
                 {/* IZQUIERDA */}
-                <div className="relative flex flex-col justify-center gap-8 p-8 h-full">
-
-
+                <div className="relative flex h-full flex-col justify-center gap-8 p-8">
                     <div className="relative z-10 flex flex-col justify-center">
-                        <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Librería HM
-                        </h2>
+                        <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Librería HM</h2>
 
                         <p className="mt-2 mb-5 max-w-sm text-sm text-gray-600 dark:text-gray-400">
-                            ¿Tienes alguna pregunta o propuesta?
-                            Escríbeme y con gusto te responderé.
+                            ¿Tienes alguna pregunta o propuesta? Escríbeme y con gusto te responderé.
                         </p>
 
                         {/* Email */}
@@ -44,7 +39,7 @@ export default function Contacto() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={handleCopy}
-                            className="mt-6 inline-flex items-center gap-3 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700 w-fit cursor-pointer"
+                            className="mt-6 inline-flex w-fit cursor-pointer items-center gap-3 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700"
                         >
                             <FaEnvelope />
                             {copied ? "Correo copiado" : "luisenriquxxxxxxxxxx@gmail.com"}
@@ -53,9 +48,7 @@ export default function Contacto() {
                         </motion.button>
                     </div>
 
-                    <p className="relative z-10  text-xs text-gray-500 dark:text-gray-400 ">
-                        © {new Date().getFullYear()} Librería HM
-                    </p>
+                    <p className="relative z-10 text-xs text-gray-500 dark:text-gray-400">© {new Date().getFullYear()} Librería HM</p>
                 </div>
 
                 {/* DERECHA */}
@@ -69,19 +62,19 @@ export default function Contacto() {
                         <input
                             type="text"
                             placeholder="Nombre"
-                            className="rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-primary-dark dark:text-white"
+                            className="dark:bg-primary-dark rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:text-white"
                         />
 
                         <input
                             type="email"
                             placeholder="Correo"
-                            className="rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-primary-dark dark:text-white"
+                            className="dark:bg-primary-dark rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:text-white"
                         />
 
                         <textarea
                             rows={4}
                             placeholder="Mensaje"
-                            className="resize-none rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-primary-dark dark:text-white"
+                            className="dark:bg-primary-dark resize-none rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm shadow-sm transition focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:text-white"
                         />
 
                         <motion.button
