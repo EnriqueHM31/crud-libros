@@ -5,26 +5,24 @@ import type { BookFormProps } from "../types/formBook";
 import HeaderSection from "./Atomos/Header";
 import InputForm from "./Libros/Atomos/InputForm";
 
-
-
 export function BookForm({ book, type = "create" }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });
     const { backBooks } = useBooksStore();
 
     return (
-        <div className="flex border-border dark:bg-primary-dark min-h-screen border bg-white p-6 shadow-lg dark:border-white/10 gap-5">
+        <div className="border-border dark:bg-primary-dark flex min-h-screen gap-5 border bg-white p-6 shadow-lg dark:border-white/10">
             <button
                 onClick={backBooks}
-                className="bg-primary text-white w-9 h-9 p-2 rounded-full dark:bg-blue-600   font-medium dark:text-white cursor-pointer hover:scale-110 transition-all duration-100 ease-in  flex items-center gap-2 dark:hover:bg-blue-800 ">
+                className="bg-primary flex h-9 w-9 cursor-pointer items-center gap-2 rounded-full p-2 font-medium text-white transition-all duration-100 ease-in hover:scale-110 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
+            >
                 <FaArrowLeft className="text-xl" />
             </button>
-            <main className=" dark:bg-primary-dark min-h-screen  bg-white p-6 shadow-lg ">
+            <main className="dark:bg-primary-dark min-h-screen bg-white p-6 shadow-lg">
                 <div className="mb-6 flex items-center gap-8">
                     <HeaderSection title={titleForm} description={descriptionForm} />
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                    <div className="grid gap-6 md:grid-cols-[280px_1fr] justify-center items-center">
-
+                    <div className="grid items-center justify-center gap-6 md:grid-cols-[280px_1fr]">
                         {/* IMAGEN */}
                         <div className="space-y-3">
                             <div className="bg-muted flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl border dark:border-white/10 dark:bg-white/5">
@@ -45,7 +43,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                         </div>
 
                         {/* FORM */}
-                        <div className="space-y-4 ">
+                        <div className="space-y-4">
                             <InputForm label="Título" name="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
                             <InputForm label="Subtítulo" name="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
@@ -59,14 +57,17 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                             <div className="grid gap-4 md:grid-cols-3">
                                 <InputForm label="Editorial" name="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
 
-                                <InputForm label="Fecha publicación" name="publishedDate" value={formData.volumeInfo.publishedDate ?? ""} onChange={handleChange} />
+                                <InputForm
+                                    label="Fecha publicación"
+                                    name="publishedDate"
+                                    value={formData.volumeInfo.publishedDate ?? ""}
+                                    onChange={handleChange}
+                                />
 
                                 <InputForm label="Páginas" type="number" name="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
                             </div>
 
                             <InputForm label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
-
-
                         </div>
                     </div>
                     <div className="w-full">
@@ -76,7 +77,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                             rows={4}
                             value={formData.volumeInfo.description ?? ""}
                             onChange={handleChange}
-                            className="bg-background text-primary-dark mt-1 w-full resize-y rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white field-sizing-content"
+                            className="bg-background text-primary-dark mt-1 field-sizing-content w-full resize-y rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
                         />
                     </div>
                     <div className="flex justify-end">
@@ -89,7 +90,6 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                     </div>
                 </form>
             </main>
-
         </div>
     );
 }
