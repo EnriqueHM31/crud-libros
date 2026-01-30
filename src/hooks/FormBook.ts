@@ -11,19 +11,19 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                volumeInfo: {
-                    title: "",
-                    subtitle: "",
-                    authors: [],
-                    publisher: "",
-                    publishedDate: "",
-                    description: "",
-                    pageCount: undefined,
-                    language: "",
-                    imageLinks: { thumbnail: "" },
-                },
-                saleInfo: undefined,
-            };
+                  volumeInfo: {
+                      title: "",
+                      subtitle: "",
+                      authors: [],
+                      publisher: "",
+                      publishedDate: "",
+                      description: "",
+                      pageCount: undefined,
+                      language: "",
+                      imageLinks: { thumbnail: "" },
+                  },
+                  saleInfo: undefined,
+              };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
