@@ -15,10 +15,10 @@ export default function Dashboard() {
     }, [cargarLibros]);
     return (
         <main className="flex h-screen w-screen">
-            <div className="flex-1">
+            <div className="md:flex-1">
                 <AsideNav />
             </div>
-            <div className="h-screen flex-4 overflow-y-auto">
+            <div className="h-screen flex-4 overflow-y-auto py-10 md:py-0">
                 {currentMenu === "home" && <Home />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "contacto" && <Contacto />}
