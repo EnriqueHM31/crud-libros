@@ -15,7 +15,7 @@ const typeViews = [
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     const { total } = useFilteredBooks();
     return (
-        <div className="flex items-center justify-between flex-col md:flex-row">
+        <div className="flex flex-col items-center justify-between md:flex-row">
             <h2 className="my-10 text-3xl font-bold text-black dark:text-white">Libros</h2>
 
             <div className="flex items-center gap-2">
