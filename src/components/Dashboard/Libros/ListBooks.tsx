@@ -27,7 +27,7 @@ export default function ListBooks() {
     const { openBookModal } = useBooksStore();
 
     return (
-        <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4">
+        <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4 ">
             {books.map((book) => {
                 const info = book.volumeInfo;
 
@@ -37,7 +37,7 @@ export default function ListBooks() {
                         onClick={() => openBookModal(book)}
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
-                        className="group bg-surface dark:bg-primary-dark/30 hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl border px-8 py-4 shadow-sm hover:shadow-md dark:border-gray-700 dark:hover:bg-blue-600"
+                        className="group bg-surface dark:bg-primary-dark/30 hover:bg-primary text-background flex cursor-pointer gap-5 rounded-2xl border px-2 md:px-8 py-4 shadow-sm hover:shadow-md dark:border-gray-700 dark:hover:bg-blue-600"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
