@@ -25,7 +25,7 @@ const viewModes = {
 export default function Libros() {
     const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
 
-    const books = useFilteredBooks();
+    const { books } = useFilteredBooks();
     const [viewMode, setViewMode] = useState<ViewMode>("list");
 
     const handleViewMode = (mode: ViewMode) => {
