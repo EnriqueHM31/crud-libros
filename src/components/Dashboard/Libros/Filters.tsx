@@ -34,7 +34,7 @@ export default function BooksFilters() {
                             className="bg-primary text-background hover:bg-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-colors duration-150 dark:bg-blue-600 dark:hover:bg-blue-800"
                         >
                             <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
-                            Limpiar filtros
+                            <span className="hidden md:block">Limpiar filtros</span>
                         </motion.button>
                     </div>
                 </div>
