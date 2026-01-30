@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaEnvelope, FaCopy, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
-import HeaderSection from "./Atomos/Header";
+import HeaderSection from "../Atomos/Header";
 
 const EMAIL = "luisenriquehernandezmarin0@gmail.com";
 
