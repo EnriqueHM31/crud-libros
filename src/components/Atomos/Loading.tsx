@@ -20,19 +20,19 @@ export default function LoadingBooks() {
                 <motion.div
                     animate={{ rotateY: [0, -50, 0] }}
                     transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="bg-primary shadow-primary h-24 w-16 origin-right rounded-l-md shadow-lg dark:bg-white dark:shadow-white"
+                    className="bg-primary shadow-primary h-40 w-24 origin-right rounded-l-md shadow-lg dark:bg-white dark:shadow-white"
                 />
 
                 {/* Centro (lomo) */}
-                <div className="bg-surface dark:bg-primary-dark border-secondary/80 z-10 -mx-1 flex h-24 w-6 items-center justify-center border px-1 dark:border-gray-400">
-                    <FaBookOpen className="text-secondary/80 text-xl dark:text-white" />
+                <div className="bg-surface dark:bg-primary-dark border-secondary/80 z-10 -mx-1 flex h-40 w-14 items-center justify-center border px-1 dark:border-gray-400">
+                    <FaBookOpen className="text-secondary/80 text-2xl dark:text-white" />
                 </div>
 
                 {/* Portada derecha */}
                 <motion.div
                     animate={{ rotateY: [0, 50, 0] }}
                     transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                    className="bg-primary shadow-primary h-24 w-16 origin-left rounded-r-md shadow-lg dark:bg-white dark:shadow-white"
+                    className="bg-primary shadow-primary h-40 w-24 origin-left rounded-r-md shadow-lg dark:bg-white dark:shadow-white"
                 />
             </motion.div>
 
