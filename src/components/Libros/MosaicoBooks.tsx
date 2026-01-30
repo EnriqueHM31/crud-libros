@@ -21,7 +21,7 @@ const itemVariants = {
 };
 
 export default function MosaicoBooks() {
-    const books = useFilteredBooks();
+    const { books } = useFilteredBooks();
     const { openBookModal } = useBooksStore();
     return (
         <motion.section
