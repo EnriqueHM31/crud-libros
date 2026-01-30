@@ -14,6 +14,7 @@ export default function BooksFilters() {
                         <FaSearch className="text-text-secondary/80 group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
                         <input
                             type="text"
+                            name="search"
                             placeholder="Buscar por título o descripción..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -45,6 +46,7 @@ export default function BooksFilters() {
                         <FaBook className="text-text-secondary/80 group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
                         <select
                             value={category}
+                            name="category"
                             onChange={(e) => setCategory(e.target.value)}
                             className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-gray-600 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
                         >
@@ -76,6 +78,7 @@ export default function BooksFilters() {
                         <FaUser className="text-text-secondary/80 group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
                         <input
                             type="text"
+                            name="author"
                             placeholder="Autor"
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)}
@@ -88,6 +91,7 @@ export default function BooksFilters() {
                         <FaLanguage className="text-text-secondary/80 group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
                         <select
                             value={language}
+                            name="language"
                             onChange={(e) => setLanguage(e.target.value)}
                             className="dark:bg-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-gray-600 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
                         >
@@ -114,6 +118,7 @@ export default function BooksFilters() {
                         <FaFileAlt className="text-text-secondary/80 group-hover:text-primary absolute top-1/2 left-3 z-10 -translate-y-1/2 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
                         <input
                             type="number"
+                            name="maxPages"
                             min={1}
                             placeholder="Máx páginas"
                             value={maxPages ?? ""}
