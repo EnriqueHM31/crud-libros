@@ -44,7 +44,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
                         {/* FORM */}
                         <div className="space-y-4">
-                            <InputForm label="Título" name="title" required value={formData.volumeInfo.title} onChange={handleChange} />
+                            <InputForm label="Título" name="title" id="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
                             <InputForm label="Subtítulo" name="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
 
