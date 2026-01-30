@@ -12,7 +12,7 @@ export default function HeaderSection({ title, description }: HeaderLibroProps) 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center md:text-start"
             >
                 {title}
             </motion.h2>
@@ -22,7 +22,7 @@ export default function HeaderSection({ title, description }: HeaderLibroProps) 
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.1 }}
-                    className="max-w-2xl text-sm text-gray-500 dark:text-gray-400"
+                    className="max-w-2xl text-sm text-gray-500 dark:text-gray-400 text-center md:text-start"
                 >
                     {description}
                 </motion.p>
