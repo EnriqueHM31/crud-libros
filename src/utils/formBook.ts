@@ -6,7 +6,6 @@ interface FormData {
 }
 
 export function mapBookToFormData({ book }: { book: GoogleBook }): FormData {
-
     return {
         volumeInfo: {
             ...book.volumeInfo,
