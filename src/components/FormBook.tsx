@@ -151,7 +151,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
         <div className="flex border-border dark:bg-primary-dark min-h-screen border bg-white p-6 shadow-lg dark:border-white/10 gap-5">
             <button
                 onClick={backBooks}
-                className="bg-primary-dark w-9 h-9 p-2 rounded-full dark:bg-blue-600   font-medium dark:text-white cursor-pointer hover:scale-110 transition-all duration-100 ease-in  flex items-center gap-2 dark:hover:bg-blue-800 ">
+                className="bg-primary text-white w-9 h-9 p-2 rounded-full dark:bg-blue-600   font-medium dark:text-white cursor-pointer hover:scale-110 transition-all duration-100 ease-in  flex items-center gap-2 dark:hover:bg-blue-800 ">
                 <FaArrowLeft className="text-xl" />
             </button>
             <main className=" dark:bg-primary-dark min-h-screen  bg-white p-6 shadow-lg ">
@@ -163,7 +163,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
                         {/* IMAGEN */}
                         <div className="space-y-3">
-                            <div className="bg-muted flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl dark:bg-white/5">
+                            <div className="bg-muted flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl border dark:border-white/10 dark:bg-white/5">
                                 {formData.volumeInfo.imageLinks?.thumbnail ? (
                                     <img src={formData.volumeInfo.imageLinks.thumbnail} alt="preview" className="h-full w-full object-cover" />
                                 ) : (
@@ -242,10 +242,10 @@ function Input({
 }) {
     return (
         <div>
-            <label className="text-primary-dark text-sm font-medium dark:text-gray-400">{label}</label>
+            <label className="text-primary text-sm font-medium dark:text-gray-400">{label}</label>
             <input
                 {...props}
-                className="bg-background text-primary-dark mt-1 w-full rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                className="bg-background text-primary-dark mt-1 w-full rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white focus:outline-blue-600 "
             />
         </div>
     );
