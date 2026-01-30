@@ -1,4 +1,3 @@
-
 export interface FormData {
     volumeInfo: VolumeInfo;
     saleInfo?: SaleInfo;
