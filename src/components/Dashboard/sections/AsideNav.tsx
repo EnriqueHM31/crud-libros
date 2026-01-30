@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useMenuStore } from "../../../store/menu";
-import ButtonTheme from "../Atomos/ButtonTheme";
+import ButtonTheme from "../../Atomos/ButtonTheme";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 

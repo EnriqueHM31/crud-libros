@@ -1,7 +1,7 @@
 import HeaderSection from "../Atomos/Header";
 import { motion } from "framer-motion";
 import { FaBook } from "react-icons/fa";
-import { useBooksStore } from "../../store/libro";
+import { useBooksStore } from "@/store/libro";
 
 export default function HeaderLibro() {
     const { openCreateBook } = useBooksStore();

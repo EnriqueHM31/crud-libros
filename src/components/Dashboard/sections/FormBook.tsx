@@ -3,7 +3,7 @@ import { useBookForm } from "../../../hooks/FormBook";
 import { useBooksStore } from "../../../store/libro";
 import type { BookFormProps } from "../../../types/formBook";
 import HeaderSection from "../Atomos/Header";
-import InputForm from "../../Libros/Atomos/InputForm";
+import InputForm from "../Libros/Atomos/InputForm";
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });

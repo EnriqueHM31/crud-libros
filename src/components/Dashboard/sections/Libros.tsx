@@ -3,16 +3,16 @@ import { useFilteredBooks } from "../../../hooks/Filters";
 import { useBooksStore } from "../../../store/libro";
 
 import Error from "../Atomos/Error";
-import LoadingBooks from "../Atomos/Loading";
+import LoadingBooks from "../../Atomos/Loading";
 
-import { BookModal } from "../../Libros/BookSelected";
+import { BookModal } from "../Libros/BookSelected";
 
-import BooksFilters from "../../Libros/Filters";
-import HeaderTypeFormatBook from "../../Libros/FormatoBooks";
-import HeaderLibro from "../../Libros/HeaderLibro";
-import ListBooks from "../../Libros/ListBooks";
-import MosaicoBooks from "../../Libros/MosaicoBooks";
-import NotResults from "../../Libros/NotResults";
+import BooksFilters from "../Libros/Filters";
+import HeaderTypeFormatBook from "../Libros/FormatoBooks";
+import HeaderLibro from "../Libros/HeaderLibro";
+import ListBooks from "../Libros/ListBooks";
+import MosaicoBooks from "../Libros/MosaicoBooks";
+import NotResults from "../Libros/NotResults";
 import { BookForm } from "./FormBook";
 
 type ViewMode = "list" | "grid";

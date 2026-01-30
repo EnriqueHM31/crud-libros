@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { FaBookOpen, FaChevronRight, FaUser } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoCalendarNumberOutline } from "react-icons/io5";
-import { useFilteredBooks } from "../../hooks/Filters";
-import { useBooksStore } from "../../store/libro";
+import { useFilteredBooks } from "@/hooks/Filters";
+import { useBooksStore } from "@/store/libro";
 
 const containerVariants = {
     hidden: { opacity: 0 },

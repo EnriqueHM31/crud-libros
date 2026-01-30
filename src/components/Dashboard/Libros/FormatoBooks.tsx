@@ -1,5 +1,5 @@
 import { FaList, FaThLarge } from "react-icons/fa";
-import { useFilteredBooks } from "../../hooks/Filters";
+import { useFilteredBooks } from "@/hooks/Filters";
 
 type ViewMode = "list" | "grid";
 interface HeaderTypeFormatBookProps {

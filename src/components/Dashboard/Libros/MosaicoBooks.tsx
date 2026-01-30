@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";
-import { useFilteredBooks } from "../../hooks/Filters";
-import { useBooksStore } from "../../store/libro";
+import { useFilteredBooks } from "../../../hooks/Filters";
+import { useBooksStore } from "../../../store/libro";
 
 const containerVariants = {
     hidden: { opacity: 0 },
