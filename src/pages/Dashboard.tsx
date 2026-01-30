@@ -18,7 +18,7 @@ export default function Dashboard() {
             <div className="md:flex-1">
                 <AsideNav />
             </div>
-            <div className="h-screen flex-4 overflow-y-auto py-10 md:py-0">
+            <div className="h-screen flex-4 overflow-y-auto dark:bg-primary-dark flex min-h-screen w-full flex-col bg-white px-4 py-20 md:py-0 md:px-8 ">
                 {currentMenu === "home" && <Home />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "contacto" && <Contacto />}
