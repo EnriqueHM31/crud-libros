@@ -47,7 +47,7 @@ export default function Libros() {
             {isModalOpen && modalMode === "view" && <BookModal book={selectedBook} />}
 
             {!isFormMode && (
-                <section className="dark:bg-primary-dark flex min-h-screen flex-col bg-white px-4 md:px-8 py-6 w-full">
+                <section className="dark:bg-primary-dark flex min-h-screen w-full flex-col bg-white px-4 py-6 md:px-8">
                     {/* Header */}
                     <HeaderLibro />
 
