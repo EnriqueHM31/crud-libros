@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { GoogleBook, SaleInfo, VolumeInfo } from "../types/libro";
+import { FaArrowLeft } from "react-icons/fa";
 import { useBooksStore } from "../store/libro";
+import type { GoogleBook, SaleInfo, VolumeInfo } from "../types/libro";
 import HeaderSection from "./Atomos/Header";
 
 /* =========================
@@ -52,25 +53,25 @@ function getChangedFields(original: FormData, current: FormData) {
 ========================= */
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
-    const { createBook, editBook } = useBooksStore();
+    const { createBook, editBook, backBooks } = useBooksStore();
 
     const initialData: FormData =
         book && type === "edit"
             ? mapBookToFormData(book)
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-                  saleInfo: undefined,
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+                saleInfo: undefined,
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -139,68 +140,81 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
         });
     };
 
+
+    const titleForm = type === "create" ? "Crear libro" : "Editar libro";
+    const descriptionForm = type === "create" ? "Crea un libro para el sistema de libros" : "Edita el libro seleccionado";
     /* =========================
        UI
     ========================= */
 
     return (
-        <main className="border-border dark:bg-primary-dark min-h-screen border bg-white p-6 shadow-lg dark:border-white/10">
-            <div className="mb-6">
-                <HeaderSection title="Editar libro" description="Gestiona los libros disponibles de la aplicación." />
-            </div>
-            <form onSubmit={handleSubmit} className="grid gap-6 md:grid-cols-[280px_1fr]">
-                {/* IMAGEN */}
-                <div className="space-y-3">
-                    <div className="bg-muted flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl dark:bg-white/5">
-                        {formData.volumeInfo.imageLinks?.thumbnail ? (
-                            <img src={formData.volumeInfo.imageLinks.thumbnail} alt="preview" className="h-full w-full object-cover" />
-                        ) : (
-                            <span className="text-muted-foreground text-sm dark:text-gray-400">Sin imagen</span>
-                        )}
-                    </div>
-
-                    <input
-                        type="url"
-                        placeholder="URL de la imagen"
-                        value={formData.volumeInfo.imageLinks?.thumbnail ?? ""}
-                        onChange={(e) => handleImageChange(e.target.value)}
-                        className="bg-background text-primary-dark w-full rounded-xl border px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 dark:text-white"
-                    />
+        <div className="flex border-border dark:bg-primary-dark min-h-screen border bg-white p-6 shadow-lg dark:border-white/10 gap-5">
+            <button
+                onClick={backBooks}
+                className="bg-primary-dark w-9 h-9 p-2 rounded-full dark:bg-blue-600   font-medium dark:text-white cursor-pointer hover:scale-110 transition-all duration-100 ease-in  flex items-center gap-2 dark:hover:bg-blue-800 ">
+                <FaArrowLeft className="text-xl" />
+            </button>
+            <main className=" dark:bg-primary-dark min-h-screen  bg-white p-6 shadow-lg ">
+                <div className="mb-6 flex items-center gap-8">
+                    <HeaderSection title={titleForm} description={descriptionForm} />
                 </div>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    <div className="grid gap-6 md:grid-cols-[280px_1fr] justify-center items-center">
 
-                {/* FORM */}
-                <div className="space-y-4">
-                    <Input label="Título" name="title" required value={formData.volumeInfo.title} onChange={handleChange} />
+                        {/* IMAGEN */}
+                        <div className="space-y-3">
+                            <div className="bg-muted flex aspect-2/3 items-center justify-center overflow-hidden rounded-xl dark:bg-white/5">
+                                {formData.volumeInfo.imageLinks?.thumbnail ? (
+                                    <img src={formData.volumeInfo.imageLinks.thumbnail} alt="preview" className="h-full w-full object-cover" />
+                                ) : (
+                                    <span className="text-muted-foreground text-sm dark:text-gray-400">Sin imagen</span>
+                                )}
+                            </div>
 
-                    <Input label="Subtítulo" name="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
+                            <input
+                                type="url"
+                                placeholder="URL de la imagen"
+                                value={formData.volumeInfo.imageLinks?.thumbnail ?? ""}
+                                onChange={(e) => handleImageChange(e.target.value)}
+                                className="bg-background text-primary-dark w-full rounded-xl border px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 dark:text-white"
+                            />
+                        </div>
 
-                    <Input
-                        label="Autores (coma separados)"
-                        value={formData.volumeInfo.authors?.join(", ") ?? ""}
-                        onChange={(e) => handleAuthorsChange(e.target.value)}
-                    />
+                        {/* FORM */}
+                        <div className="space-y-4 ">
+                            <Input label="Título" name="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
-                    <div className="grid gap-4 md:grid-cols-3">
-                        <Input label="Editorial" name="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
+                            <Input label="Subtítulo" name="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
 
-                        <Input label="Fecha publicación" name="publishedDate" value={formData.volumeInfo.publishedDate ?? ""} onChange={handleChange} />
+                            <Input
+                                label="Autores (coma separados)"
+                                value={formData.volumeInfo.authors?.join(", ") ?? ""}
+                                onChange={(e) => handleAuthorsChange(e.target.value)}
+                            />
 
-                        <Input label="Páginas" type="number" name="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
+                            <div className="grid gap-4 md:grid-cols-3">
+                                <Input label="Editorial" name="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
+
+                                <Input label="Fecha publicación" name="publishedDate" value={formData.volumeInfo.publishedDate ?? ""} onChange={handleChange} />
+
+                                <Input label="Páginas" type="number" name="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
+                            </div>
+
+                            <Input label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+
+
+                        </div>
                     </div>
-
-                    <Input label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
-
-                    <div>
+                    <div className="w-full">
                         <label className="text-primary-dark text-sm font-medium dark:text-gray-400">Descripción</label>
                         <textarea
                             name="description"
                             rows={4}
                             value={formData.volumeInfo.description ?? ""}
                             onChange={handleChange}
-                            className="bg-background text-primary-dark mt-1 w-full resize-y rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                            className="bg-background text-primary-dark mt-1 w-full resize-y rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white field-sizing-content"
                         />
                     </div>
-
                     <div className="flex justify-end">
                         <button
                             type="submit"
@@ -209,9 +223,10 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                             {type === "edit" ? "Guardar cambios" : "Crear libro"}
                         </button>
                     </div>
-                </div>
-            </form>
-        </main>
+                </form>
+            </main>
+
+        </div>
     );
 }
 
