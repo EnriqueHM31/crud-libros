@@ -40,6 +40,8 @@ interface BooksState {
     deleteBook: (id: string) => void;
 
     clearBooks: () => void;
+
+    backBooks: () => void;
 }
 
 /* =========================
@@ -177,25 +179,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...updatedFields,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...updatedFields.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...updatedFields,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...updatedFields.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
@@ -225,6 +227,14 @@ export const useBooksStore = create<BooksState>((set) => ({
             hasMore: true,
             isLoading: false,
             error: null,
+        });
+    },
+
+    backBooks: () => {
+        set({
+            selectedBook: null,
+            isModalOpen: false,
+            modalMode: "view",
         });
     },
 }));
