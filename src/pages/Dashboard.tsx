@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useBooksStore } from "../store/libro";
 import { useMenuStore } from "../store/menu";
-import AsideNav from "../components/sections/AsideNav";
-import Home from "../components/sections/Home";
-import Libros from "../components/sections/Libros";
-import Contacto from "../components/sections/Contacto";
+import AsideNav from "../components/Dashboard/sections/AsideNav";
+import Home from "../components/Dashboard/sections/Home";
+import Libros from "../components/Dashboard/sections/Libros";
+import Contacto from "../components/Dashboard/sections/Contacto";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();
