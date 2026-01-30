@@ -18,14 +18,14 @@ export function BookModal({ book }: BookModalProps) {
         <AnimatePresence>
             {isModalOpen && (
                 <motion.div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+                    className="fixed inset-0 w-full h-full z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm "
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
                     {/* MODAL */}
                     <motion.div
-                        className="dark:bg-primary-dark relative w-full max-w-3xl rounded-2xl border border-gray-700 bg-white p-8 shadow-xl"
+                        className="dark:bg-primary-dark relative w-full max-w-10/12 max-h-[90dvh] h-full md:max-w-3xl rounded-2xl border border-gray-700 bg-white py-3 px-4 md:p-8 shadow-xl overflow-y-auto flex flex-col justify-between md:static md:flex-row"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
@@ -41,9 +41,9 @@ export function BookModal({ book }: BookModalProps) {
 
                         <div className="grid gap-6 md:grid-cols-[200px_1fr]">
                             {/* IMAGEN */}
-                            <div className="flex justify-center">
+                            <div className="flex justify-center py-5">
                                 {imageLinks?.thumbnail ? (
-                                    <img src={imageLinks.thumbnail} alt={title} className="h-64 rounded-xl object-cover shadow-md" />
+                                    <img src={imageLinks.thumbnail} alt={title} className="h-40 md:h-64 rounded-xl object-cover shadow-md" />
                                 ) : (
                                     <div className="bg-muted text-muted-foreground flex h-64 w-40 items-center justify-center rounded-xl text-sm">
                                         Sin imagen
@@ -78,7 +78,7 @@ export function BookModal({ book }: BookModalProps) {
                         </div>
 
                         {/* ACCIONES */}
-                        <div className="mt-6 flex justify-end gap-3">
+                        <div className=" mt-9 md:mt-6 flex justify-end gap-3">
                             <button
                                 onClick={() => openEditBook(book)}
                                 className="bg-primary flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-white transition hover:bg-gray-700 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-800"
