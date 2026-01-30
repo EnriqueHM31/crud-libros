@@ -13,16 +13,13 @@ const typeViews = [
 ];
 
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
-
     const { total } = useFilteredBooks();
     return (
         <div className="flex items-center justify-between">
             <h2 className="my-10 text-3xl font-bold text-black dark:text-white">Libros</h2>
 
-            <div className="flex gap-2 items-center ">
-                <span className="text-sm font-medium text-gray-500 dark:text-gray-400 me-10">
-                    Mostrando {total} libros
-                </span>
+            <div className="flex items-center gap-2">
+                <span className="me-10 text-sm font-medium text-gray-500 dark:text-gray-400">Mostrando {total} libros</span>
                 {typeViews.map(({ name, value, icono }: (typeof typeViews)[number]) => (
                     <button
                         key={name}
