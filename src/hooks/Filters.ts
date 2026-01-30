@@ -5,7 +5,7 @@ export function useFilteredBooks() {
     const { books } = useBooksStore();
     const { search, category, author, language, maxPages } = useBooksFiltersStore();
 
-    return books.filter((book) => {
+    const filteBooks = books.filter((book) => {
         const info = book.volumeInfo;
 
         if (search && !normalizeText(info.title).includes(search.toLocaleLowerCase())) {
@@ -29,7 +29,9 @@ export function useFilteredBooks() {
         }
 
         return true;
-    });
+    })
+
+    return { books: filteBooks, total: filteBooks.length };
 }
 
 export function normalizeText(text: string) {
