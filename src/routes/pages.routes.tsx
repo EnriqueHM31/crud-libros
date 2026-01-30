@@ -8,9 +8,13 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 
 export function PagesRoutes() {
     return (
-        <Suspense fallback={
-            <div className="flex items-center justify-center min-h-screen bg-white dark:bg-primary-dark"><LoadingBooks />.</div>
-        }>
+        <Suspense
+            fallback={
+                <div className="dark:bg-primary-dark flex min-h-screen items-center justify-center bg-white">
+                    <LoadingBooks />.
+                </div>
+            }
+        >
             <Routes>
                 <Route path="/" element={<LoginDemo />} />
                 <Route path="/dashboard" element={<Dashboard />} />
