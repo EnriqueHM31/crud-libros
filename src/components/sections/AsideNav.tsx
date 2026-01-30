@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { useMenuStore } from "../store/menu";
-import ButtonTheme from "./Atomos/ButtonTheme";
+import { useMenuStore } from "../../store/menu";
+import ButtonTheme from "../Atomos/ButtonTheme";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -62,9 +62,8 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
