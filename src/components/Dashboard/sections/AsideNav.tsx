@@ -21,19 +21,24 @@ export default function AsideNav() {
     return (
         <>
             {/* Botón menú mobile */}
-            <button
+            <motion.button
+                initial="hidden"
+                animate="visible"
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.2, delay: 1.6 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-primary-soft text-primary fixed top-4 right-4 z-50 flex size-10 items-center justify-center rounded-full text-2xl md:hidden"
+                className="bg-primary dark:bg-primary-dark dark:text-white dark:border-gray-600 border text-white fixed top-5 right-4 z-50 flex size-10 items-center justify-center rounded-full text-2xl md:hidden border-gray-400"
                 aria-label="Abrir menú"
             >
                 {isOpen ? <IoClose /> : <HiMenu />}
-            </button>
+            </motion.button>
 
             <motion.aside
                 className={`bg-primary dark:bg-primary-dark text-text-inverse fixed z-40 h-screen w-full flex-col justify-between border-r-2 py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 dark:border-gray-700 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
             >
                 <div className="flex flex-1 flex-col gap-6">
-                    <header className="flex items-center justify-between px-6">
+                    <header className="flex items-center justify-between md:px-6 px-6 pe-18 ">
                         <motion.h1
                             variants={itemVariants}
                             transition={{ duration: 0.2 }}
@@ -78,7 +83,7 @@ export default function AsideNav() {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="mx-auto flex min-w-70 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
+                        className="mx-auto flex w-full max-w-10/12 md:max-w-full md:min-w-70 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
                         onClick={() => {
                             navigate("/");
                         }}
