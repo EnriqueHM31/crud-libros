@@ -29,7 +29,7 @@ export function useFilteredBooks() {
         }
 
         return true;
-    })
+    });
 
     return { books: filteBooks, total: filteBooks.length };
 }
