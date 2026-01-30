@@ -28,7 +28,7 @@ export default function AsideNav() {
                 whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.2, delay: 1.6 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="bg-primary dark:bg-primary-dark dark:text-white dark:border-gray-600 border text-white fixed top-5 right-4 z-50 flex size-10 items-center justify-center rounded-full text-2xl md:hidden border-gray-400"
+                className="bg-primary dark:bg-primary-dark fixed top-5 right-4 z-50 flex size-10 items-center justify-center rounded-full border border-gray-400 text-2xl text-white md:hidden dark:border-gray-600 dark:text-white"
                 aria-label="Abrir menú"
             >
                 {isOpen ? <IoClose /> : <HiMenu />}
@@ -38,7 +38,7 @@ export default function AsideNav() {
                 className={`bg-primary dark:bg-primary-dark text-text-inverse fixed z-40 h-screen w-full flex-col justify-between border-r-2 py-6 transition-transform duration-300 md:static md:flex md:translate-x-0 dark:border-gray-700 ${isOpen ? "translate-x-0" : "-translate-x-full"} `}
             >
                 <div className="flex flex-1 flex-col gap-6">
-                    <header className="flex items-center justify-between md:px-6 px-6 pe-18 ">
+                    <header className="flex items-center justify-between px-6 pe-18 md:px-6">
                         <motion.h1
                             variants={itemVariants}
                             transition={{ duration: 0.2 }}
@@ -67,8 +67,9 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                    } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
+                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
@@ -83,7 +84,7 @@ export default function AsideNav() {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="mx-auto flex w-full max-w-10/12 md:max-w-full md:min-w-70 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
+                        className="mx-auto flex w-full max-w-10/12 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 md:max-w-full md:min-w-70 dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
                         onClick={() => {
                             navigate("/");
                         }}
