@@ -37,7 +37,7 @@ export default function ListBooks() {
                         onClick={() => openBookModal(book)}
                         variants={itemVariants}
                         whileHover={{ x: 6 }}
-                        className="group bg-surface dark:bg-primary-dark/30 hover:bg-primary text-background flex flex-col md:flex-row cursor-pointer gap-5 rounded-2xl border px-2 py-5 md:py-4 shadow-sm hover:shadow-md md:px-8 dark:border-gray-700 dark:hover:bg-blue-600 justify-center items-center md:items-start md:justify-start"
+                        className="group bg-surface dark:bg-primary-dark/30 hover:bg-primary text-background flex cursor-pointer flex-col items-center justify-center gap-5 rounded-2xl border px-2 py-5 shadow-sm hover:shadow-md md:flex-row md:items-start md:justify-start md:px-8 md:py-4 dark:border-gray-700 dark:hover:bg-blue-600"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -52,8 +52,10 @@ export default function ListBooks() {
 
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
-                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-start">
-                                <h3 className="text-primary/80 group-hover:text-background text-lg font-semibold dark:text-white text-center md:text-start">{info.title}</h3>
+                            <div className="flex flex-col items-center justify-center md:flex-row md:items-start md:justify-start">
+                                <h3 className="text-primary/80 group-hover:text-background text-center text-lg font-semibold md:text-start dark:text-white">
+                                    {info.title}
+                                </h3>
 
                                 {info.authors && (
                                     <p className="group-hover:text-background mt-1 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -63,7 +65,7 @@ export default function ListBooks() {
                                 )}
                             </div>
 
-                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap gap-4 text-sm dark:text-gray-400 items-center justify-center">
+                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap items-center justify-center gap-4 text-sm dark:text-gray-400">
                                 {info.publishedDate && (
                                     <span className="flex items-center gap-2">
                                         <IoCalendarNumberOutline className="text-primary/70 group-hover:text-background dark:text-blue-500" />{" "}
@@ -84,9 +86,7 @@ export default function ListBooks() {
                         </div>
 
                         {/* Arrow */}
-                        <FaChevronRight className="hidden md:block dark: self-center text-gray-400 transition-transform group-hover:translate-x-1 dark:hover:text-gray-200" />
-
-
+                        <FaChevronRight className="dark: hidden self-center text-gray-400 transition-transform group-hover:translate-x-1 md:block dark:hover:text-gray-200" />
                     </motion.article>
                 );
             })}
