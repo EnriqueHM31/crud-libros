@@ -25,7 +25,7 @@ export function BookModal({ book }: BookModalProps) {
                 >
                     {/* MODAL */}
                     <motion.div
-                        className="dark:bg-primary-dark relative flex h-full max-h-[90dvh] w-full max-w-10/12 flex-col justify-between overflow-y-auto rounded-2xl border border-gray-700 bg-white px-4 py-3 shadow-xl md:static md:max-w-3xl md:flex-row md:p-8"
+                        className="dark:bg-primary-dark relative flex h-full max-h-[90dvh] md:max-h-fit w-full max-w-10/12 flex-col justify-between overflow-y-auto rounded-2xl border border-gray-700 bg-white px-4 py-3 shadow-xl  md:max-w-3xl  md:p-8"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
