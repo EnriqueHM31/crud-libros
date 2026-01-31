@@ -6,7 +6,7 @@ export default function BooksFilters() {
     const { search, category, author, language, maxPages, setSearch, setCategory, setAuthor, setLanguage, setMaxPages, resetFilters } = useBooksFiltersStore();
 
     return (
-        <section className="rounded-2xl border border-white py-3 shadow-lg dark:border-0 dark:border-gray-500">
+        <section className="rounded-2xl border border-white py-3 dark:border-0 dark:border-gray-500">
             <div className="space-y-4">
                 {/* Search destacado */}
                 <div className="group relative flex items-center justify-between gap-6 pb-3">
