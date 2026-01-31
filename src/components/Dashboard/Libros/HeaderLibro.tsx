@@ -7,7 +7,7 @@ export default function HeaderLibro() {
     const { openCreateBook } = useBooksStore();
     return (
         <div className="flex flex-col items-center justify-between md:flex-row">
-            <div className="flex flex-5 items-center justify-center">
+            <div className="flex flex-5 md:flex-au items-center md:items-start justify-center md:justify-start">
                 <HeaderSection title="Administracion de libros" description="Gestiona los libros disponibles de la aplicación." />
             </div>
 
