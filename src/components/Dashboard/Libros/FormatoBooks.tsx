@@ -15,8 +15,8 @@ const typeViews = [
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     const { total } = useFilteredBooks();
     return (
-        <div className="my-6 flex w-full items-center justify-between md:mt-0 md:flex-row">
-            <h2 className="my-0 text-3xl font-bold text-black md:my-10 dark:text-white">Libros</h2>
+        <div className="my-6 md:my-2 flex w-full items-center justify-between md:mt-0 md:flex-row ">
+            <h2 className="my-0 text-3xl font-bold text-black md:my-4 dark:text-white">Libros</h2>
 
             <div className="flex w-full items-center justify-end gap-2">
                 <span className="order-2 text-sm font-medium text-gray-500 md:order-1 md:me-10 dark:text-gray-400">Mostrando {total} libros</span>
