@@ -10,15 +10,15 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
     const { backBooks } = useBooksStore();
 
     return (
-        <div className="dark:bg-primary-dark flex min-h-screen flex-col gap-5 bg-red-400 md:flex-row md:p-6">
+        <div className="dark:bg-primary-dark flex min-h-screen flex-col gap-5  md:flex-row md:p-6 relative">
             <button
                 onClick={backBooks}
-                className="bg-primary absolute top-6 left-6 flex h-9 w-9 cursor-pointer items-center gap-2 rounded-full p-2 font-medium text-white transition-all duration-100 ease-in hover:scale-110 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
+                className="bg-primary absolute top-6 left-6 md:top-0 md:-left-2 flex h-9 w-9 cursor-pointer items-center gap-2 rounded-full p-2 font-medium text-white transition-all duration-100 ease-in hover:scale-110 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
             >
                 <FaArrowLeft className="text-xl" />
             </button>
             <main className="dark:bg-primary-dark min-h-screen bg-white px-3 py-6 md:p-6">
-                <div className="mb-6 flex items-center justify-center gap-8 md:justify-start">
+                <div className="mb-6 flex items-center justify-center gap-8 md:justify-start md:mb-4">
                     <HeaderSection title={titleForm} description={descriptionForm} />
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -27,7 +27,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                         <div className="space-y-3">
                             <div className="bg-muted flex aspect-auto items-center justify-center overflow-hidden rounded-xl border md:aspect-2/3 dark:border-white/10 dark:bg-white/5">
                                 {formData.volumeInfo.imageLinks?.thumbnail ? (
-                                    <img src={formData.volumeInfo.imageLinks.thumbnail} alt="preview" className="h-full max-h-1/2 w-full object-cover" />
+                                    <img src={formData.volumeInfo.imageLinks.thumbnail} alt="preview" className="h-full max-h-1/2 md:max-h-full w-full object-cover" />
                                 ) : (
                                     <span className="text-muted-foreground text-sm dark:text-gray-400">Sin imagen</span>
                                 )}
@@ -78,10 +78,10 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                             rows={4}
                             value={formData.volumeInfo.description ?? ""}
                             onChange={handleChange}
-                            className="bg-background text-primary-dark mt-1 field-sizing-content w-full resize-y rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                            className="bg-background text-primary-dark mt-1 field-sizing-content w-full resize-none rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
                         />
                     </div>
-                    <div className="mb-10 flex justify-end md:mb-0">
+                    <div className="mb-10 flex justify-end md:mb-10">
                         <button
                             type="submit"
                             className="bg-primary cursor-pointer rounded-xl px-6 py-2 font-medium text-white transition hover:bg-gray-600 dark:bg-blue-600 dark:hover:bg-blue-800"
