@@ -52,7 +52,7 @@ export default function ListBooks() {
 
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
-                            <div className="flex flex-col items-center justify-center  md:items-start md:justify-start ">
+                            <div className="flex flex-col items-center justify-center md:items-start md:justify-start">
                                 <h3 className="text-primary/80 group-hover:text-background text-center text-lg font-semibold md:text-start dark:text-white">
                                     {info.title}
                                 </h3>
@@ -65,7 +65,7 @@ export default function ListBooks() {
                                 )}
                             </div>
 
-                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap items-center md:items-start md:justify-start justify-center gap-4 text-sm dark:text-gray-400">
+                            <div className="text-primary-soft group-hover:text-background mt-5 flex flex-wrap items-center justify-center gap-4 text-sm md:items-start md:justify-start dark:text-gray-400">
                                 {info.publishedDate && (
                                     <span className="flex items-center gap-2">
                                         <IoCalendarNumberOutline className="text-primary/70 group-hover:text-background dark:text-blue-500" />{" "}
