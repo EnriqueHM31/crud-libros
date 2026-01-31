@@ -36,8 +36,8 @@ export default function LoginDemo() {
 
                 {/* Header */}
                 <div className="relative z-10 mb-14 text-center">
-                    <h1 className="text-7xl font-bold tracking-tight text-gray-900 dark:text-white">Libros HM</h1>
-                    <p className="mt-2 text-xl text-gray-600 dark:text-gray-400">Accede al sistema en modo demostración</p>
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">Libros HM</h1>
+                    <p className="mt-4 md:mt-2 text-base md:text-xl text-gray-600 dark:text-gray-400">Accede al sistema en modo demostración</p>
                 </div>
 
                 {/* Botones */}
@@ -46,7 +46,7 @@ export default function LoginDemo() {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="mx-auto flex min-w-70 cursor-pointer items-center justify-center gap-3 rounded-xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700"
+                        className="mx-auto flex md:min-w-70 max-w-full w-full md:w-fit cursor-pointer items-center justify-center gap-3 rounded-xl bg-blue-600 px-6 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700"
                         onClick={() => {
                             navigate("/dashboard");
                         }}
@@ -59,7 +59,7 @@ export default function LoginDemo() {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="mx-auto flex min-w-70 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-black/20 dark:text-white dark:hover:bg-black/30"
+                        className="mx-auto flex md:min-w-70 max-w-full w-full md:w-fit cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 dark:border-gray-600 dark:bg-black/20 dark:text-white dark:hover:bg-black/30"
                         onClick={() => {
                             navigate("/landing");
                         }}
