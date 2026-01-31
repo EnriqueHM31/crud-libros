@@ -18,7 +18,7 @@ export function BookModal({ book }: BookModalProps) {
         <AnimatePresence>
             {isModalOpen && (
                 <motion.div
-                    className="fixed inset-0 w-full h-full z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm "
+                    className="fixed inset-0 w-full h-screen z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm "
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
