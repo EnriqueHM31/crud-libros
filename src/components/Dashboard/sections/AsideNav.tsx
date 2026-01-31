@@ -67,8 +67,9 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                    } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
+                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
@@ -83,7 +84,7 @@ export default function AsideNav() {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="mx-auto md:mxnone flex w-full max-w-10/12 md:max-w-5/6 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100  md:min-w-fit dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
+                        className="md:mxnone mx-auto flex w-full max-w-10/12 cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 md:max-w-5/6 md:min-w-fit dark:border-gray-600 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-800"
                         onClick={() => {
                             navigate("/");
                         }}
