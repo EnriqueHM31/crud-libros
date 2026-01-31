@@ -28,7 +28,7 @@ export default function MosaicoBooks() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid gap-5  md:gap-10 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 xl:grid-cols-4"
         >
             {books.map((book) => {
                 const info = book.volumeInfo;
