@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { GoogleBook, GoogleBooksResponse } from "../types/libro";
 import LIBROS from "../data/mook.json";
-import { getAllBooks } from "@/services/books.service";
+import { createBook, getAllBooks } from "@/services/books.service";
 
 /* =========================
    TIPOS
@@ -174,9 +174,12 @@ export const useBooksStore = create<BooksState>((set) => ({
        CRUD
     ========================= */
 
-    createBook: (newBook) => {
+    createBook: async (newBook) => {
+
+        const { data } = await createBook(newBook);
+
         set((state) => ({
-            books: [newBook, ...state.books],
+            books: [data, ...state.books], // ✅ aquí está el array
             isModalOpen: false,
             modalMode: "view",
         }));
