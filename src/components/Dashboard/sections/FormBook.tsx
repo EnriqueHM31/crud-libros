@@ -5,6 +5,7 @@ import type { BookFormProps } from "../../../types/formBook";
 import HeaderSection from "../Atomos/Header";
 import InputForm from "../Libros/Atomos/InputForm";
 import SelectorDinamico from "../Libros/Atomos/SelectDinamico";
+import CountrySvg from "../Libros/Atomos/Country";
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });
@@ -31,7 +32,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                                     <img
                                         src={formData.volumeInfo.imageLinks.thumbnail}
                                         alt="preview"
-                                        className="h-full max-h-1/2 min-h-[400px] w-full object-contain transition-transform duration-300 ease-in-out hover:scale-110 md:h-full md:max-h-full md:min-h-full"
+                                        className="h-full max-h-1/2 min-h-[400px] w-full object-contain  md:h-full md:max-h-full md:min-h-full"
                                     />
                                 ) : (
                                     <span className="text-muted-foreground flex h-full min-h-[200px] w-full items-center justify-center text-sm md:min-h-full dark:text-gray-400">
@@ -71,7 +72,10 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
                             <InputForm label="Páginas" type="number" name="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
 
-                            <InputForm label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+                            <div className="flex items-center gap-2">
+                                <InputForm label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+                                <CountrySvg value={formData.volumeInfo.language ?? ""} />
+                            </div>
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} />
 
