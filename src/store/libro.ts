@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { GoogleBook, GoogleBooksResponse } from "../types/libro";
 import LIBROS from "../data/mook.json";
+import { getAllBooks } from "@/services/books.service";
 
 /* =========================
    TIPOS
@@ -79,15 +80,23 @@ export const useBooksStore = create<BooksState>((set) => ({
     cargarLibros: async () => {
         set({ isLoading: true });
 
-        setTimeout(() => {
-            const data = LIBROS as GoogleBooksResponse;
+        setTimeout(async () => {
 
-            set({
-                books: data.items ?? [],
-                page: 1,
-                hasMore: (data.items?.length ?? 0) === MAX_RESULTS,
-                isLoading: false,
-            });
+            try {
+                const response = await getAllBooks();
+
+                const { data } = response;
+
+                set({
+                    books: data,
+                    isLoading: false,
+                });
+            } catch (err) {
+                set({
+                    error: (err as Error).message,
+                    isLoading: false,
+                });
+            }
         }, 500);
     },
 
@@ -179,25 +188,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...updatedFields,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...updatedFields.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...updatedFields,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...updatedFields.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
