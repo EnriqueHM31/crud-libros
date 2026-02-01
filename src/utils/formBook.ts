@@ -22,6 +22,5 @@ export function getChangedFields(original: FormData, current: FormData) {
         changes.volumeInfo = current.volumeInfo;
     }
 
-
     return changes;
 }
