@@ -9,8 +9,8 @@ export default function ButtonTheme() {
     const isDark = mode === "dark";
 
     return (
-        <label className="relative inline-flex cursor-pointer items-center">
-            <input type="checkbox" checked={isDark} onChange={toggleMode} className="peer sr-only" />
+        <label className="relative inline-flex cursor-pointer items-center" htmlFor="theme-toggle">
+            <input type="checkbox" id="theme-toggle" checked={isDark} onChange={toggleMode} className="peer sr-only" />
 
             <motion.div
                 initial="hidden"
