@@ -3,6 +3,7 @@ import { useBooksStore } from "../store/libro";
 import { mapBookToFormData, getChangedFields } from "../utils/formBook";
 import type { GoogleBook } from "../types/libro";
 import type { FormData } from "../types/formBook";
+import { toast } from "sonner";
 
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
     const { createBook, editBook } = useBooksStore();
@@ -11,19 +12,18 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-                  saleInfo: undefined,
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -64,18 +64,23 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        console.log({ formData, book });
+
         if (type === "create") {
-            createBook({
-                ...book,
-                id: crypto.randomUUID(),
-                kind: "books#volume",
-                volumeInfo: formData.volumeInfo,
-                saleInfo: formData.saleInfo,
-            } as GoogleBook);
-            return;
+
+            if (!formData) {
+                toast.error("Llena todos los campos");
+                return;
+            }
+
+            createBook(formData as GoogleBook);
+
+            toast.success("Libro creado correctamente");
+
+            setFormData(initialData);
         }
 
         if (!book) return;
