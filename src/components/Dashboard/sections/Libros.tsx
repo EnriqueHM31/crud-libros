@@ -13,7 +13,7 @@ import HeaderLibro from "../Libros/HeaderLibro";
 import ListBooks from "../Libros/ListBooks";
 import MosaicoBooks from "../Libros/MosaicoBooks";
 import NotResults from "../Libros/NotResults";
-import { BookForm } from "./FormBook";
+import { BookForm } from "../Libros/FormBook";
 
 type ViewMode = "list" | "grid";
 
