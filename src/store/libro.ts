@@ -176,7 +176,7 @@ export const useBooksStore = create<BooksState>((set) => ({
 
     createBook: async (newBook) => {
 
-        const { data } = await createBook(newBook);
+        const { data } = await createBook(newBook) as { data: GoogleBook };
 
         set((state) => ({
             books: [data, ...state.books], // ✅ aquí está el array
