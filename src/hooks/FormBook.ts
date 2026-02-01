@@ -8,23 +8,26 @@ import { toast } from "sonner";
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
     const { createBook, editBook } = useBooksStore();
 
+    console.log({ book });
     const initialData: FormData =
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    categories: [],
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
+    console.log({ initialData });
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
 
@@ -64,6 +67,15 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         }));
     };
 
+    const handleCategoriesChange = (value: string[]) => {
+        setFormData((prev) => ({
+            ...prev,
+            volumeInfo: {
+                ...prev.volumeInfo,
+                categories: value,
+            },
+        }));
+    };
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -106,6 +118,7 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         handleAuthorsChange,
         handleImageChange,
         handleSubmit,
+        handleCategoriesChange,
         titleForm,
         descriptionForm,
     };
