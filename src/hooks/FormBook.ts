@@ -67,20 +67,22 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        console.log({ formData, book });
 
         if (type === "create") {
-
             if (!formData) {
                 toast.error("Llena todos los campos");
                 return;
             }
 
-            createBook(formData as GoogleBook);
+            // Esperamos a que se cree el libro
+            await createBook(formData as GoogleBook);
 
+            // Solo si todo salió bien
             toast.success("Libro creado correctamente");
 
+            // Limpiar formulario
             setFormData(initialData);
+
         }
 
         if (!book) return;
