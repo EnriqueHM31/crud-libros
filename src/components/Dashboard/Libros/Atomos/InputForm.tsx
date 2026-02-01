@@ -5,7 +5,7 @@ export default function InputForm({
     label: string;
 }) {
     return (
-        <div>
+        <div className="flex w-full flex-col gap-2">
             <label className="text-primary text-sm font-medium dark:text-gray-400" htmlFor={props.id}>
                 {label}
             </label>
