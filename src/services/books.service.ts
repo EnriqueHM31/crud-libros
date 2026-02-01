@@ -1,15 +1,13 @@
 import type { GoogleBook } from "@/types/libro";
+import { handleApiError } from "@/utils/errors";
 
 export const getAllBooks = async () => {
 
     try {
         const response = await fetch(import.meta.env.VITE_API_URL);
 
-        if (!response.ok) {
-            throw new Error('Error al obtener libros de la API');
-        }
+        await handleApiError(response);
         const { data } = await response.json();
-        console.log(data);
         return { data };
     } catch (error) {
         throw new Error('Error al obtener libros de la API' + error);
@@ -31,27 +29,26 @@ export const getBookById = async (id: string) => {
 };
 
 export const createBook = async (book: GoogleBook) => {
-    console.log({ book });
     try {
         const response = await fetch(import.meta.env.VITE_API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(book),
+            body: JSON.stringify({
+                volumeInfo: book.volumeInfo,
+            }),
         });
-        console.log({ response });
-        if (!response.ok) {
-            throw new Error('Error en la respuesta ' + response.statusText);
-        }
-        const { data } = await response.json();
-        console.log({ data });
+
+        await handleApiError(response);
+
+        const { data } = (await response.json()) as { data: GoogleBook };
         return { data };
     } catch (error) {
-        console.log({ error });
-        throw new Error('Error al crear libro de la API' + error);
+        console.error('Error al crear libro:', error);
     }
 };
+
 
 export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
     try {
