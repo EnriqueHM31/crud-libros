@@ -31,6 +31,7 @@ export const getBookById = async (id: string) => {
 };
 
 export const createBook = async (book: GoogleBook) => {
+    console.log({ book });
     try {
         const response = await fetch(import.meta.env.VITE_API_URL, {
             method: 'POST',
@@ -39,12 +40,15 @@ export const createBook = async (book: GoogleBook) => {
             },
             body: JSON.stringify(book),
         });
+        console.log({ response });
         if (!response.ok) {
-            throw new Error('Error al crear libro de la API');
+            throw new Error('Error en la respuesta ' + response.statusText);
         }
-        const { items } = await response.json();
-        return { data: items[0] };
+        const { data } = await response.json();
+        console.log({ data });
+        return { data };
     } catch (error) {
+        console.log({ error });
         throw new Error('Error al crear libro de la API' + error);
     }
 };
@@ -61,8 +65,8 @@ export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
         if (!response.ok) {
             throw new Error('Error al actualizar libro de la API');
         }
-        const { items } = await response.json();
-        return { data: items[0] };
+        const { data } = await response.json();
+        return { data };
     } catch (error) {
         throw new Error('Error al actualizar libro de la API' + error);
     }
@@ -76,8 +80,8 @@ export const deleteBook = async (id: string) => {
         if (!response.ok) {
             throw new Error('Error al eliminar libro de la API');
         }
-        const { items } = await response.json();
-        return { data: items[0] };
+        const { data } = await response.json();
+        return { data };
     } catch (error) {
         throw new Error('Error al eliminar libro de la API' + error);
     }
