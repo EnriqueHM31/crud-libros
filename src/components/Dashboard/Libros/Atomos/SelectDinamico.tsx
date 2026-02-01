@@ -30,7 +30,7 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
     };
 
     return (
-        <div className="flex w-full flex-col gap-2 ">
+        <div className="flex w-full flex-col gap-2">
             {/* Opcional: mostrar botones para eliminar categorías */}
             <div className="flex flex-wrap gap-2">
                 {selectedCategories.map((cat) => (
@@ -57,7 +57,7 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
                             name="category-select"
                             value=""
                             onChange={handleSelectChange}
-                            className="bg-background text-primary-dark mt-1 w-full cursor-pointer appearance-none rounded-xl border px-3 py-2 focus:outline-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-white select-estilado"
+                            className="bg-background text-primary-dark select-estilado mt-1 w-full cursor-pointer appearance-none rounded-xl border px-3 py-2 focus:outline-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-white"
                         >
                             <option value="" disabled className="dark:bg-primary-dark border-none bg-white">
                                 Selecciona una categoría
@@ -66,7 +66,7 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
                                 <option
                                     key={cat}
                                     value={cat}
-                                    className="dark:bg-primary-dark cursor-pointer border-none bg-white disabled:bg-red-600  "
+                                    className="dark:bg-primary-dark cursor-pointer border-none bg-white disabled:bg-red-600"
                                     disabled={selectedCategories.includes(cat)}
                                 >
                                     {cat}
