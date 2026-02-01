@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import InputForm from "./InputForm";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 
-const categories = ["Ficción", "Historia", "Humor", "Literatura", "Poesía", "Religión", "Saga", "Suspenso", "Terror", "Tragedia"];
-export default function SelectorDinamico() {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [inputValue, setInputValue] = useState<string>("");
+const categories = ["Ficción", "Historia", "Humor", "Literatura", "Poesía", "Religión", "Saga", "Suspenso", "Terror", "Tragedia", "Computadoras"];
+
+export default function SelectorDinamico({ handleChange, value }: { handleChange: (value: string[]) => void; value: string[] }) {
+    console.log({ value });
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(value ?? []);
+    const [inputValue, setInputValue] = useState<string>(value?.join(", ") ?? "");
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
@@ -24,6 +26,7 @@ export default function SelectorDinamico() {
         const newSelected = selectedCategories.filter((c) => c !== cat);
         setSelectedCategories(newSelected);
         setInputValue(newSelected.join(", "));
+        handleChange(newSelected);
     };
 
     return (
