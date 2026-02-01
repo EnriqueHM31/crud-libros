@@ -12,18 +12,18 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                volumeInfo: {
-                    title: "",
-                    subtitle: "",
-                    authors: [],
-                    publisher: "",
-                    publishedDate: "",
-                    description: "",
-                    pageCount: undefined,
-                    language: "",
-                    imageLinks: { thumbnail: "" },
-                },
-            };
+                  volumeInfo: {
+                      title: "",
+                      subtitle: "",
+                      authors: [],
+                      publisher: "",
+                      publishedDate: "",
+                      description: "",
+                      pageCount: undefined,
+                      language: "",
+                      imageLinks: { thumbnail: "" },
+                  },
+              };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -67,7 +67,6 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-
         if (type === "create") {
             if (!formData) {
                 toast.error("Llena todos los campos");
@@ -82,7 +81,6 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
 
             // Limpiar formulario
             setFormData(initialData);
-
         }
 
         if (!book) return;
