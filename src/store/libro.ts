@@ -81,16 +81,14 @@ export const useBooksStore = create<BooksState>((set) => ({
         set({ isLoading: true });
 
         setTimeout(async () => {
-
             try {
                 const response = await getAllBooks();
 
-                const { data } = response;
-
                 set({
-                    books: data,
+                    books: response.data, // ✅ aquí está el array
                     isLoading: false,
                 });
+
             } catch (err) {
                 set({
                     error: (err as Error).message,
@@ -99,6 +97,7 @@ export const useBooksStore = create<BooksState>((set) => ({
             }
         }, 500);
     },
+
 
     /* =========================
        BUSCAR LIBROS
