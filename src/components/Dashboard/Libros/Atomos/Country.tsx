@@ -35,7 +35,7 @@ export default function CountrySvg({ value, size = { width: 40, height: 20 } }: 
                         alt={`Bandera de ${value}`}
                         width={size.width}
                         height={size.height}
-                        className="text-primary  text-sm dark:border-white/10 dark:text-white/60"
+                        className="text-primary text-sm dark:border-white/10 dark:text-white/60"
                         onError={handleError}
                     />
                 </div>
