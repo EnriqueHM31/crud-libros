@@ -61,31 +61,34 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                         <div className="flex h-full w-full flex-col justify-between gap-4">
                             <InputForm label="Título" name="title" id="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
-                            <InputForm label="Subtítulo" name="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
+                            <InputForm label="Subtítulo" name="subtitle" id="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
 
                             <InputForm
                                 label="Autores (coma separados)"
+                                name="authors"
+                                id="authors"
                                 value={formData.volumeInfo.authors?.join(", ") ?? ""}
                                 onChange={(e) => handleAuthorsChange(e.target.value)}
                             />
 
-                            <InputForm label="Editorial" name="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
+                            <InputForm label="Editorial" name="publisher" id="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
 
-                            <InputForm label="Fecha publicación" name="publishedDate" value={formData.volumeInfo.publishedDate ?? ""} onChange={handleChange} />
+                            <InputForm label="Fecha publicación" name="publishedDate" id="publishedDate" value={formData.volumeInfo.publishedDate ?? ""} onChange={handleChange} />
 
-                            <InputForm label="Páginas" type="number" name="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
+                            <InputForm label="Páginas" type="number" name="pageCount" id="pageCount" value={formData.volumeInfo.pageCount ?? ""} onChange={handleChange} />
 
                             <div className="flex items-center gap-2">
-                                <InputForm label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+                                <InputForm label="Idioma" name="language" id="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
                                 <CountrySvg value={formData.volumeInfo.language ?? ""} />
                             </div>
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} />
 
                             <div className="w-full">
-                                <label className="text-primary-dark text-sm font-medium dark:text-gray-400">Descripción</label>
+                                <label htmlFor="description" className="text-primary-dark text-sm font-medium dark:text-gray-400">Descripción</label>
                                 <textarea
                                     name="description"
+                                    id="description"
                                     rows={4}
                                     value={formData.volumeInfo.description ?? ""}
                                     onChange={handleChange}
