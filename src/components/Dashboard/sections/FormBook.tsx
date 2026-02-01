@@ -58,7 +58,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                         </div>
 
                         {/* FORM */}
-                        <div className="flex h-full w-full flex-col justify-between gap-4 ">
+                        <div className="flex h-full w-full flex-col justify-between gap-4">
                             <InputForm label="Título" name="title" id="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
                             <InputForm label="Subtítulo" name="subtitle" id="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
@@ -97,7 +97,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} />
 
-                            <div className="w-full flex flex-col gap-2">
+                            <div className="flex w-full flex-col gap-2">
                                 <label htmlFor="description" className="text-primary-dark text-sm font-medium dark:text-gray-400">
                                     Descripción
                                 </label>
