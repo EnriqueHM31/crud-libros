@@ -5,14 +5,17 @@ import AsideNav from "../components/Dashboard/sections/AsideNav";
 import Home from "../components/Dashboard/sections/Home";
 import Libros from "../components/Dashboard/sections/Libros";
 import Contacto from "../components/Dashboard/sections/Contacto";
+import { useCategoriasStore } from "@/store/categorias";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();
     const { cargarLibros } = useBooksStore();
+    const { obtenerCategorias } = useCategoriasStore();
 
     useEffect(() => {
         cargarLibros();
-    }, [cargarLibros]);
+        obtenerCategorias();
+    }, [cargarLibros, obtenerCategorias]);
     return (
         <main className="flex h-screen w-screen">
             <div className="md:flex-1">
