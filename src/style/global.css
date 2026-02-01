@@ -37,3 +37,85 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+select,
+::picker(select) {
+    appearance: base-select;
+}
+select {
+    @apply dark:bg-primary-dark text-primary-dark border-primary border bg-white dark:border-white/10 dark:text-white;
+    padding: 10px;
+    transition: 0.4s;
+}
+
+select:hover {
+    @apply bg-primary text-white dark:bg-blue-600 dark:text-white;
+}
+select::picker-icon {
+    color: #999999;
+    transition: 0.4s rotate;
+}
+select:open::picker-icon {
+    rotate: 180deg;
+}
+::picker(select) {
+    border: none;
+}
+option {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    @apply dark:bg-primary-dark text-primary-dark border-primary border bg-white dark:border-gray-400 dark:text-white;
+    padding: 5px 10px;
+    transition: 0.4s;
+}
+option:first-of-type {
+    border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+    border-radius: 0 0 8px 8px;
+}
+
+::picker(select) {
+    border-radius: 8px;
+}
+
+option:not(option:last-of-type) {
+    border-bottom: none;
+}
+option:nth-of-type(odd) {
+    @apply dark:bg-primary-dark bg-white;
+}
+
+option:hover {
+    @apply bg-primary text-white dark:bg-blue-600 dark:text-white;
+}
+
+option:disabled {
+    @apply bg-red-600 text-white dark:text-white;
+}
+
+option:disabled:first-of-type {
+    @apply dark:bg-primary-dark bg-white text-black dark:text-white;
+}
+
+option::checkmark {
+    order: 1;
+    margin-left: auto;
+    content: "✔️";
+    display: none;
+}
+::picker(select) {
+    opacity: 0;
+    transition: all 0.4s allow-discrete;
+}
+::picker(select):popover-open {
+    opacity: 1;
+}
+@starting-style {
+    ::picker(select):popover-open {
+        opacity: 0;
+    }
+}
