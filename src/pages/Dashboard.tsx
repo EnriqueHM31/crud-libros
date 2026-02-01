@@ -11,11 +11,7 @@ export default function Dashboard() {
     const { cargarLibros } = useBooksStore();
 
     useEffect(() => {
-        try {
-            cargarLibros();
-        } catch (err) {
-            console.log(err);
-        }
+        cargarLibros();
     }, [cargarLibros]);
     return (
         <main className="flex h-screen w-screen">
