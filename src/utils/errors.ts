@@ -11,7 +11,7 @@ export interface ApiError {
     };
     message?: string;
     ok?: boolean;
-};
+}
 
 /**
  * Maneja errores de fetch y devuelve un mensaje limpio
@@ -35,7 +35,6 @@ export const handleApiError = async (response: Response) => {
             errorMessage = data.message;
             toast.error(errorMessage);
         }
-
     } catch (err) {
         console.warn("No se pudo leer el cuerpo del error:", err);
     }
