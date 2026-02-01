@@ -88,7 +88,6 @@ export const useBooksStore = create<BooksState>((set) => ({
                     books: response.data, // ✅ aquí está el array
                     isLoading: false,
                 });
-
             } catch (err) {
                 set({
                     error: (err as Error).message,
@@ -97,7 +96,6 @@ export const useBooksStore = create<BooksState>((set) => ({
             }
         }, 500);
     },
-
 
     /* =========================
        BUSCAR LIBROS
@@ -175,8 +173,7 @@ export const useBooksStore = create<BooksState>((set) => ({
     ========================= */
 
     createBook: async (newBook) => {
-
-        const { data } = await createBook(newBook) as { data: GoogleBook };
+        const { data } = (await createBook(newBook)) as { data: GoogleBook };
 
         set((state) => ({
             books: [data, ...state.books], // ✅ aquí está el array
@@ -190,25 +187,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                        ...book,
-                        ...updatedFields,
-                        volumeInfo: {
-                            ...book.volumeInfo,
-                            ...updatedFields.volumeInfo,
-                        },
-                    }
+                          ...book,
+                          ...updatedFields,
+                          volumeInfo: {
+                              ...book.volumeInfo,
+                              ...updatedFields.volumeInfo,
+                          },
+                      }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                        ...state.selectedBook,
-                        ...updatedFields,
-                        volumeInfo: {
-                            ...state.selectedBook.volumeInfo,
-                            ...updatedFields.volumeInfo,
-                        },
-                    }
+                          ...state.selectedBook,
+                          ...updatedFields,
+                          volumeInfo: {
+                              ...state.selectedBook.volumeInfo,
+                              ...updatedFields.volumeInfo,
+                          },
+                      }
                     : state.selectedBook,
             modalMode: "view",
         }));
