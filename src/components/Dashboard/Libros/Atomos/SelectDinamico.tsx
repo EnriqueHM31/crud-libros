@@ -2,18 +2,7 @@ import React, { useState } from "react";
 import InputForm from "./InputForm";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 
-const categories = [
-    "Ficción",
-    "Historia",
-    "Humor",
-    "Literatura",
-    "Poesía",
-    "Religión",
-    "Saga",
-    "Suspenso",
-    "Terror",
-    "Tragedia",
-];
+const categories = ["Ficción", "Historia", "Humor", "Literatura", "Poesía", "Religión", "Saga", "Suspenso", "Terror", "Tragedia"];
 export default function SelectorDinamico() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
@@ -38,25 +27,24 @@ export default function SelectorDinamico() {
     };
 
     return (
-        <div className="flex flex-col  gap-2 w-full ">
+        <div className="flex w-full flex-col gap-2">
             {/* Opcional: mostrar botones para eliminar categorías */}
-            <div className="flex flex-wrap gap-2 ">
+            <div className="flex flex-wrap gap-2">
                 {selectedCategories.map((cat) => (
                     <button
                         key={cat}
                         type="button"
                         onClick={() => handleRemoveCategory(cat)}
-                        className="bg-primary dark:bg-blue-600 dark:hover:bg-blue-800 hover:bg-primary/50 text-white px-2 py-2 gap-2 flex items-center  rounded-lg text-sm w-fit"
+                        className="bg-primary hover:bg-primary/50 flex w-fit items-center gap-2 rounded-lg px-2 py-2 text-sm text-white dark:bg-blue-600 dark:hover:bg-blue-800"
                     >
                         {cat}
-                        <FaTimes className="text-sm cursor-pointer" />
+                        <FaTimes className="cursor-pointer text-sm" />
                     </button>
                 ))}
             </div>
-            <div className="flex  gap-2 w-full">
-
-                <div className="flex flex-col gap-2 flex-1">
-                    <label htmlFor="category-select" className=" text-primary text-sm font-medium dark:text-gray-400">
+            <div className="flex w-full gap-2">
+                <div className="flex flex-1 flex-col gap-2">
+                    <label htmlFor="category-select" className="text-primary text-sm font-medium dark:text-gray-400">
                         Menu de categorías
                     </label>
 
@@ -65,53 +53,26 @@ export default function SelectorDinamico() {
                             id="category-select"
                             value=""
                             onChange={handleSelectChange}
-                            className="
-      w-full appearance-none cursor-pointer
-      bg-white border border-gray-300
-      rounded-xl px-4 py-2.5 pr-9
-      text-sm text-gray-500
-      transition-all duration-200 ease-out
-      hover:border-gray-400 hover:shadow-sm
-      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-      dark:bg-white/5 dark:border-white/10 dark:text-white/60
-      dark:hover:border-white/20
-      dark:focus:ring-blue-600 dark:focus:border-blue-600
-    "
+                            className="w-full cursor-pointer appearance-none rounded-xl border border-gray-300 bg-white px-4 py-2.5 pr-9 text-sm text-gray-500 transition-all duration-200 ease-out hover:border-gray-400 hover:shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:border-white/20 dark:focus:border-blue-600 dark:focus:ring-blue-600"
                         >
                             <option value="" disabled className="bg-primary-dark border-none">
                                 Selecciona una categoría
                             </option>
                             {categories.map((cat) => (
-                                <option
-                                    key={cat}
-                                    value={cat}
-                                    className="bg-primary-dark border-none"
-                                    disabled={selectedCategories.includes(cat)}
-                                >
+                                <option key={cat} value={cat} className="bg-primary-dark border-none" disabled={selectedCategories.includes(cat)}>
                                     {cat}
                                 </option>
                             ))}
                         </select>
 
                         {/* flecha custom encima, pointer-events-none para que no bloquee el select */}
-                        <FaChevronDown
-                            size={13}
-                            className="
-      absolute right-3 top-1/2 -translate-y-1/2
-      text-gray-400 pointer-events-none
-      dark:text-white/40
-    "
-                        />
+                        <FaChevronDown size={13} className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 dark:text-white/40" />
                     </div>
-
                 </div>
-                <div className="flex flex-col gap-2 w-full flex-2">
+                <div className="flex w-full flex-2 flex-col gap-2">
                     <InputForm label="Categorías" value={inputValue} />
                 </div>
             </div>
-
-
-
         </div>
     );
-};
+}
