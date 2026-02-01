@@ -30,10 +30,12 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                                     <img
                                         src={formData.volumeInfo.imageLinks.thumbnail}
                                         alt="preview"
-                                        className="h-full md:min-h-auto min-h-[400px] max-h-1/2 w-full object-cover md:max-h-full"
+                                        className="h-full max-h-1/2 min-h-[400px] w-full object-cover md:max-h-full md:min-h-auto"
                                     />
                                 ) : (
-                                    <span className="text-muted-foreground text-sm dark:text-gray-400 md:min-h-auto min-h-[200px] flex items-center justify-center">Sin imagen</span>
+                                    <span className="text-muted-foreground flex min-h-[200px] items-center justify-center text-sm md:min-h-auto dark:text-gray-400">
+                                        Sin imagen
+                                    </span>
                                 )}
                             </div>
 
