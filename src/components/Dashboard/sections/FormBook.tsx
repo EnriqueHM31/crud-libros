@@ -8,7 +8,10 @@ import SelectorDinamico from "../Libros/Atomos/SelectDinamico";
 import CountrySvg from "../Libros/Atomos/Country";
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
-    const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });
+    const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
+        type,
+        book,
+    });
     const { backBooks } = useBooksStore();
 
     return (
@@ -32,7 +35,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                                     <img
                                         src={formData.volumeInfo.imageLinks.thumbnail}
                                         alt="preview"
-                                        className="h-full max-h-1/2 min-h-[400px] w-full object-contain  md:h-full md:max-h-full md:min-h-full"
+                                        className="h-full max-h-1/2 min-h-[400px] w-full object-contain md:h-full md:max-h-full md:min-h-full"
                                     />
                                 ) : (
                                     <span className="text-muted-foreground flex h-full min-h-[200px] w-full items-center justify-center text-sm md:min-h-full dark:text-gray-400">
