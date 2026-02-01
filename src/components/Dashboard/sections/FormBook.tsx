@@ -7,7 +7,7 @@ import InputForm from "../Libros/Atomos/InputForm";
 import SelectorDinamico from "../Libros/Atomos/SelectDinamico";
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
-    const { formData, handleChange, handleAuthorsChange, handleImageChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });
+    const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({ type, book });
     const { backBooks } = useBooksStore();
 
     return (
@@ -73,7 +73,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
                             <InputForm label="Idioma" name="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
 
-                            <SelectorDinamico />
+                            <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} />
 
                             <div className="w-full">
                                 <label className="text-primary-dark text-sm font-medium dark:text-gray-400">Descripción</label>
