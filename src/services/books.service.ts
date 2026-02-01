@@ -9,7 +9,8 @@ export const getAllBooks = async () => {
             throw new Error('Error al obtener libros de la API');
         }
         const { data } = await response.json();
-        return { data: data.items };
+        console.log(data);
+        return { data };
     } catch (error) {
         throw new Error('Error al obtener libros de la API' + error);
     }
