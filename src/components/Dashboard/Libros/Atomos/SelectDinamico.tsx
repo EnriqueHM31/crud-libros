@@ -38,7 +38,7 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
                         key={cat}
                         type="button"
                         onClick={() => handleRemoveCategory(cat)}
-                        className="bg-primary hover:bg-primary/80 flex w-fit items-center gap-2 rounded-lg px-2 py-2 text-sm text-white dark:bg-blue-600 dark:hover:bg-blue-800 cursor-pointer "
+                        className="bg-primary hover:bg-primary/80 flex w-fit cursor-pointer items-center gap-2 rounded-lg px-2 py-2 text-sm text-white dark:bg-blue-600 dark:hover:bg-blue-800"
                     >
                         {cat}
                         <FaTimes className="text-sm" />
@@ -57,23 +57,26 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
                             name="category-select"
                             value=""
                             onChange={handleSelectChange}
-                            className="bg-background text-primary-dark mt-1 w-full rounded-xl border px-3 py-2 focus:outline-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-white appearance-none cursor-pointer"
+                            className="bg-background text-primary-dark mt-1 w-full cursor-pointer appearance-none rounded-xl border px-3 py-2 focus:outline-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-white"
                         >
-                            <option value="" disabled className="bg-white dark:bg-primary-dark border-none">
+                            <option value="" disabled className="dark:bg-primary-dark border-none bg-white">
                                 Selecciona una categoría
                             </option>
                             {categories.map((cat) => (
-                                <option key={cat} value={cat} className="cursor-pointer bg-white dark:bg-primary-dark border-none disabled:text-white dark:disabled:text-white dark:disabled:bg-blue-400 disabled:bg-red-600" disabled={selectedCategories.includes(cat)}>
+                                <option
+                                    key={cat}
+                                    value={cat}
+                                    className="dark:bg-primary-dark cursor-pointer border-none bg-white disabled:bg-red-600 disabled:text-white dark:disabled:bg-blue-400 dark:disabled:text-white"
+                                    disabled={selectedCategories.includes(cat)}
+                                >
                                     {cat}
                                 </option>
                             ))}
                         </select>
-
                     </div>
                 </div>
                 <div className="flex w-full flex-2 flex-col gap-2">
-                    <InputForm label="Categorías" name="categories" id="categories" value={inputValue}
-                        readOnly />
+                    <InputForm label="Categorías" name="categories" id="categories" value={inputValue} readOnly />
                 </div>
             </div>
         </div>
