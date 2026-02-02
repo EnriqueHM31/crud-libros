@@ -6,6 +6,7 @@ import Home from "../components/Dashboard/sections/Home";
 import Libros from "../components/Dashboard/sections/Libros";
 import Contacto from "../components/Dashboard/sections/Contacto";
 import { useCategoriasStore } from "@/store/categorias";
+import Categorias from "@/components/Dashboard/sections/Categorias";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();
@@ -23,6 +24,8 @@ export default function Dashboard() {
             </div>
             <div className="dark:bg-primary-dark flex h-screen min-h-screen w-full flex-4 flex-col overflow-y-auto bg-white px-4 py-20 md:px-8 md:py-9">
                 {currentMenu === "home" && <Home />}
+                {currentMenu === "informacion" && <Home />}
+                {currentMenu === "categorias" && <Categorias />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "contacto" && <Contacto />}
             </div>

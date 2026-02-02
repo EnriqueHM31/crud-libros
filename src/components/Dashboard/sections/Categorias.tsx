@@ -1,36 +1,23 @@
-import { useState } from "react";
 import { useFilteredBooks } from "../../../hooks/Filters";
-import { useBooksStore } from "../../../store/libro";
 
-import Error from "../Atomos/Error";
 import LoadingBooks from "../../Atomos/Loading";
+import Error from "../Atomos/Error";
 
 import { BookModal } from "../Libros/BookSelected";
 
-import BooksFilters from "../Libros/Filters";
-import HeaderTypeFormatBook from "../Libros/FormatoBooks";
-import HeaderLibro from "../Libros/HeaderLibro";
-import ListBooks from "../Libros/ListBooks";
-import MosaicoBooks from "../Libros/MosaicoBooks";
-import NotResults from "../Libros/NotResults";
+import { useCategoriasStore } from "@/store/categorias";
+import FiltersCategorias from "../Categorias/FiltersCategorias";
+import HeaderCategorias from "../Categorias/HeaderCategorias";
+import ListaCategorias from "../Categorias/ListaCategorias";
 import { BookForm } from "../Libros/FormBook";
+import NotResults from "../Libros/NotResults";
+import CategoryForm from "../Categorias/CategoriaForm";
 
-type ViewMode = "list" | "grid";
-
-const viewModes = {
-    list: "list",
-    grid: "grid",
-} as const;
 
 export default function Categorias() {
-    const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
+    const { isLoading, error, selectedCategory, modalMode, isModalOpen } = useCategoriasStore();
 
     const { books } = useFilteredBooks();
-    const [viewMode, setViewMode] = useState<ViewMode>("list");
-
-    const handleViewMode = (mode: ViewMode) => {
-        setViewMode(mode);
-    };
 
     if (isLoading) return <LoadingBooks />;
     if (error) return <Error error={error} />;
@@ -39,35 +26,28 @@ export default function Categorias() {
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
-            {modalMode === "edit" && selectedBook && <BookForm book={selectedBook} type="edit" />}
+            {modalMode === "edit" && selectedCategory && <CategoryForm initialData={selectedCategory} type="edit" />}
 
             {modalMode === "create" && <BookForm />}
 
             {/* MODAL VIEW */}
-            {isModalOpen && modalMode === "view" && <BookModal book={selectedBook} />}
+            {isModalOpen && modalMode === "view" && <CategoryForm book={selectedCategory} type="create" />}
 
             {!isFormMode && (
                 <section className="flex flex-col gap-5">
                     {/* Header */}
-                    <HeaderLibro />
+                    <HeaderCategorias />
 
                     {/* Filters */}
-                    <BooksFilters />
+                    <FiltersCategorias />
 
                     {/* Selector de formato */}
-                    <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
                     {/* Sin resultados */}
                     {!books || books.length === 0 ? (
-                        <NotResults />
+                        <NotResults error="No se encontraron resultados para la categoria buscada" />
                     ) : (
-                        <>
-                            {/* GRID VIEW */}
-                            {viewMode === viewModes.grid && <MosaicoBooks />}
-
-                            {/* LIST VIEW */}
-                            {viewMode === viewModes.list && <ListBooks />}
-                        </>
+                        <ListaCategorias />
                     )}
                 </section>
             )}

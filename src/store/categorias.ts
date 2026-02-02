@@ -2,18 +2,24 @@ import { getAllCategories } from "@/services/categorias.service";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+interface Categoria {
+    id: `${string}-${string}-${string}-${string}`;
+    nombre: string;
+    descripcion: string;
+}
+
 export type CategoriasState = {
+    categorias: Categoria[];
     isLoading: boolean;
-    error: Error | null;
-    categories: string[];
-    selectedCategory: string | null;
+    error: string | null;
+    selectedCategory: Categoria | null;
     modalMode: "create" | "edit" | "view" | null;
     isModalOpen: boolean;
 
     setIsLoading: (isLoading: boolean) => void;
-    setError: (error: Error | null) => void;
+    setError: (error: string | null) => void;
     obtenerCategorias: () => void;
-    seleccionarCategoria: (category: string) => void;
+    seleccionarCategoria: (category: Categoria) => void;
     setModalMode: (modalMode: "create" | "edit" | "view" | null) => void;
 };
 
@@ -22,7 +28,7 @@ export const useCategoriasStore = create<CategoriasState>()(
         (set) => ({
             isLoading: false,
             error: null,
-            categories: [],
+            categorias: [],
             selectedCategory: null,
             modalMode: null,
             isModalOpen: false,
@@ -32,15 +38,15 @@ export const useCategoriasStore = create<CategoriasState>()(
             obtenerCategorias: async () => {
                 set({ isLoading: true });
                 try {
-                    const { data } = await getAllCategories();
-                    set({ categories: data });
+                    const { data } = await getAllCategories() as { data: Categoria[] };
+                    set({ categorias: data });
                 } catch (error) {
-                    set({ error: error as Error });
+                    set({ error: error as string });
                 } finally {
                     set({ isLoading: false });
                 }
             },
-            seleccionarCategoria: (category) => {
+            seleccionarCategoria: (category: Categoria) => {
                 set({ selectedCategory: category });
             },
             setModalMode: (modalMode) => set({ modalMode }),
@@ -50,7 +56,7 @@ export const useCategoriasStore = create<CategoriasState>()(
             partialize: (state) => ({
                 isLoading: state.isLoading,
                 error: state.error,
-                categories: state.categories,
+                categorias: state.categorias,
                 selectedCategory: state.selectedCategory,
                 modalMode: state.modalMode,
                 isModalOpen: state.isModalOpen,
