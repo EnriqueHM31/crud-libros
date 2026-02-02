@@ -12,13 +12,7 @@ interface CategoryFormProps {
     onSubmit: (data: { name: string; description?: string }) => void;
 }
 
-export default function CategoryForm({
-    type = "create",
-    initialData,
-    isOpen,
-    onClose,
-    onSubmit,
-}: CategoryFormProps) {
+export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoryFormProps) {
     const [name, setName] = useState(initialData?.name ?? "");
     const [description, setDescription] = useState(initialData?.description ?? "");
 
@@ -34,25 +28,17 @@ export default function CategoryForm({
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             {/* MODAL */}
-            <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-lg dark:bg-primary-dark">
+            <div className="dark:bg-primary-dark w-full max-w-md rounded-2xl bg-white p-6 shadow-lg">
                 {/* HEADER */}
                 <div className="mb-4 flex items-center justify-between">
                     <div>
-                        <h2 className="text-xl font-semibold text-primary-dark dark:text-white">
-                            {isEdit ? "Editar categoría" : "Crear categoría"}
-                        </h2>
+                        <h2 className="text-primary-dark text-xl font-semibold dark:text-white">{isEdit ? "Editar categoría" : "Crear categoría"}</h2>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {isEdit
-                                ? "Actualiza la información de la categoría"
-                                : "Agrega una nueva categoría al sistema"}
+                            {isEdit ? "Actualiza la información de la categoría" : "Agrega una nueva categoría al sistema"}
                         </p>
                     </div>
 
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        className="rounded-full p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-white/10"
-                    >
+                    <button type="button" onClick={onClose} className="rounded-full p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-white/10">
                         <FaTimes />
                     </button>
                 </div>
@@ -61,9 +47,7 @@ export default function CategoryForm({
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     {/* Nombre */}
                     <div className="flex flex-col gap-1">
-                        <label className="text-sm font-medium dark:text-gray-300">
-                            Nombre de la categoría
-                        </label>
+                        <label className="text-sm font-medium dark:text-gray-300">Nombre de la categoría</label>
                         <input
                             type="text"
                             required
@@ -76,9 +60,7 @@ export default function CategoryForm({
 
                     {/* Descripción */}
                     <div className="flex flex-col gap-1">
-                        <label className="text-sm font-medium dark:text-gray-300">
-                            Descripción
-                        </label>
+                        <label className="text-sm font-medium dark:text-gray-300">Descripción</label>
                         <textarea
                             rows={3}
                             value={description}
@@ -100,7 +82,7 @@ export default function CategoryForm({
 
                         <button
                             type="submit"
-                            className="rounded-xl bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary/80 dark:bg-blue-600 dark:hover:bg-blue-800"
+                            className="bg-primary hover:bg-primary/80 rounded-xl px-5 py-2 text-sm font-medium text-white dark:bg-blue-600 dark:hover:bg-blue-800"
                         >
                             {isEdit ? "Guardar cambios" : "Crear categoría"}
                         </button>
