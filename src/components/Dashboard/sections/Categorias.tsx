@@ -14,7 +14,7 @@ import NotResults from "../Libros/NotResults";
 import CategoryForm from "../Categorias/CategoriaForm";
 
 export default function Categorias() {
-    const { isLoading, error, selectedCategory, modalMode, isModalOpen } = useCategoriasStore();
+    const { isLoading, error, selectedCategory, modalMode } = useCategoriasStore();
 
     const { books } = useFilteredBooks();
 
@@ -25,12 +25,11 @@ export default function Categorias() {
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
-            {modalMode === "edit" && selectedCategory && <CategoryForm initialData={selectedCategory} type="edit" />}
+            {modalMode === "edit" && selectedCategory && <CategoryForm initialData={selectedCategory} type="edit" onClose={handleCloseModal} />}
 
             {modalMode === "create" && <BookForm />}
 
             {/* MODAL VIEW */}
-            {isModalOpen && modalMode === "view" && <CategoryForm book={selectedCategory} type="create" />}
 
             {!isFormMode && (
                 <section className="flex flex-col gap-5">
