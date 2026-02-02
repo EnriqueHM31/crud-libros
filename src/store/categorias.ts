@@ -66,7 +66,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                 }
             },
 
-
             /* =========================
                MODAL CONTROL
             ========================= */
@@ -118,11 +117,7 @@ export const useCategoriasStore = create<CategoriasState>()(
                 console.log("EDIT", data);
 
                 set((state) => ({
-                    categorias: state.categorias.map((cat) =>
-                        cat.id === selectedCategory.id
-                            ? { ...cat, ...data }
-                            : cat
-                    ),
+                    categorias: state.categorias.map((cat) => (cat.id === selectedCategory.id ? { ...cat, ...data } : cat)),
                 }));
 
                 get().closeModal();

@@ -26,22 +26,16 @@ export default function Categorias() {
             {/* LISTADO */}
             {!isFormMode && (
                 <section className="flex flex-col gap-5">
-                    {
-                        error ? (
-                            <Error error={error} />
-                        ) : (
-                            <>
-                                <HeaderCategorias />
-                                <FiltersCategorias />
+                    {error ? (
+                        <Error error={error} />
+                    ) : (
+                        <>
+                            <HeaderCategorias />
+                            <FiltersCategorias />
 
-                                {!books || books.length === 0 ? (
-                                    <NotResults error="No se encontraron resultados para la categoría buscada" />
-                                ) : (
-                                    <ListaCategorias />
-                                )}
-                            </>
-                        )
-                    }
+                            {!books || books.length === 0 ? <NotResults error="No se encontraron resultados para la categoría buscada" /> : <ListaCategorias />}
+                        </>
+                    )}
                 </section>
             )}
         </>

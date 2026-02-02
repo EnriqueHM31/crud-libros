@@ -2,14 +2,7 @@ import { useCategoriasStore } from "../../../store/categorias";
 import CategoryForm from "./CategoriaForm";
 
 export default function CategoryModal() {
-    const {
-        isModalOpen,
-        modalMode,
-        selectedCategory,
-        closeModal,
-        submitCreate,
-        submitEdit,
-    } = useCategoriasStore();
+    const { isModalOpen, modalMode, selectedCategory, closeModal, submitCreate, submitEdit } = useCategoriasStore();
 
     if (!modalMode) return null;
 
@@ -20,17 +13,13 @@ export default function CategoryModal() {
             initialData={
                 modalMode === "edit"
                     ? {
-                        nombre: selectedCategory?.nombre ?? "",
-                        descripcion: selectedCategory?.descripcion ?? "",
-                    }
+                          nombre: selectedCategory?.nombre ?? "",
+                          descripcion: selectedCategory?.descripcion ?? "",
+                      }
                     : undefined
             }
             onClose={closeModal}
-            onSubmit={(data) =>
-                modalMode === "create"
-                    ? submitCreate(data as { nombre: string; descripcion: string })
-                    : submitEdit(data)
-            }
+            onSubmit={(data) => (modalMode === "create" ? submitCreate(data as { nombre: string; descripcion: string }) : submitEdit(data))}
         />
     );
 }

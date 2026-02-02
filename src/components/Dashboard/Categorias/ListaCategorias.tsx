@@ -2,7 +2,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { useCategoriasStore } from "@/store/categorias";
 
 export default function ListaCategorias() {
-    const { categorias, seleccionarCategoria, setModalMode } = useCategoriasStore();
+    const { categorias, openEditModal } = useCategoriasStore();
 
     if (!categorias || categorias.length === 0) return null;
 
@@ -11,16 +11,15 @@ export default function ListaCategorias() {
             {categorias.map((categoria) => (
                 <div
                     key={categoria.id}
-                    className="group relative rounded-2xl border bg-white p-5 shadow-sm transition hover:shadow-md dark:border-white/10 dark:bg-primary-dark hover:bg-primary hover:dark:bg-blue-600 hover:text-white"
+                    className="group dark:bg-primary-dark hover:bg-primary relative rounded-2xl border bg-white p-5 shadow-sm transition hover:text-white hover:shadow-md dark:border-white/10 hover:dark:bg-blue-600"
                 >
                     {/* ICONOS */}
-                    <div className="absolute right-3 top-3 flex gap-2">
+                    <div className="absolute top-3 right-3 flex gap-2">
                         <button
                             onClick={() => {
-                                seleccionarCategoria(categoria);
-                                setModalMode("edit");
+                                openEditModal(categoria);
                             }}
-                            className="rounded-lg p-2 text-white bg-primary dark:bg-blue-600 group-hover:bg-white group-hover:text-primary   cursor-pointer"
+                            className="bg-primary group-hover:text-primary cursor-pointer rounded-lg p-2 text-white group-hover:bg-white dark:bg-blue-600"
                             title="Editar categoría"
                         >
                             <FaEdit size={14} />
@@ -28,11 +27,9 @@ export default function ListaCategorias() {
 
                         <button
                             onClick={() => {
-                                seleccionarCategoria(categoria);
-                                // aquí luego puedes abrir modal de confirmación
                                 console.log("Eliminar", categoria.id);
                             }}
-                            className="rounded-lg p-2 text-white bg-primary dark:bg-blue-600 group-hover:bg-white group-hover:text-primary cursor-pointer"
+                            className="bg-primary group-hover:text-primary cursor-pointer rounded-lg p-2 text-white group-hover:bg-white dark:bg-blue-600"
                             title="Eliminar categoría"
                         >
                             <FaTrash size={14} />
@@ -40,11 +37,9 @@ export default function ListaCategorias() {
                     </div>
 
                     {/* CONTENIDO */}
-                    <h3 className="mb-2 text-2xl font-semibold group-hover:text-white text-gray-800 dark:text-white">
-                        {categoria.nombre}
-                    </h3>
+                    <h3 className="mb-2 text-2xl font-semibold text-gray-800 group-hover:text-white dark:text-white">{categoria.nombre}</h3>
 
-                    <p className="text-sm text-gray-600 group-hover:text-gray-400 group-hover:dark:text-gray-200  dark:text-gray-400">
+                    <p className="text-sm text-gray-600 group-hover:text-gray-400 dark:text-gray-400 group-hover:dark:text-gray-200">
                         {categoria.descripcion || "Sin descripción"}
                     </p>
                 </div>

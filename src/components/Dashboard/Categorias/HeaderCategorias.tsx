@@ -1,10 +1,10 @@
-import HeaderSection from "../Atomos/Header";
+import { useCategoriasStore } from "@/store/categorias";
 import { motion } from "framer-motion";
 import { FaBook } from "react-icons/fa";
-import { useBooksStore } from "@/store/libro";
+import HeaderSection from "../Atomos/Header";
 
 export default function HeaderCategorias() {
-    const { openCreateBook } = useBooksStore();
+    const { openCreateModal } = useCategoriasStore();
     return (
         <div className="flex flex-col items-center justify-between md:flex-row">
             <div className="md:flex-au flex flex-5 items-center justify-center md:items-start md:justify-start">
@@ -13,7 +13,7 @@ export default function HeaderCategorias() {
 
             <div className="flex-1">
                 <motion.button
-                    onClick={openCreateBook}
+                    onClick={openCreateModal}
                     initial="hidden"
                     animate="visible"
                     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
