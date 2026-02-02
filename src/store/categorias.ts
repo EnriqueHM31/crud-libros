@@ -38,7 +38,7 @@ export const useCategoriasStore = create<CategoriasState>()(
             obtenerCategorias: async () => {
                 set({ isLoading: true });
                 try {
-                    const { data } = await getAllCategories() as { data: Categoria[] };
+                    const { data } = (await getAllCategories()) as { data: Categoria[] };
                     set({ categorias: data });
                 } catch (error) {
                     set({ error: error as string });
@@ -63,4 +63,4 @@ export const useCategoriasStore = create<CategoriasState>()(
             }),
         }
     )
-);  
+);
