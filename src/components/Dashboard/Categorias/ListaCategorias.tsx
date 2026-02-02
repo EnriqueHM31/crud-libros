@@ -1,18 +1,37 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useCategoriasStore } from "@/store/categorias";
 import { useFilterCategories } from "@/hooks/FilterCategories";
+import { motion } from "framer-motion";
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.06 },
+    },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.35 },
+    },
+};
 export default function ListaCategorias() {
-    const { openEditModal } = useCategoriasStore();
+    const { openEditModal, submitDelete } = useCategoriasStore();
     const { categorias } = useFilterCategories();
 
     if (!categorias || categorias.length === 0) return null;
 
     return (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.section variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {categorias.map((categoria) => (
-                <div
+                <motion.article
                     key={categoria.id}
+                    variants={itemVariants}
+                    whileHover={{ x: 6 }}
                     className="group dark:bg-primary-dark hover:bg-primary relative rounded-2xl border bg-white p-5 shadow-sm transition hover:text-white hover:shadow-md dark:border-white/10 hover:dark:bg-blue-600"
                 >
                     {/* ICONOS */}
@@ -28,9 +47,7 @@ export default function ListaCategorias() {
                         </button>
 
                         <button
-                            onClick={() => {
-                                console.log("Eliminar", categoria.id);
-                            }}
+                            onClick={() => submitDelete(categoria.id)}
                             className="bg-primary group-hover:text-primary cursor-pointer rounded-lg p-2 text-white group-hover:bg-white dark:bg-blue-600"
                             title="Eliminar categoría"
                         >
@@ -44,8 +61,8 @@ export default function ListaCategorias() {
                     <p className="text-sm text-gray-600 group-hover:text-gray-400 dark:text-gray-400 group-hover:dark:text-gray-200">
                         {categoria.descripcion || "Sin descripción"}
                     </p>
-                </div>
+                </motion.article>
             ))}
-        </div>
+        </motion.section>
     );
 }
