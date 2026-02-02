@@ -1,8 +1,10 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useCategoriasStore } from "@/store/categorias";
+import { useFilterCategories } from "@/hooks/FilterCategories";
 
 export default function ListaCategorias() {
-    const { categorias, openEditModal } = useCategoriasStore();
+    const { openEditModal } = useCategoriasStore();
+    const { categorias } = useFilterCategories();
 
     if (!categorias || categorias.length === 0) return null;
 

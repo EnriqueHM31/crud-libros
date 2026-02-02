@@ -1,9 +1,13 @@
-import { useBooksFiltersStore } from "@/store/filtros";
+import { useFilterCategories } from "@/hooks/FilterCategories";
 import { motion } from "framer-motion";
 import { FaRedo, FaSearch } from "react-icons/fa";
 
 export default function FiltersCategorias() {
-    const { search, resetFilters, setSearch } = useBooksFiltersStore();
+    const {
+        searchCategoria,
+        handleChange,
+        handleReset,
+    } = useFilterCategories();
 
     return (
         <section className="rounded-2xl border border-white py-3 dark:border-0 dark:border-gray-500">
@@ -16,8 +20,8 @@ export default function FiltersCategorias() {
                             type="text"
                             name="search"
                             placeholder="Buscar por el nombre de la categoria..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            value={searchCategoria}
+                            onChange={handleChange}
                             className="dark:bg-primary-dark w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-gray-600 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
                         />
                     </div>
@@ -25,7 +29,7 @@ export default function FiltersCategorias() {
                     {/* Reset mejorado */}
                     <div className="flex flex-1 justify-end">
                         <motion.button
-                            onClick={resetFilters}
+                            onClick={handleReset}
                             initial="hidden"
                             animate="visible"
                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
