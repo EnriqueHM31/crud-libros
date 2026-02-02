@@ -11,33 +11,28 @@ import NotResults from "../Libros/NotResults";
 import { useCategoriasStore } from "@/store/categorias";
 
 export default function Categorias() {
-    const { isLoading, error, modalMode } = useCategoriasStore();
+    const { isLoading, error } = useCategoriasStore();
     const { books } = useFilteredBooks();
 
     if (isLoading) return <LoadingBooks />;
 
-    const isFormMode = modalMode === "create" || modalMode === "edit";
-
     return (
         <>
-            {/* MODAL CREATE / EDIT */}
-            <CategoryModal />
 
             {/* LISTADO */}
-            {!isFormMode && (
-                <section className="flex flex-col gap-5">
-                    {error ? (
-                        <Error error={error} />
-                    ) : (
-                        <>
-                            <HeaderCategorias />
-                            <FiltersCategorias />
+            <section className="flex flex-col gap-5">
+                {/* MODAL CREATE / EDIT */}
+                <CategoryModal />
+                <HeaderCategorias />
+                <FiltersCategorias />
 
-                            {!books || books.length === 0 ? <NotResults error="No se encontraron resultados para la categoría buscada" /> : <ListaCategorias />}
-                        </>
-                    )}
-                </section>
-            )}
+                {error ? (
+                    <Error error={error} />
+                ) : (
+                    !books || books.length === 0 ? <NotResults error="No se encontraron resultados para la categoría buscada" /> : <ListaCategorias />
+
+                )}
+            </section>
         </>
     );
 }
