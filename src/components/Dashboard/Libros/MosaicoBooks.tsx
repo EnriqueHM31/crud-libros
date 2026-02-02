@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";
-import { useFilteredBooks } from "../../../hooks/Filters";
+import { useFiltersBooks } from "../../../hooks/FiltersBooks";
 import { useBooksStore } from "../../../store/libro";
 
 const containerVariants = {
@@ -21,7 +21,7 @@ const itemVariants = {
 };
 
 export default function MosaicoBooks() {
-    const { books } = useFilteredBooks();
+    const { books } = useFiltersBooks();
     const { openBookModal } = useBooksStore();
     return (
         <motion.section
