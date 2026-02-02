@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-export default function NotResults() {
+interface NotResultsProps {
+    error: string;
+}
+
+export default function NotResults({ error }: NotResultsProps) {
     return (
         <section className="flex flex-col items-center justify-center gap-1 px-4">
             {/* SVG Animado */}
@@ -94,7 +98,7 @@ export default function NotResults() {
             >
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white">No encontramos resultados</h2>
                 <p className="text-base text-gray-600 dark:text-gray-400">
-                    No hay libros que coincidan con tus criterios de búsqueda. Intenta ajustar los filtros o buscar con otros términos.
+                    {error ?? "No hay resultados para mostrar"}
                 </p>
             </motion.div>
         </section>
