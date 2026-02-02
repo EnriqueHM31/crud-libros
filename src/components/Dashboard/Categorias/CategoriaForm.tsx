@@ -60,10 +60,10 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
                         </div>
 
                         {/* FORM */}
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">
                             {/* Nombre */}
                             <div className="flex flex-col gap-1">
-                                <label className="text-sm font-medium dark:text-gray-300">Nombre de la categoría</label>
+                                <label className="text-sm font-medium dark:text-gray-400 text-primary">Nombre de la categoría</label>
                                 <input
                                     name="nombre"
                                     type="text"
@@ -77,7 +77,7 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
 
                             {/* Descripción */}
                             <div className="flex flex-col gap-1">
-                                <label className="text-sm font-medium dark:text-gray-300">Descripción</label>
+                                <label className="text-sm font-medium dark:text-gray-400 text-primary">Descripción</label>
                                 <textarea
                                     name="descripcion"
                                     rows={6}
