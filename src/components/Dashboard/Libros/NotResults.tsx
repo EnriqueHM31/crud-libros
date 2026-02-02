@@ -97,9 +97,7 @@ export default function NotResults({ error }: NotResultsProps) {
                 className="max-w-md space-y-2 text-center"
             >
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white">No encontramos resultados</h2>
-                <p className="text-base text-gray-600 dark:text-gray-400">
-                    {error ?? "No hay resultados para mostrar"}
-                </p>
+                <p className="text-base text-gray-600 dark:text-gray-400">{error ?? "No hay resultados para mostrar"}</p>
             </motion.div>
         </section>
     );
