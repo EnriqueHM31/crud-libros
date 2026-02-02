@@ -38,7 +38,6 @@ export default function FiltersCategorias() {
                         </motion.button>
                     </div>
                 </div>
-
             </div>
         </section>
     );
