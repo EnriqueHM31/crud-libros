@@ -1,9 +1,10 @@
+import { useFiltersBooks } from "@/hooks/FiltersBooks";
+import { useBooksStore } from "@/store/libro";
+import type { GoogleBook } from "@/types/libro";
 import { motion } from "framer-motion";
 import { FaBookOpen, FaChevronRight, FaUser } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoCalendarNumberOutline } from "react-icons/io5";
-import { useFilteredBooks } from "@/hooks/Filters";
-import { useBooksStore } from "@/store/libro";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -23,12 +24,12 @@ const itemVariants = {
 };
 
 export default function ListBooks() {
-    const { books } = useFilteredBooks();
+    const { books } = useFiltersBooks();
     const { openBookModal } = useBooksStore();
 
     return (
         <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4">
-            {books.map((book) => {
+            {books.map((book: GoogleBook) => {
                 const info = book.volumeInfo;
 
                 return (
