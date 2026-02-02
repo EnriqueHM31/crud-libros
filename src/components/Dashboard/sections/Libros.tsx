@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFilteredBooks } from "../../../hooks/Filters";
+import { useFiltersBooks } from "../../../hooks/FiltersBooks";
 import { useBooksStore } from "../../../store/libro";
 
 import Error from "../Atomos/Error";
@@ -25,7 +25,7 @@ const viewModes = {
 export default function Libros() {
     const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
 
-    const { books } = useFilteredBooks();
+    const { books } = useFiltersBooks();
     const [viewMode, setViewMode] = useState<ViewMode>("list");
 
     const handleViewMode = (mode: ViewMode) => {
@@ -59,7 +59,7 @@ export default function Libros() {
 
                     {/* Sin resultados */}
                     {!books || books.length === 0 ? (
-                        <NotResults />
+                        <NotResults error="No se encontraron resultados para la búsqueda" />
                     ) : (
                         <>
                             {/* GRID VIEW */}
