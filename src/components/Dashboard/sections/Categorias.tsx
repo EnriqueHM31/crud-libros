@@ -14,8 +14,7 @@ export default function Categorias() {
     const { isLoading, error } = useCategoriasStore();
     const { categorias } = useFilterCategories();
 
-    console.log("categorias", categorias);
-
+    console.log("categorias", categorias, isLoading);
     if (isLoading) return <LoadingBooks />;
 
     return (
