@@ -4,13 +4,7 @@ import { useCategoriasStore } from "@/store/categorias";
 import { useDebouncedValue } from "@/hooks/useDebounce";
 
 export function useFilterCategories() {
-    const {
-        searchCategoria,
-        categoriasFiltradas,
-        setSearchCategoria,
-        filtrarCategorias,
-        resetFilters,
-    } = useCategoriesFiltersStore();
+    const { searchCategoria, categoriasFiltradas, setSearchCategoria, filtrarCategorias, resetFilters } = useCategoriesFiltersStore();
 
     const categoriasOriginales = useCategoriasStore((s) => s.categorias);
 

@@ -125,7 +125,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                 get().closeModal();
             },
             submitDelete: async (id: string) => {
-
                 console.log("DELETE", id);
 
                 const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {

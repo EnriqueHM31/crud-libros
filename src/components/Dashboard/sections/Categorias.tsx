@@ -19,7 +19,6 @@ export default function Categorias() {
 
     return (
         <>
-
             {/* LISTADO */}
             <section className="flex flex-col gap-5">
                 {/* MODAL CREATE / EDIT */}
@@ -29,9 +28,10 @@ export default function Categorias() {
 
                 {error ? (
                     <Error error={error} />
+                ) : !categorias || categorias.length === 0 ? (
+                    <NotResults error="No se encontraron resultados para la categoría buscada" />
                 ) : (
-                    !categorias || categorias.length === 0 ? <NotResults error="No se encontraron resultados para la categoría buscada" /> : <ListaCategorias />
-
+                    <ListaCategorias />
                 )}
             </section>
         </>

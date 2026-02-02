@@ -3,11 +3,7 @@ import { motion } from "framer-motion";
 import { FaRedo, FaSearch } from "react-icons/fa";
 
 export default function FiltersCategorias() {
-    const {
-        searchCategoria,
-        handleChange,
-        handleReset,
-    } = useFilterCategories();
+    const { searchCategoria, handleChange, handleReset } = useFilterCategories();
 
     return (
         <section className="rounded-2xl border border-white py-3 dark:border-0 dark:border-gray-500">

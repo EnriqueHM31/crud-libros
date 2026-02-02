@@ -18,17 +18,11 @@ export function useFiltersBooks() {
             return false;
         }
 
-        if (
-            dCategory &&
-            !normalizeText(info.categories?.join(" ") ?? "").includes(dCategory)
-        ) {
+        if (dCategory && !normalizeText(info.categories?.join(" ") ?? "").includes(dCategory)) {
             return false;
         }
 
-        if (
-            dAuthor &&
-            !normalizeText(info.authors?.join(" ") ?? "").includes(dAuthor)
-        ) {
+        if (dAuthor && !normalizeText(info.authors?.join(" ") ?? "").includes(dAuthor)) {
             return false;
         }
 
