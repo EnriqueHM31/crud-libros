@@ -1,5 +1,6 @@
 import { getAllCategories } from "@/services/categorias.service";
 import { isApiError } from "@/utils/errors";
+import { toast } from "sonner";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -29,6 +30,7 @@ export type CategoriasState = {
 
     submitCreate: (data: Omit<Categoria, "id">) => Promise<void>;
     submitEdit: (data: Partial<Omit<Categoria, "id">>) => Promise<void>;
+    submitDelete: (id: string) => Promise<void>;
 };
 
 export const useCategoriasStore = create<CategoriasState>()(
@@ -120,6 +122,27 @@ export const useCategoriasStore = create<CategoriasState>()(
                     categorias: state.categorias.map((cat) => (cat.id === selectedCategory.id ? { ...cat, ...data } : cat)),
                 }));
 
+                get().closeModal();
+            },
+            submitDelete: async (id: string) => {
+
+                console.log("DELETE", id);
+
+                const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
+                    method: "DELETE",
+                });
+
+                if (!response.ok) {
+                    throw new Error("Error al eliminar libro de la API");
+                }
+
+                const { data, message } = await response.json();
+
+                set((state) => ({
+                    categorias: state.categorias.filter((cat) => cat.id !== data.id),
+                }));
+
+                toast.success(message ?? "Categoria eliminada correctamente");
                 get().closeModal();
             },
         }),
