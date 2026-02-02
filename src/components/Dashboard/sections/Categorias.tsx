@@ -13,7 +13,6 @@ import { BookForm } from "../Libros/FormBook";
 import NotResults from "../Libros/NotResults";
 import CategoryForm from "../Categorias/CategoriaForm";
 
-
 export default function Categorias() {
     const { isLoading, error, selectedCategory, modalMode, isModalOpen } = useCategoriasStore();
 
@@ -44,11 +43,7 @@ export default function Categorias() {
                     {/* Selector de formato */}
 
                     {/* Sin resultados */}
-                    {!books || books.length === 0 ? (
-                        <NotResults error="No se encontraron resultados para la categoria buscada" />
-                    ) : (
-                        <ListaCategorias />
-                    )}
+                    {!books || books.length === 0 ? <NotResults error="No se encontraron resultados para la categoria buscada" /> : <ListaCategorias />}
                 </section>
             )}
         </>
