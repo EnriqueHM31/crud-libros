@@ -1,5 +1,5 @@
 import { FaList, FaThLarge } from "react-icons/fa";
-import { useFilteredBooks } from "@/hooks/Filters";
+import { useFiltersBooks } from "@/hooks/FiltersBooks";
 
 type ViewMode = "list" | "grid";
 interface HeaderTypeFormatBookProps {
@@ -13,7 +13,7 @@ const typeViews = [
 ];
 
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
-    const { total } = useFilteredBooks();
+    const { total } = useFiltersBooks();
     return (
         <div className="my-6 flex w-full items-center justify-between md:my-2 md:mt-0 md:flex-row">
             <h2 className="my-0 text-3xl font-bold text-black md:my-4 dark:text-white">Libros</h2>
