@@ -4,17 +4,16 @@ import { FaTimes } from "react-icons/fa";
 interface CategoryFormProps {
     type?: "create" | "edit";
     initialData?: {
-        name: string;
-        description?: string;
+        nombre: string;
+        descripcion?: string;
     };
     isOpen: boolean;
     onClose: () => void;
-    onSubmit: (data: { name: string; description?: string }) => void;
+    onSubmit: (data: { nombre: string; descripcion?: string }) => void;
 }
 
 export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoryFormProps) {
-    const [name, setName] = useState(initialData?.name ?? "");
-    const [description, setDescription] = useState(initialData?.description ?? "");
+    const [categoria, setCategoria] = useState(initialData ?? { nombre: "", descripcion: "" });
 
     if (!isOpen) return null;
 
@@ -22,7 +21,11 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit({ name, description });
+        onSubmit({ nombre: categoria.nombre, descripcion: categoria.descripcion });
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setCategoria((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     return (
@@ -51,8 +54,8 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
                         <input
                             type="text"
                             required
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={categoria.nombre}
+                            onChange={handleChange}
                             className="rounded-xl border px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 dark:text-white"
                             placeholder="Ej. Ciencia ficción"
                         />
@@ -63,8 +66,8 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
                         <label className="text-sm font-medium dark:text-gray-300">Descripción</label>
                         <textarea
                             rows={3}
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={categoria.descripcion}
+                            onChange={handleChange}
                             className="resize-none rounded-xl border px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5 dark:text-white"
                             placeholder="Descripción opcional"
                         />
