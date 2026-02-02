@@ -1,66 +1,135 @@
 import { getAllCategories } from "@/services/categorias.service";
+import { isApiError } from "@/utils/errors";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface Categoria {
-    id: `${string}-${string}-${string}-${string}`;
+    id: string;
     nombre: string;
     descripcion: string;
 }
+
+type ModalMode = "create" | "edit" | null;
 
 export type CategoriasState = {
     categorias: Categoria[];
     isLoading: boolean;
     error: string | null;
-    selectedCategory: Categoria | null;
-    modalMode: "create" | "edit" | "view" | null;
-    isModalOpen: boolean;
 
-    setIsLoading: (isLoading: boolean) => void;
-    setError: (error: string | null) => void;
-    obtenerCategorias: () => void;
-    seleccionarCategoria: (category: Categoria) => void;
-    setModalMode: (modalMode: "create" | "edit" | "view" | null) => void;
+    // modal
+    isModalOpen: boolean;
+    modalMode: ModalMode;
+    selectedCategory: Categoria | null;
+
+    // actions
+    obtenerCategorias: () => Promise<void>;
+    openCreateModal: () => void;
+    openEditModal: (categoria: Categoria) => void;
+    closeModal: () => void;
+
+    submitCreate: (data: Omit<Categoria, "id">) => Promise<void>;
+    submitEdit: (data: Partial<Omit<Categoria, "id">>) => Promise<void>;
 };
 
 export const useCategoriasStore = create<CategoriasState>()(
     persist(
-        (set) => ({
+        (set, get) => ({
+            categorias: [],
             isLoading: false,
             error: null,
-            categorias: [],
-            selectedCategory: null,
-            modalMode: null,
-            isModalOpen: false,
 
-            setIsLoading: (isLoading) => set({ isLoading }),
-            setError: (error) => set({ error }),
+            isModalOpen: false,
+            modalMode: null,
+            selectedCategory: null,
+
+            /* =========================
+               FETCH
+            ========================= */
             obtenerCategorias: async () => {
                 set({ isLoading: true });
+
                 try {
-                    const { data } = (await getAllCategories()) as { data: Categoria[] };
-                    set({ categorias: data });
-                } catch (error) {
-                    set({ error: error as string });
+                    const { data } = await getAllCategories();
+                    set({ categorias: data, error: null });
+                } catch (err: unknown) {
+                    let message = "Error al obtener categorías";
+
+                    if (err instanceof Error) {
+                        message = err.message;
+                    } else if (isApiError(err)) {
+                        message = err.response?.data?.message ?? message;
+                    }
+
+                    set({ error: message });
                 } finally {
                     set({ isLoading: false });
                 }
             },
-            seleccionarCategoria: (category: Categoria) => {
-                set({ selectedCategory: category });
+
+
+            /* =========================
+               MODAL CONTROL
+            ========================= */
+            openCreateModal: () =>
+                set({
+                    modalMode: "create",
+                    isModalOpen: true,
+                    selectedCategory: null,
+                }),
+
+            openEditModal: (categoria) =>
+                set({
+                    modalMode: "edit",
+                    isModalOpen: true,
+                    selectedCategory: categoria,
+                }),
+
+            closeModal: () =>
+                set({
+                    isModalOpen: false,
+                    modalMode: null,
+                    selectedCategory: null,
+                }),
+
+            /* =========================
+               SUBMIT ACTIONS
+            ========================= */
+            submitCreate: async (data) => {
+                // aquí llamas a tu API create
+                console.log("CREATE", data);
+
+                set((state) => ({
+                    categorias: [
+                        {
+                            id: crypto.randomUUID(),
+                            ...data,
+                        },
+                        ...state.categorias,
+                    ],
+                }));
+
+                get().closeModal();
             },
-            setModalMode: (modalMode) => set({ modalMode }),
+
+            submitEdit: async (data) => {
+                const { selectedCategory } = get();
+                if (!selectedCategory) return;
+
+                console.log("EDIT", data);
+
+                set((state) => ({
+                    categorias: state.categorias.map((cat) =>
+                        cat.id === selectedCategory.id
+                            ? { ...cat, ...data }
+                            : cat
+                    ),
+                }));
+
+                get().closeModal();
+            },
         }),
         {
             name: "categorias-store",
-            partialize: (state) => ({
-                isLoading: state.isLoading,
-                error: state.error,
-                categorias: state.categorias,
-                selectedCategory: state.selectedCategory,
-                modalMode: state.modalMode,
-                isModalOpen: state.isModalOpen,
-            }),
         }
     )
 );

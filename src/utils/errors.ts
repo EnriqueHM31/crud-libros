@@ -41,3 +41,15 @@ export const handleApiError = async (response: Response) => {
 
     throw new Error(errorMessage);
 };
+
+interface ApiErrorResponse {
+    response?: {
+        data?: {
+            message?: string;
+        };
+    };
+}
+
+export function isApiError(error: unknown): error is ApiErrorResponse {
+    return typeof error === "object" && error !== null && "response" in error;
+}

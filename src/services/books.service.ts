@@ -3,7 +3,7 @@ import { handleApiError } from "@/utils/errors";
 
 export const getAllBooks = async () => {
     try {
-        const response = await fetch(import.meta.env.VITE_API_URL);
+        const response = await fetch(import.meta.env.VITE_API_URL_BOOKS);
 
         await handleApiError(response);
         const { data } = await response.json();
@@ -15,7 +15,7 @@ export const getAllBooks = async () => {
 
 export const getBookById = async (id: string) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`);
         if (!response.ok) {
             throw new Error("Error al obtener libro de la API");
         }
@@ -28,7 +28,7 @@ export const getBookById = async (id: string) => {
 
 export const createBook = async (book: GoogleBook) => {
     try {
-        const response = await fetch(import.meta.env.VITE_API_URL, {
+        const response = await fetch(import.meta.env.VITE_API_URL_BOOKS, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const createBook = async (book: GoogleBook) => {
 
 export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
 
 export const deleteBook = async (id: string) => {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`, {
             method: "DELETE",
         });
         if (!response.ok) {

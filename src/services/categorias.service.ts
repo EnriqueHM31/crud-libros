@@ -2,7 +2,7 @@ import { handleApiError } from "@/utils/errors";
 
 export async function getAllCategories() {
     try {
-        const response = await fetch(import.meta.env.VITE_API_URL);
+        const response = await fetch(import.meta.env.VITE_API_URL_CATEGORIES);
 
         await handleApiError(response);
         const { data } = await response.json();
@@ -14,7 +14,7 @@ export async function getAllCategories() {
 
 export async function getCategoryById(id: string) {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`);
 
         await handleApiError(response);
         const { data } = await response.json();
@@ -26,7 +26,7 @@ export async function getCategoryById(id: string) {
 
 export async function createCategory(category: string) {
     try {
-        const response = await fetch(import.meta.env.VITE_API_URL, {
+        const response = await fetch(import.meta.env.VITE_API_URL_CATEGORIES, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export async function createCategory(category: string) {
 
 export async function updateCategory(category: string, id: string) {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export async function updateCategory(category: string, id: string) {
 
 export async function deleteCategory(id: string) {
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
             method: "DELETE",
         });
         if (!response.ok) {
