@@ -77,4 +77,4 @@ export async function deleteCategory(id: string) {
     } catch (error) {
         throw new Error("Error al eliminar libro de la API" + error);
     }
-}   
+}
