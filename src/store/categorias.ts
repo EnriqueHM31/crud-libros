@@ -1,4 +1,4 @@
-import { createCategory, deleteCategory, getAllCategories } from "@/services/categorias.service";
+import { createCategory, deleteCategory, getAllCategories, updateCategory } from "@/services/categorias.service";
 import { isApiError } from "@/utils/errors";
 import { toast } from "sonner";
 import { create } from "zustand";
@@ -119,8 +119,11 @@ export const useCategoriasStore = create<CategoriasState>()(
 
                 console.log("EDIT", data);
 
+                const { data: updatedCategory, message } = (await updateCategory(selectedCategory.id, data)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+
+                toast.success(message ?? "Categoria actualizada correctamente");
                 set((state) => ({
-                    categorias: state.categorias.map((cat) => (cat.id === selectedCategory.id ? { ...cat, ...data } : cat)),
+                    categorias: state.categorias.map((cat) => (cat.id === updatedCategory.id ? { ...cat, ...data } : cat)),
                 }));
 
                 get().closeModal();
