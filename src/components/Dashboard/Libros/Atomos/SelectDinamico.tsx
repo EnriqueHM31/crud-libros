@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import InputForm from "./InputForm";
 import { FaTimes } from "react-icons/fa";
+import type { Categoria } from "@/types/categoria";
 
-const categories = ["Ficción", "Historia", "Humor", "Literatura", "Poesía", "Religión", "Saga", "Suspenso", "Terror", "Tragedia", "Computadoras"];
 
-export default function SelectorDinamico({ handleChange, value }: { handleChange: (value: string[]) => void; value: string[] }) {
+interface SelectorDinamicoProps {
+    handleChange: (value: string[]) => void;
+    value: string[];
+    categorias: Categoria[];
+}
+export default function SelectorDinamico({ handleChange, value, categorias }: SelectorDinamicoProps) {
     const [selectedCategories, setSelectedCategories] = useState<string[]>(value ?? []);
     const [inputValue, setInputValue] = useState<string>(value?.join(", ") ?? "");
 
@@ -61,14 +66,14 @@ export default function SelectorDinamico({ handleChange, value }: { handleChange
                             <option value="" disabled className="dark:bg-primary-dark border-none bg-white">
                                 Selecciona una categoría
                             </option>
-                            {categories.map((cat) => (
+                            {categorias.map((cat) => (
                                 <option
-                                    key={cat}
-                                    value={cat}
+                                    key={cat.id}
+                                    value={cat.nombre}
                                     className="dark:bg-primary-dark cursor-pointer border-none bg-white disabled:bg-red-600"
-                                    disabled={selectedCategories.includes(cat)}
+                                    disabled={selectedCategories.includes(cat.nombre)}
                                 >
-                                    {cat}
+                                    {cat.nombre}
                                 </option>
                             ))}
                         </select>
