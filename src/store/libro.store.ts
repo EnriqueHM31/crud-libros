@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import type { GoogleBook, GoogleBooksResponse } from "../types/libro";
 import LIBROS from "../data/mook.json";
-import { createBook, getAllBooks } from "@/services/books.service";
+import { createBook, deleteBook, getAllBooks, updateBook } from "@/services/books.service";
+import { toast } from "sonner";
 
 /* =========================
    TIPOS
@@ -173,47 +174,57 @@ export const useBooksStore = create<BooksState>((set) => ({
     ========================= */
 
     createBook: async (newBook) => {
-        const { data } = (await createBook(newBook)) as { data: GoogleBook };
+        const { data, message } = (await createBook(newBook)) as { data: GoogleBook; message: string };
 
+        toast.success(message ?? "Libro creado correctamente");
         set((state) => ({
-            books: [data, ...state.books], // ✅ aquí está el array
+            books: [...state.books, data], // ✅ aquí está el array
             isModalOpen: false,
             modalMode: "view",
         }));
     },
 
-    editBook: (id, updatedFields) => {
+    editBook: async (id, updatedFields) => {
+
+        const { data, message } = (await updateBook(updatedFields, id)) as { data: GoogleBook; message: string };
+
+        toast.success(message ?? "Libro actualizado correctamente");
         set((state) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...updatedFields,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...updatedFields.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
     },
 
-    deleteBook: (id) => {
+    deleteBook: async (id) => {
+
+        const { data, message } = (await deleteBook(id)) as { data: GoogleBook; message: string };
+
+        toast.success(message ?? "Libro eliminado correctamente");
+
         set((state) => ({
-            books: state.books.filter((book) => book.id !== id),
+            books: state.books.filter((book) => book.id !== data.id),
             selectedBook: null,
             isModalOpen: false,
             modalMode: "view",
