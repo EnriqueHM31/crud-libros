@@ -43,7 +43,7 @@ export const createBook = async (book: GoogleBook) => {
         const { data } = (await response.json()) as { data: GoogleBook };
         return { data };
     } catch (error) {
-        console.error("Error al crear libro:", error);
+        throw new Error("Error al crear libro de la API" + error);
     }
 };
 
