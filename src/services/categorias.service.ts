@@ -46,14 +46,17 @@ export async function createCategory(category: { nombre: string; descripcion: st
     }
 }
 
-export async function updateCategory(category: string, id: string) {
+export async function updateCategory(id: string, category: { nombre?: string; descripcion?: string }) {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(category),
+            body: JSON.stringify({
+                nombre: category.nombre,
+                descripcion: category.descripcion,
+            }),
         });
 
         await handleApiError(response);
