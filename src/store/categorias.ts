@@ -1,4 +1,4 @@
-import { getAllCategories } from "@/services/categorias.service";
+import { createCategory, deleteCategory, getAllCategories } from "@/services/categorias.service";
 import { isApiError } from "@/utils/errors";
 import { toast } from "sonner";
 import { create } from "zustand";
@@ -96,14 +96,15 @@ export const useCategoriasStore = create<CategoriasState>()(
                SUBMIT ACTIONS
             ========================= */
             submitCreate: async (data) => {
-                // aquí llamas a tu API create
                 console.log("CREATE", data);
 
+                const { data: newCategory, message } = (await createCategory(data)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+
+                toast.success(message ?? "Categoria creada correctamente");
                 set((state) => ({
                     categorias: [
                         {
-                            id: crypto.randomUUID(),
-                            ...data,
+                            ...newCategory
                         },
                         ...state.categorias,
                     ],
@@ -127,15 +128,7 @@ export const useCategoriasStore = create<CategoriasState>()(
             submitDelete: async (id: string) => {
                 console.log("DELETE", id);
 
-                const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
-                    method: "DELETE",
-                });
-
-                if (!response.ok) {
-                    throw new Error("Error al eliminar libro de la API");
-                }
-
-                const { data, message } = await response.json();
+                const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
 
                 set((state) => ({
                     categorias: state.categorias.filter((cat) => cat.id !== data.id),
