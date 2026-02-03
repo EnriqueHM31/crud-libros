@@ -17,8 +17,6 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
 
     const { categorias } = useFilterCategories();
 
-
-
     return (
         <div className="dark:bg-primary-dark relative flex min-h-screen w-full flex-col gap-5 md:flex-row md:p-6">
             <button
