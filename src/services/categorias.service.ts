@@ -39,7 +39,7 @@ export async function createCategory(category: { nombre: string; descripcion: st
 
         await handleApiError(response);
 
-        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string; id: string }; message: string };
         return { data, message };
     } catch (error) {
         console.error("Error al crear libro:", error);
@@ -61,7 +61,7 @@ export async function updateCategory(id: string, category: { nombre?: string; de
 
         await handleApiError(response);
 
-        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string; id: string }; message: string };
         console.log("DATA", data);
         console.log("MESSAGE", message);
         return { data, message };
