@@ -6,8 +6,8 @@ export const getAllBooks = async () => {
         const response = await fetch(import.meta.env.VITE_API_URL_BOOKS);
 
         await handleApiError(response);
-        const { data } = await response.json();
-        return { data };
+        const { data, message } = (await response.json()) as { data: GoogleBook[]; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al obtener libros de la API" + error);
     }
@@ -16,11 +16,9 @@ export const getAllBooks = async () => {
 export const getBookById = async (id: string) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`);
-        if (!response.ok) {
-            throw new Error("Error al obtener libro de la API");
-        }
-        const { items } = await response.json();
-        return { data: items[0] };
+        await handleApiError(response);
+        const { data, message } = (await response.json()) as { data: GoogleBook; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al obtener libro de la API" + error);
     }
@@ -40,8 +38,8 @@ export const createBook = async (book: GoogleBook) => {
 
         await handleApiError(response);
 
-        const { data } = (await response.json()) as { data: GoogleBook };
-        return { data };
+        const { data, message } = (await response.json()) as { data: GoogleBook; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al crear libro de la API" + error);
     }
@@ -56,11 +54,10 @@ export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
             },
             body: JSON.stringify(book),
         });
-        if (!response.ok) {
-            throw new Error("Error al actualizar libro de la API");
-        }
-        const { data } = await response.json();
-        return { data };
+        await handleApiError(response);
+
+        const { data, message } = (await response.json()) as { data: GoogleBook; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al actualizar libro de la API" + error);
     }
@@ -71,11 +68,10 @@ export const deleteBook = async (id: string) => {
         const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`, {
             method: "DELETE",
         });
-        if (!response.ok) {
-            throw new Error("Error al eliminar libro de la API");
-        }
-        const { data } = await response.json();
-        return { data };
+
+        await handleApiError(response);
+        const { data, message } = (await response.json()) as { data: GoogleBook; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al eliminar libro de la API" + error);
     }
