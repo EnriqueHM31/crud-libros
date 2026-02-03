@@ -6,6 +6,7 @@ import HeaderSection from "../Atomos/Header";
 import InputForm from "./Atomos/InputForm";
 import SelectorDinamico from "./Atomos/SelectDinamico";
 import CountrySvg from "./Atomos/Country";
+import { useFilterCategories } from "@/hooks/useFilterCategories";
 
 export function BookForm({ book, type = "create" }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
@@ -13,6 +14,8 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
         book,
     });
     const { backBooks } = useBooksStore();
+
+    const { categorias } = useFilterCategories();
 
     return (
         <div className="dark:bg-primary-dark relative flex min-h-screen w-full flex-col gap-5 md:flex-row md:p-6">
@@ -95,7 +98,7 @@ export function BookForm({ book, type = "create" }: BookFormProps) {
                                 <CountrySvg value={formData.volumeInfo.language ?? ""} />
                             </div>
 
-                            <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} />
+                            <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} categorias={categorias} />
 
                             <div className="flex w-full flex-col gap-2">
                                 <label htmlFor="description" className="text-primary-dark text-sm font-medium dark:text-gray-400">
