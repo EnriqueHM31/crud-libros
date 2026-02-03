@@ -5,7 +5,6 @@ import { FaTimes } from "react-icons/fa";
 const categories = ["Ficción", "Historia", "Humor", "Literatura", "Poesía", "Religión", "Saga", "Suspenso", "Terror", "Tragedia", "Computadoras"];
 
 export default function SelectorDinamico({ handleChange, value }: { handleChange: (value: string[]) => void; value: string[] }) {
-    console.log({ value });
     const [selectedCategories, setSelectedCategories] = useState<string[]>(value ?? []);
     const [inputValue, setInputValue] = useState<string>(value?.join(", ") ?? "");
 
