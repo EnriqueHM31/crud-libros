@@ -98,13 +98,16 @@ export const useCategoriasStore = create<CategoriasState>()(
             submitCreate: async (data) => {
                 console.log("CREATE", data);
 
-                const { data: newCategory, message } = (await createCategory(data)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+                const { data: newCategory, message } = (await createCategory(data)) as {
+                    data: { nombre: string; descripcion: string; id: string };
+                    message: string;
+                };
 
                 toast.success(message ?? "Categoria creada correctamente");
                 set((state) => ({
                     categorias: [
                         {
-                            ...newCategory
+                            ...newCategory,
                         },
                         ...state.categorias,
                     ],
@@ -119,7 +122,10 @@ export const useCategoriasStore = create<CategoriasState>()(
 
                 console.log("EDIT", data);
 
-                const { data: updatedCategory, message } = (await updateCategory(selectedCategory.id, data)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+                const { data: updatedCategory, message } = (await updateCategory(selectedCategory.id, data)) as {
+                    data: { nombre: string; descripcion: string; id: string };
+                    message: string;
+                };
 
                 toast.success(message ?? "Categoria actualizada correctamente");
                 set((state) => ({
@@ -131,7 +137,7 @@ export const useCategoriasStore = create<CategoriasState>()(
             submitDelete: async (id: string) => {
                 console.log("DELETE", id);
 
-                const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+                const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string; id: string }; message: string };
 
                 set((state) => ({
                     categorias: state.categorias.filter((cat) => cat.id !== data.id),
