@@ -32,7 +32,7 @@ export const createBook = async (book: GoogleBook) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                volumeInfo: book.volumeInfo,
+                book
             }),
         });
 
