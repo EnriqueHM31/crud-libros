@@ -186,6 +186,7 @@ export const useBooksStore = create<BooksState>((set) => ({
 
     editBook: async (id, updatedFields) => {
 
+        console.log({ updatedFields });
         const { data, message } = (await updateBook(updatedFields, id)) as { data: GoogleBook; message: string };
 
         toast.success(message ?? "Libro actualizado correctamente");
