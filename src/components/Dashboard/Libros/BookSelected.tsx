@@ -88,7 +88,7 @@ export function BookModal({ book }: BookModalProps) {
                             </button>
 
                             <button
-                                onClick={() => deleteBook}
+                                onClick={() => deleteBook(book.id)}
                                 className="bg-destructive text-destructive-foreground flex cursor-pointer items-center gap-2 rounded-xl bg-red-500 px-4 py-2 text-white transition hover:bg-red-400 hover:opacity-90"
                             >
                                 <FiTrash />
