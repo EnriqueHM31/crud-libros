@@ -96,7 +96,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                SUBMIT ACTIONS
             ========================= */
             submitCreate: async (data) => {
-
                 const { data: newCategory, message } = (await createCategory(data)) as {
                     data: { nombre: string; descripcion: string; id: string };
                     message: string;
@@ -119,7 +118,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                 const { selectedCategory } = get();
                 if (!selectedCategory) return;
 
-
                 const { data: updatedCategory, message } = (await updateCategory(selectedCategory.id, data)) as {
                     data: { nombre: string; descripcion: string; id: string };
                     message: string;
@@ -133,7 +131,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                 get().closeModal();
             },
             submitDelete: async (id: string) => {
-
                 const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string; id: string }; message: string };
 
                 set((state) => ({
