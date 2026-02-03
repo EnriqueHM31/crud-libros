@@ -42,7 +42,7 @@ export async function createCategory(category: { nombre: string; descripcion: st
         const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string; id: string }; message: string };
         return { data, message };
     } catch (error) {
-        console.error("Error al crear libro:", error);
+        throw new Error("Error al crear categoria de la API" + error);
     }
 }
 
@@ -62,8 +62,6 @@ export async function updateCategory(id: string, category: { nombre?: string; de
         await handleApiError(response);
 
         const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string; id: string }; message: string };
-        console.log("DATA", data);
-        console.log("MESSAGE", message);
         return { data, message };
     } catch (error) {
         throw new Error("Error al actualizar libro de la API" + error);
