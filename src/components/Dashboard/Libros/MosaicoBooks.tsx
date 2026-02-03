@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";
-import { useFiltersBooks } from "../../../hooks/FiltersBooks";
+import { useFiltersBooks } from "../../../hooks/useFiltersBooks";
 import { useBooksStore } from "../../../store/libro";
 
 const containerVariants = {

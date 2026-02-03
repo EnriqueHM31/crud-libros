@@ -1,4 +1,4 @@
-import { useFiltersBooks } from "@/hooks/FiltersBooks";
+import { useFiltersBooks } from "@/hooks/useFiltersBooks";
 import { useBooksStore } from "@/store/libro";
 import type { GoogleBook } from "@/types/libro";
 import { motion } from "framer-motion";
