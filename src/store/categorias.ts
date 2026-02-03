@@ -105,10 +105,10 @@ export const useCategoriasStore = create<CategoriasState>()(
                 toast.success(message ?? "Categoria creada correctamente");
                 set((state) => ({
                     categorias: [
+                        ...state.categorias,
                         {
                             ...newCategory,
                         },
-                        ...state.categorias,
                     ],
                 }));
 
