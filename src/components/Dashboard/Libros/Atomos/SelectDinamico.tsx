@@ -3,7 +3,6 @@ import InputForm from "./InputForm";
 import { FaTimes } from "react-icons/fa";
 import type { Categoria } from "@/types/categoria";
 
-
 interface SelectorDinamicoProps {
     handleChange: (value: string[]) => void;
     value: string[];
