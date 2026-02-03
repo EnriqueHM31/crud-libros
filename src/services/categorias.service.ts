@@ -61,8 +61,10 @@ export async function updateCategory(id: string, category: { nombre?: string; de
 
         await handleApiError(response);
 
-        const { data } = await response.json();
-        return { data };
+        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+        console.log("DATA", data);
+        console.log("MESSAGE", message);
+        return { data, message };
     } catch (error) {
         throw new Error("Error al actualizar libro de la API" + error);
     }
