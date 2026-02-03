@@ -24,7 +24,7 @@ export async function getCategoryById(id: string) {
     }
 }
 
-export async function createCategory(category: string) {
+export async function createCategory(category: { nombre: string; descripcion: string }) {
     try {
         const response = await fetch(import.meta.env.VITE_API_URL_CATEGORIES, {
             method: "POST",
@@ -32,14 +32,15 @@ export async function createCategory(category: string) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                volumeInfo: category,
+                nombre: category.nombre,
+                descripcion: category.descripcion,
             }),
         });
 
         await handleApiError(response);
 
-        const { data } = (await response.json()) as { data: string };
-        return { data };
+        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string, id: string }, message: string };
+        return { data, message };
     } catch (error) {
         console.error("Error al crear libro:", error);
     }
@@ -69,9 +70,8 @@ export async function deleteCategory(id: string) {
         const response = await fetch(`${import.meta.env.VITE_API_URL_CATEGORIES}/${id}`, {
             method: "DELETE",
         });
-        if (!response.ok) {
-            throw new Error("Error al eliminar libro de la API");
-        }
+
+        await handleApiError(response);
         const { data } = await response.json();
         return { data };
     } catch (error) {
