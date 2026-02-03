@@ -5,7 +5,7 @@ import FiltersCategorias from "../Categorias/FiltersCategorias";
 import HeaderCategorias from "../Categorias/HeaderCategorias";
 import ListaCategorias from "../Categorias/ListaCategorias";
 import CategoryModal from "../Categorias/ModalCategoria";
-import NotResults from "../Libros/NotResults";
+import NotResults from "../../Atomos/NotResults";
 
 import { useFilterCategories } from "@/hooks/useFilterCategories";
 import { useCategoriasStore } from "@/store/categorias";

@@ -9,11 +9,11 @@ import { BookModal } from "../Libros/BookSelected";
 
 import BooksFilters from "../Libros/Filters";
 import HeaderTypeFormatBook from "../Libros/FormatoBooks";
-import HeaderLibro from "../Libros/HeaderLibro";
+import HeaderLibro from "../Libros/HeaderBooks";
 import ListBooks from "../Libros/ListBooks";
 import MosaicoBooks from "../Libros/MosaicoBooks";
-import NotResults from "../Libros/NotResults";
-import { BookForm } from "../Libros/FormBook";
+import NotResults from "../../Atomos/NotResults";
+import { BookForm } from "../Libros/FormBooks";
 
 type ViewMode = "list" | "grid";
 
