@@ -9,7 +9,7 @@ interface CategoryFormProps {
     };
     isOpen: boolean;
     onClose: () => void;
-    onSubmit: (<Partial extends { nombre?: string; descripcion?: string }>(data: Partial) => void);
+    onSubmit: <Partial extends { nombre?: string; descripcion?: string }>(data: Partial) => void;
 }
 
 export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoryFormProps) {
@@ -35,7 +35,6 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
             });
         }
     };
-
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setCategoria((prev) => ({
