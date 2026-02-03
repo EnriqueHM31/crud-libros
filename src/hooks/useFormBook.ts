@@ -6,6 +6,7 @@ import type { FormData } from "../types/formBook";
 import { toast } from "sonner";
 
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
+    console.log({ book });
     const { createBook, editBook } = useBooksStore();
 
     const initialData: FormData =
@@ -82,6 +83,7 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
                 toast.error("Llena todos los campos");
                 return;
             }
+            console.log({ formData });
             createBook(formData as GoogleBook);
 
             // Limpiar formulario
@@ -90,6 +92,7 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
 
         if (!book) return;
 
+        console.log({ formData, originalData });
         const changes = getChangedFields(originalData, formData);
 
         editBook(book.id, {
