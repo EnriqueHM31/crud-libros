@@ -82,12 +82,7 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
                 toast.error("Llena todos los campos");
                 return;
             }
-
-            // Esperamos a que se cree el libro
-            await createBook(formData as GoogleBook);
-
-            // Solo si todo salió bien
-            toast.success("Libro creado correctamente");
+            createBook(formData as GoogleBook);
 
             // Limpiar formulario
             setFormData(initialData);
