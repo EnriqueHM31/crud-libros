@@ -75,8 +75,8 @@ export async function deleteCategory(id: string) {
         });
 
         await handleApiError(response);
-        const { data } = await response.json();
-        return { data };
+        const { data, message } = (await response.json()) as { data: { nombre: string; descripcion: string; id: string }; message: string };
+        return { data, message };
     } catch (error) {
         throw new Error("Error al eliminar libro de la API" + error);
     }
