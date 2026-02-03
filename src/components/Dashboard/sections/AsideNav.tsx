@@ -67,8 +67,9 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                    } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
+                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
