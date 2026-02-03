@@ -1,6 +1,6 @@
 import { PagesRoutes } from "./routes/pages.routes";
 import { Toaster } from "sonner";
-import { useThemeStore } from "./store/theme";
+import { useThemeStore } from "./store/theme.store";
 function App() {
     const { mode } = useThemeStore();
     return (

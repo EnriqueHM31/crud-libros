@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { useCategoriasStore } from "./categorias";
+import { useCategoriasStore } from "./categorias.store";
 
 interface Categoria {
     id: string;

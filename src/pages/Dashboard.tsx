@@ -1,13 +1,13 @@
 import Categorias from "@/components/Dashboard/sections/Categorias";
 import Pedidos from "@/components/Dashboard/sections/Pedidos";
-import { useCategoriasStore } from "@/store/categorias";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { useEffect } from "react";
 import AsideNav from "../components/Dashboard/sections/AsideNav";
 import Home from "../components/Dashboard/sections/Home";
 import Informacion from "../components/Dashboard/sections/Informacion";
 import Libros from "../components/Dashboard/sections/Libros";
-import { useBooksStore } from "../store/libro";
-import { useMenuStore } from "../store/menu";
+import { useBooksStore } from "../store/libro.store";
+import { useMenuStore } from "../store/menu.store";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();

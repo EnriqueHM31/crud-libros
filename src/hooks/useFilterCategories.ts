@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useCategoriesFiltersStore } from "@/store/filterCategories";
-import { useCategoriasStore } from "@/store/categorias";
+import { useCategoriesFiltersStore } from "@/store/filterCategories.store";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { useDebouncedValue } from "@/hooks/useDebounce";
 
 export function useFilterCategories() {

@@ -1,5 +1,5 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useCategoriasStore } from "@/store/categorias";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { useFilterCategories } from "@/hooks/useFilterCategories";
 import { motion } from "framer-motion";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFiltersBooks } from "../../../hooks/useFiltersBooks";
-import { useBooksStore } from "../../../store/libro";
+import { useBooksStore } from "../../../store/libro.store";
 
 import Error from "../Atomos/Error";
 import LoadingBooks from "../../Atomos/Loading";

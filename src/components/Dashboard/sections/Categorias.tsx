@@ -8,7 +8,7 @@ import CategoryModal from "../Categorias/ModalCategoria";
 import NotResults from "../../Atomos/NotResults";
 
 import { useFilterCategories } from "@/hooks/useFilterCategories";
-import { useCategoriasStore } from "@/store/categorias";
+import { useCategoriasStore } from "@/store/categorias.store";
 
 export default function Categorias() {
     const { isLoading, error } = useCategoriasStore();

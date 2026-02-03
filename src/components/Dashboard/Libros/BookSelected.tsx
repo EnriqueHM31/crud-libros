@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiEdit, FiTrash } from "react-icons/fi";
 import type { GoogleBook } from "@/types/libro";
-import { useBooksStore } from "@/store/libro";
+import { useBooksStore } from "@/store/libro.store";
 
 interface BookModalProps {
     book: GoogleBook | null;

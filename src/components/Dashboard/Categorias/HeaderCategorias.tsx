@@ -1,4 +1,4 @@
-import { useCategoriasStore } from "@/store/categorias";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { motion } from "framer-motion";
 import { FaBook } from "react-icons/fa";
 import HeaderSection from "../Atomos/Header";

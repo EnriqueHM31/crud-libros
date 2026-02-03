@@ -1,6 +1,6 @@
 import { FaMoon } from "react-icons/fa";
 import { MdSunny } from "react-icons/md";
-import { useThemeStore } from "../../store/theme";
+import { useThemeStore } from "../../store/theme.store";
 import { motion } from "framer-motion";
 
 export default function ButtonTheme() {

@@ -1,5 +1,5 @@
 import { FaSearch, FaRedo, FaBook, FaUser, FaLanguage, FaFileAlt } from "react-icons/fa";
-import { useBooksFiltersStore } from "@/store/filtrosBooks";
+import { useBooksFiltersStore } from "@/store/filtrosBooks.store";
 import { motion } from "framer-motion";
 
 export default function BooksFilters() {

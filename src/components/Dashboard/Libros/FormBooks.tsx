@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { useBookForm } from "../../../hooks/useFormBook";
-import { useBooksStore } from "../../../store/libro";
+import { useBooksStore } from "../../../store/libro.store";
 import type { BookFormProps } from "../../../types/formBook";
 import HeaderSection from "../Atomos/Header";
 import InputForm from "./Atomos/InputForm";
