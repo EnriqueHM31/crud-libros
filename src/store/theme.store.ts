@@ -25,7 +25,6 @@ export const useThemeStore = create(
         {
             name: "theme-mode",
 
-            // 🔥 CLAVE: sincroniza el DOM al cargar desde localStorage
             onRehydrateStorage: () => (state) => {
                 if (!state) return;
 
