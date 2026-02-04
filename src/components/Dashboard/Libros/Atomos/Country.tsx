@@ -14,15 +14,18 @@ export default function CountrySvg({ value, size = { width: 40, height: 20 } }: 
                 </span>
             ) : (
                 <div className="flex h-full w-full items-center md:justify-start justify-center">
-                    <img
-                        key={flagUrl} // fuerza remount al cambiar value
-                        src={flagUrl}
-                        alt={`Bandera de ${value}`}
-                        width={size.width}
-                        height={size.height}
-                        className="text-primary text-sm dark:border-white/10 dark:text-white/60"
-                        onError={handleError}
-                    />
+                    {
+                        flagUrl !== "" ? <img
+                            key={flagUrl} // fuerza remount al cambiar value
+                            src={flagUrl}
+                            alt={`Bandera de ${value}`}
+                            width={size.width}
+                            height={size.height}
+                            className="text-primary text-sm dark:border-white/10 dark:text-white/60"
+                            onError={handleError}
+                        /> : <div className="w-full h-full bg-primary-dark text-white text-sm font-medium">Sin bandera</div>
+                    }
+
                 </div>
             )}
         </div>
