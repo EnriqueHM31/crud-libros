@@ -1,18 +1,12 @@
+import { itemVariantsAside } from "@/constants/animaciones";
 import { motion } from "framer-motion";
+import { FaHome } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import { useMenuStore } from "../../../store/menu.store";
 import ButtonTheme from "../../Atomos/ButtonTheme";
-import { FaHome } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
-const itemVariants = {
-    hidden: { x: -30, opacity: 0 },
-    visible: {
-        x: 0,
-        opacity: 1,
-    },
-};
 
 export default function AsideNav() {
     const { menuItems, setMenu, currentMenu, isOpen, setIsOpen } = useMenuStore();
@@ -40,7 +34,7 @@ export default function AsideNav() {
                 <div className="flex flex-1 flex-col gap-6">
                     <header className="flex items-center justify-between px-6 pe-18 md:px-6">
                         <motion.h1
-                            variants={itemVariants}
+                            variants={itemVariantsAside}
                             transition={{ duration: 0.2 }}
                             initial="hidden"
                             animate="visible"
@@ -56,7 +50,7 @@ export default function AsideNav() {
                         {menuItems.map(({ name, icon: Icon, key }, index) => (
                             <motion.button
                                 key={name}
-                                variants={itemVariants}
+                                variants={itemVariantsAside}
                                 initial="hidden"
                                 animate="visible"
                                 transition={{
@@ -67,9 +61,8 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
