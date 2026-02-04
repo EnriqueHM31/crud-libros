@@ -15,27 +15,24 @@ export default function InputDate({
 
     return (
         <div className="flex w-full flex-col gap-2">
-            <label
-                className="text-primary text-sm font-medium dark:text-gray-400"
-                htmlFor={props.id}
-            >
+            <label className="text-primary text-sm font-medium dark:text-gray-400" htmlFor={props.id}>
                 {label}
             </label>
 
             {/* Contenedor animado clickable */}
             <motion.div
                 onClick={handleClick}
-                className="relative w-full cursor-pointer rounded-xl border bg-background dark:bg-white/5 dark:border-white/10 flex items-center px-3 py-2"
+                className="bg-background relative flex w-full cursor-pointer items-center rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5"
             >
                 <input
                     ref={inputRef}
                     type="date"
                     max={new Date().toISOString().split("T")[0]}
-                    className="bg-transparent w-full text-primary-dark outline-none cursor-pointer dark:text-white"
+                    className="text-primary-dark w-full cursor-pointer bg-transparent outline-none dark:text-white"
                     {...props}
                 />
                 {/* Icono opcional de calendario */}
-                <span className="ml-2 text-primary-dark dark:text-white">&#128197;</span>
+                <span className="text-primary-dark ml-2 dark:text-white">&#128197;</span>
             </motion.div>
         </div>
     );
