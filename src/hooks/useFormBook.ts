@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useBooksStore } from "../store/libro.store";
-import { mapBookToFormData, getChangedFields } from "../utils/formBook";
-import type { GoogleBook } from "../types/libro";
-import type { FormData } from "../types/formBook";
 import { toast } from "sonner";
+import { useBooksStore } from "../store/libro.store";
+import type { FormData } from "../types/formBook";
+import type { GoogleBook } from "../types/libro";
+import { getChangedFields, mapBookToFormData } from "../utils/formBook";
 
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
     console.log({ book });
@@ -13,19 +13,19 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      categories: [],
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    categories: [],
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -34,9 +34,10 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
        HANDLERS
     ========================= */
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
+        console.log({ name, value });
         setFormData((prev) => ({
             ...prev,
             volumeInfo: {
