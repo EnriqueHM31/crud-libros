@@ -7,11 +7,11 @@ export default function HeaderCategorias() {
     const { openCreateModal } = useCategoriasStore();
     return (
         <div className="flex flex-col items-center justify-between md:flex-row">
-            <div className="md:flex-1 flex flex-5 items-center justify-center md:items-start md:justify-start">
+            <div className="flex flex-5 items-center justify-center md:flex-1 md:items-start md:justify-start">
                 <HeaderSection title="Administracion de las categorias" description="Gestiona las categorias disponibles de la aplicación." />
             </div>
 
-            <div className="flex-1 w-fit flex items-center justify-end">
+            <div className="flex w-fit flex-1 items-center justify-end">
                 <motion.button
                     onClick={openCreateModal}
                     initial="hidden"
