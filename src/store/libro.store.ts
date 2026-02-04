@@ -29,7 +29,7 @@ export const useBooksStore = create<BooksState>((set) => ({
                 const response = await getAllBooks();
 
                 set({
-                    books: response.data, // ✅ aquí está el array
+                    books: response.data,
                     isLoading: false,
                 });
             } catch (err) {
@@ -41,9 +41,6 @@ export const useBooksStore = create<BooksState>((set) => ({
         }, 500);
     },
 
-    /* =========================
-       BUSCAR LIBROS
-    ========================= */
 
     searchBooks: async (query) => {
         if (!query.trim()) return;
@@ -73,10 +70,6 @@ export const useBooksStore = create<BooksState>((set) => ({
             });
         }
     },
-
-    /* =========================
-       MODAL
-    ========================= */
 
     openBookModal: (book) => {
         if (!book) return;
@@ -112,16 +105,13 @@ export const useBooksStore = create<BooksState>((set) => ({
         });
     },
 
-    /* =========================
-       CRUD
-    ========================= */
 
     createBook: async (newBook) => {
         const { data, message } = (await createBook(newBook)) as { data: GoogleBook; message: string };
 
         toast.success(message ?? "Libro creado correctamente");
         set((state) => ({
-            books: [...state.books, data], // ✅ aquí está el array
+            books: [...state.books, data],
             isModalOpen: false,
             modalMode: "view",
         }));
@@ -136,25 +126,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...data,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...data,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
@@ -172,10 +162,6 @@ export const useBooksStore = create<BooksState>((set) => ({
             modalMode: "view",
         }));
     },
-
-    /* =========================
-       LIMPIAR STORE
-    ========================= */
 
     clearBooks: () => {
         set({
