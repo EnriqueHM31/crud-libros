@@ -15,13 +15,17 @@ export default function SelectorDinamico({ handleChange, value, categorias }: Se
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
 
+        console.log({ value });
         if (!value) return;
 
         // Si ya está en la lista, no hacemos nada
         if (selectedCategories.includes(value)) return;
+        console.log({ selectedCategories });
 
         const newSelected = [...selectedCategories, value];
+        console.log({ newSelected });
         setSelectedCategories(newSelected);
+        handleChange(newSelected);
         setInputValue(newSelected.join(", "));
     };
 
