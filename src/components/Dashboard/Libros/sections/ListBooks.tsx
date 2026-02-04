@@ -1,3 +1,4 @@
+import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
 import { useFiltersBooks } from "@/hooks/useFiltersBooks";
 import { useBooksStore } from "@/store/libro.store";
 import type { GoogleBook } from "@/types/libro";
@@ -6,29 +7,12 @@ import { FaBookOpen, FaChevronRight, FaUser } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.06 },
-    },
-};
-
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.35 },
-    },
-};
-
 export default function ListBooks() {
     const { books } = useFiltersBooks();
     const { openBookModal } = useBooksStore();
 
     return (
-        <motion.section variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-4">
+        <motion.section variants={containerVariantsEntrada} initial="hidden" animate="visible" className="flex flex-col gap-4">
             {books.map((book: GoogleBook) => {
                 const info = book.volumeInfo;
 
@@ -36,7 +20,7 @@ export default function ListBooks() {
                     <motion.article
                         key={book.id}
                         onClick={() => openBookModal(book)}
-                        variants={itemVariants}
+                        variants={itemVariantsEntrada}
                         whileHover={{ x: 6 }}
                         className="group bg-surface dark:bg-primary-dark/30 hover:bg-primary text-background flex cursor-pointer flex-col items-center justify-center gap-5 rounded-2xl border px-2 py-5 shadow-sm hover:shadow-md md:flex-row md:items-start md:justify-start md:px-8 md:py-4 dark:border-gray-700 dark:hover:bg-blue-600"
                     >
