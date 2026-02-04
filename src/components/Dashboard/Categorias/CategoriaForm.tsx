@@ -1,47 +1,10 @@
+import { useFormCategories } from "@/hooks/useFormCategories";
+import type { CategoriaFormProps } from "@/types/componentes";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 
-interface CategoryFormProps {
-    type?: "create" | "edit";
-    initialData?: {
-        nombre: string;
-        descripcion?: string;
-    };
-    isOpen: boolean;
-    onClose: () => void;
-    onSubmit: <Partial extends { nombre?: string; descripcion?: string }>(data: Partial) => void;
-}
 
-export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoryFormProps) {
-    const [categoria, setCategoria] = useState(initialData ?? { nombre: "", descripcion: "" });
-
-    const isEdit = type === "edit";
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (isEdit && initialData) {
-            // Construir objeto solo con campos que cambiaron
-            const updatedFields: Partial<typeof categoria> = {};
-            if (categoria.nombre !== initialData.nombre) updatedFields.nombre = categoria.nombre;
-            if (categoria.descripcion !== initialData.descripcion) updatedFields.descripcion = categoria.descripcion;
-
-            onSubmit(updatedFields); // Solo enviamos los campos modificados
-        } else {
-            // Si es create, enviamos todo
-            onSubmit({
-                nombre: categoria.nombre,
-                descripcion: categoria.descripcion,
-            });
-        }
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setCategoria((prev) => ({
-            ...prev,
-            [e.target.name]: e.target.value,
-        }));
-    };
+export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoriaFormProps) {
+    const { categoria, handleChange, handleSubmit, isEdit } = useFormCategories({ type, initialData, onSubmit });
 
     return (
         <AnimatePresence>
