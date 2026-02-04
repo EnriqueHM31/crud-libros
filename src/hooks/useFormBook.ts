@@ -13,19 +13,19 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      categories: [],
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    categories: [],
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -95,14 +95,14 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         console.log({ formData, originalData });
         const changes = getChangedFields(originalData, formData);
 
-        editBook(book.id, {
-            ...book,
-            ...changes,
-            volumeInfo: {
-                ...book.volumeInfo,
-                ...changes.volumeInfo,
-            },
-        });
+        console.log({ changes });
+
+        if (!changes.volumeInfo) {
+            toast.error("No se han modificado los campos");
+            return;
+        }
+
+        editBook(book.id, changes.volumeInfo);
     };
 
     const titleForm = type === "create" ? "Crear libro" : "Editar libro";
