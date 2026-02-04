@@ -1,9 +1,4 @@
-export default function InputForm({
-    label,
-    ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & {
-    label: string;
-}) {
+export default function InputForm({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; }) {
     return (
         <div className="flex w-full flex-col gap-2">
             <label className="text-primary text-sm font-medium dark:text-gray-400" htmlFor={props.id}>
