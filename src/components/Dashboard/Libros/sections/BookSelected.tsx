@@ -1,11 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { FiX, FiEdit, FiTrash } from "react-icons/fi";
-import type { GoogleBook } from "@/types/libro";
 import { useBooksStore } from "@/store/libro.store";
-
-interface BookModalProps {
-    book: GoogleBook | null;
-}
+import type { BookModalProps } from "@/types/componentes";
+import { AnimatePresence, motion } from "framer-motion";
+import { FiEdit, FiTrash, FiX } from "react-icons/fi";
 
 export function BookModal({ book }: BookModalProps) {
     const { closeBookModal, isModalOpen, openEditBook, deleteBook } = useBooksStore();
