@@ -7,7 +7,7 @@ import LoadingBooks from "../../Atomos/Loading";
 
 import { BookModal } from "../Libros/BookSelected";
 
-import BooksFilters from "../Libros/Filters";
+import BooksFilters from "../Libros/FiltersBooks";
 import HeaderTypeFormatBook from "../Libros/FormatoBooks";
 import HeaderLibro from "../Libros/HeaderBooks";
 import ListBooks from "../Libros/ListBooks";
