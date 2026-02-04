@@ -1,3 +1,4 @@
+import InputDate from "@/components/Atomos/InputDate";
 import HeaderSection from "@/components/Dashboard/Atomos/Header";
 import CountrySvg from "@/components/Dashboard/Libros/Atomos/Country";
 import InputForm from "@/components/Dashboard/Libros/Atomos/InputForm";
@@ -8,7 +9,6 @@ import { useBookForm } from "@/hooks/useFormBook";
 import { useBooksStore } from "@/store/libro.store";
 import type { BookFormProps } from "@/types/formBook";
 import { FaArrowLeft } from "react-icons/fa";
-import { DatePickerTime } from "../Atomos/DatePicker";
 
 export function BookForm({ book, type = FormType.create }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
@@ -78,7 +78,9 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
 
                             <InputForm label="Editorial" name="publisher" id="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
 
-                            <DatePickerTime value={formData.volumeInfo.publishedDate} onChange={handleChange} />
+                            <InputDate label="Fecha publicación" name="publishedDate" id="publishedDate" value={formData.volumeInfo.publishedDate}
+                                onChange={(e) => handleChange(e)} />
+
                             <InputForm
                                 label="Páginas"
                                 type="number"
