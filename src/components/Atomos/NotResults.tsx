@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
-
-interface NotResultsProps {
-    error: string;
-}
-
+import type { NotResultsProps } from "@/types/componentes";
 export default function NotResults({ error }: NotResultsProps) {
     return (
         <section className="flex flex-col items-center justify-center gap-1 px-4">
