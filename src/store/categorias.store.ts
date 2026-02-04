@@ -3,35 +3,7 @@ import { isApiError } from "@/utils/errors";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-interface Categoria {
-    id: string;
-    nombre: string;
-    descripcion: string;
-}
-
-type ModalMode = "create" | "edit" | null;
-
-export type CategoriasState = {
-    categorias: Categoria[];
-    isLoading: boolean;
-    error: string | null;
-
-    // modal
-    isModalOpen: boolean;
-    modalMode: ModalMode;
-    selectedCategory: Categoria | null;
-
-    // actions
-    obtenerCategorias: () => Promise<void>;
-    openCreateModal: () => void;
-    openEditModal: (categoria: Categoria) => void;
-    closeModal: () => void;
-
-    submitCreate: (data: Omit<Categoria, "id">) => Promise<void>;
-    submitEdit: (data: Partial<Omit<Categoria, "id">>) => Promise<void>;
-    submitDelete: (id: string) => Promise<void>;
-};
+import type { CategoriasState } from "@/types/store";
 
 export const useCategoriasStore = create<CategoriasState>()(
     persist(
