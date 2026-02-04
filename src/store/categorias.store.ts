@@ -16,9 +16,6 @@ export const useCategoriasStore = create<CategoriasState>()(
             modalMode: null,
             selectedCategory: null,
 
-            /* =========================
-               FETCH
-            ========================= */
             obtenerCategorias: async () => {
                 set({ isLoading: true });
 
@@ -40,9 +37,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                 }
             },
 
-            /* =========================
-               MODAL CONTROL
-            ========================= */
             openCreateModal: () =>
                 set({
                     modalMode: "create",
@@ -64,9 +58,6 @@ export const useCategoriasStore = create<CategoriasState>()(
                     selectedCategory: null,
                 }),
 
-            /* =========================
-               SUBMIT ACTIONS
-            ========================= */
             submitCreate: async (data) => {
                 const { data: newCategory, message } = (await createCategory(data)) as {
                     data: { nombre: string; descripcion: string; id: string };
@@ -102,6 +93,7 @@ export const useCategoriasStore = create<CategoriasState>()(
 
                 get().closeModal();
             },
+
             submitDelete: async (id: string) => {
                 const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string; id: string }; message: string };
 
