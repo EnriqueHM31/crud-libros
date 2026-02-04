@@ -9,6 +9,7 @@ import { useBookForm } from "@/hooks/useFormBook";
 import { useBooksStore } from "@/store/libro.store";
 import type { BookFormProps } from "@/types/formBook";
 import { FaArrowLeft } from "react-icons/fa";
+import { InputAuthors } from "../Atomos/InputAutor";
 
 export function BookForm({ book, type = FormType.create }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
@@ -19,6 +20,7 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
 
     const { categorias } = useFilterCategories();
 
+    console.log({ formData });
     return (
         <div className="dark:bg-primary-dark relative flex min-h-screen w-full flex-col gap-5 md:flex-row md:p-6">
             <button
@@ -64,35 +66,65 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
 
                         {/* FORM */}
                         <div className="flex h-full w-full flex-col justify-between gap-4">
-                            <InputForm label="Título" name="title" id="title" required value={formData.volumeInfo.title} onChange={handleChange} />
-
-                            <InputForm label="Subtítulo" name="subtitle" id="subtitle" value={formData.volumeInfo.subtitle ?? ""} onChange={handleChange} />
+                            <InputForm
+                                label="Título"
+                                name="title"
+                                id="title"
+                                required
+                                value={formData.volumeInfo.title}
+                                onChange={handleChange} />
 
                             <InputForm
-                                label="Autores (coma separados)"
-                                name="authors"
+                                label="Subtítulo"
+                                name="subtitle"
+                                id="subtitle"
+                                required
+                                value={formData.volumeInfo.subtitle ?? ""}
+                                onChange={handleChange} />
+
+                            <InputAuthors
+                                value={formData.volumeInfo.authors?.join(",") ?? ""}
+                                onchange={handleAuthorsChange}
+                                label="Autores"
                                 id="authors"
-                                value={formData.volumeInfo.authors?.join(", ") ?? ""}
-                                onChange={(e) => handleAuthorsChange(e.target.value)}
                             />
 
-                            <InputForm label="Editorial" name="publisher" id="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
+                            <InputForm
+                                label="Editorial"
+                                name="publisher"
+                                id="publisher"
+                                required
+                                value={formData.volumeInfo.publisher ?? ""}
+                                onChange={handleChange} />
 
-                            <InputDate label="Fecha publicación" name="publishedDate" id="publishedDate" value={formData.volumeInfo.publishedDate}
-                                onChange={(e) => handleChange(e)} />
+                            <InputDate
+                                label="Fecha publicación"
+                                name="publishedDate"
+                                id="publishedDate"
+                                required
+                                value={formData.volumeInfo.publishedDate}
+                                onChange={(e) => handleChange(e)}
+                            />
 
                             <InputForm
                                 label="Páginas"
                                 type="number"
                                 name="pageCount"
                                 id="pageCount"
+                                required
                                 value={formData.volumeInfo.pageCount ?? ""}
-                                onChange={handleChange}
+                                onChange={(e) => handleChange(e)}
                             />
 
                             <div className="flex items-center gap-6">
                                 <div className="flex-1">
-                                    <InputForm label="Idioma" name="language" id="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+                                    <InputForm
+                                        label="Idioma"
+                                        name="language"
+                                        id="language"
+                                        required
+                                        value={formData.volumeInfo.language ?? ""}
+                                        onChange={handleChange} />
                                 </div>
                                 <div className="flex-4">
 
@@ -110,6 +142,7 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                     name="description"
                                     id="description"
                                     rows={4}
+                                    required
                                     value={formData.volumeInfo.description ?? ""}
                                     onChange={handleChange}
                                     className="bg-background text-primary-dark field-sizing-content w-full resize-none rounded-xl border px-3 py-2 dark:border-white/10 dark:bg-white/5 dark:text-white"
