@@ -10,7 +10,6 @@ export const useThemeStore = create(
 
             setMode: (mode) => {
                 const html = document.documentElement;
-
                 html.classList.toggle(theme.dark, mode === theme.dark);
 
                 set({ mode });
@@ -18,7 +17,6 @@ export const useThemeStore = create(
 
             toggleMode: () => {
                 const nextMode: ThemeMode = (get().mode === theme.light ? theme.dark : theme.light) as ThemeMode;
-
                 document.documentElement.classList.toggle(theme.dark, nextMode === theme.dark);
 
                 set({ mode: nextMode });
