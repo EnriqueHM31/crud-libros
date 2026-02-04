@@ -1,24 +1,9 @@
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { useCategoriasStore } from "@/store/categorias.store";
+import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
 import { useFilterCategories } from "@/hooks/useFilterCategories";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { motion } from "framer-motion";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.06 },
-    },
-};
-
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.35 },
-    },
-};
 export default function ListaCategorias() {
     const { openEditModal, submitDelete } = useCategoriasStore();
     const { categorias } = useFilterCategories();
@@ -26,11 +11,11 @@ export default function ListaCategorias() {
     if (!categorias || categorias.length === 0) return null;
 
     return (
-        <motion.section variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.section variants={containerVariantsEntrada} initial="hidden" animate="visible" className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {categorias.map((categoria) => (
                 <motion.article
                     key={categoria.id}
-                    variants={itemVariants}
+                    variants={itemVariantsEntrada}
                     whileHover={{ x: 6 }}
                     className="group dark:bg-primary-dark hover:bg-primary relative rounded-2xl border bg-white p-5 shadow-sm transition hover:text-white hover:shadow-md dark:border-white/10 hover:dark:bg-blue-600"
                 >
