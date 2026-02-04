@@ -1,41 +1,10 @@
-import React, { useState } from "react";
-import InputForm from "./InputForm";
+import { useSelectDinamico } from "@/hooks/useSelectDinamico";
+import type { SelectorDinamicoProps } from "@/types/componentes";
 import { FaTimes } from "react-icons/fa";
-import type { Categoria } from "@/types/categoria";
+import InputForm from "./InputForm";
 
-interface SelectorDinamicoProps {
-    handleChange: (value: string[]) => void;
-    value: string[];
-    categorias: Categoria[];
-}
 export default function SelectorDinamico({ handleChange, value, categorias }: SelectorDinamicoProps) {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(value ?? []);
-    const [inputValue, setInputValue] = useState<string>(value?.join(", ") ?? "");
-
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value;
-
-        console.log({ value });
-        if (!value) return;
-
-        // Si ya está en la lista, no hacemos nada
-        if (selectedCategories.includes(value)) return;
-        console.log({ selectedCategories });
-
-        const newSelected = [...selectedCategories, value];
-        console.log({ newSelected });
-        setSelectedCategories(newSelected);
-        handleChange(newSelected);
-        setInputValue(newSelected.join(", "));
-    };
-
-    const handleRemoveCategory = (cat: string) => {
-        const newSelected = selectedCategories.filter((c) => c !== cat);
-        setSelectedCategories(newSelected);
-        setInputValue(newSelected.join(", "));
-        handleChange(newSelected);
-    };
-
+    const { selectedCategories, handleSelectChange, handleRemoveCategory, inputValue } = useSelectDinamico({ value, handleChange });
     return (
         <div className="flex w-full flex-col gap-2">
             {/* Opcional: mostrar botones para eliminar categorías */}
