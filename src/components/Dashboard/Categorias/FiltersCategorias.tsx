@@ -23,7 +23,7 @@ export default function FiltersCategorias() {
                     </div>
 
                     {/* Reset mejorado */}
-                    <div className="flex flex-1 justify-end">
+                    <div className="flex justify-end">
                         <motion.button
                             onClick={handleReset}
                             initial="hidden"
