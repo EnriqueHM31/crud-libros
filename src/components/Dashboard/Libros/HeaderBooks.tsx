@@ -11,7 +11,7 @@ export default function HeaderLibro() {
                 <HeaderSection title="Administracion de libros" description="Gestiona los libros disponibles de la aplicación." />
             </div>
 
-            <div className="flex-1 w-fit flex items-center justify-end">
+            <div className="flex w-fit flex-1 items-center justify-end">
                 <motion.button
                     onClick={openCreateBook}
                     initial="hidden"
