@@ -74,10 +74,11 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
                         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
                             {/* Nombre */}
                             <div className="flex flex-col gap-1">
-                                <label className="text-primary text-sm font-medium dark:text-gray-400">Nombre de la categoría</label>
+                                <label htmlFor={isEdit ? "edit-nombre" : "create-nombre"} className="text-primary text-sm font-medium dark:text-gray-400">Nombre de la categoría</label>
                                 <input
                                     name="nombre"
                                     type="text"
+                                    id={isEdit ? "edit-nombre" : "create-nombre"}
                                     required
                                     value={categoria.nombre}
                                     onChange={handleChange}
@@ -88,9 +89,10 @@ export default function CategoryForm({ type = "create", initialData, isOpen, onC
 
                             {/* Descripción */}
                             <div className="flex flex-col gap-1">
-                                <label className="text-primary text-sm font-medium dark:text-gray-400">Descripción</label>
+                                <label htmlFor={isEdit ? "edit-descripcion" : "create-descripcion"} className="text-primary text-sm font-medium dark:text-gray-400">Descripción</label>
                                 <textarea
                                     name="descripcion"
+                                    id={isEdit ? "edit-descripcion" : "create-descripcion"}
                                     rows={6}
                                     value={categoria.descripcion}
                                     onChange={handleChange}
