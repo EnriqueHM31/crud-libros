@@ -1,31 +1,15 @@
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";
-import { useFiltersBooks } from "../../../hooks/useFiltersBooks";
-import { useBooksStore } from "../../../store/libro.store";
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.06 },
-    },
-};
-
-const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.35 },
-    },
-};
+import { useFiltersBooks } from "@/hooks/useFiltersBooks";
+import { useBooksStore } from "@/store/libro.store";
+import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
 
 export default function MosaicoBooks() {
     const { books } = useFiltersBooks();
     const { openBookModal } = useBooksStore();
     return (
         <motion.section
-            variants={containerVariants}
+            variants={containerVariantsEntrada}
             initial="hidden"
             animate="visible"
             className="grid grid-cols-2 gap-5 md:gap-10 lg:grid-cols-3 xl:grid-cols-4"
@@ -37,7 +21,7 @@ export default function MosaicoBooks() {
                     <motion.article
                         key={book.id}
                         onClick={() => openBookModal(book)}
-                        variants={itemVariants}
+                        variants={itemVariantsEntrada}
                         whileHover={{ y: -6 }}
                         className="group bg-background dark:bg-primary-dark from-primary hover:bg-primary hover:text-background flex cursor-pointer flex-col justify-between rounded-2xl from-10% to-white to-100% shadow-sm hover:shadow-lg dark:hover:bg-blue-600"
                     >
