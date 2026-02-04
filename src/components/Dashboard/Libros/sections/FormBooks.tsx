@@ -66,13 +66,7 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
 
                         {/* FORM */}
                         <div className="flex h-full w-full flex-col justify-between gap-4">
-                            <InputForm
-                                label="Título"
-                                name="title"
-                                id="title"
-                                required
-                                value={formData.volumeInfo.title}
-                                onChange={handleChange} />
+                            <InputForm label="Título" name="title" id="title" required value={formData.volumeInfo.title} onChange={handleChange} />
 
                             <InputForm
                                 label="Subtítulo"
@@ -80,14 +74,10 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                 id="subtitle"
                                 required
                                 value={formData.volumeInfo.subtitle ?? ""}
-                                onChange={handleChange} />
-
-                            <InputAuthors
-                                value={formData.volumeInfo.authors?.join(",") ?? ""}
-                                onchange={handleAuthorsChange}
-                                label="Autores"
-                                id="authors"
+                                onChange={handleChange}
                             />
+
+                            <InputAuthors value={formData.volumeInfo.authors?.join(",") ?? ""} onchange={handleAuthorsChange} label="Autores" id="authors" />
 
                             <InputForm
                                 label="Editorial"
@@ -95,7 +85,8 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                 id="publisher"
                                 required
                                 value={formData.volumeInfo.publisher ?? ""}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                            />
 
                             <InputDate
                                 label="Fecha publicación"
@@ -124,10 +115,10 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                         id="language"
                                         required
                                         value={formData.volumeInfo.language ?? ""}
-                                        onChange={handleChange} />
+                                        onChange={handleChange}
+                                    />
                                 </div>
                                 <div className="flex-4">
-
                                     <CountrySvg value={formData.volumeInfo.language ?? ""} />
                                 </div>
                             </div>
