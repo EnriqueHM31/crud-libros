@@ -46,15 +46,17 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         }));
     };
 
-    const handleAuthorsChange = (value: string) => {
+    const handleAuthorsChange = (newAuthors: string[]) => {
         setFormData((prev) => ({
             ...prev,
             volumeInfo: {
                 ...prev.volumeInfo,
-                authors: value.split(",").map((a) => a.trim()),
+                authors: newAuthors
             },
-        }));
+        }))
     };
+
+
 
     const handleImageChange = (value: string) => {
         setFormData((prev) => ({
