@@ -1,23 +1,9 @@
-import { useState } from "react";
+import { useCountryImg } from "@/hooks/useCountryImg";
+import type { CountryDisplayProps } from "@/types/componentes";
 
-interface FlagDisplayProps {
-    value: string; // código de país, ej: "es", "pt"
-    size?: { width: number; height: number };
-}
 
-export default function CountrySvg({ value, size = { width: 40, height: 20 } }: FlagDisplayProps) {
-    const [erroredUrls, setErroredUrls] = useState<Set<string>>(new Set());
-
-    if (!value) return null;
-
-    const code = value.toLowerCase();
-    const flagUrl = `https://flagservice.net/${code.toUpperCase()}/flag.svg`;
-
-    const isErrored = erroredUrls.has(flagUrl);
-
-    const handleError = () => {
-        setErroredUrls((prev) => new Set(prev).add(flagUrl));
-    };
+export default function CountrySvg({ value, size = { width: 40, height: 20 } }: CountryDisplayProps) {
+    const { isErrored, handleError, flagUrl } = useCountryImg(value ?? "");
 
     return (
         <div className="flex h-full flex-col justify-between gap-2">
