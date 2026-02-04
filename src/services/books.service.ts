@@ -1,4 +1,4 @@
-import type { GoogleBook } from "@/types/libro";
+import type { GoogleBook, VolumeInfo } from "@/types/libro";
 import { handleApiError } from "@/utils/errors";
 
 export const getAllBooks = async () => {
@@ -45,7 +45,7 @@ export const createBook = async (book: GoogleBook) => {
     }
 };
 
-export const updateBook = async (book: Partial<GoogleBook>, id: string) => {
+export const updateBook = async (book: VolumeInfo, id: string) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`, {
             method: "PUT",
