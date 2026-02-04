@@ -5,15 +5,15 @@ export default function CountrySvg({ value, size = { width: 40, height: 20 } }: 
     const { isErrored, handleError, flagUrl } = useCountryImg(value ?? "");
 
     return (
-        <div className="flex h-full flex-col justify-between gap-2">
+        <div className="flex h-full flex-col justify-between gap-2 flex-1">
             <span className="text-primary-soft text-sm font-medium dark:text-gray-400">Bandera</span>
 
             {isErrored ? (
-                <span className="flex h-full items-center justify-center text-sm font-medium text-red-500 dark:text-gray-400">
-                    No existe la bandera para "{value}"
+                <span className="flex h-full items-center justify-center md:justify-start text-sm font-medium text-red-500 dark:text-gray-400 min-h-10">
+                    {value ? ("No existe la bandera para " + value) : ""}
                 </span>
             ) : (
-                <div className="flex h-full w-full items-center justify-center">
+                <div className="flex h-full w-full items-center md:justify-start justify-center">
                     <img
                         key={flagUrl} // fuerza remount al cambiar value
                         src={flagUrl}
