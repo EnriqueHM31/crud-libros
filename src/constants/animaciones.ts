@@ -14,3 +14,12 @@ export const itemVariantsEntrada = {
         transition: { duration: 0.35 },
     },
 };
+
+
+export const itemVariantsAside = {
+    hidden: { x: -30, opacity: 0 },
+    visible: {
+        x: 0,
+        opacity: 1,
+    },
+};
