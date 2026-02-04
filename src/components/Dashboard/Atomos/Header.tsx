@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
+import type { HeaderProps } from "@/types/componentes";
 
-interface HeaderLibroProps {
-    title: string;
-    description?: string;
-}
-
-export default function HeaderSection({ title, description }: HeaderLibroProps) {
+export default function HeaderSection({ title, description }: HeaderProps) {
     return (
         <header className="mb-3 flex flex-col gap-2">
             <motion.h2
