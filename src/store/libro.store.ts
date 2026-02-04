@@ -1,8 +1,8 @@
-import { create } from "zustand";
-import type { GoogleBook, GoogleBooksResponse } from "../types/libro";
-import LIBROS from "../data/mook.json";
 import { createBook, deleteBook, getAllBooks, updateBook } from "@/services/books.service";
 import { toast } from "sonner";
+import { create } from "zustand";
+import LIBROS from "../data/mook.json";
+import type { GoogleBook, GoogleBooksResponse, VolumeInfo } from "../types/libro";
 
 /* =========================
    TIPOS
@@ -38,7 +38,7 @@ interface BooksState {
     closeBookModal: () => void;
 
     createBook: (book: GoogleBook) => void;
-    editBook: (id: string, updatedBook: Partial<GoogleBook>) => void;
+    editBook: (id: string, updatedBook: VolumeInfo) => void;
     deleteBook: (id: string) => void;
 
     clearBooks: () => void;
@@ -193,25 +193,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...data,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...data,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
