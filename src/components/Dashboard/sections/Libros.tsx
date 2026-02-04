@@ -17,7 +17,6 @@ import { BookForm } from "@/components/Dashboard/Libros/sections/FormBooks";
 import type { ViewMode } from "@/types/formBook";
 import { viewModes, FormType } from "@/constants/dashboard";
 
-
 export default function Libros() {
     const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
 

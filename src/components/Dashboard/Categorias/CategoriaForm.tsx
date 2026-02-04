@@ -2,7 +2,6 @@ import { useFormCategories } from "@/hooks/useFormCategories";
 import type { CategoriaFormProps } from "@/types/componentes";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 export default function CategoryForm({ type = "create", initialData, isOpen, onClose, onSubmit }: CategoriaFormProps) {
     const { categoria, handleChange, handleSubmit, isEdit } = useFormCategories({ type, initialData, onSubmit });
 

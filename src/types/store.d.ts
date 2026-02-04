@@ -51,7 +51,6 @@ export interface BooksFiltersState {
     resetFilters: () => void;
 }
 
-
 export type ModalModeBook = "view" | "edit" | "create";
 
 export interface BooksState {
@@ -89,7 +88,6 @@ export interface BooksState {
 
     backBooks: () => void;
 }
-
 
 export type MenuKey = "home" | "libros" | "contacto" | "pedidos" | "informacion" | "categorias";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useSelectDinamico({ value, handleChange }: { value: string[]; handleChange: (value: string[]) => void; }) {
+export function useSelectDinamico({ value, handleChange }: { value: string[]; handleChange: (value: string[]) => void }) {
     const [selectedCategories, setSelectedCategories] = useState<string[]>(value ?? []);
     const [inputValue, setInputValue] = useState<string>(value?.join(", ") ?? "");
 

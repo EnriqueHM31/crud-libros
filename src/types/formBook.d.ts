@@ -10,4 +10,4 @@ export interface BookFormProps {
     type?: FormType;
 }
 
-export export type ViewMode = "list" | "grid";
+export type ViewMode = "list" | "grid";

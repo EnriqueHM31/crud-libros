@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { useCategoriasStore } from "./categorias.store";
 import type { CategoriesFiltersState } from "@/types/store";
 
-
 export const useCategoriesFiltersStore = create<CategoriesFiltersState>((set) => ({
     searchCategoria: "",
     categoriasFiltradas: [],

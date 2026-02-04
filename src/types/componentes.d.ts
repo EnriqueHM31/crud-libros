@@ -38,7 +38,6 @@ export interface BookModalProps {
     book: GoogleBook | null;
 }
 
-
 export interface HeaderTypeFormatBookProps {
     viewMode: string;
     handleViewMode: (viewMode: ViewMode) => void;

@@ -3,7 +3,6 @@ import { useFiltersBooks } from "@/hooks/useFiltersBooks";
 import type { HeaderTypeFormatBookProps } from "@/types/componentes";
 import type { ViewMode } from "@/types/formBook";
 
-
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     const { total } = useFiltersBooks();
     return (

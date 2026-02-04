@@ -15,7 +15,6 @@ export const itemVariantsEntrada = {
     },
 };
 
-
 export const itemVariantsAside = {
     hidden: { x: -30, opacity: 0 },
     visible: {

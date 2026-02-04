@@ -1,7 +1,6 @@
 import { useCountryImg } from "@/hooks/useCountryImg";
 import type { CountryDisplayProps } from "@/types/componentes";
 
-
 export default function CountrySvg({ value, size = { width: 40, height: 20 } }: CountryDisplayProps) {
     const { isErrored, handleError, flagUrl } = useCountryImg(value ?? "");
 

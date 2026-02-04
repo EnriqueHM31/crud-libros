@@ -13,4 +13,4 @@ export const viewModes = {
 export const FormType = {
     create: "create",
     edit: "edit",
-}
+};

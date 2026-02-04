@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import type { BooksFiltersState } from "@/types/store";
 
-
 export const useBooksFiltersStore = create<BooksFiltersState>((set) => ({
     search: "",
     category: "",

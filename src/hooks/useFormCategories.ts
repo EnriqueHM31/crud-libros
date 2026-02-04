@@ -1,7 +1,6 @@
 import type { HookFormBookProps } from "@/types/componentes";
 import { useState } from "react";
 
-
 export function useFormCategories({ type, initialData, onSubmit }: HookFormBookProps) {
     const [categoria, setCategoria] = useState(initialData ?? { nombre: "", descripcion: "" });
 
