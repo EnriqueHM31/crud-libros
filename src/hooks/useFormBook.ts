@@ -37,7 +37,6 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
-        console.log({ name, value });
         setFormData((prev) => ({
             ...prev,
             volumeInfo: {
