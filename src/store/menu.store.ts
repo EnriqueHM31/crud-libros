@@ -1,24 +1,7 @@
-import type React from "react";
+import type { MenuState } from "@/types/store";
 import { FaBook, FaHome, FaInfo, FaShoppingCart, FaTags } from "react-icons/fa";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-export type MenuKey = "home" | "libros" | "contacto" | "pedidos" | "informacion" | "categorias";
-
-type MenuItem = {
-    key: MenuKey;
-    name: string;
-    icon: React.FC<React.SVGProps<SVGSVGElement>>;
-};
-
-interface MenuState {
-    menuItems: MenuItem[];
-    currentMenu: MenuKey;
-    isOpen: boolean;
-
-    setMenu: (menu: MenuKey) => void;
-    setIsOpen: (open: boolean) => void;
-}
 
 export const useMenuStore = create<MenuState>()(
     persist(
