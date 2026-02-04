@@ -5,15 +5,15 @@ import { useBooksStore } from "../../../store/libro.store";
 import Error from "../Atomos/Error";
 import LoadingBooks from "../../Atomos/Loading";
 
-import { BookModal } from "../Libros/BookSelected";
+import { BookModal } from "../Libros/sections/BookSelected";
 
-import BooksFilters from "../Libros/FiltersBooks";
-import HeaderTypeFormatBook from "../Libros/FormatoBooks";
-import HeaderLibro from "../Libros/HeaderBooks";
-import ListBooks from "../Libros/ListBooks";
-import MosaicoBooks from "../Libros/MosaicoBooks";
+import BooksFilters from "../Libros/sections/FiltersBooks";
+import HeaderTypeFormatBook from "../Libros/sections/FormatoBooks";
+import HeaderLibro from "@/components/Dashboard/Libros/sections/HeaderBooks";
+import ListBooks from "../Libros/sections/ListBooks";
+import MosaicoBooks from "@/components/Dashboard/Libros/sections/MosaicoBooks";
 import NotResults from "../../Atomos/NotResults";
-import { BookForm } from "../Libros/FormBooks";
+import { BookForm } from "@/components/Dashboard/Libros/sections/FormBooks";
 
 type ViewMode = "list" | "grid";
 
