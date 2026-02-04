@@ -1,3 +1,5 @@
+import type { Categoria } from "./categoria";
+import type { GoogleBook } from "./libro";
 
 export interface NotResultsProps {
     error: string;
@@ -21,7 +23,23 @@ export interface CategoriaFormProps {
 
 export type HookFormBookProps = Omit<CategoriaFormProps, "isOpen" | "onClose">;
 
-interface CountryDisplayProps {
+export interface CountryDisplayProps {
     value: string; // código de país, ej: "es", "pt"
     size?: { width: number; height: number };
+}
+
+export interface SelectorDinamicoProps {
+    handleChange: (value: string[]) => void;
+    value: string[];
+    categorias: Categoria[];
+}
+
+export interface BookModalProps {
+    book: GoogleBook | null;
+}
+
+
+export interface HeaderTypeFormatBookProps {
+    viewMode: string;
+    handleViewMode: (viewMode: ViewMode) => void;
 }
