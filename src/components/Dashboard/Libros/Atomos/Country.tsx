@@ -25,7 +25,7 @@ export default function CountrySvg({ value, size = { width: 40, height: 20 } }: 
                             onError={handleError}
                         />
                     ) : (
-                        <div className="bg-primary-dark h-full w-full text-sm font-medium text-white">Sin bandera</div>
+                        <div className="dark:bg-primary-dark h-full w-full text-sm font-medium dark:text-white">Sin bandera</div>
                     )}
                 </div>
             )}

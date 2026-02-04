@@ -1,7 +1,10 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary-dark: #010324;
+}
 
 /* Chrome, Safari, Edge */
 input[type="number"]::-webkit-inner-spin-button,
