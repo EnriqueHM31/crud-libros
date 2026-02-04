@@ -1,16 +1,8 @@
-import { FaList, FaThLarge } from "react-icons/fa";
+import { typeViews } from "@/constants/dashboard";
 import { useFiltersBooks } from "@/hooks/useFiltersBooks";
+import type { HeaderTypeFormatBookProps } from "@/types/componentes";
+import type { ViewMode } from "@/types/formBook";
 
-type ViewMode = "list" | "grid";
-interface HeaderTypeFormatBookProps {
-    viewMode: string;
-    handleViewMode: (viewMode: ViewMode) => void;
-}
-
-const typeViews = [
-    { name: "Lista", value: "list", icono: <FaList /> },
-    { name: "Grilla", value: "grid", icono: <FaThLarge /> },
-];
 
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     const { total } = useFiltersBooks();
