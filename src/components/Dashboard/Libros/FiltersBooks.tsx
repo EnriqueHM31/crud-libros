@@ -23,7 +23,7 @@ export default function BooksFilters() {
                     </div>
 
                     {/* Reset mejorado */}
-                    <div className="flex flex-1 justify-end items-center">
+                    <div className="flex flex-1 items-center justify-end">
                         <motion.button
                             onClick={resetFilters}
                             initial="hidden"
