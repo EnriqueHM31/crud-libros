@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
-import { FaBookOpen, FaUser } from "react-icons/fa";
+import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
 import { useFiltersBooks } from "@/hooks/useFiltersBooks";
 import { useBooksStore } from "@/store/libro.store";
-import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
+import { motion } from "framer-motion";
+import { FaBookOpen, FaUser } from "react-icons/fa";
 
 export default function MosaicoBooks() {
     const { books } = useFiltersBooks();
