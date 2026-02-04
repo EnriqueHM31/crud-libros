@@ -41,7 +41,6 @@ export const useBooksStore = create<BooksState>((set) => ({
         }, 500);
     },
 
-
     searchBooks: async (query) => {
         if (!query.trim()) return;
 
@@ -105,7 +104,6 @@ export const useBooksStore = create<BooksState>((set) => ({
         });
     },
 
-
     createBook: async (newBook) => {
         const { data, message } = (await createBook(newBook)) as { data: GoogleBook; message: string };
 
@@ -126,25 +124,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                        ...book,
-                        ...data,
-                        volumeInfo: {
-                            ...book.volumeInfo,
-                            ...data.volumeInfo,
-                        },
-                    }
+                          ...book,
+                          ...data,
+                          volumeInfo: {
+                              ...book.volumeInfo,
+                              ...data.volumeInfo,
+                          },
+                      }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                        ...state.selectedBook,
-                        ...data,
-                        volumeInfo: {
-                            ...state.selectedBook.volumeInfo,
-                            ...data.volumeInfo,
-                        },
-                    }
+                          ...state.selectedBook,
+                          ...data,
+                          volumeInfo: {
+                              ...state.selectedBook.volumeInfo,
+                              ...data.volumeInfo,
+                          },
+                      }
                     : state.selectedBook,
             modalMode: "view",
         }));
