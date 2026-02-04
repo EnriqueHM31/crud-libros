@@ -14,13 +14,9 @@ import ListBooks from "../Libros/sections/ListBooks";
 import MosaicoBooks from "@/components/Dashboard/Libros/sections/MosaicoBooks";
 import NotResults from "../../Atomos/NotResults";
 import { BookForm } from "@/components/Dashboard/Libros/sections/FormBooks";
+import type { ViewMode } from "@/types/formBook";
+import { viewModes, FormType } from "@/constants/dashboard";
 
-type ViewMode = "list" | "grid";
-
-const viewModes = {
-    list: "list",
-    grid: "grid",
-} as const;
 
 export default function Libros() {
     const { isLoading, error, selectedBook, modalMode, isModalOpen } = useBooksStore();
@@ -34,14 +30,14 @@ export default function Libros() {
 
     if (isLoading) return <LoadingBooks />;
     if (error) return <Error error={error} />;
-    const isFormMode = modalMode === "create" || modalMode === "edit";
+    const isFormMode = modalMode === "create" || modalMode === FormType.edit;
 
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
-            {modalMode === "edit" && selectedBook && <BookForm book={selectedBook} type="edit" />}
+            {modalMode === FormType.edit && selectedBook && <BookForm book={selectedBook} type={FormType.edit} />}
 
-            {modalMode === "create" && <BookForm />}
+            {modalMode === FormType.create && <BookForm />}
 
             {/* MODAL VIEW */}
             {isModalOpen && modalMode === "view" && <BookModal book={selectedBook} />}
