@@ -2,13 +2,14 @@ import HeaderSection from "@/components/Dashboard/Atomos/Header";
 import CountrySvg from "@/components/Dashboard/Libros/Atomos/Country";
 import InputForm from "@/components/Dashboard/Libros/Atomos/InputForm";
 import SelectorDinamico from "@/components/Dashboard/Libros/Atomos/SelectDinamico";
+import { FormType } from "@/constants/dashboard";
 import { useFilterCategories } from "@/hooks/useFilterCategories";
 import { useBookForm } from "@/hooks/useFormBook";
 import { useBooksStore } from "@/store/libro.store";
 import type { BookFormProps } from "@/types/formBook";
 import { FaArrowLeft } from "react-icons/fa";
 
-export function BookForm({ book, type = "create" }: BookFormProps) {
+export function BookForm({ book, type = FormType.create }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
         type,
         book,
