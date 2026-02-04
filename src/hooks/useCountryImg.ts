@@ -3,7 +3,7 @@ import { useState } from "react";
 export function useCountryImg(value: string) {
     const [erroredUrls, setErroredUrls] = useState<Set<string>>(new Set());
 
-    if (!value) return { isErrored: false, handleError: () => { }, flagUrl: "" };
+    if (!value) return { isErrored: false, handleError: () => {}, flagUrl: "" };
     const code = value.toLowerCase();
     const flagUrl = `https://flagservice.net/${code.toUpperCase()}/flag.svg`;
 
