@@ -5,8 +5,6 @@ export interface FormData {
     saleInfo?: SaleInfo;
 }
 
-
-
 export interface BookFormProps {
     book?: GoogleBook | null;
     type?: FormType;
