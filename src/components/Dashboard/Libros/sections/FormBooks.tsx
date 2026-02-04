@@ -8,6 +8,7 @@ import { useBookForm } from "@/hooks/useFormBook";
 import { useBooksStore } from "@/store/libro.store";
 import type { BookFormProps } from "@/types/formBook";
 import { FaArrowLeft } from "react-icons/fa";
+import { DatePickerTime } from "../Atomos/DatePicker";
 
 export function BookForm({ book, type = FormType.create }: BookFormProps) {
     const { formData, handleChange, handleAuthorsChange, handleImageChange, handleCategoriesChange, handleSubmit, titleForm, descriptionForm } = useBookForm({
@@ -77,14 +78,7 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
 
                             <InputForm label="Editorial" name="publisher" id="publisher" value={formData.volumeInfo.publisher ?? ""} onChange={handleChange} />
 
-                            <InputForm
-                                label="Fecha publicación"
-                                name="publishedDate"
-                                id="publishedDate"
-                                value={formData.volumeInfo.publishedDate ?? ""}
-                                onChange={handleChange}
-                            />
-
+                            <DatePickerTime value={formData.volumeInfo.publishedDate} onChange={handleChange} />
                             <InputForm
                                 label="Páginas"
                                 type="number"
@@ -94,9 +88,14 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                 onChange={handleChange}
                             />
 
-                            <div className="flex items-center gap-2">
-                                <InputForm label="Idioma" name="language" id="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
-                                <CountrySvg value={formData.volumeInfo.language ?? ""} />
+                            <div className="flex items-center gap-6">
+                                <div className="flex-1">
+                                    <InputForm label="Idioma" name="language" id="language" value={formData.volumeInfo.language ?? ""} onChange={handleChange} />
+                                </div>
+                                <div className="flex-4">
+
+                                    <CountrySvg value={formData.volumeInfo.language ?? ""} />
+                                </div>
                             </div>
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} categorias={categorias} />
