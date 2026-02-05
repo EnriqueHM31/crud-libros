@@ -4,6 +4,7 @@
 
 @theme {
     --color-primary-dark: #010324;
+    --color-primary: #061d47;
 }
 
 /* Chrome, Safari, Edge */
@@ -18,7 +19,7 @@ input[type="number"]::-webkit-outer-spin-button {
     appearance: base-select;
 }
 .select-estilado {
-    @apply dark:bg-primary-dark text-primary-dark border-primary border bg-white dark:border-white/10 dark:text-white;
+    @apply dark:bg-primary-dark text-primary-dark border-primary-dark border bg-white dark:border-white/10 dark:text-white;
     transition: 0.4s;
 }
 
