@@ -10,7 +10,7 @@ function App() {
             <Toaster
                 position="top-right"
                 toastOptions={{
-                    className: "bg-primary text-white dark:bg-blue-600 dark:text-white",
+                    className: "bg-primary-dark text-white dark:bg-blue-600 dark:text-white",
                 }}
                 duration={3000}
                 richColors={true}
