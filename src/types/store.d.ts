@@ -89,7 +89,7 @@ export interface BooksState {
     backBooks: () => void;
 }
 
-export type MenuKey = "home" | "libros" | "contacto" | "pedidos" | "informacion" | "categorias";
+export type MenuKey = typeof menuItems[number]["key"];
 
 export type MenuItem = {
     key: MenuKey;
