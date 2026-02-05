@@ -8,6 +8,7 @@ import Informacion from "../components/Dashboard/sections/Informacion";
 import Libros from "../components/Dashboard/sections/Libros";
 import { useBooksStore } from "../store/libro.store";
 import { useMenuStore } from "../store/menu.store";
+import Lenguajes from "@/components/Dashboard/sections/Lenguajes";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();
@@ -27,6 +28,7 @@ export default function Dashboard() {
                 {currentMenu === "home" && <Home />}
                 {currentMenu === "informacion" && <Informacion />}
                 {currentMenu === "categorias" && <Categorias />}
+                {currentMenu === "lenguajes" && <Lenguajes />}
                 {currentMenu === "libros" && <Libros />}
                 {currentMenu === "pedidos" && <Pedidos />}
             </div>
