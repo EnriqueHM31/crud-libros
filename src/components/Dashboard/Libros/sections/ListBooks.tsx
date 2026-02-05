@@ -43,28 +43,28 @@ export default function ListBooks() {
                                 </h3>
 
                                 {info.authors && (
-                                    <p className="group-hover:text-gray-400 mt-1 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                                        <FaUser className="text-primary group-hover:text-gray-400  dark:text-blue-500" />
+                                    <p className="group-hover:text-gray-400 dark:group-hover:text-white mt-1 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <FaUser className="text-primary group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" />
                                         {info.authors.join(", ")}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="text-primary-soft group-hover:text-gray-400  mt-5 flex flex-wrap items-center justify-center gap-4 text-sm md:items-start md:justify-start dark:text-gray-400">
+                            <div className="text-primary-soft group-hover:text-gray-400 dark:group-hover:text-white  mt-5 flex flex-wrap items-center justify-center gap-4 text-sm md:items-start md:justify-start dark:text-gray-400">
                                 {info.publishedDate && (
                                     <span className="flex items-center gap-2">
-                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-gray-400  dark:text-blue-500" />{" "}
+                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" />{" "}
                                         {info.publishedDate}
                                     </span>
                                 )}
                                 {info.pageCount && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <FaBookOpen className="text-primary/70 group-hover:text-gray-400  dark:text-blue-500" /> {info.pageCount} páginas
+                                        <FaBookOpen className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" /> {info.pageCount} páginas
                                     </span>
                                 )}
                                 {info.language && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <GrLanguage className="text-primary/70 group-hover:text-gray-400  dark:text-blue-500" /> {info.language.toUpperCase()}
+                                        <GrLanguage className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" /> {info.language.toUpperCase()}
                                     </span>
                                 )}
                             </div>
