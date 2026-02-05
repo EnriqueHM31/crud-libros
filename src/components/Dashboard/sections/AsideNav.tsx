@@ -39,7 +39,7 @@ export default function AsideNav() {
                             animate="visible"
                             className="text-2xl font-bold tracking-tight"
                         >
-                            <span className="opacity-90">Libros</span> <span className="text-surface">HM</span>
+                            <span className=" text-white dark:text-gray-300">Libros</span> <span className="text-white dark:text-gray-300">HM</span>
                         </motion.h1>
 
                         <ButtonTheme />
@@ -60,9 +60,8 @@ export default function AsideNav() {
                                     setMenu(key);
                                     setIsOpen(false); // cierra en mobile
                                 }}
-                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${
-                                    currentMenu === key ? "bg-primary-hover text-text-inverse" : "text-text-inverse hover:bg-primary-hover"
-                                } `}
+                                className={`group flex w-full cursor-pointer items-center gap-4 py-3 text-left text-lg font-medium transition-colors ${currentMenu === key ? "bg-blue-600 text-white" : "text-white hover:bg-blue-600"
+                                    } `}
                             >
                                 <div className="flex flex-1 items-center gap-2 px-4">
                                     <Icon className="text-xl opacity-90 group-hover:opacity-100" />
