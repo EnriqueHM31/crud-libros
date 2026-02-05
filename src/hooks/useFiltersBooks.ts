@@ -11,6 +11,8 @@ export function useFiltersBooks() {
     const dCategory = useDebouncedValue(category, 600);
     const dAuthor = useDebouncedValue(author, 600);
 
+    console.log({ dCategory });
+
     const filteredBooks = books.filter((book) => {
         const info = book.volumeInfo;
 
@@ -18,11 +20,12 @@ export function useFiltersBooks() {
             return false;
         }
 
-        if (dCategory && !normalizeText(info.categories?.join(" ") ?? "").includes(dCategory)) {
+        if (dCategory && info.categories?.length && !info.categories.includes(dCategory)) {
+            console.log(info.categories);
             return false;
         }
 
-        if (dAuthor && !normalizeText(info.authors?.join(" ") ?? "").includes(dAuthor)) {
+        if (dAuthor && !normalizeText(info.authors?.join(" ") ?? "").includes(dAuthor.toLowerCase())) {
             return false;
         }
 
