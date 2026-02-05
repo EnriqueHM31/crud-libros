@@ -16,7 +16,7 @@ export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: Heade
                         <button
                             key={name}
                             onClick={() => handleViewMode(value as ViewMode)}
-                            className={`cursor-pointer rounded-lg p-2 ${viewMode === value ? "bg-primary text-background dark:bg-blue-600" : "text-primary hover:bg-background dark:text-white dark:hover:bg-blue-800"}`}
+                            className={`cursor-pointer rounded-lg p-2 ${viewMode === value ? "bg-primary text-white dark:bg-blue-600" : "text-primary hover:bg-background dark:text-white hover:bg-blue-800 hover:text-white"}`}
                         >
                             {icono}
                         </button>
