@@ -57,17 +57,15 @@ export function InputAuthors({ value, onchange, label }: React.InputHTMLAttribut
                             placeholder={`Autor ${index + 1}`}
                         />
                         {/* Botón × para eliminar */}
-                        {
-                            authorsArray.length > 1 && (
-                                <button
-                                    type="button"
-                                    onClick={() => removeAuthor(index)}
-                                    className="cursor-pointer rounded bg-red-600 px-2 py-1 text-white hover:bg-red-800"
-                                >
-                                    ×
-                                </button>
-                            )
-                        }
+                        {authorsArray.length > 1 && (
+                            <button
+                                type="button"
+                                onClick={() => removeAuthor(index)}
+                                className="cursor-pointer rounded bg-red-600 px-2 py-1 text-white hover:bg-red-800"
+                            >
+                                ×
+                            </button>
+                        )}
                     </div>
                 ))}
             </div>
