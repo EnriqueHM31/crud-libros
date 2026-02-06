@@ -2,7 +2,6 @@ import { useFormLenguajes } from "@/hooks/useFormLenguajes";
 import type { LenguajeaFormProps } from "@/types/componentes";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 export default function LenguajeForm({ type = "create", initialData, isOpen, onClose, onSubmit }: LenguajeaFormProps) {
     const { lenguaje, handleChange, handleSubmit, isEdit } = useFormLenguajes({ type, initialData, onSubmit });
 
