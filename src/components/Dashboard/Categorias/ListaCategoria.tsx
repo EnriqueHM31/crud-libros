@@ -1,5 +1,5 @@
 import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
-import { useFilterCategories } from "@/hooks/useFilterCategories";
+import { useFilterCategories } from "@/hooks/useFilterCategoria";
 import { useCategoriasStore } from "@/store/categorias.store";
 import { motion } from "framer-motion";
 import { FaEdit, FaTrash } from "react-icons/fa";

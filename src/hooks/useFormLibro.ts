@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useBooksStore } from "../store/libro.store";
-import type { FormData } from "../types/formBook";
+import type { FormData } from "../types/formLibro";
 import type { GoogleBook } from "../types/libro";
-import { getChangedFields, mapBookToFormData } from "../utils/formBook";
+import { getChangedFields, mapBookToFormData } from "../utils/formLibro";
 
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
     console.log({ book });
@@ -13,19 +13,19 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      categories: [],
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    categories: [],
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);

@@ -1,7 +1,7 @@
 import { FaSearch, FaRedo, FaBook, FaUser, FaLanguage, FaFileAlt } from "react-icons/fa";
-import { useBooksFiltersStore } from "@/store/filtrosBooks.store";
+import { useBooksFiltersStore } from "@/store/filtroslLbros.store";
 import { motion } from "framer-motion";
-import { useFilterCategories } from "@/hooks/useFilterCategories";
+import { useFilterCategories } from "@/hooks/useFilterCategoria";
 import type { Categoria } from "@/types/categoria";
 
 export default function BooksFilters() {

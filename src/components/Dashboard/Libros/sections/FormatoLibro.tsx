@@ -1,7 +1,7 @@
 import { typeViews } from "@/constants/dashboard";
-import { useFiltersBooks } from "@/hooks/useFiltersBooks";
+import { useFiltersBooks } from "@/hooks/useFiltersLibro";
 import type { HeaderTypeFormatBookProps } from "@/types/componentes";
-import type { ViewMode } from "@/types/formBook";
+import type { ViewMode } from "@/types/formLibro";
 
 export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: HeaderTypeFormatBookProps) {
     const { total } = useFiltersBooks();

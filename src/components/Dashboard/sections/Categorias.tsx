@@ -7,7 +7,7 @@ import ListaCategorias from "../Categorias/ListaCategoria";
 import CategoryModal from "../Categorias/ModalCategoria";
 import NotResults from "../../Atomos/NotResults";
 
-import { useFilterCategories } from "@/hooks/useFilterCategories";
+import { useFilterCategories } from "@/hooks/useFilterCategoria";
 import { useCategoriasStore } from "@/store/categorias.store";
 
 export default function Categorias() {

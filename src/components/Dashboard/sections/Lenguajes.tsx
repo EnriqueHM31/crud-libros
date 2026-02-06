@@ -3,7 +3,7 @@ import FiltersLenguajes from "../Lenguajes/FiltersLenguaje";
 import HeaderLenguaje from "../Lenguajes/HeaderLenguaje";
 import LoadingBooks from "@/components/Atomos/Loading";
 import Error from "@/components/Dashboard/Atomos/Error";
-import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
+import { useFilterLenguajes } from "@/hooks/useFilterLenguaje";
 import NotResults from "@/components/Atomos/NotResults";
 import ListaLenguajes from "../Lenguajes/ListaLenguaje";
 import LenguajeModal from "../Lenguajes/ModalLenguaje";

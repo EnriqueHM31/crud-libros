@@ -1,4 +1,4 @@
-import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
+import { useFilterLenguajes } from "@/hooks/useFilterLenguaje";
 import { motion } from "framer-motion";
 import { FaRedo, FaSearch } from "react-icons/fa";
 

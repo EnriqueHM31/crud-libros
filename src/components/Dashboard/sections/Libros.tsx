@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFiltersBooks } from "../../../hooks/useFiltersBooks";
+import { useFiltersBooks } from "../../../hooks/useFiltersLibro";
 import { useBooksStore } from "../../../store/libro.store";
 
 import Error from "../Atomos/Error";
@@ -14,7 +14,7 @@ import ListBooks from "../Libros/sections/ListLibro";
 import MosaicoBooks from "@/components/Dashboard/Libros/sections/MosaicoLibro";
 import NotResults from "../../Atomos/NotResults";
 import { BookForm } from "@/components/Dashboard/Libros/sections/FormLibro";
-import type { ViewMode } from "@/types/formBook";
+import type { ViewMode } from "@/types/formLibro";
 import { viewModes, FormType } from "@/constants/dashboard";
 
 export default function Libros() {

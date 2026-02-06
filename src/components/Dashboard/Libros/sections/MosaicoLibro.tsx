@@ -1,5 +1,5 @@
 import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
-import { useFiltersBooks } from "@/hooks/useFiltersBooks";
+import { useFiltersBooks } from "@/hooks/useFiltersLibro";
 import { useBooksStore } from "@/store/libro.store";
 import { motion } from "framer-motion";
 import { FaBookOpen, FaUser } from "react-icons/fa";

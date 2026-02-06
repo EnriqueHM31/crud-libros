@@ -1,5 +1,5 @@
 import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
-import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
+import { useFilterLenguajes } from "@/hooks/useFilterLenguaje";
 import { useLenguajesStore } from "@/store/lenguajes.store";
 import { motion } from "framer-motion";
 import { FaEdit, FaTrash } from "react-icons/fa";

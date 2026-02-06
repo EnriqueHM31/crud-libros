@@ -1,5 +1,5 @@
 import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
-import { useFiltersBooks } from "@/hooks/useFiltersBooks";
+import { useFiltersBooks } from "@/hooks/useFiltersLibro";
 import { useBooksStore } from "@/store/libro.store";
 import type { GoogleBook } from "@/types/libro";
 import { motion } from "framer-motion";

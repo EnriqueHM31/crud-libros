@@ -1,5 +1,5 @@
 import { useBooksStore } from "../store/libro.store";
-import { useBooksFiltersStore } from "../store/filtrosBooks.store";
+import { useBooksFiltersStore } from "../store/filterLibros.store";
 import { useDebouncedValue } from "./useDebounce";
 
 export function useFiltersBooks() {

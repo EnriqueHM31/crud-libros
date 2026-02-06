@@ -1,4 +1,4 @@
-import { useFilterCategories } from "@/hooks/useFilterCategories";
+import { useFilterCategories } from "@/hooks/useFilterCategoria";
 import { motion } from "framer-motion";
 import { FaRedo, FaSearch } from "react-icons/fa";
 

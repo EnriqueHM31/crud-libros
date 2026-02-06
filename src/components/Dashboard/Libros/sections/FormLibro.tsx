@@ -3,10 +3,10 @@ import HeaderSection from "@/components/Dashboard/Atomos/Header";
 import InputForm from "@/components/Dashboard/Libros/Atomos/InputForm";
 import SelectorDinamico from "@/components/Dashboard/Libros/Atomos/SelectDinamico";
 import { FormType } from "@/constants/dashboard";
-import { useFilterCategories } from "@/hooks/useFilterCategories";
-import { useBookForm } from "@/hooks/useFormBook";
+import { useFilterCategories } from "@/hooks/useFilterCategoria";
+import { useBookForm } from "@/hooks/useFormLibro";
 import { useBooksStore } from "@/store/libro.store";
-import type { BookFormProps } from "@/types/formBook";
+import type { BookFormProps } from "@/types/formLibro";
 import { FaArrowLeft } from "react-icons/fa";
 import { InputAuthors } from "../Atomos/InputAutor";
 
