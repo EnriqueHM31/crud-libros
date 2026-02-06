@@ -1,9 +1,30 @@
-import HeaderLenguaje from "../Lenguajes/HeaderLenguaje";
+import { useLenguajesStore } from "@/store/lenguajes.store";
+import FiltersLenguajes from "../Lenguajes/FiltersLanguajes";
+import HeaderLenguaje from "../Lenguajes/HeaderLenguajes";
+import LoadingBooks from "@/components/Atomos/Loading";
+import Error from "@/components/Dashboard/Atomos/Error";
+import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
+import NotResults from "@/components/Atomos/NotResults";
+import ListaLenguajes from "../Lenguajes/ListaLenguajes";
 
 export default function Lenguajes() {
+    const { isLoading, error } = useLenguajesStore();
+    const { lenguajes } = useFilterLenguajes();
+
+    if (isLoading) return <LoadingBooks />;
+
     return (
-        <section>
+        <section className="flex flex-col gap-5">
             <HeaderLenguaje />
+            <FiltersLenguajes />
+
+            {error ? (
+                <Error error={error} />
+            ) : !lenguajes || lenguajes.length === 0 ? (
+                <NotResults error="No se encontraron resultados para la categoría buscada" />
+            ) : (
+                <ListaLenguajes />
+            )}
         </section>
     );
 }
