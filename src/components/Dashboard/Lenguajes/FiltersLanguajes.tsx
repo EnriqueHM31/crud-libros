@@ -31,7 +31,7 @@ export default function FiltersLenguajes() {
                             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                             whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                             transition={{ duration: 0.2, delay: 1.6 }}
-                            className="bg-primary text-white flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold transition-colors duration-150 dark:bg-blue-600 hover:bg-blue-800"
+                            className="bg-primary flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-blue-800 dark:bg-blue-600"
                         >
                             <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
                             <span className="hidden md:block">Limpiar filtros</span>
