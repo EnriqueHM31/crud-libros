@@ -1,4 +1,4 @@
-import { useFormLenguajes } from "@/hooks/useFormLenguajes";
+import { useFormLenguajes } from "@/hooks/useFormLenguaje";
 import type { LenguajeaFormProps } from "@/types/componentes";
 import { AnimatePresence, motion } from "framer-motion";
 
