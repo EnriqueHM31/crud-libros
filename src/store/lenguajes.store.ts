@@ -28,7 +28,6 @@ interface LenguajesState {
     submitCreate: (data: Omit<Lenguaje, "id">) => Promise<void>;
     submitEdit: (data: Partial<Omit<Lenguaje, "id">>) => Promise<void>;
     submitDelete: (id: string) => Promise<void>;
-
 }
 
 export const useLenguajesStore = create<LenguajesState>()(
@@ -107,7 +106,7 @@ export const useLenguajesStore = create<LenguajesState>()(
                 const { selectedLanguage } = get();
                 if (!selectedLanguage) return;
 
-                const { data: lenguajeModificado, message } = await updateLanguage({ id: selectedLanguage.id, lenguaje: data }) as {
+                const { data: lenguajeModificado, message } = (await updateLanguage({ id: selectedLanguage.id, lenguaje: data })) as {
                     data: { id: string; nombre: string; abreviacion: string };
                     message: string;
                 };
@@ -121,7 +120,7 @@ export const useLenguajesStore = create<LenguajesState>()(
             },
 
             submitDelete: async (id: string) => {
-                const { data, message } = (await deleteCategory(id)) as { data: { id: string, nombre: string, abreviacion: string }; message: string };
+                const { data, message } = (await deleteCategory(id)) as { data: { id: string; nombre: string; abreviacion: string }; message: string };
 
                 set((state) => ({
                     lenguajes: state.lenguajes.filter((cat) => cat.id !== data.id),
@@ -132,7 +131,7 @@ export const useLenguajesStore = create<LenguajesState>()(
             },
         }),
         {
-            name: "lenguajes-store"
+            name: "lenguajes-store",
         }
     )
 );
