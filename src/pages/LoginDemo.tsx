@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function LoginDemo() {
     const navigate = useNavigate();
     return (
-        <main className="bg-gray-400 dark:bg-primary-dark flex min-h-screen items-center justify-center px-6">
+        <main className="dark:bg-primary-dark flex min-h-screen items-center justify-center bg-gray-400 px-6">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
