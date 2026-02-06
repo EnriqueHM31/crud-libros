@@ -1,7 +1,6 @@
 import type { HookFormLenguajesProps } from "@/types/componentes";
 import { useState } from "react";
 
-
 export function useFormLenguajes({ type, initialData, onSubmit }: HookFormLenguajesProps) {
     const [lenguaje, setlenguaje] = useState(initialData ?? { nombre: "", abreviacion: "" });
 
