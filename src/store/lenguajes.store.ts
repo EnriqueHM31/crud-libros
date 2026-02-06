@@ -8,7 +8,7 @@ import { persist } from "zustand/middleware";
 
 interface Lenguaje {
     id: string;
-    lenguaje: string;
+    nombre: string;
     abreviacion: string;
 }
 
@@ -86,7 +86,7 @@ export const useLenguajesStore = create<LenguajesState>()(
 
             submitCreate: async (data) => {
                 const { data: newLenguage, message } = (await createLanguage(data)) as {
-                    data: { id: string; lenguaje: string; abreviacion: string };
+                    data: { id: string; nombre: string; abreviacion: string };
                     message: string;
                 };
 
@@ -108,7 +108,7 @@ export const useLenguajesStore = create<LenguajesState>()(
                 if (!selectedLanguage) return;
 
                 const { data: lenguajeModificado, message } = await updateLanguage({ id: selectedLanguage.id, lenguaje: data }) as {
-                    data: { id: string; lenguaje: string; abreviacion: string };
+                    data: { id: string; nombre: string; abreviacion: string };
                     message: string;
                 };
 
@@ -121,7 +121,7 @@ export const useLenguajesStore = create<LenguajesState>()(
             },
 
             submitDelete: async (id: string) => {
-                const { data, message } = (await deleteCategory(id)) as { data: { nombre: string; descripcion: string; id: string }; message: string };
+                const { data, message } = (await deleteCategory(id)) as { data: { id: string, nombre: string, abreviacion: string }; message: string };
 
                 set((state) => ({
                     lenguajes: state.lenguajes.filter((cat) => cat.id !== data.id),
