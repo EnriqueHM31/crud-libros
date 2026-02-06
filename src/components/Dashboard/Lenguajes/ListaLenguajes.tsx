@@ -17,7 +17,7 @@ export default function ListaLenguajes() {
                     key={lenguaje.id}
                     variants={itemVariantsEntrada}
                     whileHover={{ x: 6 }}
-                    className="group dark:bg-primary-dark hover:bg-primary relative rounded-2xl border bg-white p-5 shadow-sm transition hover:text-white hover:shadow-md dark:border-white/10 hover:dark:bg-blue-600 flex flex-col items-center gap-4"
+                    className="group dark:bg-primary-dark hover:bg-primary relative flex flex-col items-center gap-4 rounded-2xl border bg-white p-5 shadow-sm transition hover:text-white hover:shadow-md dark:border-white/10 hover:dark:bg-blue-600"
                 >
                     {/* ICONOS */}
                     <div className="absolute top-3 right-3 flex gap-2">
@@ -43,11 +43,7 @@ export default function ListaLenguajes() {
                     {/* CONTENIDO */}
                     <h3 className="mb-2 text-2xl font-semibold text-gray-800 group-hover:text-white dark:text-white">{lenguaje.nombre}</h3>
 
-                    <p className="text-sm text-gray-600 group-hover:text-gray-400 dark:text-gray-400 group-hover:dark:text-gray-200">
-                        {lenguaje.abreviacion}
-                    </p>
-
-
+                    <p className="text-sm text-gray-600 group-hover:text-gray-400 dark:text-gray-400 group-hover:dark:text-gray-200">{lenguaje.abreviacion}</p>
                 </motion.article>
             ))}
         </motion.section>
