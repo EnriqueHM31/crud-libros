@@ -1,4 +1,4 @@
-import { useFormCategories } from "@/hooks/useFormCategories";
+import { useFormCategories } from "@/hooks/useFormCategoria";
 import type { CategoriaFormProps } from "@/types/componentes";
 import { AnimatePresence, motion } from "framer-motion";
 
