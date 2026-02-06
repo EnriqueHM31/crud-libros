@@ -5,15 +5,15 @@ import { useBooksStore } from "../../../store/libro.store";
 import Error from "../Atomos/Error";
 import LoadingBooks from "../../Atomos/Loading";
 
-import { BookModal } from "../Libros/sections/BookSelected";
+import { BookModal } from "../Libros/sections/SelectedLibro";
 
-import BooksFilters from "../Libros/sections/FiltersBooks";
-import HeaderTypeFormatBook from "../Libros/sections/FormatoBooks";
-import HeaderLibro from "@/components/Dashboard/Libros/sections/HeaderBooks";
-import ListBooks from "../Libros/sections/ListBooks";
-import MosaicoBooks from "@/components/Dashboard/Libros/sections/MosaicoBooks";
+import BooksFilters from "../Libros/sections/FiltersLibro";
+import HeaderTypeFormatBook from "../Libros/sections/FormatoLibro";
+import HeaderLibro from "@/components/Dashboard/Libros/sections/HeaderLibro";
+import ListBooks from "../Libros/sections/ListLibro";
+import MosaicoBooks from "@/components/Dashboard/Libros/sections/MosaicoLibro";
 import NotResults from "../../Atomos/NotResults";
-import { BookForm } from "@/components/Dashboard/Libros/sections/FormBooks";
+import { BookForm } from "@/components/Dashboard/Libros/sections/FormLibro";
 import type { ViewMode } from "@/types/formBook";
 import { viewModes, FormType } from "@/constants/dashboard";
 
