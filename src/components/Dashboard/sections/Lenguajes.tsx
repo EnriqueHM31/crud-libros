@@ -6,6 +6,7 @@ import Error from "@/components/Dashboard/Atomos/Error";
 import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
 import NotResults from "@/components/Atomos/NotResults";
 import ListaLenguajes from "../Lenguajes/ListaLenguajes";
+import LenguajeModal from "../Lenguajes/ModalLenguaje";
 
 export default function Lenguajes() {
     const { isLoading, error } = useLenguajesStore();
@@ -15,6 +16,8 @@ export default function Lenguajes() {
 
     return (
         <section className="flex flex-col gap-5">
+            <LenguajeModal />
+
             <HeaderLenguaje />
             <FiltersLenguajes />
 
