@@ -3,9 +3,6 @@ import { useLenguajesFiltersStore } from "@/store/filterLenguajes.store";
 import { useLenguajesStore } from "@/store/lenguajes.store";
 import { useEffect } from "react";
 
-
-
-
 export function useFilterLenguajes() {
     const { searchLenguaje, lenguajesFiltrados, setsearchLenguaje, filtrarLenguajes, resetFilters } = useLenguajesFiltersStore();
 
