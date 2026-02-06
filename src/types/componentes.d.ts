@@ -23,6 +23,20 @@ export interface CategoriaFormProps {
 
 export type HookFormBookProps = Omit<CategoriaFormProps, "isOpen" | "onClose">;
 
+export interface LenguajeaFormProps {
+    type?: "create" | "edit";
+    initialData?: {
+        nombre: string;
+        abreviacion?: string;
+    };
+    isOpen: boolean;
+    onClose: () => void;
+    onSubmit: <Partial extends { nombre?: string; abreviacion?: string; }>(data: Partial) => void;
+}
+
+export type HookFormLenguajesProps = Omit<LenguajeaFormProps, "isOpen" | "onClose">;
+
+
 export interface CountryDisplayProps {
     value: string; // código de país, ej: "es", "pt"
     size?: { width: number; height: number };
