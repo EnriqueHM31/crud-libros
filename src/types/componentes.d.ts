@@ -26,6 +26,7 @@ export type HookFormBookProps = Omit<CategoriaFormProps, "isOpen" | "onClose">;
 export interface CountryDisplayProps {
     value: string; // código de país, ej: "es", "pt"
     size?: { width: number; height: number };
+    textView?: boolean;
 }
 
 export interface SelectorDinamicoProps {
