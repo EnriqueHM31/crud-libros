@@ -1,6 +1,5 @@
 import InputDate from "@/components/Atomos/InputDate";
 import HeaderSection from "@/components/Dashboard/Atomos/Header";
-import CountrySvg from "@/components/Dashboard/Libros/Atomos/Country";
 import InputForm from "@/components/Dashboard/Libros/Atomos/InputForm";
 import SelectorDinamico from "@/components/Dashboard/Libros/Atomos/SelectDinamico";
 import { FormType } from "@/constants/dashboard";
@@ -118,9 +117,7 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <div className="flex-4">
-                                    <CountrySvg value={formData.volumeInfo.language ?? ""} />
-                                </div>
+
                             </div>
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} categorias={categorias} />
