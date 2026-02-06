@@ -1,5 +1,5 @@
 import { useCategoriasStore } from "../../../store/categorias.store";
-import CategoryForm from "./CategoriaForm";
+import CategoryForm from "./FormCategoria";
 
 export default function CategoryModal() {
     const { isModalOpen, modalMode, selectedCategory, closeModal, submitCreate, submitEdit } = useCategoriasStore();
@@ -13,9 +13,9 @@ export default function CategoryModal() {
             initialData={
                 modalMode === "edit"
                     ? {
-                          nombre: selectedCategory?.nombre ?? "",
-                          descripcion: selectedCategory?.descripcion ?? "",
-                      }
+                        nombre: selectedCategory?.nombre ?? "",
+                        descripcion: selectedCategory?.descripcion ?? "",
+                    }
                     : undefined
             }
             onClose={closeModal}

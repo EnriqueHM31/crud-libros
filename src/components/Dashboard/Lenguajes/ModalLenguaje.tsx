@@ -1,5 +1,5 @@
 import { useLenguajesStore } from "@/store/lenguajes.store";
-import LenguajeForm from "./LenguajeForm";
+import LenguajeForm from "./FormLenguaje";
 
 export default function LenguajeModal() {
     const { isModalOpen, modalMode, selectedLanguage, closeModal, submitCreate, submitEdit } = useLenguajesStore();
@@ -13,9 +13,9 @@ export default function LenguajeModal() {
             initialData={
                 modalMode === "edit"
                     ? {
-                          nombre: selectedLanguage?.nombre ?? "",
-                          abreviacion: selectedLanguage?.abreviacion ?? "",
-                      }
+                        nombre: selectedLanguage?.nombre ?? "",
+                        abreviacion: selectedLanguage?.abreviacion ?? "",
+                    }
                     : undefined
             }
             onClose={closeModal}

@@ -1,11 +1,11 @@
 import { useLenguajesStore } from "@/store/lenguajes.store";
-import FiltersLenguajes from "../Lenguajes/FiltersLanguajes";
-import HeaderLenguaje from "../Lenguajes/HeaderLenguajes";
+import FiltersLenguajes from "../Lenguajes/FiltersLenguaje";
+import HeaderLenguaje from "../Lenguajes/HeaderLenguaje";
 import LoadingBooks from "@/components/Atomos/Loading";
 import Error from "@/components/Dashboard/Atomos/Error";
 import { useFilterLenguajes } from "@/hooks/useFilterLanguajes";
 import NotResults from "@/components/Atomos/NotResults";
-import ListaLenguajes from "../Lenguajes/ListaLenguajes";
+import ListaLenguajes from "../Lenguajes/ListaLenguaje";
 import LenguajeModal from "../Lenguajes/ModalLenguaje";
 
 export default function Lenguajes() {

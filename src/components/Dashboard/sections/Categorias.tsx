@@ -1,9 +1,9 @@
 import LoadingBooks from "../../Atomos/Loading";
 import Error from "../Atomos/Error";
 
-import FiltersCategorias from "../Categorias/FiltersCategorias";
-import HeaderCategorias from "../Categorias/HeaderCategorias";
-import ListaCategorias from "../Categorias/ListaCategorias";
+import FiltersCategorias from "../Categorias/FiltersCategoria";
+import HeaderCategorias from "../Categorias/HeaderCategoria";
+import ListaCategorias from "../Categorias/ListaCategoria";
 import CategoryModal from "../Categorias/ModalCategoria";
 import NotResults from "../../Atomos/NotResults";
 
