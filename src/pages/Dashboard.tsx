@@ -9,16 +9,18 @@ import Libros from "../components/Dashboard/sections/Libros";
 import { useBooksStore } from "../store/libro.store";
 import { useMenuStore } from "../store/menu.store";
 import Lenguajes from "@/components/Dashboard/sections/Lenguajes";
+import { useLenguajesStore } from "@/store/lenguajes.store";
 
 export default function Dashboard() {
     const { currentMenu } = useMenuStore();
     const { cargarLibros } = useBooksStore();
     const { obtenerCategorias } = useCategoriasStore();
-
+    const { obtenerLenguajes } = useLenguajesStore();
     useEffect(() => {
         cargarLibros();
         obtenerCategorias();
-    }, [cargarLibros, obtenerCategorias]);
+        obtenerLenguajes();
+    }, [cargarLibros, obtenerCategorias, obtenerLenguajes]);
     return (
         <main className="flex h-screen w-screen">
             <div className="md:flex-1">
