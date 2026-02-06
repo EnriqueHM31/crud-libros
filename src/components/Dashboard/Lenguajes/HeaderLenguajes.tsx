@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useLenguajesStore } from "@/store/lenguajes.store";
 
 export default function HeaderLenguaje() {
-
     const { openCreateModal } = useLenguajesStore();
     return (
         <div className="flex flex-col items-center justify-between md:flex-row">
@@ -20,7 +19,7 @@ export default function HeaderLenguaje() {
                     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                     whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                     transition={{ duration: 0.2, delay: 1.6 }}
-                    className="bg-primary text-white mt-5 flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2 font-semibold transition-colors duration-150 md:mt-0 md:py-2.5 dark:bg-blue-600 hover:bg-blue-800"
+                    className="bg-primary mt-5 flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2 font-semibold text-white transition-colors duration-150 hover:bg-blue-800 md:mt-0 md:py-2.5 dark:bg-blue-600"
                 >
                     <HiLanguage className="transition-transform duration-300 group-hover:rotate-180" />
                     Crear lenguaje
@@ -28,4 +27,4 @@ export default function HeaderLenguaje() {
             </div>
         </div>
     );
-}   
+}
