@@ -1,4 +1,3 @@
-
 import { containerVariantsEntrada, itemVariantsEntrada } from "@/constants/animaciones";
 import { useFiltersBooks } from "@/hooks/useFiltersBooks";
 import { useBooksStore } from "@/store/libro.store";
@@ -23,7 +22,7 @@ export default function ListBooks() {
                         onClick={() => openBookModal(book)}
                         variants={itemVariantsEntrada}
                         whileHover={{ x: 6 }}
-                        className="group bg-gray-200 dark:bg-primary-dark/30 hover:bg-primary text-background flex cursor-pointer flex-col items-center justify-center gap-5 rounded-2xl border border-primary/10 px-2 py-5 shadow-sm hover:shadow-md md:flex-row md:items-start md:justify-start md:px-8 md:py-4 dark:border-gray-700 dark:hover:bg-blue-600"
+                        className="group dark:bg-primary-dark/30 hover:bg-primary text-background border-primary/10 flex cursor-pointer flex-col items-center justify-center gap-5 rounded-2xl border bg-gray-200 px-2 py-5 shadow-sm hover:shadow-md md:flex-row md:items-start md:justify-start md:px-8 md:py-4 dark:border-gray-700 dark:hover:bg-blue-600"
                     >
                         {/* Imagen */}
                         <div className="h-28 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-100">
@@ -39,33 +38,35 @@ export default function ListBooks() {
                         {/* Info */}
                         <div className="flex flex-1 flex-col justify-between py-1">
                             <div className="flex flex-col items-center justify-center md:items-start md:justify-start">
-                                <h3 className="text-primary/80 group-hover:text-white text-center text-lg font-semibold md:text-start dark:text-white">
+                                <h3 className="text-primary/80 text-center text-lg font-semibold group-hover:text-white md:text-start dark:text-white">
                                     {info.title}
                                 </h3>
 
                                 {info.authors && (
-                                    <p className="group-hover:text-gray-400 dark:group-hover:text-white mt-1 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                                        <FaUser className="text-primary group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" />
+                                    <p className="mt-1 flex items-center gap-2 text-sm text-gray-500 group-hover:text-gray-400 dark:text-gray-400 dark:group-hover:text-white">
+                                        <FaUser className="text-primary group-hover:text-gray-400 dark:text-blue-500 dark:group-hover:text-white" />
                                         {info.authors.join(", ")}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="text-primary-soft group-hover:text-gray-400 dark:group-hover:text-white  mt-5 flex flex-wrap items-center justify-center gap-4 text-sm md:items-start md:justify-start dark:text-gray-400">
+                            <div className="text-primary-soft mt-5 flex flex-wrap items-center justify-center gap-4 text-sm group-hover:text-gray-400 md:items-start md:justify-start dark:text-gray-400 dark:group-hover:text-white">
                                 {info.publishedDate && (
                                     <span className="flex items-center gap-2">
-                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" />{" "}
+                                        <IoCalendarNumberOutline className="text-primary/70 group-hover:text-gray-400 dark:text-blue-500 dark:group-hover:text-white" />{" "}
                                         {info.publishedDate}
                                     </span>
                                 )}
                                 {info.pageCount && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <FaBookOpen className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" /> {info.pageCount} páginas
+                                        <FaBookOpen className="text-primary/70 group-hover:text-gray-400 dark:text-blue-500 dark:group-hover:text-white" />{" "}
+                                        {info.pageCount} páginas
                                     </span>
                                 )}
                                 {info.language && (
                                     <span className="ms-2 flex items-center gap-2">
-                                        <GrLanguage className="text-primary/70 group-hover:text-gray-400 dark:group-hover:text-white  dark:text-blue-500" /> {info.language.toUpperCase()}
+                                        <GrLanguage className="text-primary/70 group-hover:text-gray-400 dark:text-blue-500 dark:group-hover:text-white" />{" "}
+                                        {info.language.toUpperCase()}
                                     </span>
                                 )}
                             </div>
