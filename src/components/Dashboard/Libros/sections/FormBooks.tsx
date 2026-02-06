@@ -117,7 +117,6 @@ export function BookForm({ book, type = FormType.create }: BookFormProps) {
                                         onChange={handleChange}
                                     />
                                 </div>
-
                             </div>
 
                             <SelectorDinamico handleChange={handleCategoriesChange} value={formData.volumeInfo.categories} categorias={categorias} />
