@@ -1,4 +1,4 @@
-import { createBook, deleteBook, getAllBooks, updateBook } from "@/services/books.service";
+import { createBook, deleteBook, getAllBooks, updateBook } from "@/services/libros.service";
 import type { BooksState } from "@/types/store";
 import { toast } from "sonner";
 import { create } from "zustand";
@@ -124,25 +124,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...data,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...data,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
