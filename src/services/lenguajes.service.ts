@@ -2,7 +2,7 @@ import { handleApiError } from "@/utils/errors";
 
 interface Lenguaje {
     id: string;
-    lenguaje: string;
+    nombre: string;
     abreviacion: string;
 }
 export async function getAllLanguages() {
@@ -25,7 +25,7 @@ export async function getLanguageById(id: string) {
     }
 }
 
-export async function createLanguage(lenguaje: { lenguaje: string; abreviacion: string }) {
+export async function createLanguage(lenguaje: { nombre: string; abreviacion: string }) {
     try {
         const response = await fetch(import.meta.env.VITE_API_URL_LENGUAJES, {
             method: "POST",
@@ -39,7 +39,7 @@ export async function createLanguage(lenguaje: { lenguaje: string; abreviacion: 
 
         await handleApiError(response);
 
-        const { data, message } = (await response.json()) as { data: { lenguaje: string; id: string }; message: string };
+        const { data, message } = (await response.json()) as { data: { nombre: string; id: string }; message: string };
         return { data, message };
     } catch (error) {
         throw new Error("Error al crear lenguaje de la API" + error);
@@ -60,7 +60,7 @@ export async function updateLanguage({ id, lenguaje }: { id: string; lenguaje: P
 
         await handleApiError(response);
 
-        const { data, message } = (await response.json()) as { data: { lenguaje: string; id: string, abreviacion: string }; message: string };
+        const { data, message } = (await response.json()) as { data: { nombre: string; id: string, abreviacion: string }; message: string };
         return { data, message };
     } catch (error) {
         throw new Error("Error al actualizar lenguaje de la API" + error);
@@ -74,7 +74,7 @@ export async function deleteLanguage(id: string) {
         });
 
         await handleApiError(response);
-        const { data, message } = (await response.json()) as { data: { lenguaje: string; id: string }; message: string };
+        const { data, message } = (await response.json()) as { data: { nombre: string; abreviacion: string; id: string }; message: string };
         return { data, message };
     } catch (error) {
         throw new Error("Error al eliminar lenguaje de la API" + error);
