@@ -13,9 +13,9 @@ export default function LenguajeModal() {
             initialData={
                 modalMode === "edit"
                     ? {
-                        nombre: selectedLanguage?.nombre ?? "",
-                        abreviacion: selectedLanguage?.abreviacion ?? "",
-                    }
+                          nombre: selectedLanguage?.nombre ?? "",
+                          abreviacion: selectedLanguage?.abreviacion ?? "",
+                      }
                     : undefined
             }
             onClose={closeModal}
