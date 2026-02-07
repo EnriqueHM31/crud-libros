@@ -17,13 +17,9 @@ export default function BotonTheme() {
             animate={{ scale: 1, transition: { duration: 0.5 } }}
             exit={{ scale: 0.9 }}
             htmlFor="themeLanding"
-            className="switch border dark:border-gray-500 dark:bg-black">
-            <input
-                type="checkbox"
-                id="themeLanding"
-                checked={isDark}
-                onChange={handleChange}
-            />
+            className="switch border dark:border-gray-500 dark:bg-black"
+        >
+            <input type="checkbox" id="themeLanding" checked={isDark} onChange={handleChange} />
 
             <span className="slider">
                 <div className="star star_1"></div>
