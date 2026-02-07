@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiBook, FiHome, FiMail, FiMenu, FiPackage, FiStar, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import BotonTheme from "./BotonTheme";
 export default function Navbar() {
     const [open, setOpen] = useState(false);
 
@@ -19,10 +20,14 @@ export default function Navbar() {
             {/* NAVBAR */}
             <nav className="fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800">
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-                    <h1 className="flex items-center gap-2 text-xl font-bold tracking-wide text-white">
+                    <motion.h1
+                        initial={{ scale: 0.6 }}
+                        animate={{ scale: 1, transition: { duration: 0.5 } }}
+                        exit={{ scale: 0.9 }}
+                        className="flex items-center gap-2 text-xl font-bold tracking-wide text-white">
                         <img src={ICONOLOGO} alt="logo" className="h-10 w-auto saturate-30" />
                         Libreria HM
-                    </h1>
+                    </motion.h1>
 
                     {/* Desktop */}
                     <div className="hidden items-center gap-7 md:flex">
@@ -51,6 +56,8 @@ export default function Navbar() {
                         >
                             Iniciar Sesion
                         </motion.button>
+
+                        <BotonTheme />
                     </div>
 
                     {/* Button mobile */}
