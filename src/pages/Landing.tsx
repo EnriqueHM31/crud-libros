@@ -1,16 +1,12 @@
 import Layout from "@/layout/Layout";
-import { useBooksStore } from "@/store/libro.store";
-import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 export default function Landing() {
-    const { cargarLibros } = useBooksStore();
 
-    useEffect(() => {
-        cargarLibros();
-    }, [cargarLibros]);
 
     return (
         <Layout>
+            <Outlet />
             <h1 className="text-primary-dark text-4xl font-bold">Bienvenido a la librería de libros</h1>
         </Layout>
     );
