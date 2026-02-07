@@ -24,11 +24,12 @@ export function PagesRoutes() {
                 <Route path="/" element={<LoginDemo />} />
                 <Route path="/dashboard" element={<Dashboard />} />
 
-                <Route path="/usuario" element={<Landing />} />
-                <Route path="/libros" element={<Libros />} />
-                <Route path="/contacto" element={<Contacto />} />
-                <Route path="/favoritos" element={<Favoritos />} />
-                <Route path="/pedidos" element={<Pedidos />} />
+                <Route path="/usuario" element={<Landing />}>
+                    <Route path="libros" element={<Libros />} />
+                    <Route path="contacto" element={<Contacto />} />
+                    <Route path="favoritos" element={<Favoritos />} />
+                    <Route path="pedidos" element={<Pedidos />} />
+                </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Suspense>
