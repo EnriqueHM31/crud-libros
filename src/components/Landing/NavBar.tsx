@@ -24,7 +24,8 @@ export default function Navbar() {
                         initial={{ scale: 0.6 }}
                         animate={{ scale: 1, transition: { duration: 0.5 } }}
                         exit={{ scale: 0.9 }}
-                        className="flex items-center gap-2 text-xl font-bold tracking-wide text-black dark:text-white">
+                        className="flex items-center gap-2 text-xl font-bold tracking-wide text-black dark:text-white"
+                    >
                         <img src={ICONOLOGO} alt="logo" className="h-10 w-auto saturate-30" />
                         Libreria HM
                     </motion.h1>
@@ -39,7 +40,7 @@ export default function Navbar() {
                                     exit={{ scale: 0.9 }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black  after:transition-all after:duration-300 after:content-['']  hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white hover:text-black"
+                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
                                 >
                                     {link.icon}
                                     {link.name}
@@ -52,7 +53,7 @@ export default function Navbar() {
                             exit={{ scale: 0.9 }}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                            className="cursor-pointer rounded-xl px-4 py-2 text-sm text-white bg-black hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                            className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
                         >
                             Iniciar Sesion
                         </motion.button>

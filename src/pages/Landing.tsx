@@ -3,7 +3,6 @@ import { useBooksStore } from "@/store/libro.store";
 import { useEffect } from "react";
 
 export default function Landing() {
-
     const { cargarLibros } = useBooksStore();
 
     useEffect(() => {
