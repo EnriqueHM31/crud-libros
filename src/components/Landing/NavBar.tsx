@@ -27,20 +27,15 @@ export default function Navbar() {
                     {/* Desktop */}
                     <div className="hidden items-center gap-7 md:flex">
                         {links.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.href}
-
-                            >
+                            <Link key={link.name} to={link.href}>
                                 <motion.div
                                     initial={{ scale: 0.6 }}
                                     animate={{ scale: 1, transition: { duration: 0.5 } }}
                                     exit={{ scale: 0.9 }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
+                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
                                 >
-
                                     {link.icon}
                                     {link.name}
                                 </motion.div>
@@ -66,7 +61,8 @@ export default function Navbar() {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
                         onClick={() => setOpen(!open)}
-                        className={`text-2xl md:hidden rounded-full p-1 cursor-pointer ${open ? "bg-white text-black " : "bg-black text-white"}`}>
+                        className={`cursor-pointer rounded-full p-1 text-2xl md:hidden ${open ? "bg-white text-black" : "bg-black text-white"}`}
+                    >
                         {open ? <FiX /> : <FiMenu />}
                     </motion.button>
                 </div>
@@ -94,14 +90,14 @@ export default function Navbar() {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -40, opacity: 0 }}
                             transition={{ duration: 0.25 }}
-                            className="fixed top-24 left-1/2 z-50 mx-auto w-full max-w-11/12 -translate-x-1/2 rounded-xl border md:border-b dark:border-zinc-600 bg-zinc-950 md:hidden"
+                            className="fixed top-24 left-1/2 z-50 mx-auto w-full max-w-11/12 -translate-x-1/2 rounded-xl border bg-zinc-950 md:hidden md:border-b dark:border-zinc-600"
                         >
                             <div className="flex flex-col items-center gap-6 py-6">
                                 {links.map((link) => (
                                     <Link
                                         key={link.name}
                                         to={link.href}
-                                        className="flex items-center w-full gap-3 text-lg text-white/90 transition hover:text-white max-w-10/12"
+                                        className="flex w-full max-w-10/12 items-center gap-3 text-lg text-white/90 transition hover:text-white"
                                         onClick={() => setOpen(false)}
                                     >
                                         <motion.div
@@ -110,9 +106,8 @@ export default function Navbar() {
                                             exit={{ scale: 0.9 }}
                                             whileHover={{ scale: 1.03 }}
                                             whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                            className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white w-full"
+                                            className="relative flex w-full items-center justify-center gap-2 px-4 py-2 text-sm text-white/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
                                         >
-
                                             {link.icon}
                                             {link.name}
                                         </motion.div>
