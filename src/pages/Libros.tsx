@@ -2,7 +2,6 @@ import { useFiltersBooks } from "@/hooks/useFiltersLibro";
 import Layout from "@/layout/Layout";
 
 export default function Libros() {
-
     const { books } = useFiltersBooks();
     return (
         <Layout>
