@@ -9,10 +9,10 @@ export default function Navbar() {
 
     const links = [
         { name: "Inicio", icon: <FiHome />, href: "/usuario" },
-        { name: "Libros", icon: <FiBook />, href: "/libros" },
-        { name: "Contacto", icon: <FiMail />, href: "/contacto" },
-        { name: "Favoritos", icon: <FiStar />, href: "/favoritos" },
-        { name: "Pedidos", icon: <FiPackage />, href: "/pedidos" },
+        { name: "Libros", icon: <FiBook />, href: "/usuario/libros" },
+        { name: "Contacto", icon: <FiMail />, href: "/usuario/contacto" },
+        { name: "Favoritos", icon: <FiStar />, href: "/usuario/favoritos" },
+        { name: "Pedidos", icon: <FiPackage />, href: "/usuario/pedidos" },
     ];
 
     return (
@@ -37,7 +37,8 @@ export default function Navbar() {
                                 <motion.div
                                     initial={{ scale: 0.6 }}
                                     animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                    exit={{ scale: 0.9 }}
+                                    exit={{ scale: 1 }}
+                                    viewport={{ once: true }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
                                     className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
