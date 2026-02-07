@@ -61,7 +61,7 @@ export default function LoginDemo() {
                         whileTap={{ scale: 0.97 }}
                         className="mx-auto flex w-full max-w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-6 py-4 text-sm font-semibold text-gray-800 shadow-sm transition hover:bg-gray-100 md:w-fit md:min-w-70 dark:border-gray-600 dark:bg-black/20 dark:text-white dark:hover:bg-black/30"
                         onClick={() => {
-                            navigate("/landing");
+                            navigate("/usuario");
                         }}
                     >
                         <FaUser size={18} />

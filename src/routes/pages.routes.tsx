@@ -5,6 +5,7 @@ import LoadingBooks from "../components/Atomos/Loading";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+const Landing = lazy(() => import("../pages/Landing"));
 
 export function PagesRoutes() {
     return (
@@ -18,6 +19,7 @@ export function PagesRoutes() {
             <Routes>
                 <Route path="/" element={<LoginDemo />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/usuario" element={<Landing />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Suspense>

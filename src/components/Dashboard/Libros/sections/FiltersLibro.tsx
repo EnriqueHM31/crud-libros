@@ -98,14 +98,11 @@ export default function BooksFilters() {
                             className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
                         >
                             <option value="">Todos los idiomas</option>
-                            {
-                                lenguajes.map((lenguaje) => (
-                                    <option key={lenguaje.id} value={lenguaje.abreviacion}>
-                                        {lenguaje.nombre}
-                                    </option>
-                                ))
-                            }
-
+                            {lenguajes.map((lenguaje) => (
+                                <option key={lenguaje.id} value={lenguaje.abreviacion}>
+                                    {lenguaje.nombre}
+                                </option>
+                            ))}
 
                             <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                                 <svg

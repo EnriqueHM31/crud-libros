@@ -13,9 +13,9 @@ export default function CategoryModal() {
             initialData={
                 modalMode === "edit"
                     ? {
-                        nombre: selectedCategory?.nombre ?? "",
-                        descripcion: selectedCategory?.descripcion ?? "",
-                    }
+                          nombre: selectedCategory?.nombre ?? "",
+                          descripcion: selectedCategory?.descripcion ?? "",
+                      }
                     : undefined
             }
             onClose={closeModal}
