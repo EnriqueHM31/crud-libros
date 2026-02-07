@@ -31,10 +31,11 @@ export interface LenguajeaFormProps {
     };
     isOpen: boolean;
     onClose: () => void;
-    onSubmit: <Partial extends { nombre?: string; abreviacion?: string }>(data: Partial) => void;
+    onSubmit: <Partial extends { nombre?: string; abreviacion?: string; }>(data: Partial) => void;
 }
 
 export type HookFormLenguajesProps = Omit<LenguajeaFormProps, "isOpen" | "onClose">;
+
 
 export interface CountryDisplayProps {
     value: string; // código de país, ej: "es", "pt"

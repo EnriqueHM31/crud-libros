@@ -60,8 +60,8 @@ export default function LenguajeForm({ type = "create", initialData, isOpen, onC
                                     Abreviación del lenguaje
                                 </label>
                                 <textarea
-                                    name="descripcion"
-                                    id={isEdit ? "edit-descripcion" : "create-descripcion"}
+                                    name="abreviacion"
+                                    id={isEdit ? "edit-abreviacion" : "create-abreviacion"}
                                     rows={1}
                                     value={lenguaje.abreviacion}
                                     onChange={handleChange}

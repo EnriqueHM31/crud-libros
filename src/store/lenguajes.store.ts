@@ -1,5 +1,4 @@
-import { deleteCategory } from "@/services/categorias.service";
-import { createLanguage, getAllLanguages, updateLanguage } from "@/services/lenguajes.service";
+import { createLanguage, deleteLanguage, getAllLanguages, updateLanguage } from "@/services/lenguajes.service";
 import type { ModalMode } from "@/types/store";
 import { isApiError } from "@/utils/errors";
 import { toast } from "sonner";
@@ -48,7 +47,7 @@ export const useLenguajesStore = create<LenguajesState>()(
                     const { data } = await getAllLanguages();
                     set({ lenguajes: data, error: null });
                 } catch (err: unknown) {
-                    let message = "Error al obtener categorías";
+                    let message = "Error al obtener los lenguajes";
 
                     if (err instanceof Error) {
                         message = err.message;
@@ -89,7 +88,7 @@ export const useLenguajesStore = create<LenguajesState>()(
                     message: string;
                 };
 
-                toast.success(message ?? "Categoria creada correctamente");
+                toast.success(message ?? "Lenguaje creado correctamente");
                 set((state) => ({
                     lenguajes: [
                         ...state.lenguajes,
@@ -111,7 +110,8 @@ export const useLenguajesStore = create<LenguajesState>()(
                     message: string;
                 };
 
-                toast.success(message ?? "Categoria actualizada correctamente");
+                console.log("lenguajeModificado", message);
+                toast.success(message ?? "Lenguaje actualizado correctamente");
                 set((state) => ({
                     lenguajes: state.lenguajes.map((cat) => (cat.id === lenguajeModificado.id ? { ...cat, ...data } : cat)),
                 }));
@@ -120,13 +120,15 @@ export const useLenguajesStore = create<LenguajesState>()(
             },
 
             submitDelete: async (id: string) => {
-                const { data, message } = (await deleteCategory(id)) as { data: { id: string; nombre: string; abreviacion: string }; message: string };
+                console.log("id", id);
+                const { data, message } = (await deleteLanguage(id)) as { data: { id: string; nombre: string; abreviacion: string }; message: string };
 
+                console.log("data", data);
                 set((state) => ({
                     lenguajes: state.lenguajes.filter((cat) => cat.id !== data.id),
                 }));
 
-                toast.success(message ?? "Categoria eliminada correctamente");
+                toast.success(message ?? "Lenguaje eliminado correctamente");
                 get().closeModal();
             },
         }),

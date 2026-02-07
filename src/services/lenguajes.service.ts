@@ -33,7 +33,8 @@ export async function createLanguage(lenguaje: { nombre: string; abreviacion: st
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                lenguaje: lenguaje,
+                nombre: lenguaje.nombre,
+                abreviacion: lenguaje.abreviacion,
             }),
         });
 
@@ -54,7 +55,8 @@ export async function updateLanguage({ id, lenguaje }: { id: string; lenguaje: P
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                lenguaje: lenguaje,
+                nombre: lenguaje.nombre,
+                abreviacion: lenguaje.abreviacion,
             }),
         });
 
