@@ -2,16 +2,16 @@ import ICONOLOGO from "@/../public/icono.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiBook, FiHome, FiMail, FiMenu, FiPackage, FiStar, FiX } from "react-icons/fi";
-
+import { Link } from "react-router-dom";
 export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     const links = [
-        { name: "Inicio", icon: <FiHome />, href: "#" },
-        { name: "Libros", icon: <FiBook />, href: "#" },
-        { name: "Contacto", icon: <FiMail />, href: "#" },
-        { name: "Favoritos", icon: <FiStar />, href: "#" },
-        { name: "Pedidos", icon: <FiPackage />, href: "#" },
+        { name: "Inicio", icon: <FiHome />, href: "/usuario" },
+        { name: "Libros", icon: <FiBook />, href: "/libros" },
+        { name: "Contacto", icon: <FiMail />, href: "/contacto" },
+        { name: "Favoritos", icon: <FiStar />, href: "/favoritos" },
+        { name: "Pedidos", icon: <FiPackage />, href: "/pedidos" },
     ];
 
     return (
@@ -25,20 +25,30 @@ export default function Navbar() {
                     </h1>
 
                     {/* Desktop */}
-                    <div className="hidden items-center gap-4 md:flex">
+                    <div className="hidden items-center gap-7 md:flex">
                         {links.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
-                                className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80 transition after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
+                                to={link.href}
+
                             >
-                                {link.icon}
-                                {link.name}
-                            </a>
+                                <motion.div
+                                    initial={{ scale: 0.6 }}
+                                    animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                    exit={{ scale: 0.9 }}
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
+                                >
+
+                                    {link.icon}
+                                    {link.name}
+                                </motion.div>
+                            </Link>
                         ))}
                         <motion.button
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
+                            initial={{ scale: 0.6 }}
+                            animate={{ scale: 1, transition: { duration: 0.5 } }}
                             exit={{ scale: 0.9 }}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
@@ -49,9 +59,16 @@ export default function Navbar() {
                     </div>
 
                     {/* Button mobile */}
-                    <button onClick={() => setOpen(!open)} className="text-2xl md:hidden">
+                    <motion.button
+                        initial={{ scale: 0.6 }}
+                        animate={{ scale: 1, transition: { duration: 0.5 } }}
+                        exit={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                        onClick={() => setOpen(!open)}
+                        className={`text-2xl md:hidden rounded-full p-1 cursor-pointer ${open ? "bg-white text-black " : "bg-black text-white"}`}>
                         {open ? <FiX /> : <FiMenu />}
-                    </button>
+                    </motion.button>
                 </div>
             </nav>
 
@@ -67,7 +84,7 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.4 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-40 w-full max-w-11/12 md:hidden"
+                            className="fixed inset-0 z-40 w-full max-w-11/12 md:hidden dark:bg-black"
                             onClick={() => setOpen(false)}
                         />
 
@@ -77,20 +94,29 @@ export default function Navbar() {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -40, opacity: 0 }}
                             transition={{ duration: 0.25 }}
-                            className="fixed top-24 left-1/2 z-50 mx-auto w-full max-w-11/12 -translate-x-1/2 rounded-xl border-b border-zinc-800 bg-zinc-950 md:hidden"
+                            className="fixed top-24 left-1/2 z-50 mx-auto w-full max-w-11/12 -translate-x-1/2 rounded-xl border md:border-b dark:border-zinc-600 bg-zinc-950 md:hidden"
                         >
                             <div className="flex flex-col items-center gap-6 py-6">
                                 {links.map((link) => (
-                                    <motion.a
+                                    <Link
                                         key={link.name}
-                                        href={link.href}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="flex items-center gap-3 text-lg text-white/90 transition hover:text-white"
+                                        to={link.href}
+                                        className="flex items-center w-full gap-3 text-lg text-white/90 transition hover:text-white max-w-10/12"
                                         onClick={() => setOpen(false)}
                                     >
-                                        {link.icon}
-                                        {link.name}
-                                    </motion.a>
+                                        <motion.div
+                                            initial={{ scale: 0.6 }}
+                                            animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                            exit={{ scale: 0.9 }}
+                                            whileHover={{ scale: 1.03 }}
+                                            whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                            className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-white/80  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white w-full"
+                                        >
+
+                                            {link.icon}
+                                            {link.name}
+                                        </motion.div>
+                                    </Link>
                                 ))}
                                 <motion.button
                                     initial={{ scale: 0.9 }}
