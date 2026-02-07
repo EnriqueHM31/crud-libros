@@ -1,12 +1,15 @@
-import { FaSearch, FaRedo, FaBook, FaUser, FaLanguage, FaFileAlt } from "react-icons/fa";
+import { useCategoriasStore } from "@/store/categorias.store";
 import { useBooksFiltersStore } from "@/store/filterLibros.store";
-import { motion } from "framer-motion";
-import { useFilterCategories } from "@/hooks/useFilterCategoria";
+import { useLenguajesStore } from "@/store/lenguajes.store";
 import type { Categoria } from "@/types/categoria";
+import { motion } from "framer-motion";
+import { FaBook, FaFileAlt, FaLanguage, FaRedo, FaSearch, FaUser } from "react-icons/fa";
 
 export default function BooksFilters() {
     const { search, category, author, language, maxPages, setSearch, setCategory, setAuthor, setLanguage, setMaxPages, resetFilters } = useBooksFiltersStore();
-    const { categorias } = useFilterCategories();
+    const { categorias } = useCategoriasStore();
+
+    const { lenguajes } = useLenguajesStore();
 
     return (
         <section className="rounded-2xl border border-white py-3 dark:border-0 dark:border-gray-500">
@@ -95,21 +98,26 @@ export default function BooksFilters() {
                             className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
                         >
                             <option value="">Todos los idiomas</option>
-                            <option value="es">🇪🇸 Español</option>
-                            <option value="en">🇬🇧 Inglés</option>
-                            <option value="fr">🇫🇷 Francés</option>
-                            <option value="pt">🇵🇹 Portugués</option>
+                            {
+                                lenguajes.map((lenguaje) => (
+                                    <option key={lenguaje.id} value={lenguaje.abreviacion}>
+                                        {lenguaje.nombre}
+                                    </option>
+                                ))
+                            }
+
+
+                            <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
+                                <svg
+                                    className="h-4 w-4 text-gray-500 group-hover:text-gray-600 dark:text-gray-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
                         </select>
-                        <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
-                            <svg
-                                className="h-4 w-4 text-gray-500 group-hover:text-gray-600 dark:text-gray-600"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </div>
                     </div>
 
                     {/* Máx páginas */}

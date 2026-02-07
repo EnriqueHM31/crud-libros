@@ -54,7 +54,7 @@ export default function LenguajeForm({ type = "create", initialData, isOpen, onC
                             {/* Descripción */}
                             <div className="flex flex-col gap-1">
                                 <label
-                                    htmlFor={isEdit ? "edit-descripcion" : "create-descripcion"}
+                                    htmlFor={isEdit ? "edit-abreviacion" : "create-abreviacion"}
                                     className="text-primary text-sm font-medium dark:text-gray-400"
                                 >
                                     Abreviación del lenguaje
