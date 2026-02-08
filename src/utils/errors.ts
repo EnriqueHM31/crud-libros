@@ -4,6 +4,7 @@ import type { GoogleBook } from "@/types/libro";
 import { toast } from "sonner";
 
 export interface UserError {
+    title: string;
     message: string;
 }
 
@@ -58,36 +59,35 @@ export function isApiError(error: unknown): error is ApiErrorResponse {
     return typeof error === "object" && error !== null && "response" in error;
 }
 
-export function getUserFriendlyError(error: unknown): UserError {
+export function getUserFriendlyError(error: unknown, categoria: string): UserError {
     // AbortController
     if (error instanceof DOMException && error.name === "AbortError") {
-        return { message: "La solicitud fue cancelada. Intenta nuevamente." };
+        return { message: "La solicitud fue cancelada. Intenta nuevamente.", title: `Error en ${categoria}` };
     }
     // Error estándar
     if (error instanceof Error) {
         const msg = error.message.toLowerCase();
 
-        console.log("error", error);
         // fetch network error
         if (msg.includes("failed to fetch") || msg.includes("networkerror")) {
-            return { message: "No se pudo conectar con el servidor. Verifica tu internet." };
+            return { title: `Error en ${categoria}`, message: "No se pudo conectar con el servidor. Verifica tu internet." };
         }
 
         // timeout custom
         if (msg.includes("timeout")) {
-            return { message: "El servidor tardó demasiado en responder." };
+            return { title: `Error en ${categoria}`, message: "El servidor tardó demasiado en responder." };
         }
 
         // 4xx / 5xx si tú los lanzas manualmente
         if (msg.includes("404")) {
-            return { message: "No se encontraron libros." };
+            return { title: `Error en ${categoria}`, message: "No se encontraron libros." };
         }
 
         if (msg.includes("500")) {
-            return { message: "El servidor tuvo un problema. Intenta más tarde." };
+            return { title: `Error en ${categoria}`, message: "El servidor tuvo un problema. Intenta más tarde." };
         }
     }
 
     // fallback
-    return { message: "Ocurrió un error inesperado. Intenta nuevamente." };
+    return { title: `Error en ${categoria}`, message: "Ocurrió un error inesperado. Intenta nuevamente." };
 }

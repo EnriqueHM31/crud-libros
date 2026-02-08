@@ -8,7 +8,7 @@ type ModalMode = "create" | "edit" | null;
 export type CategoriasState = {
     categorias: Categoria[];
     isLoading: boolean;
-    error: string | null;
+    error: { title: string | null; message: string | null };
 
     // modal
     isModalOpen: boolean;
@@ -69,7 +69,7 @@ export interface BooksState {
 
     /* estado */
     isLoading: boolean;
-    error: string | null;
+    error: { title: string | null; message: string | null };
 
     /* acciones */
     cargarLibros: () => Promise<void>;
