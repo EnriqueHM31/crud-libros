@@ -27,43 +27,37 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 console.log({ libro });
                 if (!libro || !libro.id) return;
 
-                const existe = get().favoritos.find(l => l.book.id === libro.id);
+                const existe = get().favoritos.find((l) => l.book.id === libro.id);
                 if (existe) return;
 
                 set({
-                    favoritos: [
-                        ...get().favoritos,
-                        { book: libro, read: false }
-                    ]
+                    favoritos: [...get().favoritos, { book: libro, read: false }],
                 });
             },
 
-
             quitarFavorito: (id) => {
                 set({
-                    favoritos: get().favoritos.filter(l => l.book.id !== id)
+                    favoritos: get().favoritos.filter((l) => l.book.id !== id),
                 });
             },
 
             toggleLeido: (id) => {
                 set({
-                    favoritos: get().favoritos.map(l =>
-                        l.book.id === id ? { ...l, read: !l.read } : l
-                    )
+                    favoritos: get().favoritos.map((l) => (l.book.id === id ? { ...l, read: !l.read } : l)),
                 });
             },
 
             esFavorito: (id) => {
                 if (!id) return false;
-                return get().favoritos.some(l => l.book.id === id);
+                return get().favoritos.some((l) => l.book.id === id);
             },
 
             totalFavoritos: () => {
                 return get().favoritos.length;
-            }
+            },
         }),
         {
-            name: "libros-favoritos-storage"
+            name: "libros-favoritos-storage",
         }
     )
 );
