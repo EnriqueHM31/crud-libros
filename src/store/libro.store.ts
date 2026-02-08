@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import LIBROS from "../data/mook.json";
 import type { GoogleBook, GoogleBooksResponse } from "../types/libro";
+import { getUserFriendlyError } from "@/utils/errors";
 
 const MAX_RESULTS = 12;
 
@@ -24,21 +25,23 @@ export const useBooksStore = create<BooksState>((set) => ({
     cargarLibros: async () => {
         set({ isLoading: true });
 
-        setTimeout(async () => {
-            try {
-                const response = await getAllBooks();
+        try {
+            const response = await getAllBooks();
 
-                set({
-                    books: response.data,
-                    isLoading: false,
-                });
-            } catch (err) {
-                set({
-                    error: (err as Error).message,
-                    isLoading: false,
-                });
-            }
-        }, 500);
+            set({
+                books: response.data,
+                isLoading: false,
+            });
+        } catch (err) {
+
+            const { message } = getUserFriendlyError(err);
+
+            console.log({ message })
+            set({
+                error: message,
+                isLoading: false,
+            });
+        }
     },
 
     searchBooks: async (query) => {
@@ -124,25 +127,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...data,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...data,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
