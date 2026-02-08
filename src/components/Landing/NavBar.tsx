@@ -45,9 +45,7 @@ export default function Navbar() {
                                     viewport={{ once: true }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black  dark:text-white/70 dark:after:bg-white dark:hover:text-white
-                                        ${location.pathname === link.href ? "text-black dark:text-white after:w-full" : "text-black/70 dark:border-b-2 border-black/50 hover:after:w-full"}
-                                        `}
+                                    className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black dark:text-white/70 dark:after:bg-white dark:hover:text-white ${location.pathname === link.href ? "text-black after:w-full dark:text-white" : "border-black/50 text-black/70 hover:after:w-full dark:border-b-2"} `}
                                 >
                                     {link.icon}
                                     {link.name}
