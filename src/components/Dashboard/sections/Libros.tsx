@@ -51,23 +51,19 @@ export default function Libros() {
                     {/* Selector de formato */}
                     <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
-                    {
-                        error ? (
-                            <Error error={error} />
-                        ) : !books || books.length === 0 ? (
-                            <NotResults error="No se encontraron resultados para la búsqueda" />
-                        ) : (
-                            <>
-                                {/* GRID VIEW */}
-                                {viewMode === viewModes.grid && <MosaicoBooks />}
+                    {error ? (
+                        <Error error={error} />
+                    ) : !books || books.length === 0 ? (
+                        <NotResults error="No se encontraron resultados para la búsqueda" />
+                    ) : (
+                        <>
+                            {/* GRID VIEW */}
+                            {viewMode === viewModes.grid && <MosaicoBooks />}
 
-                                {/* LIST VIEW */}
-                                {viewMode === viewModes.list && <ListBooks />}
-                            </>
-                        )
-                    }
-
-
+                            {/* LIST VIEW */}
+                            {viewMode === viewModes.list && <ListBooks />}
+                        </>
+                    )}
                 </section>
             )}
         </>
