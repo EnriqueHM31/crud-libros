@@ -23,7 +23,7 @@ export default function Libros() {
                 <p className="w-full text-black dark:text-gray-400 ">En esta página encontrarás el catálogo de libros disponibles en la librería HM. Aquí podrás explorar los títulos, filtrar por idioma o categoría y visualizar la información básica de cada libro para ubicarlo de forma rápida y sencilla.</p>
                 <BooksFiltersLanding />
 
-                <div className="max mt-7 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+                <div className="max mt-7 grid grid-cols-1 gap-24 sm:grid-cols-2 md:grid-cols-3">
                     {books.map((book) => (
                         <LibroCard key={book.id} book={book} />
                     ))}
