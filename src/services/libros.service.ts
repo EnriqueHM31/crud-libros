@@ -9,7 +9,7 @@ export const getAllBooks = async () => {
         const { data, message } = (await response.json()) as { data: GoogleBook[]; message: string };
         return { data, message };
     } catch (error) {
-        throw new Error("Error al obtener libros de la API" + error);
+        throw new Error("Error al obtener libros de la API " + error);
     }
 };
 
