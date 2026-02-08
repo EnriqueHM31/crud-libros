@@ -21,7 +21,7 @@ export default function Lenguajes() {
             <HeaderLenguaje />
             <FiltersLenguajes />
 
-            {error ? (
+            {error.message ? (
                 <Error error={error.message ?? "Ocurrió un error inesperado"} title={error.title ?? "Error"} />
             ) : !lenguajes || lenguajes.length === 0 ? (
                 <NotResults error="No se encontraron resultados para la categoría buscada" />
