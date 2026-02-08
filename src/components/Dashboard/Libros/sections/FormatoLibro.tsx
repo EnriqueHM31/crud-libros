@@ -12,13 +12,13 @@ export default function HeaderTypeFormatBook({ viewMode, handleViewMode }: Heade
             <div className="flex w-full items-center justify-end gap-2">
                 <span className="order-2 text-sm font-medium text-gray-500 md:order-1 md:me-10 dark:text-gray-400">Mostrando {total} libros</span>
                 <div className="order-1 flex items-center gap-2 md:order-2">
-                    {typeViews.map(({ name, value, icono }: (typeof typeViews)[number]) => (
+                    {typeViews.map(({ name, value, Icono }: (typeof typeViews)[number]) => (
                         <button
                             key={name}
                             onClick={() => handleViewMode(value as ViewMode)}
                             className={`cursor-pointer rounded-lg p-2 ${viewMode === value ? "bg-primary text-white dark:bg-blue-600" : "text-primary hover:bg-background hover:bg-blue-800 hover:text-white dark:text-white"}`}
                         >
-                            {icono}
+                            <Icono />
                         </button>
                     ))}
                 </div>
