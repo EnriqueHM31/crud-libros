@@ -19,26 +19,26 @@ export default function BooksFiltersLanding() {
                 {/* Grid de filtros con iconos */}
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5 flex-1">
                     <div className="group relative flex-1">
-                        <FaSearch className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
+                        <FaSearch className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
                         <input
                             type="text"
                             name="search"
                             placeholder="Buscar por título o descripción..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="dark:bg-primary-dark focus:ring-primary-dark w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-zinc-900 focus:ring-zinc-900 w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-zinc-700 dark:text-white dark:focus:ring-gray-400"
                         />
                     </div>
 
 
                     {/* Categoría */}
                     <div className="group relative">
-                        <FaBook className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
+                        <FaBook className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
                         <select
                             value={category}
                             name="category"
                             onChange={(e) => setCategory(e.target.value)}
-                            className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-zinc-900 focus:ring-zinc-900 w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-zinc-700 dark:text-white dark:focus:ring-gray-400"
                         >
                             <option value="">Todas las categorías</option>{" "}
                             {categorias.map((category: Categoria) => (
@@ -49,7 +49,7 @@ export default function BooksFiltersLanding() {
                         </select>
                         <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
                             <svg
-                                className="h-4 w-4 text-gray-500 group-hover:text-gray-600 dark:text-gray-600"
+                                className="h-4 w-4 text-gray-500 group-hover:text-zinc-600 dark:text-gray-600"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -61,26 +61,26 @@ export default function BooksFiltersLanding() {
 
                     {/* Autor */}
                     <div className="group relative">
-                        <FaUser className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
+                        <FaUser className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
                         <input
                             type="text"
                             name="author"
                             placeholder="Autor"
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)}
-                            className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-zinc-900 focus:ring-zinc-900 w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-zinc-700 dark:text-white dark:focus:ring-gray-400"
                         />
                     </div>
 
                     {/* Idioma */}
                     <div className="group relative">
-                        <FaLanguage className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
+                        <FaLanguage className=" absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-red-300/30 dark:group-hover:text-white/80" />
                         <div className="relative">
                             <select
                                 value={language}
                                 name="language"
                                 onChange={(e) => setLanguage(e.target.value)}
-                                className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-10 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                                className="dark:bg-zinc-900 focus:ring-zinc-900 w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-10 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-zinc-700 dark:text-white dark:focus:ring-gray-400"
                             >
                                 <option value="">Todos los idiomas</option>
                                 {lenguajes.map((lenguaje) => (
@@ -93,7 +93,7 @@ export default function BooksFiltersLanding() {
                             {/* icono flecha */}
                             <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
                                 <svg
-                                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
+                                    className="h-4 w-4 text-gray-500 dark:text-white/30"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ export default function BooksFiltersLanding() {
 
                     {/* Máx páginas */}
                     <div className="group relative">
-                        <FaFileAlt className="group-hover:text-primary absolute top-1/2 left-3 z-10 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
+                        <FaFileAlt className="group-hover:text-primary absolute top-1/2 left-3 z-10 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
                         <input
                             type="number"
                             name="maxPages"
@@ -115,7 +115,7 @@ export default function BooksFiltersLanding() {
                             placeholder="Máx páginas"
                             value={maxPages ?? ""}
                             onChange={(e) => setMaxPages(e.target.value ? Number(e.target.value) : null)}
-                            className="dark:bg-primary-dark focus:ring-primary-dark w-full appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            className="dark:bg-zinc-900 focus:ring-zinc-900 w-full appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-zinc-700 dark:text-white dark:focus:ring-gray-400"
                         />
                     </div>
                 </div>
@@ -128,7 +128,7 @@ export default function BooksFiltersLanding() {
                         whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                         whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                         transition={{ duration: 0.2, delay: 1.6 }}
-                        className="bg-primary flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-blue-800 dark:bg-blue-600"
+                        className="bg-primary flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-gray-500 dark:bg-white/90 dark:text-black dark:hover:text-white"
                     >
                         <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
                     </motion.button>
