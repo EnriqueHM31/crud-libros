@@ -22,7 +22,9 @@ export default function Navbar() {
     return (
         <>
             {/* NAVBAR */}
-            <nav className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "backdrop-blur-2xl bg-black/60" : "bg-white"}`}>
+            <nav
+                className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "bg-black/60 backdrop-blur-2xl" : "bg-white"}`}
+            >
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
                     <motion.h1
                         initial={{ scale: 0.6 }}
