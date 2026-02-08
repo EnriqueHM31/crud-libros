@@ -11,7 +11,7 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.35 }}
-            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black dark:bg-zinc-950 shadow-lg"
+            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black shadow-lg dark:bg-zinc-950"
         >
             {/* IMAGE */}
             <div className="relative h-60 overflow-hidden">
@@ -28,14 +28,14 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
 
                 {/* category badge */}
                 {v.categories?.[0] && (
-                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black dark:bg-white/10 px-3 py-1 text-xs backdrop-blur text-white">
+                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black px-3 py-1 text-xs text-white backdrop-blur dark:bg-white/10">
                         {v.categories.length > 1 ? `${v.categories[0]} + ${v.categories.length - 1} más` : v.categories[0]}
                     </div>
                 )}
             </div>
 
             {/* CONTENT */}
-            <div className="flex-1  p-5  flex flex-col justify-between">
+            <div className="flex flex-1 flex-col justify-between p-5">
                 {/* title */}
                 <h2 className="line-clamp-2 text-lg font-semibold text-white">{v.title}</h2>
 
@@ -65,9 +65,7 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                     </div>
                 </div>
 
-
                 <p className="mt-3 line-clamp-2 text-sm text-white/80">{v.description}</p>
-
 
                 {/* actions */}
                 <div className="flex gap-3 pt-4">
