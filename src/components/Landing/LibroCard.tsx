@@ -23,7 +23,7 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black shadow-lg dark:bg-zinc-950"
         >
             {/* IMAGE */}
-            <div className="relative h-60 overflow-hidden">
+            <div className="relative h-80 overflow-hidden">
                 <motion.img
                     src={v.imageLinks?.thumbnail || "/no-image.jpg"}
                     alt={v.title}
