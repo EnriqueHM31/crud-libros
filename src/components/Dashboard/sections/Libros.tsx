@@ -30,6 +30,7 @@ export default function Libros() {
     if (isLoading) return <LoadingBooks />;
     const isFormMode = modalMode === "create" || modalMode === FormType.edit;
 
+    console.log({ error });
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
@@ -51,7 +52,7 @@ export default function Libros() {
                     {/* Selector de formato */}
                     <HeaderTypeFormatBook viewMode={viewMode} handleViewMode={handleViewMode} />
 
-                    {error ? (
+                    {error.message ? (
                         <Error error={error.message ?? "Ocurrió un error inesperado"} title={error.title ?? "Error"} />
                     ) : !books || books.length === 0 ? (
                         <NotResults error="No se encontraron resultados para la búsqueda" />
