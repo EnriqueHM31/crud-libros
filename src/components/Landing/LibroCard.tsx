@@ -1,9 +1,18 @@
+import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
 import { motion } from "framer-motion";
 import { FiBookOpen, FiUser, FiGlobe, FiLayers } from "react-icons/fi";
 
 export default function LibroCard({ book }: { book: GoogleBook }) {
+    const { agregarFavorito, quitarFavorito, esFavorito } = useFavoritosStore();
+    if (!book || !book.id) return null;
+
     const v = book.volumeInfo;
+
+    const isFavorito = esFavorito(book.id);
+
+    console.log({ isFavorito });
+
 
     return (
         <motion.article
@@ -79,11 +88,16 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                     </motion.a>
 
                     <motion.button
+                        onClick={() =>
+                            esFavorito(book.id)
+                                ? quitarFavorito(book.id)
+                                : agregarFavorito(book)
+                        }
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                        className="cursor-pointer rounded-lg border border-zinc-700 px-3 py-2 hover:bg-zinc-900"
+                        className={`cursor-pointer rounded-lg border border-zinc-700 px-3 py-2  ${esFavorito(book.id) ? "bg-red-500" : "bg-zinc-900"}`}
                     >
-                        ❤
+                        🤍
                     </motion.button>
                 </div>
             </div>
