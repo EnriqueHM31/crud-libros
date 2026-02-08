@@ -1,16 +1,19 @@
 import { createCategory, deleteCategory, getAllCategories, updateCategory } from "@/services/categorias.service";
-import { isApiError } from "@/utils/errors";
+import type { CategoriasState } from "@/types/store";
+import { getUserFriendlyError } from "@/utils/errors";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CategoriasState } from "@/types/store";
 
 export const useCategoriasStore = create<CategoriasState>()(
     persist(
         (set, get) => ({
             categorias: [],
             isLoading: false,
-            error: null,
+            error: {
+                title: null,
+                message: null,
+            },
 
             isModalOpen: false,
             modalMode: null,
@@ -21,17 +24,11 @@ export const useCategoriasStore = create<CategoriasState>()(
 
                 try {
                     const { data } = await getAllCategories();
-                    set({ categorias: data, error: null });
+                    set({ categorias: data, error: { title: null, message: null } });
                 } catch (err: unknown) {
-                    let message = "Error al obtener categorías";
+                    const { message, title } = getUserFriendlyError(err, "las Categorias");
 
-                    if (err instanceof Error) {
-                        message = err.message;
-                    } else if (isApiError(err)) {
-                        message = err.response?.data?.message ?? message;
-                    }
-
-                    set({ error: message });
+                    set({ error: { title: title, message: message } });
                 } finally {
                     set({ isLoading: false });
                 }
