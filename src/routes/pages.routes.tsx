@@ -23,8 +23,9 @@ export function PagesRoutes() {
             <Routes>
                 <Route path="/" element={<LoginDemo />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/usuario" element={<Landing />} />
 
-                <Route path="/usuario" element={<Landing />}>
+                <Route path="/usuario" element={null}>
                     <Route path="libros" element={<Libros />} />
                     <Route path="contacto" element={<Contacto />} />
                     <Route path="favoritos" element={<Favoritos />} />
