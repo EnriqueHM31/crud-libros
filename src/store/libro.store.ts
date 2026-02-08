@@ -20,7 +20,10 @@ export const useBooksStore = create<BooksState>((set) => ({
     hasMore: true,
 
     isLoading: false,
-    error: null,
+    error: {
+        title: null,
+        message: null,
+    },
 
     cargarLibros: async () => {
         set({ isLoading: true });
@@ -33,11 +36,9 @@ export const useBooksStore = create<BooksState>((set) => ({
                 isLoading: false,
             });
         } catch (err) {
-            const { message } = getUserFriendlyError(err);
-
-            console.log({ message });
+            const { message, title } = getUserFriendlyError(err, "los Libros");
             set({
-                error: message,
+                error: { title: title, message: message },
                 isLoading: false,
             });
         }
@@ -48,7 +49,7 @@ export const useBooksStore = create<BooksState>((set) => ({
 
         set({
             isLoading: true,
-            error: null,
+            error: { title: null, message: null },
             books: [],
             query,
             page: 0,
@@ -65,8 +66,9 @@ export const useBooksStore = create<BooksState>((set) => ({
                 isLoading: false,
             });
         } catch (err) {
+            const { message, title } = getUserFriendlyError(err, "los Libros");
             set({
-                error: (err as Error).message,
+                error: { title: title, message: message },
                 isLoading: false,
             });
         }
@@ -126,25 +128,25 @@ export const useBooksStore = create<BooksState>((set) => ({
             books: state.books.map((book) =>
                 book.id === id
                     ? {
-                          ...book,
-                          ...data,
-                          volumeInfo: {
-                              ...book.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...book,
+                        ...data,
+                        volumeInfo: {
+                            ...book.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : book
             ),
             selectedBook:
                 state.selectedBook?.id === id
                     ? {
-                          ...state.selectedBook,
-                          ...data,
-                          volumeInfo: {
-                              ...state.selectedBook.volumeInfo,
-                              ...data.volumeInfo,
-                          },
-                      }
+                        ...state.selectedBook,
+                        ...data,
+                        volumeInfo: {
+                            ...state.selectedBook.volumeInfo,
+                            ...data.volumeInfo,
+                        },
+                    }
                     : state.selectedBook,
             modalMode: "view",
         }));
@@ -173,7 +175,7 @@ export const useBooksStore = create<BooksState>((set) => ({
             page: 0,
             hasMore: true,
             isLoading: false,
-            error: null,
+            error: { title: null, message: null },
         });
     },
 
