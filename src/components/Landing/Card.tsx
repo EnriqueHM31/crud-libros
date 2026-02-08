@@ -5,7 +5,6 @@ import { FiBookOpen, FiUser, FiGlobe, FiLayers } from "react-icons/fi";
 import "@/style/cardLibro.css";
 
 export default function Card({ book }: { book: GoogleBook }) {
-
     const { agregarFavorito, quitarFavorito, esFavorito } = useFavoritosStore();
     if (!book || !book.id) return null;
 
@@ -16,7 +15,7 @@ export default function Card({ book }: { book: GoogleBook }) {
     console.log({ isFavorito });
 
     return (
-        <div className="container noselect">
+        <div className="noselect container">
             <div className="canvas">
                 <div className="tracker tr-1"></div>
                 <div className="tracker tr-2"></div>
@@ -44,7 +43,7 @@ export default function Card({ book }: { book: GoogleBook }) {
                 <div className="tracker tr-24"></div>
                 <div className="tracker tr-25"></div>
                 <div id="card">
-                    <div id="prompt" className="w-full h-full">
+                    <div id="prompt" className="h-full w-full">
                         <motion.article
                             initial={{ opacity: 0, y: 40, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -118,14 +117,10 @@ export default function Card({ book }: { book: GoogleBook }) {
                                     </motion.a>
 
                                     <motion.button
-                                        onClick={() =>
-                                            esFavorito(book.id)
-                                                ? quitarFavorito(book.id)
-                                                : agregarFavorito(book)
-                                        }
+                                        onClick={() => (esFavorito(book.id) ? quitarFavorito(book.id) : agregarFavorito(book))}
                                         whileHover={{ scale: 1.03 }}
                                         whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                                        className={`cursor-pointer rounded-lg border border-zinc-700 px-3 py-2  ${esFavorito(book.id) ? "bg-red-500" : "bg-zinc-900"}`}
+                                        className={`cursor-pointer rounded-lg border border-zinc-700 px-3 py-2 ${esFavorito(book.id) ? "bg-red-500" : "bg-zinc-900"}`}
                                     >
                                         🤍
                                     </motion.button>
@@ -138,11 +133,8 @@ export default function Card({ book }: { book: GoogleBook }) {
                             </div>
                         </motion.article>
                     </div>
-                    <div className="title text-center px-4">{book.volumeInfo.title}</div>
-                    <div className="subtitle">
-                        mouse hover tracker
-                    </div>
-
+                    <div className="title px-4 text-center">{book.volumeInfo.title}</div>
+                    <div className="subtitle">mouse hover tracker</div>
                 </div>
             </div>
         </div>
