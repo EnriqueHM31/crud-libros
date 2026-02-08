@@ -1,4 +1,3 @@
-
 import type { GoogleBook } from "@/types/libro";
 import { motion } from "framer-motion";
 import { FiBookOpen, FiUser, FiGlobe, FiLayers } from "react-icons/fi";
@@ -12,14 +11,14 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.35 }}
-            className="group relative w-full bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg flex flex-col"
+            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-lg"
         >
             {/* IMAGE */}
             <div className="relative h-60 overflow-hidden">
                 <motion.img
                     src={v.imageLinks?.thumbnail || "/no-image.jpg"}
                     alt={v.title}
-                    className="w-full h-full object-contain"
+                    className="h-full w-full object-contain"
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.4 }}
                 />
@@ -29,30 +28,22 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
 
                 {/* category badge */}
                 {v.categories?.[0] && (
-                    <div className="absolute top-3 left-3 bg-white/10 backdrop-blur px-3 py-1 text-xs rounded-full border border-white/20">
+                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs backdrop-blur">
                         {v.categories[0]}
                     </div>
                 )}
             </div>
 
             {/* CONTENT */}
-            <div className="p-5 space-y-3 flex-1">
-
+            <div className="flex-1 space-y-3 p-5">
                 {/* title */}
-                <h2 className="text-lg font-semibold text-white line-clamp-2">
-                    {v.title}
-                </h2>
+                <h2 className="line-clamp-2 text-lg font-semibold text-white">{v.title}</h2>
 
                 {/* subtitle */}
-                {v.subtitle && (
-                    <p className="text-xs text-zinc-400 line-clamp-1">
-                        {v.subtitle}
-                    </p>
-                )}
+                {v.subtitle && <p className="line-clamp-1 text-xs text-zinc-400">{v.subtitle}</p>}
 
                 {/* meta */}
-                <div className="flex flex-wrap gap-4 text-xs text-zinc-400 mt-3">
-
+                <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-400">
                     <div className="flex items-center gap-1">
                         <FiUser size={14} />
                         {v.authors?.[0] ?? "Autor desconocido"}
@@ -72,21 +63,18 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                         <FiLayers size={14} />
                         {v.publishedDate?.slice(0, 4)}
                     </div>
-
                 </div>
 
                 {/* description */}
-                <p className="text-sm text-zinc-400 line-clamp-3 pt-2">
-                    {v.description || "Sin descripción disponible."}
-                </p>
+                <p className="line-clamp-3 pt-2 text-sm text-zinc-400">{v.description || "Sin descripción disponible."}</p>
 
                 {/* actions */}
-                <div className="pt-4 flex gap-3">
+                <div className="flex gap-3 pt-4">
                     <motion.a
                         href={`/libros/${book.id}`}
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                        className="flex-1 bg-white text-black text-center text-sm py-2 rounded-lg font-medium hover:bg-zinc-200 cursor-pointer"
+                        className="flex-1 cursor-pointer rounded-lg bg-white py-2 text-center text-sm font-medium text-black hover:bg-zinc-200"
                     >
                         Ver detalle
                     </motion.a>
@@ -94,16 +82,15 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                     <motion.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                        className="px-3 py-2 border border-zinc-700 rounded-lg hover:bg-zinc-900 cursor-pointer"
+                        className="cursor-pointer rounded-lg border border-zinc-700 px-3 py-2 hover:bg-zinc-900"
                     >
                         ❤
                     </motion.button>
                 </div>
-
             </div>
 
             {/* hover glow */}
-            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition pointer-events-none">
+            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition group-hover:opacity-100">
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
             </div>
         </motion.article>
