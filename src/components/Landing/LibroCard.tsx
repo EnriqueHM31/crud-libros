@@ -35,7 +35,7 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             </div>
 
             {/* CONTENT */}
-            <div className="flex-1 space-y-3 p-5">
+            <div className="flex-1  p-5  flex flex-col justify-between">
                 {/* title */}
                 <h2 className="line-clamp-2 text-lg font-semibold text-white">{v.title}</h2>
 
@@ -65,8 +65,9 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                     </div>
                 </div>
 
-                {/* description */}
-                <p className="line-clamp-3 pt-2 text-sm text-zinc-400">{v.description || "Sin descripción disponible."}</p>
+
+                <p className="mt-3 line-clamp-2 text-sm text-white/80">{v.description}</p>
+
 
                 {/* actions */}
                 <div className="flex gap-3 pt-4">
