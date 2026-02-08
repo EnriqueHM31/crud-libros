@@ -11,14 +11,14 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.35 }}
-            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-lg"
+            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black dark:bg-zinc-950 shadow-lg"
         >
             {/* IMAGE */}
             <div className="relative h-60 overflow-hidden">
                 <motion.img
                     src={v.imageLinks?.thumbnail || "/no-image.jpg"}
                     alt={v.title}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover"
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.4 }}
                 />
@@ -28,8 +28,8 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
 
                 {/* category badge */}
                 {v.categories?.[0] && (
-                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs backdrop-blur">
-                        {v.categories[0]}
+                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black dark:bg-white/10 px-3 py-1 text-xs backdrop-blur text-white">
+                        {v.categories.length > 1 ? `${v.categories[0]} + ${v.categories.length - 1} más` : v.categories[0]}
                     </div>
                 )}
             </div>
