@@ -2,10 +2,14 @@ import ICONOLOGO from "@/../public/icono.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiBook, FiHome, FiMail, FiMenu, FiPackage, FiStar, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
+import { useThemeStore } from "@/store/theme.store";
 export default function Navbar() {
     const [open, setOpen] = useState(false);
+    const { mode } = useThemeStore();
+
+    const location = useLocation();
 
     const links = [
         { name: "Inicio", icon: <FiHome />, href: "/usuario" },
@@ -18,7 +22,7 @@ export default function Navbar() {
     return (
         <>
             {/* NAVBAR */}
-            <nav className="fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800">
+            <nav className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "backdrop-blur-xs" : "bg-white"}`}>
                 <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
                     <motion.h1
                         initial={{ scale: 0.6 }}
@@ -41,7 +45,9 @@ export default function Navbar() {
                                     viewport={{ once: true }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className="relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
+                                    className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black  dark:text-white/70 dark:after:bg-white dark:hover:text-white
+                                        ${location.pathname === link.href ? "text-white after:w-full" : "text-black/70 border-b-2 border-black/50 hover:after:w-full"}
+                                        `}
                                 >
                                     {link.icon}
                                     {link.name}
