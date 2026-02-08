@@ -25,7 +25,7 @@ export default function Categorias() {
                 <HeaderCategorias />
                 <FiltersCategorias />
 
-                {error ? (
+                {error.message ? (
                     <Error error={error.message ?? "Ocurrió un error inesperado"} title={error.title ?? "Error"} />
                 ) : !categorias || categorias.length === 0 ? (
                     <NotResults error="No se encontraron resultados para la categoría buscada" />
