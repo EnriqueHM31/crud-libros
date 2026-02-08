@@ -11,7 +11,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="mt-24 w-full border-t border-white text-black dark:border-zinc-800 dark:bg-black dark:text-white">
+        <footer className="mt-24 w-full border-t  border-gray-400 text-black dark:border-zinc-800 dark:bg-black dark:text-white">
             <div className="mx-auto max-w-7xl px-6 py-4">
                 {/* GRID */}
                 <div className="grid gap-12 md:grid-cols-3">
