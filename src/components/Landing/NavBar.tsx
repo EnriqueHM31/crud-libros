@@ -46,7 +46,7 @@ export default function Navbar() {
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
                                     className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black  dark:text-white/70 dark:after:bg-white dark:hover:text-white
-                                        ${location.pathname === link.href ? "text-white after:w-full" : "text-black/70 border-b-2 border-black/50 hover:after:w-full"}
+                                        ${location.pathname === link.href ? "text-black dark:text-white after:w-full" : "text-black/70 dark:border-b-2 border-black/50 hover:after:w-full"}
                                         `}
                                 >
                                     {link.icon}
