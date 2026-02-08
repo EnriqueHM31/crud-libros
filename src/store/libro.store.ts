@@ -29,11 +29,12 @@ export const useBooksStore = create<BooksState>((set) => ({
         set({ isLoading: true });
 
         try {
-            const response = await getAllBooks();
+            const { data } = await getAllBooks();
 
             set({
-                books: response.data,
+                books: data,
                 isLoading: false,
+                error: { title: null, message: null },
             });
         } catch (err) {
             const { message, title } = getUserFriendlyError(err, "los Libros");
