@@ -91,22 +91,25 @@ export default function BooksFilters() {
                     {/* Idioma */}
                     <div className="group relative">
                         <FaLanguage className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-gray-600 dark:group-hover:text-gray-400" />
-                        <select
-                            value={language}
-                            name="language"
-                            onChange={(e) => setLanguage(e.target.value)}
-                            className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-4 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
-                        >
-                            <option value="">Todos los idiomas</option>
-                            {lenguajes.map((lenguaje) => (
-                                <option key={lenguaje.id} value={lenguaje.abreviacion}>
-                                    {lenguaje.nombre}
-                                </option>
-                            ))}
+                        <div className="relative">
+                            <select
+                                value={language}
+                                name="language"
+                                onChange={(e) => setLanguage(e.target.value)}
+                                className="dark:bg-primary-dark focus:ring-primary-dark w-full cursor-pointer appearance-none rounded-xl border-2 border-gray-300 bg-white py-3 pr-10 pl-10 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:outline-none dark:border-gray-600 dark:text-white dark:focus:ring-gray-400"
+                            >
+                                <option value="">Todos los idiomas</option>
+                                {lenguajes.map((lenguaje) => (
+                                    <option key={lenguaje.id} value={lenguaje.abreviacion}>
+                                        {lenguaje.nombre}
+                                    </option>
+                                ))}
+                            </select>
 
-                            <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2">
+                            {/* icono flecha */}
+                            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
                                 <svg
-                                    className="h-4 w-4 text-gray-500 group-hover:text-gray-600 dark:text-gray-600"
+                                    className="h-4 w-4 text-gray-500 dark:text-gray-400"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -114,7 +117,8 @@ export default function BooksFilters() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
-                        </select>
+                        </div>
+
                     </div>
 
                     {/* Máx páginas */}
