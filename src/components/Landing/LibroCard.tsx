@@ -1,111 +1,148 @@
 import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FiBookOpen, FiUser, FiGlobe, FiLayers } from "react-icons/fi";
 
 export default function LibroCard({ book }: { book: GoogleBook }) {
     const { agregarFavorito, quitarFavorito, esFavorito } = useFavoritosStore();
-    if (!book || !book.id) return null;
 
     const v = book.volumeInfo;
+    const favorito = esFavorito(book.id);
 
-    const isFavorito = esFavorito(book.id);
+    // motion values
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
 
-    console.log({ isFavorito });
+    const rotateX = useTransform(y, [-100, 100], [12, -12]);
+    const rotateY = useTransform(x, [-100, 100], [-12, 12]);
 
+    function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const centerX = width / 2;
+        const centerY = height / 2;
+
+        x.set(mouseX - centerX);
+        y.set(mouseY - centerY);
+    }
+
+    function reset() {
+        x.set(0);
+        y.set(0);
+    }
 
     return (
-        <motion.article
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            whileHover={{ y: -8 }}
-            transition={{ duration: 0.35 }}
-            className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black shadow-lg dark:bg-zinc-950"
+        <motion.div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={reset}
+            style={{ perspective: 1000 }}
+            className="w-full"
         >
-            {/* IMAGE */}
-            <div className="relative h-80 overflow-hidden">
-                <motion.img
-                    src={v.imageLinks?.thumbnail || "/no-image.jpg"}
-                    alt={v.title}
-                    className="h-full w-full object-cover"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.4 }}
-                />
+            <motion.article
+                style={{
+                    rotateX,
+                    rotateY,
+                    transformStyle: "preserve-3d"
+                }}
+                transition={{ type: "spring", stiffness: 120, damping: 12 }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-black shadow-2xl"
+            >
+                {/* IMAGE */}
+                <motion.div
+                    style={{ transform: "translateZ(60px)" }}
+                    className="relative h-80 overflow-hidden"
+                >
+                    <motion.img
+                        src={v.imageLinks?.thumbnail || "/no-image.jpg"}
+                        alt={v.title}
+                        className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* overlay gradient */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                    {v.categories?.[0] && (
+                        <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black px-3 py-1 text-xs text-white backdrop-blur">
+                            {v.categories[0]}
+                        </div>
+                    )}
+                </motion.div>
 
-                {/* category badge */}
-                {v.categories?.[0] && (
-                    <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black px-3 py-1 text-xs text-white backdrop-blur dark:bg-white/10">
-                        {v.categories.length > 1 ? `${v.categories[0]} + ${v.categories.length - 1} más` : v.categories[0]}
+                {/* CONTENT */}
+                <div
+                    style={{ transform: "translateZ(40px)" }}
+                    className="flex flex-1 flex-col justify-between p-5"
+                >
+                    <h2 className="line-clamp-2 text-lg font-semibold text-white">
+                        {v.title}
+                    </h2>
+
+                    {v.subtitle && (
+                        <p className="line-clamp-1 text-xs text-zinc-400">
+                            {v.subtitle}
+                        </p>
+                    )}
+
+                    <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-400">
+                        <div className="flex items-center gap-1">
+                            <FiUser size={14} />
+                            {v.authors?.[0] ?? "Autor desconocido"}
+                        </div>
+
+                        <div className="flex items-center gap-1">
+                            <FiBookOpen size={14} />
+                            {v.pageCount} pág.
+                        </div>
+
+                        <div className="flex items-center gap-1">
+                            <FiGlobe size={14} />
+                            {v.language?.toUpperCase()}
+                        </div>
+
+                        <div className="flex items-center gap-1">
+                            <FiLayers size={14} />
+                            {v.publishedDate?.slice(0, 4)}
+                        </div>
                     </div>
-                )}
-            </div>
 
-            {/* CONTENT */}
-            <div className="flex flex-1 flex-col justify-between p-5">
-                {/* title */}
-                <h2 className="line-clamp-2 text-lg font-semibold text-white">{v.title}</h2>
+                    <p className="mt-3 line-clamp-2 text-sm text-white/80">
+                        {v.description}
+                    </p>
 
-                {/* subtitle */}
-                {v.subtitle && <p className="line-clamp-1 text-xs text-zinc-400">{v.subtitle}</p>}
+                    {/* BUTTONS */}
+                    <div
+                        style={{ transform: "translateZ(80px)" }}
+                        className="flex gap-3 pt-4"
+                    >
+                        <motion.a
+                            href={`/libros/${book.id}`}
+                            whileTap={{ scale: 0.9 }}
+                            className="flex-1 rounded-lg bg-white py-2 text-center text-sm font-medium text-black"
+                        >
+                            Ver detalle
+                        </motion.a>
 
-                {/* meta */}
-                <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-400">
-                    <div className="flex items-center gap-1">
-                        <FiUser size={14} />
-                        {v.authors?.[0] ?? "Autor desconocido"}
-                    </div>
-
-                    <div className="flex items-center gap-1">
-                        <FiBookOpen size={14} />
-                        {v.pageCount} pág.
-                    </div>
-
-                    <div className="flex items-center gap-1">
-                        <FiGlobe size={14} />
-                        {v.language?.toUpperCase()}
-                    </div>
-
-                    <div className="flex items-center gap-1">
-                        <FiLayers size={14} />
-                        {v.publishedDate?.slice(0, 4)}
+                        <motion.button
+                            onClick={() =>
+                                favorito
+                                    ? quitarFavorito(book.id)
+                                    : agregarFavorito(book)
+                            }
+                            whileTap={{ scale: 0.85 }}
+                            className={`rounded-lg border px-3 py-2 ${favorito ? "bg-red-500" : "bg-zinc-900"
+                                }`}
+                        >
+                            🤍
+                        </motion.button>
                     </div>
                 </div>
 
-                <p className="mt-3 line-clamp-2 text-sm text-white/80">{v.description}</p>
-
-                {/* actions */}
-                <div className="flex gap-3 pt-4">
-                    <motion.a
-                        href={`/libros/${book.id}`}
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                        className="flex-1 cursor-pointer rounded-lg bg-white py-2 text-center text-sm font-medium text-black hover:bg-zinc-200"
-                    >
-                        Ver detalle
-                    </motion.a>
-
-                    <motion.button
-                        onClick={() =>
-                            esFavorito(book.id)
-                                ? quitarFavorito(book.id)
-                                : agregarFavorito(book)
-                        }
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.75, transition: { duration: 0.3 } }}
-                        className={`cursor-pointer rounded-lg border border-zinc-700 px-3 py-2  ${esFavorito(book.id) ? "bg-red-500" : "bg-zinc-900"}`}
-                    >
-                        🤍
-                    </motion.button>
-                </div>
-            </div>
-
-            {/* hover glow */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition group-hover:opacity-100">
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
-            </div>
-        </motion.article>
+                {/* brillo */}
+                <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10" />
+            </motion.article>
+        </motion.div>
     );
 }
