@@ -74,8 +74,9 @@ export default function BooksFiltersLanding() {
 
                     {/* Idioma */}
                     <div className="group relative">
-                        <FaLanguage className=" absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-red-300/30 dark:group-hover:text-white/80" />
+
                         <div className="relative">
+                            <FaLanguage className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
                             <select
                                 value={language}
                                 name="language"
@@ -85,7 +86,7 @@ export default function BooksFiltersLanding() {
                                 <option value="">Todos los idiomas</option>
                                 {lenguajes.map((lenguaje) => (
                                     <option key={lenguaje.id} value={lenguaje.abreviacion}>
-                                        {lenguaje.nombre}
+                                        ({lenguaje.abreviacion}) : {lenguaje.nombre}
                                     </option>
                                 ))}
                             </select>
@@ -128,7 +129,7 @@ export default function BooksFiltersLanding() {
                         whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                         whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
                         transition={{ duration: 0.2, delay: 1.6 }}
-                        className="bg-primary flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-gray-500 dark:bg-white/90 dark:text-black dark:hover:text-white"
+                        className="bg-black flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-gray-500 dark:bg-white/90 dark:text-black dark:hover:text-white"
                     >
                         <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
                     </motion.button>
