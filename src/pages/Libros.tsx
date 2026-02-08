@@ -13,9 +13,9 @@ export default function Libros() {
     }, [cargarLibros]);
     return (
         <Layout>
-            <div className="min-h-screen flex flex-col gap-5 bg-white  text-black dark:bg-black dark:text-white max-w-7xl py-10">
-                <h1 className="text-4xl font-bold py-5" >Catalogo de libros</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 max">
+            <div className="flex min-h-screen max-w-7xl flex-col gap-5 bg-white py-10 text-black dark:bg-black dark:text-white">
+                <h1 className="py-5 text-4xl font-bold">Catalogo de libros</h1>
+                <div className="max grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                     {books.map((book) => (
                         <LibroCard key={book.id} book={book} />
                     ))}
