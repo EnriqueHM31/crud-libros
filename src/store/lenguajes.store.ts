@@ -1,6 +1,6 @@
 import { createLanguage, deleteLanguage, getAllLanguages, updateLanguage } from "@/services/lenguajes.service";
 import type { ModalMode } from "@/types/store";
-import { isApiError } from "@/utils/errors";
+import { getUserFriendlyError } from "@/utils/errors";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -17,7 +17,7 @@ interface LenguajesState {
     modalMode: ModalMode;
     selectedLanguage: Lenguaje | null;
     isLoading: boolean;
-    error: string | null;
+    error: { title: string | null; message: string | null };
 
     obtenerLenguajes: () => Promise<void>;
     openCreateModal: () => void;
@@ -34,7 +34,10 @@ export const useLenguajesStore = create<LenguajesState>()(
         (set, get) => ({
             lenguajes: [],
             isLoading: false,
-            error: null,
+            error: {
+                title: null,
+                message: null,
+            },
 
             isModalOpen: false,
             modalMode: null,
@@ -45,17 +48,10 @@ export const useLenguajesStore = create<LenguajesState>()(
 
                 try {
                     const { data } = await getAllLanguages();
-                    set({ lenguajes: data, error: null });
+                    set({ lenguajes: data, error: { title: null, message: null } });
                 } catch (err: unknown) {
-                    let message = "Error al obtener los lenguajes";
-
-                    if (err instanceof Error) {
-                        message = err.message;
-                    } else if (isApiError(err)) {
-                        message = err.response?.data?.message ?? message;
-                    }
-
-                    set({ error: message });
+                    const { message, title } = getUserFriendlyError(err, "los Lenguajes");
+                    set({ error: { title: title, message: message } });
                 } finally {
                     set({ isLoading: false });
                 }
