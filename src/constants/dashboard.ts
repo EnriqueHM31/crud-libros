@@ -1,8 +1,8 @@
 import { FaList, FaThLarge } from "react-icons/fa";
 
 export const typeViews = [
-    { name: "Lista", value: "list", icono: FaList },
-    { name: "Grilla", value: "grid", icono: FaThLarge },
+    { name: "Lista", value: "list", Icono: FaList },
+    { name: "Grilla", value: "grid", Icono: FaThLarge },
 ];
 
 export const viewModes = {
