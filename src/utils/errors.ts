@@ -59,7 +59,6 @@ export function isApiError(error: unknown): error is ApiErrorResponse {
 }
 
 export function getUserFriendlyError(error: unknown): UserError {
-
     // AbortController
     if (error instanceof DOMException && error.name === "AbortError") {
         return { message: "La solicitud fue cancelada. Intenta nuevamente." };
@@ -68,7 +67,7 @@ export function getUserFriendlyError(error: unknown): UserError {
     if (error instanceof Error) {
         const msg = error.message.toLowerCase();
 
-        console.log("error", error)
+        console.log("error", error);
         // fetch network error
         if (msg.includes("failed to fetch") || msg.includes("networkerror")) {
             return { message: "No se pudo conectar con el servidor. Verifica tu internet." };
