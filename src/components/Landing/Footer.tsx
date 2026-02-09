@@ -1,14 +1,16 @@
+import { links } from "@/constants/menu";
+import { useAuthStore } from "@/store/autenticacion.store";
 import { motion } from "framer-motion";
-import { FiHome, FiBook, FiMail, FiStar, FiPackage, FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
+import { FiGithub, FiInstagram, FiTwitter } from "react-icons/fi";
 
 export default function Footer() {
-    const links = [
-        { name: "Inicio", icon: <FiHome />, href: "/usuario" },
-        { name: "Libros", icon: <FiBook />, href: "/libros" },
-        { name: "Contacto", icon: <FiMail />, href: "/contacto" },
-        { name: "Favoritos", icon: <FiStar />, href: "/favoritos" },
-        { name: "Pedidos", icon: <FiPackage />, href: "/pedidos" },
-    ];
+
+    const { user } = useAuthStore();
+
+    const filteredLinks = links.filter((link) => {
+        if (link.private && !user) return false;
+        return true;
+    });
 
     return (
         <footer className="mt-24 w-full border-t border-gray-400 text-black dark:border-zinc-800 dark:bg-black dark:text-white">
@@ -44,16 +46,16 @@ export default function Footer() {
                         <h3 className="mb-4 text-sm font-semibold text-black dark:text-zinc-300">Navegación</h3>
 
                         <div className="flex flex-col gap-5">
-                            {links.map((link) => (
+                            {filteredLinks.map(({ name, href, Icon }) => (
                                 <motion.a
-                                    key={link.name}
-                                    href={link.href}
+                                    key={name}
+                                    href={href}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.75 }}
                                     className="relative flex w-fit items-center gap-2 py-1 text-sm text-zinc-700 transition after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-zinc-950 after:transition-all after:duration-300 after:content-[''] hover:text-zinc-600 hover:after:w-full dark:text-zinc-400 dark:hover:text-white"
                                 >
-                                    {link.icon}
-                                    {link.name}
+                                    <Icon />
+                                    {name}
                                 </motion.a>
                             ))}
                         </div>
