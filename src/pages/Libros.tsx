@@ -23,12 +23,7 @@ export default function Libros() {
     }, [cargarLibros]);
     return (
         <Layout>
-
-            <ModalLibro
-                open={open}
-                onClose={() => setOpen(false)}
-                book={selected}
-            />
+            <ModalLibro open={open} onClose={() => setOpen(false)} book={selected} />
             <div className="flex min-h-screen max-w-7xl flex-col gap-5 bg-white text-black dark:bg-black dark:text-white">
                 <div className="mt-15 flex items-center justify-between gap-2">
                     <h1 className="text-4xl font-bold">Catalogo de libros</h1>
