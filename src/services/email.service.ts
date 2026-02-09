@@ -1,7 +1,6 @@
 import { handleApiError } from "@/utils/errors";
 
 export async function sendEmail({ mensaje, correo, nombre }: { mensaje: string; correo: string; nombre: string }) {
-
     try {
         const response = await fetch(import.meta.env.VITE_API_URL_EMAIL, {
             method: "POST",
@@ -13,7 +12,7 @@ export async function sendEmail({ mensaje, correo, nombre }: { mensaje: string; 
                 email: correo,
                 page: "Biblioteca HM",
             }),
-        })
+        });
 
         handleApiError(response);
 
