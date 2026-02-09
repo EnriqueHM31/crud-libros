@@ -2,16 +2,13 @@ import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
 
 export default function CardFavorito({ book, read, onClickModal }: { book: GoogleBook; read: boolean; onClickModal: (book: GoogleBook) => void }) {
-    const { agregarFavorito, quitarFavorito, esFavorito, toggleLeido } = useFavoritosStore();
-    if (!book || !book.id) return null;
 
+    const { agregarFavorito, quitarFavorito, esFavorito, toggleLeido } = useFavoritosStore();
+
+    if (!book || !book.id) return null;
     const v = book.volumeInfo;
 
     const isFavorito = esFavorito(book.id);
-
-    console.log({ isFavorito });
-
-    console.log({ read });
 
     return (
         <div className="h-[550px] w-full rounded-2xl bg-zinc-800 p-4 shadow-sm shadow-zinc-300 outline -outline-offset-8 outline-zinc-600">
@@ -49,9 +46,8 @@ export default function CardFavorito({ book, read, onClickModal }: { book: Googl
                             <button
                                 title={read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                                 onClick={() => toggleLeido(book.id)}
-                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${
-                                    read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                }`}
+                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                    }`}
                             >
                                 {read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                             </button>
