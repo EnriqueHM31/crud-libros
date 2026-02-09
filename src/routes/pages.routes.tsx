@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import LoadingBooks from "../components/Atomos/Loading";
 import LoginDemo from "../pages/LoginDemo";
 
@@ -11,12 +11,14 @@ const Libros = lazy(() => import("../pages/Libros"));
 const Contacto = lazy(() => import("../pages/Contacto"));
 const Favoritos = lazy(() => import("../pages/Favoritos"));
 
+
 export function PagesRoutes() {
+    const location = useLocation();
     return (
         <Suspense
             fallback={
-                <div className="dark:bg-primary-dark flex min-h-screen items-center justify-center bg-white">
-                    <LoadingBooks />.
+                <div className={`${location.pathname.includes("usuario") ? "bg-zinc-950" : "dark:bg-primary-dark"} flex min-h-screen items-center justify-center`}>
+                    <LoadingBooks style={location.pathname.includes("usuario") ? "bg-zinc-950" : "dark:bg-primary-dark"} />
                 </div>
             }
         >
