@@ -1,12 +1,14 @@
 import ICONOLOGO from "@/../public/icono.svg";
+import { useAuthStore } from "@/store/autenticacion.store";
+import { useThemeStore } from "@/store/theme.store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { FiBook, FiHome, FiMail, FiMenu, FiPackage, FiStar, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
-import { useThemeStore } from "@/store/theme.store";
 import LoginModal from "./ModalLogin";
-import { useAuthStore } from "@/store/autenticacion.store";
+import { links } from "@/constants/menu";
+
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const { mode } = useThemeStore();
@@ -24,18 +26,12 @@ export default function Navbar() {
 
     const location = useLocation();
 
-    const links = [
-        { name: "Inicio", icon: <FiHome />, href: "/usuario", private: false },
-        { name: "Libros", icon: <FiBook />, href: "/usuario/libros", private: false },
-        { name: "Contacto", icon: <FiMail />, href: "/usuario/contacto", private: false },
-        { name: "Favoritos", icon: <FiStar />, href: "/usuario/favoritos", private: true },
-        { name: "Pedidos", icon: <FiPackage />, href: "/usuario/pedidos", private: true },
-    ];
-
     const filteredLinks = links.filter(link => {
         if (link.private && !user) return false;
         return true;
     });
+
+
     return (
         <>
             <LoginModal open={openAuth} onClose={handleCloseAuthModal} onSubmit={login} />
@@ -56,8 +52,8 @@ export default function Navbar() {
 
                     {/* Desktop */}
                     <div className="hidden items-center gap-7 md:flex">
-                        {filteredLinks.map((link) => (
-                            <Link key={link.name} to={link.href}>
+                        {filteredLinks.map(({ name, href, Icon }) => (
+                            <Link key={name} to={href}>
                                 <motion.div
                                     initial={{ scale: 0.6 }}
                                     animate={{ scale: 1, transition: { duration: 0.5 } }}
@@ -65,10 +61,10 @@ export default function Navbar() {
                                     viewport={{ once: true }}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black dark:text-white/70 dark:after:bg-white dark:hover:text-white ${location.pathname === link.href ? "text-black after:w-full dark:text-white" : "border-black/50 text-black/70 hover:after:w-full dark:border-b-2"} `}
+                                    className={`relative flex items-center justify-center gap-2 px-4 py-2 text-sm text-black/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-black after:transition-all after:duration-300 after:content-[''] hover:text-black dark:text-white/70 dark:after:bg-white dark:hover:text-white ${location.pathname === href ? "text-black after:w-full dark:text-white" : "border-black/50 text-black/70 hover:after:w-full dark:border-b-2"} `}
                                 >
-                                    {link.icon}
-                                    {link.name}
+                                    <Icon />
+                                    {name}
                                 </motion.div>
                             </Link>
                         ))}
@@ -127,10 +123,10 @@ export default function Navbar() {
                             className="fixed top-24 left-1/2 z-50 mx-auto w-full max-w-11/12 -translate-x-1/2 rounded-xl border bg-zinc-950 md:hidden md:border-b dark:border-zinc-600"
                         >
                             <div className="flex flex-col items-center gap-6 py-6">
-                                {links.map((link) => (
+                                {links.map(({ name, href, Icon }) => (
                                     <Link
-                                        key={link.name}
-                                        to={link.href}
+                                        key={name}
+                                        to={href}
                                         className="flex w-full max-w-10/12 items-center gap-3 text-lg text-white/90 transition hover:text-white"
                                         onClick={() => setOpen(false)}
                                     >
@@ -142,8 +138,8 @@ export default function Navbar() {
                                             whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
                                             className="relative flex w-full items-center justify-center gap-2 px-4 py-2 text-sm text-white/80 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-2xl after:bg-white after:transition-all after:duration-300 after:content-[''] hover:text-white hover:after:w-full dark:text-white/70 dark:after:bg-white dark:hover:text-white"
                                         >
-                                            {link.icon}
-                                            {link.name}
+                                            <Icon />
+                                            {name}
                                         </motion.div>
                                     </Link>
                                 ))}
