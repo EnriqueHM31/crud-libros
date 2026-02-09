@@ -1,0 +1,123 @@
+import IMGLOGO from "@/../public/icono.svg";
+import { getUserFriendlyError } from "@/utils/errors";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { FiLock, FiUser, FiX } from "react-icons/fi";
+import { toast } from "sonner";
+
+interface LoginModalProps {
+    open: boolean;
+    onClose: () => void;
+    onSubmit: (username: string, password: string) => Promise<boolean>;
+}
+
+export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps) {
+    const [formLogin, setFormLogin] = useState({ username: "", password: "" });
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormLogin((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formLogin.username || !formLogin.password) {
+            toast.error("Completa los campos");
+            return;
+        }
+
+        try {
+            setLoading(true);
+            await onSubmit(formLogin.username, formLogin.password);
+            toast.success("Bienvenido a Librería HM");
+            onClose();
+        } catch (err) {
+            const { message } = getUserFriendlyError(err, "Error al iniciar sesión");
+            toast.error(message || "Error al iniciar sesión");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    {/* modal */}
+                    <motion.div
+                        initial={{ y: 80, opacity: 0, scale: 0.9 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        exit={{ y: 60, opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.35 }}
+                        className="relative w-[420px] max-w-[95%] rounded-2xl border border-zinc-700 bg-zinc-950 p-8 shadow-2xl"
+                    >
+                        {/* close */}
+                        <button
+                            onClick={onClose}
+                            className="absolute right-4 top-4 text-zinc-400 hover:text-white cursor-pointer"
+                        >
+                            <FiX size={20} />
+                        </button>
+
+                        {/* header */}
+                        <div className="flex flex-col items-center gap-3 text-center">
+                            <div className="flex items-center gap-2 text-white text-2xl font-bold">
+                                <img src={IMGLOGO} alt="logo" className="h-10 w-auto saturate-30" />
+                                Librería HM
+                            </div>
+
+                            <p className="text-sm text-zinc-400 max-w-[280px]">
+                                Accede a tu cuenta para guardar favoritos, marcar libros leídos
+                                y gestionar tu biblioteca personal.
+                            </p>
+                        </div>
+
+                        {/* form */}
+                        <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
+                            <div className="relative">
+                                <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                                <input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    value={formLogin.username}
+                                    onChange={(e) => handleChange(e)}
+                                    placeholder="Usuario"
+                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-3 text-white outline-none focus:border-zinc-500"
+                                />
+                            </div>
+
+                            <div className="relative">
+                                <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value={formLogin.password}
+                                    onChange={(e) => handleChange(e)}
+                                    placeholder="Contraseña"
+                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-3 text-white outline-none focus:border-zinc-500"
+                                />
+                            </div>
+
+                            <motion.button
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.76, transition: { duration: 0.3 } }}
+                                disabled={loading}
+                                className="mt-3 rounded-xl bg-white py-3 font-semibold text-black  hover:bg-zinc-300 disabled:opacity-50 cursor-pointer"
+                            >
+                                {loading ? "Ingresando..." : "Iniciar sesión"}
+                            </motion.button>
+                        </form>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+}
