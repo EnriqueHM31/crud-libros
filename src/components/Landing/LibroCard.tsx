@@ -59,34 +59,34 @@ export default function LibroCard({ book, onClickModal }: { book: GoogleBook; on
                 </motion.div>
 
                 {/* CONTENT */}
-                <div style={{ transform: "translateZ(40px)" }} className="flex flex-1 flex-col justify-between p-5">
-                    <h2 className="line-clamp-2 flex flex-1 items-center justify-center text-center text-lg font-semibold text-white">{v.title}</h2>
+                <div style={{ transform: "translateZ(-1000px)" }} className="flex flex-1 flex-col justify-between p-5 ">
 
-                    <div className="flex-2">
-                        <p className="mt-3 line-clamp-2 text-sm text-gray-400">{v.description}</p>
+                    <div className="flex-1 flex flex-col ">
 
-                        {/* BUTTONS */}
-                        <div style={{ transform: "translateZ(80px)" }} className="flex gap-3 pt-4">
-                            <motion.a
-                                onClick={() => onClickModal(book)}
-                                whileTap={{ scale: 0.9 }}
-                                title={`Ver ${book.volumeInfo.title}`}
-                                className="flex-1 cursor-pointer rounded-lg bg-white py-2 text-center text-sm font-medium text-black transition hover:bg-gray-500 hover:text-white"
-                            >
-                                Ver detalle
-                            </motion.a>
+                        <h2 className="line-clamp-2 flex flex-1 items-center justify-center text-center text-lg font-semibold text-white">{v.title}</h2>
+                        <p className="mt-3 line-clamp-2 text-sm text-gray-400 flex-1">{v.description}</p>
+                    </div>
 
-                            <motion.button
-                                onClick={() => (favorito ? quitarFavorito(book.id) : agregarFavorito(book))}
-                                title={`${favorito ? "Quitar de" : "Agregar a"} favoritos`}
-                                whileTap={{ scale: 0.85 }}
-                                className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${
-                                    favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
+                    {/* BUTTONS */}
+                    <div style={{ transform: "translateZ(80px)" }} className="flex gap-3 pt-4">
+                        <motion.button
+                            onClick={() => onClickModal(book)}
+                            whileTap={{ scale: 0.9 }}
+                            title={`Ver ${book.volumeInfo.title}`}
+                            className="flex-1 cursor-pointer rounded-lg bg-white py-2 text-center text-sm font-medium text-black transition hover:bg-gray-500 hover:text-white"
+                        >
+                            Ver detalle
+                        </motion.button>
+
+                        <motion.button
+                            onClick={() => (favorito ? quitarFavorito(book.id) : agregarFavorito(book))}
+                            title={`${favorito ? "Quitar de" : "Agregar a"} favoritos`}
+                            whileTap={{ scale: 0.85 }}
+                            className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
                                 }`}
-                            >
-                                🤍
-                            </motion.button>
-                        </div>
+                        >
+                            🤍
+                        </motion.button>
                     </div>
                 </div>
 
