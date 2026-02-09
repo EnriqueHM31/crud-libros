@@ -11,13 +11,14 @@ const Libros = lazy(() => import("../pages/Libros"));
 const Contacto = lazy(() => import("../pages/Contacto"));
 const Favoritos = lazy(() => import("../pages/Favoritos"));
 
-
 export function PagesRoutes() {
     const location = useLocation();
     return (
         <Suspense
             fallback={
-                <div className={`${location.pathname.includes("usuario") ? "bg-zinc-950" : "dark:bg-primary-dark"} flex min-h-screen items-center justify-center`}>
+                <div
+                    className={`${location.pathname.includes("usuario") ? "bg-zinc-950" : "dark:bg-primary-dark"} flex min-h-screen items-center justify-center`}
+                >
                     <LoadingBooks style={location.pathname.includes("usuario") ? "bg-zinc-950" : "dark:bg-primary-dark"} />
                 </div>
             }
