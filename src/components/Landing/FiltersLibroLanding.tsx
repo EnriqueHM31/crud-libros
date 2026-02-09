@@ -17,16 +17,31 @@ export default function BooksFiltersLanding() {
             <div className="flex items-center justify-between gap-4">
                 {/* Grid de filtros con iconos */}
                 <div className="grid flex-1 grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
-                    <div className="group relative flex-1">
-                        <FaSearch className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
-                        <input
-                            type="text"
-                            name="search"
-                            placeholder="Buscar por título o descripción..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-zinc-900 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:focus:ring-gray-400"
-                        />
+                    <div className="flex items-center gap-4">
+                        <div className="group relative flex-1">
+
+                            <FaSearch className="group-hover:text-primary absolute top-1/2 left-4 -translate-y-1/2 text-gray-500 transition-colors dark:text-white/30 dark:group-hover:text-white/80" />
+                            <input
+                                type="text"
+                                name="search"
+                                placeholder="Buscar por título o descripción..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className="w-full rounded-xl border-2 border-gray-300 bg-white px-12 py-2.5 text-sm text-black shadow-sm transition-all hover:shadow-md focus:ring-1 focus:ring-zinc-900 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-white dark:focus:ring-gray-400"
+                            />
+                        </div>
+
+                        <motion.button
+                            onClick={resetFilters}
+                            initial="hidden"
+                            animate="visible"
+                            whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                            whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                            transition={{ duration: 0.2, delay: 1.6 }}
+                            className="flex w-fit cursor-pointer items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 font-semibold text-white transition-colors duration-150 hover:bg-gray-500 dark:bg-white/90 dark:text-black dark:hover:text-white md:hidden"
+                        >
+                            <FaRedo className="transition-transform duration-300 group-hover:rotate-180" />
+                        </motion.button>
                     </div>
 
                     {/* Categoría */}
@@ -112,7 +127,7 @@ export default function BooksFiltersLanding() {
                     </div>
                 </div>
                 {/* Reset mejorado */}
-                <div className="flex items-center justify-end">
+                <div className=" items-center justify-end hidden md:flex">
                     <motion.button
                         onClick={resetFilters}
                         initial="hidden"
