@@ -79,6 +79,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                                     type="text"
                                     name="username"
                                     id="username"
+                                    autoComplete="username"
                                     value={formLogin.username}
                                     onChange={(e) => handleChange(e)}
                                     placeholder="Usuario"
