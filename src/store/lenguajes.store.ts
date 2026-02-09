@@ -106,7 +106,6 @@ export const useLenguajesStore = create<LenguajesState>()(
                     message: string;
                 };
 
-                console.log("lenguajeModificado", message);
                 toast.success(message ?? "Lenguaje actualizado correctamente");
                 set((state) => ({
                     lenguajes: state.lenguajes.map((cat) => (cat.id === lenguajeModificado.id ? { ...cat, ...data } : cat)),
@@ -116,10 +115,8 @@ export const useLenguajesStore = create<LenguajesState>()(
             },
 
             submitDelete: async (id: string) => {
-                console.log("id", id);
                 const { data, message } = (await deleteLanguage(id)) as { data: { id: string; nombre: string; abreviacion: string }; message: string };
 
-                console.log("data", data);
                 set((state) => ({
                     lenguajes: state.lenguajes.filter((cat) => cat.id !== data.id),
                 }));
