@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { BooksFiltersState } from "@/types/store";
+import { toast } from "sonner";
 
 export const useBooksFiltersStore = create<BooksFiltersState>((set) => ({
     search: "",
@@ -14,12 +15,15 @@ export const useBooksFiltersStore = create<BooksFiltersState>((set) => ({
     setLanguage: (language) => set({ language }),
     setMaxPages: (maxPages) => set({ maxPages }),
 
-    resetFilters: () =>
+    resetFilters: () => {
         set({
             search: "",
             category: "",
             author: "",
             language: "",
             maxPages: null,
-        }),
+        });
+
+        toast.success("Filtros reseteados");
+    },
 }));
