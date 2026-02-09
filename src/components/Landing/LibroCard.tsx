@@ -105,8 +105,9 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                                 onClick={() => (favorito ? quitarFavorito(book.id) : agregarFavorito(book))}
                                 title={`${favorito ? "Quitar de" : "Agregar a"} favoritos`}
                                 whileTap={{ scale: 0.85 }}
-                                className={`cursor-pointer rounded-lg border px-3 py-2 transition border-white dark:border-zinc-500 ${favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
-                                    }`}
+                                className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${
+                                    favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
+                                }`}
                             >
                                 🤍
                             </motion.button>
