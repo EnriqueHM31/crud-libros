@@ -96,13 +96,13 @@ export default function Footer() {
                     transition={{ delay: 0.4 }}
                     viewport={{ once: true }}
                 >
-                    <span>© 2026 Libreria HM. Todos los derechos reservados.</span>
+                    <span className="text-center md:text-start">© 2026 Libreria HM. Todos los derechos reservados.</span>
 
-                    <div className="flex gap-6">
-                        <a href="#" className="transition hover:text-black dark:hover:text-white">
+                    <div className="flex gap-6 items-center justify-center">
+                        <a href="#" className="transition hover:text-black dark:hover:text-white text-center md:text-start">
                             Privacidad
                         </a>
-                        <a href="#" className="transition hover:text-black dark:hover:text-white">
+                        <a href="#" className="transition hover:text-black dark:hover:text-white text-center md:text-start">
                             Términos
                         </a>
                     </div>
