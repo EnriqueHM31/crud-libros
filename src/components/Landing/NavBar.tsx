@@ -26,11 +26,10 @@ export default function Navbar() {
 
     const location = useLocation();
 
-    const filteredLinks = links.filter(link => {
+    const filteredLinks = links.filter((link) => {
         if (link.private && !user) return false;
         return true;
     });
-
 
     return (
         <>
