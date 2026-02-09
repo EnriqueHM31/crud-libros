@@ -5,22 +5,40 @@ import { FiBook, FiHome, FiMail, FiMenu, FiPackage, FiStar, FiX } from "react-ic
 import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
 import { useThemeStore } from "@/store/theme.store";
+import LoginModal from "./ModalLogin";
+import { useAuthStore } from "@/store/autenticacion.store";
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const { mode } = useThemeStore();
+    const { login, user } = useAuthStore();
+
+    const [openAuth, setOpenAuth] = useState(false);
+
+    const handleCloseAuthModal = () => {
+        setOpenAuth(false);
+    };
+
+    const handleOpenAuthModal = () => {
+        setOpenAuth(true);
+    };
 
     const location = useLocation();
 
     const links = [
-        { name: "Inicio", icon: <FiHome />, href: "/usuario" },
-        { name: "Libros", icon: <FiBook />, href: "/usuario/libros" },
-        { name: "Contacto", icon: <FiMail />, href: "/usuario/contacto" },
-        { name: "Favoritos", icon: <FiStar />, href: "/usuario/favoritos" },
-        { name: "Pedidos", icon: <FiPackage />, href: "/usuario/pedidos" },
+        { name: "Inicio", icon: <FiHome />, href: "/usuario", private: false },
+        { name: "Libros", icon: <FiBook />, href: "/usuario/libros", private: false },
+        { name: "Contacto", icon: <FiMail />, href: "/usuario/contacto", private: false },
+        { name: "Favoritos", icon: <FiStar />, href: "/usuario/favoritos", private: true },
+        { name: "Pedidos", icon: <FiPackage />, href: "/usuario/pedidos", private: true },
     ];
 
+    const filteredLinks = links.filter(link => {
+        if (link.private && !user) return false;
+        return true;
+    });
     return (
         <>
+            <LoginModal open={openAuth} onClose={handleCloseAuthModal} onSubmit={login} />
             {/* NAVBAR */}
             <nav
                 className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "bg-black/60 backdrop-blur-2xl" : "bg-white"}`}
@@ -38,7 +56,7 @@ export default function Navbar() {
 
                     {/* Desktop */}
                     <div className="hidden items-center gap-7 md:flex">
-                        {links.map((link) => (
+                        {filteredLinks.map((link) => (
                             <Link key={link.name} to={link.href}>
                                 <motion.div
                                     initial={{ scale: 0.6 }}
@@ -55,6 +73,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <motion.button
+                            onClick={handleOpenAuthModal}
                             initial={{ scale: 0.6 }}
                             animate={{ scale: 1, transition: { duration: 0.5 } }}
                             exit={{ scale: 0.9 }}
@@ -129,6 +148,7 @@ export default function Navbar() {
                                     </Link>
                                 ))}
                                 <motion.button
+                                    onClick={handleOpenAuthModal}
                                     initial={{ scale: 0.9 }}
                                     animate={{ scale: 1 }}
                                     exit={{ scale: 0.9 }}
