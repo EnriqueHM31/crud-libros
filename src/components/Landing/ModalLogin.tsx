@@ -58,30 +58,26 @@ export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps)
                         className="relative w-[420px] max-w-[95%] rounded-2xl border border-zinc-700 bg-zinc-950 p-8 shadow-2xl"
                     >
                         {/* close */}
-                        <button
-                            onClick={onClose}
-                            className="absolute right-4 top-4 text-zinc-400 hover:text-white cursor-pointer"
-                        >
+                        <button onClick={onClose} className="absolute top-4 right-4 cursor-pointer text-zinc-400 hover:text-white">
                             <FiX size={20} />
                         </button>
 
                         {/* header */}
                         <div className="flex flex-col items-center gap-3 text-center">
-                            <div className="flex items-center gap-2 text-white text-2xl font-bold">
+                            <div className="flex items-center gap-2 text-2xl font-bold text-white">
                                 <img src={IMGLOGO} alt="logo" className="h-10 w-auto saturate-30" />
                                 Librería HM
                             </div>
 
-                            <p className="text-sm text-zinc-400 max-w-[280px]">
-                                Accede a tu cuenta para guardar favoritos, marcar libros leídos
-                                y gestionar tu biblioteca personal.
+                            <p className="max-w-[280px] text-sm text-zinc-400">
+                                Accede a tu cuenta para guardar favoritos, marcar libros leídos y gestionar tu biblioteca personal.
                             </p>
                         </div>
 
                         {/* form */}
                         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
                             <div className="relative">
-                                <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                                <FiUser className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
                                     type="text"
                                     name="username"
@@ -89,12 +85,12 @@ export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps)
                                     value={formLogin.username}
                                     onChange={(e) => handleChange(e)}
                                     placeholder="Usuario"
-                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-3 text-white outline-none focus:border-zinc-500"
+                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white outline-none focus:border-zinc-500"
                                 />
                             </div>
 
                             <div className="relative">
-                                <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+                                <FiLock className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
                                     type="password"
                                     name="password"
@@ -102,7 +98,7 @@ export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps)
                                     value={formLogin.password}
                                     onChange={(e) => handleChange(e)}
                                     placeholder="Contraseña"
-                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pl-10 pr-3 text-white outline-none focus:border-zinc-500"
+                                    className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white outline-none focus:border-zinc-500"
                                 />
                             </div>
 
@@ -110,7 +106,7 @@ export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps)
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.76, transition: { duration: 0.3 } }}
                                 disabled={loading}
-                                className="mt-3 rounded-xl bg-white py-3 font-semibold text-black  hover:bg-zinc-300 disabled:opacity-50 cursor-pointer"
+                                className="mt-3 cursor-pointer rounded-xl bg-white py-3 font-semibold text-black hover:bg-zinc-300 disabled:opacity-50"
                             >
                                 {loading ? "Ingresando..." : "Iniciar sesión"}
                             </motion.button>
