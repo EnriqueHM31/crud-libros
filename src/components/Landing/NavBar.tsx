@@ -1,28 +1,20 @@
 import ICONOLOGO from "@/../public/icono.svg";
+import { links } from "@/constants/menu";
+import { useOpen } from "@/hooks/useOpen";
 import { useAuthStore } from "@/store/autenticacion.store";
 import { useThemeStore } from "@/store/theme.store";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
 import LoginModal from "./ModalLogin";
-import { links } from "@/constants/menu";
 
 export default function Navbar() {
-    const [open, setOpen] = useState(false);
     const { mode } = useThemeStore();
-    const { login, user } = useAuthStore();
+    const { user } = useAuthStore();
+    const modalAuth = useOpen();
+    const navbar = useOpen();
 
-    const [openAuth, setOpenAuth] = useState(false);
-
-    const handleCloseAuthModal = () => {
-        setOpenAuth(false);
-    };
-
-    const handleOpenAuthModal = () => {
-        setOpenAuth(true);
-    };
 
     const location = useLocation();
 
@@ -33,7 +25,7 @@ export default function Navbar() {
 
     return (
         <>
-            <LoginModal open={openAuth} onClose={handleCloseAuthModal} onSubmit={login} />
+            <LoginModal open={modalAuth.isOpen} onClose={modalAuth.close} />
             {/* NAVBAR */}
             <nav
                 className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "bg-black/60 backdrop-blur-2xl" : "bg-white"}`}
@@ -68,7 +60,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <motion.button
-                            onClick={handleOpenAuthModal}
+                            onClick={modalAuth.open}
                             initial={{ scale: 0.6 }}
                             animate={{ scale: 1, transition: { duration: 0.5 } }}
                             exit={{ scale: 0.9 }}
@@ -89,10 +81,10 @@ export default function Navbar() {
                         exit={{ scale: 0.9 }}
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                        onClick={() => setOpen(!open)}
-                        className={`cursor-pointer rounded-full p-1 text-2xl md:hidden ${open ? "bg-white text-black" : "bg-black text-white"}`}
+                        onClick={navbar.toggle}
+                        className={`cursor-pointer rounded-full p-1 text-2xl md:hidden ${navbar.isOpen ? "bg-white text-black" : "bg-black text-white"}`}
                     >
-                        {open ? <FiX /> : <FiMenu />}
+                        {navbar.isOpen ? <FiX /> : <FiMenu />}
                     </motion.button>
                 </div>
             </nav>
@@ -102,7 +94,7 @@ export default function Navbar() {
 
             {/* MOBILE MENU */}
             <AnimatePresence>
-                {open && (
+                {navbar.isOpen && (
                     <>
                         {/* overlay */}
                         <motion.div
@@ -110,7 +102,7 @@ export default function Navbar() {
                             animate={{ opacity: 0.4 }}
                             exit={{ opacity: 0 }}
                             className="fixed inset-0 z-40 w-full max-w-11/12 md:hidden dark:bg-black"
-                            onClick={() => setOpen(false)}
+                            onClick={navbar.close}
                         />
 
                         {/* menu */}
@@ -127,7 +119,7 @@ export default function Navbar() {
                                         key={name}
                                         to={href}
                                         className="flex w-full max-w-10/12 items-center gap-3 text-lg text-white/90 transition hover:text-white"
-                                        onClick={() => setOpen(false)}
+                                        onClick={navbar.close}
                                     >
                                         <motion.div
                                             initial={{ scale: 0.6 }}
@@ -143,7 +135,7 @@ export default function Navbar() {
                                     </Link>
                                 ))}
                                 <motion.button
-                                    onClick={handleOpenAuthModal}
+                                    onClick={modalAuth.open}
                                     initial={{ scale: 0.9 }}
                                     animate={{ scale: 1 }}
                                     exit={{ scale: 0.9 }}
