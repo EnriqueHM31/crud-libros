@@ -40,10 +40,10 @@ export default function ContactoPanel() {
 
     return (
         <Layout>
-            <section className="mx-auto mt-5 w-full max-w-6xl p-6">
+            <section className="mx-auto mt-5 w-full max-w-11/12 md:max-w-6xl md:p-6 ">
                 <div className="relative grid gap-0 overflow-hidden rounded-3xl bg-zinc-900 outline outline-zinc-700 md:grid-cols-2">
                     {/* LEFT VISUAL */}
-                    <div className="relative flex flex-col justify-center overflow-hidden bg-neutral-950 p-10">
+                    <div className="relative flex flex-col justify-center overflow-hidden bg-neutral-950 py-5 px-3 md:p-10">
                         {/* glow background */}
                         <div className="absolute h-[500px] w-[500px] rounded-full bg-zinc-700/30 blur-3xl" />
 
