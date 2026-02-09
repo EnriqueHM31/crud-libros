@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { FiGithub, FiInstagram, FiTwitter } from "react-icons/fi";
 
 export default function Footer() {
-
     const { user } = useAuthStore();
 
     const filteredLinks = links.filter((link) => {
