@@ -46,7 +46,6 @@ export const createBook = async (book: GoogleBook) => {
 };
 
 export const updateBook = async (book: VolumeInfo, id: string) => {
-    console.log({ book });
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL_BOOKS}/${id}`, {
             method: "PUT",
