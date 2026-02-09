@@ -1,5 +1,3 @@
-
-
 export interface LoginResponse {
     user: {
         id: string;
