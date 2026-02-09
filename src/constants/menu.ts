@@ -12,7 +12,6 @@ export const menuItems = [
     { key: "pedidos", name: "Pedidos", icon: FaShoppingCart },
 ] as MenuItem[];
 
-
 export const links = [
     { name: "Inicio", Icon: FiHome, href: "/usuario", private: false },
     { name: "Libros", Icon: FiBook, href: "/usuario/libros", private: false },
