@@ -1,39 +1,15 @@
+import { useLibroCard } from "@/hooks/LibroCard";
 import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function LibroCard({ book, onClickModal }: { book: GoogleBook; onClickModal: (book: GoogleBook) => void }) {
     const { agregarFavorito, quitarFavorito, esFavorito } = useFavoritosStore();
+    const { rotateX, rotateY, handleMouseMove, reset } = useLibroCard();
 
     const v = book.volumeInfo;
     const favorito = esFavorito(book.id);
 
-    // motion values
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const rotateX = useTransform(y, [-100, 100], [12, -12]);
-    const rotateY = useTransform(x, [-100, 100], [-12, 12]);
-
-    function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const centerX = width / 2;
-        const centerY = height / 2;
-
-        x.set(mouseX - centerX);
-        y.set(mouseY - centerY);
-    }
-
-    function reset() {
-        x.set(0);
-        y.set(0);
-    }
 
     return (
         <motion.div onMouseMove={handleMouseMove} onMouseLeave={reset} style={{ perspective: 1000 }} className="h-[550px] w-full transition">
@@ -80,9 +56,8 @@ export default function LibroCard({ book, onClickModal }: { book: GoogleBook; on
                             onClick={() => (favorito ? quitarFavorito(book.id) : agregarFavorito(book))}
                             title={`${favorito ? "Quitar de" : "Agregar a"} favoritos`}
                             whileTap={{ scale: 0.85 }}
-                            className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${
-                                favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
-                            }`}
+                            className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
+                                }`}
                         >
                             🤍
                         </motion.button>
