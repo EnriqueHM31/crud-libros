@@ -33,8 +33,8 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error al iniciar sesión");
             toast.error(message || "Error al iniciar sesión");
-        };
-    }
+        }
+    };
 
     return (
         <AnimatePresence>
