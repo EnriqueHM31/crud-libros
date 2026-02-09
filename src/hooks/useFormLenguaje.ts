@@ -15,10 +15,8 @@ export function useFormLenguajes({ type, initialData, onSubmit }: HookFormLengua
             if (lenguaje.nombre !== initialData.nombre) updatedFields.nombre = lenguaje.nombre;
             if (lenguaje.abreviacion !== initialData.abreviacion) updatedFields.abreviacion = lenguaje.abreviacion;
 
-            onSubmit(updatedFields); // Solo enviamos los campos modificados
+            onSubmit(updatedFields);
         } else {
-            // Si es create, enviamos todo
-            console.log("enviando lenguaje", lenguaje);
             onSubmit({
                 nombre: lenguaje.nombre,
                 abreviacion: lenguaje.abreviacion,
