@@ -1,19 +1,34 @@
 import BooksFiltersLanding from "@/components/Landing/FiltersLibroLanding";
 import LibroCard from "@/components/Landing/LibroCard";
+import ModalLibro from "@/components/Landing/ModalLibro";
 import { useFiltersBooks } from "@/hooks/useFiltersLibro";
 import Layout from "@/layout/Layout";
 import { useBooksStore } from "@/store/libro.store";
-import { useEffect } from "react";
+import type { GoogleBook } from "@/types/libro";
+import { useEffect, useState } from "react";
 
 export default function Libros() {
     const { cargarLibros } = useBooksStore();
     const { books, total } = useFiltersBooks();
+    const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState<GoogleBook | null>(null);
+
+    const handleOpenModal = (book: GoogleBook) => {
+        setSelected(book);
+        setOpen(true);
+    };
 
     useEffect(() => {
         cargarLibros();
     }, [cargarLibros]);
     return (
         <Layout>
+
+            <ModalLibro
+                open={open}
+                onClose={() => setOpen(false)}
+                book={selected}
+            />
             <div className="flex min-h-screen max-w-7xl flex-col gap-5 bg-white text-black dark:bg-black dark:text-white">
                 <div className="mt-15 flex items-center justify-between gap-2">
                     <h1 className="text-4xl font-bold">Catalogo de libros</h1>
@@ -28,7 +43,7 @@ export default function Libros() {
 
                 <div className="mt-7 grid grid-cols-1 gap-14 sm:grid-cols-2 md:grid-cols-3">
                     {books.map((book) => (
-                        <LibroCard key={book.id} book={book} />
+                        <LibroCard key={book.id} book={book} onClickModal={handleOpenModal} />
                     ))}
                 </div>
             </div>
