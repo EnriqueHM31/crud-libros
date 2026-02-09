@@ -1,9 +1,8 @@
 import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { FiBookOpen, FiUser, FiGlobe, FiLayers } from "react-icons/fi";
 
-export default function LibroCard({ book }: { book: GoogleBook }) {
+export default function LibroCard({ book, onClickModal }: { book: GoogleBook; onClickModal: (book: GoogleBook) => void }) {
     const { agregarFavorito, quitarFavorito, esFavorito } = useFavoritosStore();
 
     const v = book.volumeInfo;
@@ -37,7 +36,7 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
     }
 
     return (
-        <motion.div onMouseMove={handleMouseMove} onMouseLeave={reset} style={{ perspective: 1000 }} className="h-[600px] w-full transition">
+        <motion.div onMouseMove={handleMouseMove} onMouseLeave={reset} style={{ perspective: 1000 }} className="h-[550px] w-full transition">
             <motion.article
                 style={{
                     rotateX,
@@ -49,8 +48,8 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
             >
                 {/* IMAGE */}
                 <motion.div style={{ transform: "translateZ(60px)" }} className="relative h-80 overflow-hidden">
-                    <motion.img src={v.imageLinks?.thumbnail || "/no-image.jpg"} alt={v.title} className="h-full w-full object-cover object-top" />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                    <motion.img src={v.imageLinks?.thumbnail || "/no-image.jpg"} alt={v.title} className="h-full w-full object-contain object-top" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
 
                     {v.categories?.[0] && (
                         <div className="absolute top-3 left-3 rounded-full border border-white/20 bg-black px-3 py-1 text-xs text-white backdrop-blur">
@@ -64,36 +63,14 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                     <h2 className="line-clamp-2 flex flex-1 items-center justify-center text-center text-lg font-semibold text-white">{v.title}</h2>
 
                     <div className="flex-2">
-                        {v.subtitle && <p className="line-clamp-1 text-xs text-zinc-400">{v.subtitle}</p>}
 
-                        <div className="mt-3 flex flex-wrap gap-4 text-xs text-zinc-400">
-                            <div className="flex items-center gap-1">
-                                <FiUser size={14} />
-                                {v.authors?.[0] ?? "Autor desconocido"}
-                            </div>
 
-                            <div className="flex items-center gap-1">
-                                <FiBookOpen size={14} />
-                                {v.pageCount} pág.
-                            </div>
-
-                            <div className="flex items-center gap-1">
-                                <FiGlobe size={14} />
-                                {v.language?.toUpperCase()}
-                            </div>
-
-                            <div className="flex items-center gap-1">
-                                <FiLayers size={14} />
-                                {v.publishedDate?.slice(0, 4)}
-                            </div>
-                        </div>
-
-                        <p className="mt-3 line-clamp-2 text-sm text-white/80">{v.description}</p>
+                        <p className="mt-3 line-clamp-2 text-sm text-gray-400">{v.description}</p>
 
                         {/* BUTTONS */}
                         <div style={{ transform: "translateZ(80px)" }} className="flex gap-3 pt-4">
                             <motion.a
-                                href={`/libros/${book.id}`}
+                                onClick={() => onClickModal(book)}
                                 whileTap={{ scale: 0.9 }}
                                 title={`Ver ${book.volumeInfo.title}`}
                                 className="flex-1 cursor-pointer rounded-lg bg-white py-2 text-center text-sm font-medium text-black transition hover:bg-gray-500 hover:text-white"
@@ -105,9 +82,8 @@ export default function LibroCard({ book }: { book: GoogleBook }) {
                                 onClick={() => (favorito ? quitarFavorito(book.id) : agregarFavorito(book))}
                                 title={`${favorito ? "Quitar de" : "Agregar a"} favoritos`}
                                 whileTap={{ scale: 0.85 }}
-                                className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${
-                                    favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
-                                }`}
+                                className={`cursor-pointer rounded-lg border border-white px-3 py-2 transition dark:border-zinc-500 ${favorito ? "bg-red-700 hover:bg-red-400" : "bg-zinc-900 hover:bg-zinc-400"
+                                    }`}
                             >
                                 🤍
                             </motion.button>
