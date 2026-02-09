@@ -1,7 +1,6 @@
 import { useMotionValue, useTransform } from "framer-motion";
 
 export function useLibroCard() {
-
     // motion values
     const x = useMotionValue(0);
     const y = useMotionValue(0);
