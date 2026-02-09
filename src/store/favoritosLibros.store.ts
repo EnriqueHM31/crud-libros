@@ -1,4 +1,5 @@
 import type { GoogleBook } from "@/types/libro";
+import { toast } from "sonner";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -28,23 +29,53 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 if (!libro || !libro.id) return;
 
                 const existe = get().favoritos.find((l) => l.book.id === libro.id);
-                if (existe) return;
+                if (existe) {
+                    toast.error("Ya estás en favoritos");
+                    return;
+                };
 
                 set({
                     favoritos: [...get().favoritos, { book: libro, read: false }],
                 });
+                toast.success(`Libro ${libro.volumeInfo.title} agregado a favoritos`);
             },
 
             quitarFavorito: (id) => {
+
+                const libro = get().favoritos.find(l => l.book.id === id);
+
+                // si no existe en favoritos, no hacer nada
+                if (!libro) return;
                 set({
                     favoritos: get().favoritos.filter((l) => l.book.id !== id),
                 });
+
+                toast.info(`Libro ${libro.book.volumeInfo.title} eliminado de favoritos`);
             },
 
             toggleLeido: (id) => {
+
+                const favoritos = get().favoritos;
+
+                const libro = favoritos.find(l => l.book.id === id);
+
+                // si no existe en favoritos, no hacer nada
+                if (!libro) return;
+
+                const nuevoEstado = !libro.read;
+
                 set({
-                    favoritos: get().favoritos.map((l) => (l.book.id === id ? { ...l, read: !l.read } : l)),
+                    favoritos: favoritos.map(l =>
+                        l.book.id === id ? { ...l, read: nuevoEstado } : l
+                    ),
                 });
+
+                // toast según estado
+                if (nuevoEstado) {
+                    toast.success("Libro marcado como leído");
+                } else {
+                    toast.info("Libro marcado como no leído");
+                }
             },
 
             esFavorito: (id) => {
