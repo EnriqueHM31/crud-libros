@@ -1,4 +1,5 @@
 import IMGLOGO from "@/../public/icono.svg";
+import { useAuthStore } from "@/store/autenticacion.store";
 import { getUserFriendlyError } from "@/utils/errors";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -8,13 +9,11 @@ import { toast } from "sonner";
 interface LoginModalProps {
     open: boolean;
     onClose: () => void;
-    onSubmit: (username: string, password: string) => Promise<boolean>;
 }
 
-export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps) {
+export default function LoginModal({ open, onClose }: LoginModalProps) {
     const [formLogin, setFormLogin] = useState({ username: "", password: "" });
-    const [loading, setLoading] = useState(false);
-
+    const { loading, login } = useAuthStore();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormLogin((prev) => ({ ...prev, [name]: value }));
@@ -28,17 +27,14 @@ export default function LoginModal({ open, onClose, onSubmit }: LoginModalProps)
         }
 
         try {
-            setLoading(true);
-            await onSubmit(formLogin.username, formLogin.password);
+            await login(formLogin.username, formLogin.password);
             toast.success("Bienvenido a Librería HM");
             onClose();
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error al iniciar sesión");
             toast.error(message || "Error al iniciar sesión");
-        } finally {
-            setLoading(false);
-        }
-    };
+        };
+    }
 
     return (
         <AnimatePresence>
