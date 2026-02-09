@@ -15,7 +15,6 @@ export default function Navbar() {
     const modalAuth = useOpen();
     const navbar = useOpen();
 
-
     const location = useLocation();
 
     const filteredLinks = links.filter((link) => {
