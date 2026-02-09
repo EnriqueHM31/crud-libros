@@ -24,7 +24,9 @@ export default function LoadingBooks({ style = "dark:bg-primary-dark" }: { style
                 />
 
                 {/* Centro (lomo) */}
-                <div className={`bg-surface ${style} border-secondary/80 z-10 -mx-1 flex h-40 w-14 items-center justify-center border px-1 dark:border-gray-400`}>
+                <div
+                    className={`bg-surface ${style} border-secondary/80 z-10 -mx-1 flex h-40 w-14 items-center justify-center border px-1 dark:border-gray-400`}
+                >
                     <FaBookOpen className="text-secondary/80 text-2xl dark:text-white" />
                 </div>
 
