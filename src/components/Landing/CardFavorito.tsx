@@ -1,7 +1,7 @@
 import { useFavoritosStore } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
 
-export default function CardFavorito({ book, read }: { book: GoogleBook; read: boolean }) {
+export default function CardFavorito({ book, read, onClickModal }: { book: GoogleBook; read: boolean; onClickModal: (book: GoogleBook) => void }) {
     const { agregarFavorito, quitarFavorito, esFavorito, toggleLeido } = useFavoritosStore();
     if (!book || !book.id) return null;
 
@@ -31,6 +31,7 @@ export default function CardFavorito({ book, read }: { book: GoogleBook; read: b
                     <section className="flex w-full flex-1 flex-col items-center gap-2">
                         <div className="flex w-full items-center justify-center gap-2">
                             <button
+                                onClick={() => onClickModal(book)}
                                 title={`Ver detalle de ${book.volumeInfo.title}`}
                                 className="flex-1 cursor-pointer rounded-xl bg-zinc-300 px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-zinc-500 hover:text-white"
                             >
@@ -48,9 +49,8 @@ export default function CardFavorito({ book, read }: { book: GoogleBook; read: b
                             <button
                                 title={read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                                 onClick={() => toggleLeido(book.id)}
-                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${
-                                    read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                }`}
+                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                    }`}
                             >
                                 {read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                             </button>
