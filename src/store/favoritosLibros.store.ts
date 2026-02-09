@@ -32,7 +32,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 if (existe) {
                     toast.error("Ya estás en favoritos");
                     return;
-                };
+                }
 
                 set({
                     favoritos: [...get().favoritos, { book: libro, read: false }],
@@ -41,8 +41,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
             },
 
             quitarFavorito: (id) => {
-
-                const libro = get().favoritos.find(l => l.book.id === id);
+                const libro = get().favoritos.find((l) => l.book.id === id);
 
                 // si no existe en favoritos, no hacer nada
                 if (!libro) return;
@@ -54,10 +53,9 @@ export const useFavoritosStore = create<FavoritosStore>()(
             },
 
             toggleLeido: (id) => {
-
                 const favoritos = get().favoritos;
 
-                const libro = favoritos.find(l => l.book.id === id);
+                const libro = favoritos.find((l) => l.book.id === id);
 
                 // si no existe en favoritos, no hacer nada
                 if (!libro) return;
@@ -65,9 +63,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 const nuevoEstado = !libro.read;
 
                 set({
-                    favoritos: favoritos.map(l =>
-                        l.book.id === id ? { ...l, read: nuevoEstado } : l
-                    ),
+                    favoritos: favoritos.map((l) => (l.book.id === id ? { ...l, read: nuevoEstado } : l)),
                 });
 
                 // toast según estado
