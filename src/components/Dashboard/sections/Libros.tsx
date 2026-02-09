@@ -30,7 +30,6 @@ export default function Libros() {
     if (isLoading) return <LoadingBooks />;
     const isFormMode = modalMode === "create" || modalMode === FormType.edit;
 
-    console.log({ error });
     return (
         <>
             {/* FORMULARIO CREATE / EDIT */}
