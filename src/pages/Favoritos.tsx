@@ -22,7 +22,7 @@ export default function Favoritos() {
                         Aquí podrás ver los libros que has marcado como favoritos. Puedes leer los libros marcados como leídos y quitarlos de tus favoritos.
                     </p>
 
-                    <div className="grid w-full  md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div className="grid w-full  md:grid-cols-2 lg:grid-cols-3 gap-10 items-center justify-center  mt-8">
                         {favoritos.map((libroFavorito: LibroFav) => (
                             <CardFavorito key={libroFavorito.book.id} book={libroFavorito.book} read={libroFavorito.read} />
                         ))}
