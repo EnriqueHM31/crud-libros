@@ -25,7 +25,6 @@ export const useFavoritosStore = create<FavoritosStore>()(
             favoritos: [],
 
             agregarFavorito: (libro) => {
-                console.log({ libro });
                 if (!libro || !libro.id) return;
 
                 const existe = get().favoritos.find((l) => l.book.id === libro.id);
