@@ -4,6 +4,7 @@ import Layout from "@/layout/Layout";
 import ICONOLOGO from "@/../public/icono.svg";
 import { FaEnvelope } from "react-icons/fa";
 import { toast } from "sonner";
+import { sendEmail } from "@/services/email.service";
 
 export default function ContactoPanel() {
 
@@ -27,13 +28,26 @@ export default function ContactoPanel() {
         });
     }
 
+    async function handleSubmitEnviarMensaje(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        if (!form.correo || !form.nombre || !form.mensaje) {
+            toast.error("Por favor, rellena todos los campos");
+            return;
+        }
+
+        const { message } = (await sendEmail({ mensaje: form.mensaje, correo: form.correo, nombre: form.nombre })) as { data: string; message: string };
+
+        toast.success(message ?? "Mensaje enviado correctamente");
+    }
+
     return (
         <Layout>
             <section className="w-full max-w-6xl mx-auto p-6 mt-5">
                 <div className="relative grid md:grid-cols-2 gap-0 rounded-3xl overflow-hidden bg-zinc-900 outline outline-zinc-700">
 
                     {/* LEFT VISUAL */}
-                    <div className="relative flex flex-col p-10 bg-neutral-950 overflow-hidden">
+                    <div className="relative flex flex-col justify-center p-10 bg-neutral-950 overflow-hidden">
 
                         {/* glow background */}
                         <div className="absolute w-[500px] h-[500px] bg-zinc-700/30 blur-3xl rounded-full" />
@@ -113,7 +127,7 @@ export default function ContactoPanel() {
                             </p>
 
                             {/* inputs */}
-                            <div className="flex flex-col gap-4">
+                            <form className="flex flex-col gap-4" onSubmit={(e) => handleSubmitEnviarMensaje(e)}>
 
                                 <InputField
                                     label="Nombre"
@@ -138,11 +152,11 @@ export default function ContactoPanel() {
 
                                 <motion.button
                                     whileTap={{ scale: 0.96 }}
-                                    className="mt-2 rounded-xl bg-zinc-300 text-black font-medium py-3 hover:bg-zinc-500 hover:text-white transition"
+                                    className="mt-2 rounded-xl bg-zinc-300 text-black font-medium py-3 hover:bg-zinc-500 hover:text-white transition cursor-pointer"
                                 >
                                     Enviar mensaje
                                 </motion.button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
