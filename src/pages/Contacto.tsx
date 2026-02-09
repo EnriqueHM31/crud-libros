@@ -100,11 +100,11 @@ export default function ContactoPanel() {
 
                             {/* inputs */}
                             <form className="flex flex-col gap-4" onSubmit={(e) => handleSubmitEnviarMensaje(e)}>
-                                <InputField label="Nombre" name="nombre" value={form.nombre} onChange={handleChange} />
+                                <InputField label="Nombre" name="nombre" id="nombre" value={form.nombre} onChange={handleChange} />
 
-                                <InputField label="Correo" name="correo" value={form.correo} onChange={handleChange} />
+                                <InputField label="Correo" name="correo" id="correo" value={form.correo} onChange={handleChange} />
 
-                                <TextareaField label="Mensaje" name="mensaje" value={form.mensaje} onChange={handleChange} />
+                                <TextareaField label="Mensaje" name="mensaje" id="mensaje" value={form.mensaje} onChange={handleChange} />
 
                                 <motion.button
                                     whileTap={{ scale: 0.96 }}
@@ -124,7 +124,7 @@ export default function ContactoPanel() {
 function InputField({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-xs text-zinc-400">{label}</label>
+            <label className="text-xs text-zinc-400" htmlFor={props.id} >{label}</label>
             <input
                 {...props}
                 className="rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-white shadow-inner transition focus:ring-1 focus:ring-zinc-400 focus:outline-none"
@@ -136,7 +136,7 @@ function InputField({ label, ...props }: { label: string } & React.InputHTMLAttr
 function TextareaField({ label, ...props }: { label: string } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-xs text-zinc-400">{label}</label>
+            <label className="text-xs text-zinc-400" htmlFor={props.id}>{label}</label>
             <textarea
                 rows={4}
                 {...props}
