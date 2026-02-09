@@ -14,6 +14,7 @@ interface LoginModalProps {
 export default function LoginModal({ open, onClose }: LoginModalProps) {
     const [formLogin, setFormLogin] = useState({ username: "", password: "" });
     const { loading, login } = useAuthStore();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormLogin((prev) => ({ ...prev, [name]: value }));
