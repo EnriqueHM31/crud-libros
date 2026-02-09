@@ -6,26 +6,25 @@ import type { GoogleBook } from "../types/libro";
 import { getChangedFields, mapBookToFormData } from "../utils/formLibro";
 
 export function useBookForm({ type, book }: { type: "create" | "edit"; book?: GoogleBook }) {
-    console.log({ book });
     const { createBook, editBook } = useBooksStore();
 
     const initialData: FormData =
         book && type === "edit"
             ? mapBookToFormData({ book })
             : {
-                  volumeInfo: {
-                      title: "",
-                      subtitle: "",
-                      authors: [],
-                      publisher: "",
-                      publishedDate: "",
-                      categories: [],
-                      description: "",
-                      pageCount: undefined,
-                      language: "",
-                      imageLinks: { thumbnail: "" },
-                  },
-              };
+                volumeInfo: {
+                    title: "",
+                    subtitle: "",
+                    authors: [],
+                    publisher: "",
+                    publishedDate: "",
+                    categories: [],
+                    description: "",
+                    pageCount: undefined,
+                    language: "",
+                    imageLinks: { thumbnail: "" },
+                },
+            };
 
     const [formData, setFormData] = useState<FormData>(initialData);
     const [originalData] = useState<FormData>(initialData);
@@ -67,7 +66,6 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
     };
 
     const handleCategoriesChange = (value: string[]) => {
-        console.log({ value });
         setFormData((prev) => ({
             ...prev,
             volumeInfo: {
@@ -84,7 +82,6 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
                 toast.error("Llena todos los campos");
                 return;
             }
-            console.log({ formData });
             createBook(formData as GoogleBook);
 
             // Limpiar formulario
@@ -93,10 +90,7 @@ export function useBookForm({ type, book }: { type: "create" | "edit"; book?: Go
 
         if (!book) return;
 
-        console.log({ formData, originalData });
         const changes = getChangedFields(originalData, formData);
-
-        console.log({ changes });
 
         if (!changes.volumeInfo) {
             toast.error("No se han modificado los campos");
