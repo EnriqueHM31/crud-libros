@@ -3,7 +3,6 @@ import type { GoogleBook } from "@/types/libro";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 
-
 interface Props {
     open: boolean;
     onClose: () => void;
@@ -15,7 +14,6 @@ export default function ModalLibro({ open, onClose, book }: Props) {
     if (!book) return null;
 
     const fav = esFavorito(book.id);
-
 
     return (
         <AnimatePresence>
@@ -32,24 +30,21 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0 }}
                         transition={{ type: "spring", damping: 18 }}
-                        className="relative w-full max-w-4xl rounded-3xl bg-zinc-900 border border-zinc-700 shadow-2xl overflow-hidden"
+                        className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-zinc-700 bg-zinc-900 shadow-2xl"
                     >
                         {/* close */}
                         <motion.button
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
                             onClick={onClose}
-                            className="absolute top-4 right-4 z-20 text-zinc-400 hover:text-white cursor-pointer"
+                            className="absolute top-4 right-4 z-20 cursor-pointer text-zinc-400 hover:text-white"
                         >
                             <FiX size={22} />
                         </motion.button>
 
                         <div className="grid md:grid-cols-2">
                             {/* LEFT IMAGE */}
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                className="relative bg-neutral-950 flex items-center justify-center p-8"
-                            >
+                            <motion.div whileHover={{ scale: 1.02 }} className="relative flex items-center justify-center bg-neutral-950 p-8">
                                 <motion.img
                                     src={book.volumeInfo.imageLinks?.thumbnail || "/no-image.jpg"}
                                     alt={book.volumeInfo.title}
@@ -61,30 +56,34 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                             </motion.div>
 
                             {/* RIGHT INFO */}
-                            <div className="p-8 flex flex-col gap-4">
-
+                            <div className="flex flex-col gap-4 p-8">
                                 <div>
-                                    <h2 className="text-2xl font-bold text-white">
-                                        {book.volumeInfo.title}
-                                    </h2>
-                                    <p className="text-sm text-zinc-400">
-                                        {book.volumeInfo.subtitle}
+                                    <h2 className="text-2xl font-bold text-white">{book.volumeInfo.title}</h2>
+                                    <p className="text-sm text-zinc-400">{book.volumeInfo.subtitle}</p>
+                                </div>
+
+                                <div className="space-y-1 text-sm text-zinc-400">
+                                    <p>
+                                        <b className="text-zinc-200">Autor:</b> {book.volumeInfo.authors?.join(", ")}
+                                    </p>
+                                    <p>
+                                        <b className="text-zinc-200">Editorial:</b> {book.volumeInfo.publisher}
+                                    </p>
+                                    <p>
+                                        <b className="text-zinc-200">Año:</b> {book.volumeInfo.publishedDate?.slice(0, 4)}
+                                    </p>
+                                    <p>
+                                        <b className="text-zinc-200">Páginas:</b> {book.volumeInfo.pageCount}
+                                    </p>
+                                    <p>
+                                        <b className="text-zinc-200">Idioma:</b> {book.volumeInfo.language?.toUpperCase()}
+                                    </p>
+                                    <p>
+                                        <b className="text-zinc-200">Categorías:</b> {book.volumeInfo.categories?.join(", ")}
                                     </p>
                                 </div>
 
-                                <div className="text-sm text-zinc-400 space-y-1">
-                                    <p><b className="text-zinc-200">Autor:</b> {book.volumeInfo.authors?.join(", ")}</p>
-                                    <p><b className="text-zinc-200">Editorial:</b> {book.volumeInfo.publisher}</p>
-                                    <p><b className="text-zinc-200">Año:</b> {book.volumeInfo.publishedDate?.slice(0, 4)}</p>
-                                    <p><b className="text-zinc-200">Páginas:</b> {book.volumeInfo.pageCount}</p>
-                                    <p><b className="text-zinc-200">Idioma:</b> {book.volumeInfo.language?.toUpperCase()}</p>
-                                    <p><b className="text-zinc-200">Categorías:</b> {book.volumeInfo.categories?.join(", ")}</p>
-                                </div>
-
-                                <motion.div
-                                    whileHover={{ scale: 1.01 }}
-                                    className="mt-2 text-sm text-white/80 max-h-40 overflow-auto pr-2"
-                                >
+                                <motion.div whileHover={{ scale: 1.01 }} className="mt-2 max-h-40 overflow-auto pr-2 text-sm text-white/80">
                                     {book.volumeInfo.description}
                                 </motion.div>
 
@@ -93,8 +92,9 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                                     onClick={() => (fav ? quitarFavorito(book.id) : agregarFavorito(book))}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className={`mt-4 rounded-xl k font-medium py-3 cursor-pointer  transition ${fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                        }`}
+                                    className={`k mt-4 cursor-pointer rounded-xl py-3 font-medium transition ${
+                                        fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                    }`}
                                 >
                                     {fav ? "Quitar de favoritos" : "Añadir a favoritos"}
                                 </motion.button>
