@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { CerrarSesion, IniciarSesion, obtenerUsuario, registrarUsuario } from "@/services/auth.service";
 import { getUserFriendlyError } from "@/utils/errors";
+import { toast } from "sonner";
 
 interface User {
     id: string;
@@ -16,8 +17,8 @@ interface AuthStore {
     error: string | null;
     isAuthenticated: boolean;
 
-    registrar: (username: string, password: string) => Promise<boolean>;
-    login: (username: string, password: string) => Promise<boolean>;
+    registrar: (username: string, password: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
 
@@ -36,16 +37,18 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ loading: true, error: null });
 
-            const res = await IniciarSesion(username, password);
+            const { data, message } = await IniciarSesion(username, password);
 
+            const { username: Usuario, id } = data;
             set({
-                user: res.user,
-                username: res.user.username,
+                user: { id, username: Usuario },
+                username: username,
                 isAuthenticated: true,
                 loading: false,
             });
 
-            return true;
+            toast.success(message ?? "Sesión iniciada correctamente");
+
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -53,13 +56,14 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 loading: false,
                 isAuthenticated: false,
             });
-            return false;
         }
     },
 
     logout: async () => {
         try {
-            await CerrarSesion();
+            const { message } = await CerrarSesion();
+
+            toast.success(message ?? "Sesión cerrada correctamente");
         } catch {
             // aunque falle backend, limpiamos estado
         }
@@ -75,20 +79,26 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ checking: true });
 
-            const res = await obtenerUsuario();
+            const { data, message } = await obtenerUsuario();
+
+            const { username: Usuario, id } = data;
 
             set({
-                user: res.user,
-                username: res.user.username,
+                user: { id, username: Usuario },
+                username: Usuario,
                 isAuthenticated: true,
                 checking: false,
             });
-        } catch {
+
+            toast.success(message ?? "Sesión iniciada correctamente");
+        } catch (err) {
+            const { message } = getUserFriendlyError(err, "Error en login");
             set({
                 user: null,
                 username: null,
                 isAuthenticated: false,
                 checking: false,
+                error: message,
             });
         }
     },
@@ -96,16 +106,17 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ loading: true, error: null });
 
-            const res = await registrarUsuario(username, password);
+            const response = await registrarUsuario(username, password);
+            const { data, message } = response;
 
+            const { username: Usuario, id } = data;
             set({
-                user: res.user,
-                username: res.user.username,
+                user: { id, username: Usuario },
+                username: Usuario,
                 isAuthenticated: true,
                 loading: false,
             });
-
-            return true;
+            toast.success(message ?? "Sesión iniciada correctamente");
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -113,7 +124,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 loading: false,
                 isAuthenticated: false,
             });
-            return false;
         }
     },
 }));
