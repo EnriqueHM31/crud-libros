@@ -116,7 +116,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 isAuthenticated: true,
                 loading: false,
             });
-            toast.success(message ?? "Sesión iniciada correctamente");
+
+            toast.success(message ?? "Registro exitoso");
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
