@@ -79,9 +79,10 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
                         <div className="flex flex-col items-center gap-3 text-center">
                             <div className="flex items-center gap-2 text-2xl font-bold text-white">
                                 <img src={IMGLOGO} alt="logo" className="h-10 w-auto saturate-30" />
-                                Librería HM
+                                <h2>Librería HM</h2>
                             </div>
 
+                            <h3 className="text-xl font-bold dark:text-gray-300">Registrarse</h3>
                             <p className="max-w-[280px] text-sm text-zinc-400">
                                 Crea tu cuenta para guardar favoritos, marcar libros leídos y gestionar tu biblioteca.
                             </p>
