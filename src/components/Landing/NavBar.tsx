@@ -23,7 +23,7 @@ export default function Navbar() {
 
     return (
         <>
-            <LoginModal open={modalAuth.isOpen} onClose={modalAuth.close} />
+            <LoginModal open={modalAuth.isOpen} onClose={modalAuth.close} openIniciarSesion={modalAuth.open} />
             {/* NAVBAR */}
             <nav
                 className={`fixed top-0 left-0 z-50 w-full border-b text-white dark:border-zinc-800 ${mode === "dark" ? "bg-black/60 backdrop-blur-2xl" : "bg-white"}`}
