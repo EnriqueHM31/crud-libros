@@ -20,7 +20,6 @@ export default function RegistrarseModal({ open, onClose, openIniciarSesion }: R
 
     const { loading, registrar } = useAuthStore();
 
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
@@ -62,10 +61,7 @@ export default function RegistrarseModal({ open, onClose, openIniciarSesion }: R
                         className="relative w-[420px] max-w-[95%] rounded-2xl border border-zinc-700 bg-zinc-950 p-8 shadow-2xl"
                     >
                         {/* close */}
-                        <button
-                            onClick={onClose}
-                            className="absolute top-4 right-4 cursor-pointer text-zinc-400 hover:text-white"
-                        >
+                        <button onClick={onClose} className="absolute top-4 right-4 cursor-pointer text-zinc-400 hover:text-white">
                             <FiX size={20} />
                         </button>
 
