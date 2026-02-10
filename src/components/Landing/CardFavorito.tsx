@@ -45,8 +45,9 @@ export default function CardFavorito({ book, read, onClickModal }: { book: Googl
                             <button
                                 title={read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                                 onClick={() => toggleLeido(book.id)}
-                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                    }`}
+                                className={`flex-1 cursor-pointer rounded-xl px-4 py-2 text-sm font-medium text-black transition-colors ${
+                                    read ? "bg-green-700 text-white hover:bg-green-800" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                }`}
                             >
                                 {read ? "Marcar libro como no leído" : "Marcar libro como leído"}
                             </button>
