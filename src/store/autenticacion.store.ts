@@ -17,7 +17,7 @@ interface AuthStore {
     error: string | null;
     isAuthenticated: boolean;
 
-    registrar: (username: string, password: string) => Promise<void>;
+    registrar: (username: string, password: string, correo: string) => Promise<void>;
     login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
@@ -102,11 +102,11 @@ export const useAuthStore = create<AuthStore>((set) => ({
             });
         }
     },
-    registrar: async (username, password) => {
+    registrar: async (username, password, correo) => {
         try {
             set({ loading: true, error: null });
 
-            const response = await registrarUsuario(username, password);
+            const response = await registrarUsuario(username, correo, password);
             const { data, message } = response;
 
             const { username: Usuario, id } = data;
