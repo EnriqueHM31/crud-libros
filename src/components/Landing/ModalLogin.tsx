@@ -66,7 +66,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                             transition={{ duration: 0.35 }}
                             className="relative w-[420px] max-w-[95%] rounded-2xl border border-zinc-700 bg-zinc-950 p-8 shadow-2xl"
                         >
-                            <button onClick={onClose} className="absolute top-4 right-4 text-zinc-400 hover:text-white">
+                            <button onClick={onClose} className="absolute top-4 right-4 text-zinc-400 hover:text-white cursor-pointer">
                                 <FiX size={20} />
                             </button>
 
@@ -114,7 +114,12 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                                     ¿No tienes cuenta?
                                 </motion.button>
 
-                                <motion.button type="submit" disabled={loading} className="mt-3 rounded-xl bg-white py-3 font-semibold text-black">
+                                <motion.button
+                                    whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                                    whileTap={{ scale: 0.95, transition: { duration: 0.2 } }}
+                                    type="submit"
+                                    disabled={loading}
+                                    className="mt-3 rounded-xl bg-white py-3 font-semibold text-black cursor-pointer">
                                     {loading ? "Ingresando..." : "Iniciar sesión"}
                                 </motion.button>
                             </form>
