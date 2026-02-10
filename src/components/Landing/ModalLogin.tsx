@@ -11,8 +11,9 @@ import RegistrarseModal from "./ModalRegistrar";
 interface LoginModalProps {
     open: boolean;
     onClose: () => void;
+    openIniciarSesion: () => void;
 }
-export default function LoginModal({ open, onClose }: LoginModalProps) {
+export default function LoginModal({ open, onClose, openIniciarSesion }: LoginModalProps) {
     const [formLogin, setFormLogin] = useState({ username: "", password: "" });
     const { loading, login } = useAuthStore();
     const modalRegistrar = useOpen();
@@ -85,6 +86,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                                     <FiUser className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                     <input
                                         name="username"
+                                        autoComplete="username"
                                         value={formLogin.username}
                                         onChange={handleChange}
                                         placeholder="Usuario"
@@ -97,6 +99,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                                     <input
                                         type="password"
                                         name="password"
+                                        autoComplete="current-password"
                                         value={formLogin.password}
                                         onChange={handleChange}
                                         placeholder="Contraseña"
@@ -130,6 +133,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
             <RegistrarseModal
                 open={modalRegistrar.isOpen}
                 onClose={modalRegistrar.close}
+                openIniciarSesion={openIniciarSesion}
             />
         </>
     );
