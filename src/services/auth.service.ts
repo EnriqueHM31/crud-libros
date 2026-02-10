@@ -5,7 +5,6 @@ export interface User {
     username: string;
 }
 
-
 export interface ReponseUsuario {
     data: User;
     message: string;
@@ -20,7 +19,7 @@ export async function registrarUsuario(username: string, correo: string, passwor
         body: JSON.stringify({
             username,
             correo,
-            password
+            password,
         }),
     });
 
@@ -44,7 +43,6 @@ export async function IniciarSesion(username: string, password: string): Promise
 
     const { data, message } = (await response.json()) as { data: User; message: string };
     return { data, message };
-
 }
 
 export async function CerrarSesion(): Promise<ReponseUsuario> {
