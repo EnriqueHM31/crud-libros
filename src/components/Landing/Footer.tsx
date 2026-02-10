@@ -98,11 +98,11 @@ export default function Footer() {
                 >
                     <span className="text-center md:text-start">© 2026 Libreria HM. Todos los derechos reservados.</span>
 
-                    <div className="flex gap-6 items-center justify-center">
-                        <a href="#" className="transition hover:text-black dark:hover:text-white text-center md:text-start">
+                    <div className="flex items-center justify-center gap-6">
+                        <a href="#" className="text-center transition hover:text-black md:text-start dark:hover:text-white">
                             Privacidad
                         </a>
-                        <a href="#" className="transition hover:text-black dark:hover:text-white text-center md:text-start">
+                        <a href="#" className="text-center transition hover:text-black md:text-start dark:hover:text-white">
                             Términos
                         </a>
                     </div>
