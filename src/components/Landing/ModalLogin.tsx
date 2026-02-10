@@ -41,9 +41,9 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
     };
 
     const openRegister = () => {
-        onClose();              // cierra login
+        onClose(); // cierra login
         setTimeout(() => {
-            modalRegistrar.open();  // abre registro
+            modalRegistrar.open(); // abre registro
         }, 120); // pequeño delay para que AnimatePresence no los superponga
     };
 
@@ -76,9 +76,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                                     <h2>Librería HM</h2>
                                 </div>
                                 <h3 className="text-xl font-bold dark:text-gray-300">Iniciar sesión</h3>
-                                <p className="max-w-[280px] text-sm text-zinc-400">
-                                    Accede a tu cuenta para gestionar tu biblioteca.
-                                </p>
+                                <p className="max-w-[280px] text-sm text-zinc-400">Accede a tu cuenta para gestionar tu biblioteca.</p>
                             </div>
 
                             <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
@@ -111,16 +109,12 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                                     whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
                                     type="button"
                                     onClick={openRegister}
-                                    className="text-sm text-white hover:underline cursor-pointer hover:text-gray-300"
+                                    className="cursor-pointer text-sm text-white hover:text-gray-300 hover:underline"
                                 >
                                     ¿No tienes cuenta?
                                 </motion.button>
 
-                                <motion.button
-                                    type="submit"
-                                    disabled={loading}
-                                    className="mt-3 rounded-xl bg-white py-3 font-semibold text-black"
-                                >
+                                <motion.button type="submit" disabled={loading} className="mt-3 rounded-xl bg-white py-3 font-semibold text-black">
                                     {loading ? "Ingresando..." : "Iniciar sesión"}
                                 </motion.button>
                             </form>
@@ -130,11 +124,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
             </AnimatePresence>
 
             {/* REGISTER */}
-            <RegistrarseModal
-                open={modalRegistrar.isOpen}
-                onClose={modalRegistrar.close}
-                openIniciarSesion={openIniciarSesion}
-            />
+            <RegistrarseModal open={modalRegistrar.isOpen} onClose={modalRegistrar.close} openIniciarSesion={openIniciarSesion} />
         </>
     );
 }
