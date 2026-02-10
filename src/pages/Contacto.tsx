@@ -40,10 +40,10 @@ export default function ContactoPanel() {
 
     return (
         <Layout>
-            <section className="mx-auto mt-5 w-full max-w-11/12 md:max-w-6xl md:p-6 ">
+            <section className="mx-auto mt-5 w-full max-w-11/12 md:max-w-6xl md:p-6">
                 <div className="relative grid gap-0 overflow-hidden rounded-3xl bg-zinc-900 outline outline-zinc-700 md:grid-cols-2">
                     {/* LEFT VISUAL */}
-                    <div className="relative flex flex-col justify-center overflow-hidden bg-neutral-950 py-5 px-3 md:p-10">
+                    <div className="relative flex flex-col justify-center overflow-hidden bg-neutral-950 px-3 py-5 md:p-10">
                         {/* glow background */}
                         <div className="absolute h-[500px] w-[500px] rounded-full bg-zinc-700/30 blur-3xl" />
 
@@ -124,7 +124,9 @@ export default function ContactoPanel() {
 function InputField({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-xs text-zinc-400" htmlFor={props.id} >{label}</label>
+            <label className="text-xs text-zinc-400" htmlFor={props.id}>
+                {label}
+            </label>
             <input
                 {...props}
                 className="rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-white shadow-inner transition focus:ring-1 focus:ring-zinc-400 focus:outline-none"
@@ -136,7 +138,9 @@ function InputField({ label, ...props }: { label: string } & React.InputHTMLAttr
 function TextareaField({ label, ...props }: { label: string } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
     return (
         <div className="flex flex-col gap-1">
-            <label className="text-xs text-zinc-400" htmlFor={props.id}>{label}</label>
+            <label className="text-xs text-zinc-400" htmlFor={props.id}>
+                {label}
+            </label>
             <textarea
                 rows={4}
                 {...props}
