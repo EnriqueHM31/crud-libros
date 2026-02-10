@@ -1,10 +1,12 @@
 import IMGLOGO from "@/../public/icono.svg";
+import { useOpen } from "@/hooks/useOpen";
 import { useAuthStore } from "@/store/autenticacion.store";
 import { getUserFriendlyError } from "@/utils/errors";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiLock, FiUser, FiX } from "react-icons/fi";
 import { toast } from "sonner";
+import RegistrarseModal from "./ModalRegistrar";
 
 interface LoginModalProps {
     open: boolean;
@@ -14,6 +16,8 @@ interface LoginModalProps {
 export default function LoginModal({ open, onClose }: LoginModalProps) {
     const [formLogin, setFormLogin] = useState({ username: "", password: "" });
     const { loading, login } = useAuthStore();
+
+    const modalRegistrar = useOpen();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -39,6 +43,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
 
     return (
         <AnimatePresence>
+            {modalRegistrar.isOpen && <RegistrarseModal open={modalRegistrar.isOpen} onClose={modalRegistrar.close} />}
             {open && (
                 <motion.div
                     className="fixed inset-0 z-100 flex items-center justify-center bg-black/70 backdrop-blur-sm"
@@ -98,9 +103,18 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                                     placeholder="Contraseña"
                                     className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white outline-none focus:border-zinc-500"
                                 />
+                                <motion.button
+                                    onClick={modalRegistrar.open}
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.76, transition: { duration: 0.3 } }}
+                                    className="mt-2 cursor-pointer rounded-x px-4 text-sm text-white text-center w-full hover:underline"
+                                >
+                                    ¿No tienes cuenta?
+                                </motion.button>
                             </div>
 
                             <motion.button
+                                type="button"
                                 whileHover={{ scale: 1.03 }}
                                 whileTap={{ scale: 0.76, transition: { duration: 0.3 } }}
                                 disabled={loading}
@@ -110,6 +124,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
                             </motion.button>
                         </form>
                     </motion.div>
+
                 </motion.div>
             )}
         </AnimatePresence>
