@@ -1,7 +1,8 @@
 import type { GoogleBook } from "@/types/libro";
 import { toast } from "sonner";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { useAuthStore } from "./autenticacion.store";
 
 export interface LibroFav {
     book: GoogleBook;
@@ -9,7 +10,7 @@ export interface LibroFav {
 }
 
 interface FavoritosStore {
-    favoritos: LibroFav[]; // TODO: Cambiar nombre
+    favoritos: LibroFav[];
 
     agregarFavorito: (libro: GoogleBook) => void;
     quitarFavorito: (id: string) => void;
@@ -17,73 +18,90 @@ interface FavoritosStore {
 
     esFavorito: (id: string) => boolean;
     totalFavoritos: () => number;
+
+    cargarFavoritosUsuario: () => void;
 }
+
+export const getStorageKey = () => {
+    const { user } = useAuthStore.getState();
+    if (!user) return "libros-favoritos-anon";
+    return `libros-favoritos-${user.username || user.id}`;
+};
 
 export const useFavoritosStore = create<FavoritosStore>()(
     persist(
         (set, get) => ({
             favoritos: [],
 
+            cargarFavoritosUsuario: () => {
+                const key = getStorageKey();
+                const data = localStorage.getItem(key);
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    set({ favoritos: parsed.state?.favoritos || [] });
+                } else {
+                    set({ favoritos: [] });
+                }
+            },
+
             agregarFavorito: (libro) => {
-                if (!libro || !libro.id) return;
+                if (!libro?.id) return;
+
+                const { user } = useAuthStore.getState();
+                if (!user) {
+                    toast.error("Inicia sesión para agregar favoritos");
+                    return;
+                }
 
                 const existe = get().favoritos.find((l) => l.book.id === libro.id);
                 if (existe) {
-                    toast.error("Ya estás en favoritos");
+                    toast.error("Ya está en favoritos");
                     return;
                 }
 
                 set({
                     favoritos: [...get().favoritos, { book: libro, read: false }],
                 });
-                toast.success(`Libro ${libro.volumeInfo.title} agregado a favoritos`);
+
+                toast.success(`Libro ${libro.volumeInfo.title} agregado`);
             },
 
             quitarFavorito: (id) => {
-                const libro = get().favoritos.find((l) => l.book.id === id);
+                const { user } = useAuthStore.getState();
+                if (!user) return;
 
-                // si no existe en favoritos, no hacer nada
+                const libro = get().favoritos.find((l) => l.book.id === id);
                 if (!libro) return;
+
                 set({
                     favoritos: get().favoritos.filter((l) => l.book.id !== id),
                 });
 
-                toast.info(`Libro ${libro.book.volumeInfo.title} eliminado de favoritos`);
+                toast.info(`Libro eliminado`);
             },
 
             toggleLeido: (id) => {
-                const favoritos = get().favoritos;
-
-                const libro = favoritos.find((l) => l.book.id === id);
-
-                // si no existe en favoritos, no hacer nada
+                const libro = get().favoritos.find((l) => l.book.id === id);
                 if (!libro) return;
 
-                const nuevoEstado = !libro.read;
+                const nuevo = !libro.read;
 
                 set({
-                    favoritos: favoritos.map((l) => (l.book.id === id ? { ...l, read: nuevoEstado } : l)),
+                    favoritos: get().favoritos.map((l) =>
+                        l.book.id === id ? { ...l, read: nuevo } : l
+                    ),
                 });
-
-                // toast según estado
-                if (nuevoEstado) {
-                    toast.success("Libro marcado como leído");
-                } else {
-                    toast.info("Libro marcado como no leído");
-                }
             },
 
             esFavorito: (id) => {
-                if (!id) return false;
                 return get().favoritos.some((l) => l.book.id === id);
             },
 
-            totalFavoritos: () => {
-                return get().favoritos.length;
-            },
+            totalFavoritos: () => get().favoritos.length,
         }),
         {
-            name: "libros-favoritos-storage",
+            name: getStorageKey(),
+            storage: createJSONStorage(() => localStorage),
         }
     )
 );
