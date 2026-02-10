@@ -8,9 +8,10 @@ import { toast } from "sonner";
 interface RegisterModalProps {
     open: boolean;
     onClose: () => void;
+    openIniciarSesion: () => void;
 }
 
-export default function RegistrarseModal({ open, onClose }: RegisterModalProps) {
+export default function RegistrarseModal({ open, onClose, openIniciarSesion }: RegisterModalProps) {
     const [form, setForm] = useState({
         username: "",
         correo: "",
@@ -38,6 +39,10 @@ export default function RegistrarseModal({ open, onClose }: RegisterModalProps) 
         await registrar(username, correo, password);
 
         onClose();
+
+        setTimeout(() => {
+            openIniciarSesion();
+        }, 500);
     };
 
     return (
