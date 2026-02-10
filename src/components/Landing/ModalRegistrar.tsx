@@ -7,13 +7,13 @@ import { toast } from "sonner";
 interface RegisterModalProps {
     open: boolean;
     onClose: () => void;
-    onRegister?: (username: string, email: string, password: string) => Promise<void>;
+    onRegister?: (username: string, correo: string, password: string) => Promise<void>;
 }
 
 export default function RegistrarseModal({ open, onClose, onRegister }: RegisterModalProps) {
     const [form, setForm] = useState({
         username: "",
-        email: "",
+        correo: "",
         password: "",
     });
 
@@ -27,7 +27,7 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!form.username || !form.email || !form.password) {
+        if (!form.username || !form.correo || !form.password) {
             toast.error("Completa todos los campos");
             return;
         }
@@ -36,7 +36,7 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
             setLoading(true);
 
             if (onRegister) {
-                await onRegister(form.username, form.email, form.password);
+                await onRegister(form.username, form.correo, form.password);
             } else {
                 // fallback mock
                 await new Promise((r) => setTimeout(r, 900));
@@ -104,14 +104,14 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
                                 />
                             </div>
 
-                            {/* email */}
+                            {/* correo */}
                             <div className="relative">
                                 <FiMail className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
-                                    type="email"
-                                    name="email"
-                                    autoComplete="email"
-                                    value={form.email}
+                                    type="correo"
+                                    name="correo"
+                                    autoComplete="correo"
+                                    value={form.correo}
                                     onChange={handleChange}
                                     placeholder="Correo electrónico"
                                     className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white outline-none focus:border-zinc-500"
