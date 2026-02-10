@@ -23,17 +23,17 @@ export default function Favoritos() {
                     <p className="text-gray-500">No tienes libros favoritos aún.</p>
                 </section>
             ) : (
-                <section className="flex w-full flex-col  gap-4 overflow-hidden">
-                    <div className="mt-15 flex flex-col md:flex-row items-center justify-between gap-2">
-                        <h1 className="text-2xl md:text-4xl font-bold">Tus libros favoritos</h1>
+                <section className="flex w-full flex-col gap-4 overflow-hidden">
+                    <div className="mt-15 flex flex-col items-center justify-between gap-2 md:flex-row">
+                        <h1 className="text-2xl font-bold md:text-4xl">Tus libros favoritos</h1>
                         <p className="text-sm font-bold text-black dark:text-zinc-400">Mostrando {totalFavoritos()} libros</p>
                     </div>
 
-                    <p className="w-full text-black dark:text-gray-400 text-center md:text-left">
+                    <p className="w-full text-center text-black md:text-left dark:text-gray-400">
                         Aquí podrás ver los libros que has marcado como favoritos. Puedes leer los libros marcados como leídos y quitarlos de tus favoritos.
                     </p>
 
-                    <div className="mt-8 grid w-full items-center justify-center gap-20 md:gap-10 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-8 grid w-full items-center justify-center gap-20 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
                         {favoritos.map((libroFavorito: LibroFav) => (
                             <CardFavorito key={libroFavorito.book.id} book={libroFavorito.book} read={libroFavorito.read} onClickModal={handleOpenModal} />
                         ))}
