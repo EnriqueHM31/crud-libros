@@ -1,4 +1,5 @@
 import IMGLOGO from "@/../public/icono.svg";
+import { useAuthStore } from "@/store/autenticacion.store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiLock, FiMail, FiUser, FiX } from "react-icons/fi";
@@ -7,17 +8,17 @@ import { toast } from "sonner";
 interface RegisterModalProps {
     open: boolean;
     onClose: () => void;
-    onRegister?: (username: string, correo: string, password: string) => Promise<void>;
 }
 
-export default function RegistrarseModal({ open, onClose, onRegister }: RegisterModalProps) {
+export default function RegistrarseModal({ open, onClose }: RegisterModalProps) {
     const [form, setForm] = useState({
         username: "",
         correo: "",
         password: "",
     });
 
-    const [loading, setLoading] = useState(false);
+    const { loading, registrar } = useAuthStore();
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -32,23 +33,11 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
             return;
         }
 
-        try {
-            setLoading(true);
+        const { username, correo, password } = form;
 
-            if (onRegister) {
-                await onRegister(form.username, form.correo, form.password);
-            } else {
-                // fallback mock
-                await new Promise((r) => setTimeout(r, 900));
-            }
+        await registrar(username, correo, password);
 
-            toast.success("Cuenta creada correctamente");
-            onClose();
-        } catch (err) {
-            toast.error("Error al registrarse" + err);
-        } finally {
-            setLoading(false);
-        }
+        onClose();
     };
 
     return (
