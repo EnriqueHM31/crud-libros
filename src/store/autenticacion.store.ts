@@ -21,7 +21,6 @@ interface AuthStore {
     login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
-
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -48,7 +47,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
             });
 
             toast.success(message ?? "Sesión iniciada correctamente");
-
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
