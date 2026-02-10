@@ -45,7 +45,7 @@ export default function RegistrarseModal({ open, onClose, onRegister }: Register
             toast.success("Cuenta creada correctamente");
             onClose();
         } catch (err) {
-            toast.error("Error al registrarse");
+            toast.error("Error al registrarse" + err);
         } finally {
             setLoading(false);
         }
