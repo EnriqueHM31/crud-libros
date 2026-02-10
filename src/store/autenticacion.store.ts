@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { loginService, logoutService, meService } from "@/services/auth.service";
+import { CerrarSesion, IniciarSesion, obtenerUsuario, registrarUsuario } from "@/services/auth.service";
 import { getUserFriendlyError } from "@/utils/errors";
 
 interface User {
@@ -16,9 +16,11 @@ interface AuthStore {
     error: string | null;
     isAuthenticated: boolean;
 
+    registrar: (username: string, password: string) => Promise<boolean>;
     login: (username: string, password: string) => Promise<boolean>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
+
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -34,7 +36,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ loading: true, error: null });
 
-            const res = await loginService(username, password);
+            const res = await IniciarSesion(username, password);
 
             set({
                 user: res.user,
@@ -57,7 +59,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
     logout: async () => {
         try {
-            await logoutService();
+            await CerrarSesion();
         } catch {
             // aunque falle backend, limpiamos estado
         }
@@ -73,7 +75,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ checking: true });
 
-            const res = await meService();
+            const res = await obtenerUsuario();
 
             set({
                 user: res.user,
@@ -88,6 +90,30 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 isAuthenticated: false,
                 checking: false,
             });
+        }
+    },
+    registrar: async (username, password) => {
+        try {
+            set({ loading: true, error: null });
+
+            const res = await registrarUsuario(username, password);
+
+            set({
+                user: res.user,
+                username: res.user.username,
+                isAuthenticated: true,
+                loading: false,
+            });
+
+            return true;
+        } catch (err) {
+            const { message } = getUserFriendlyError(err, "Error en login");
+            set({
+                error: message,
+                loading: false,
+                isAuthenticated: false,
+            });
+            return false;
         }
     },
 }));
