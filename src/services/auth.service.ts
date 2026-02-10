@@ -1,12 +1,17 @@
-export interface LoginResponse {
-    user: {
-        id: string;
-        username: string;
-    };
+import { handleApiError } from "@/utils/errors";
+
+export interface User {
+    id: string;
+    username: string;
 }
 
-export async function registrarUsuario(username: string, password: string): Promise<LoginResponse> {
-    const res = await fetch(import.meta.env.VITE_API_URL_AUTH + "/login", {
+
+export interface ReponseUsuario {
+    data: User;
+    message: string;
+}
+export async function registrarUsuario(username: string, password: string): Promise<ReponseUsuario> {
+    const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -15,16 +20,14 @@ export async function registrarUsuario(username: string, password: string): Prom
         body: JSON.stringify({ username, password }),
     });
 
-    if (!res.ok) {
-        const data = await res.json().catch(() => null);
-        throw new Error(data?.message || "Error en login");
-    }
+    await handleApiError(response);
 
-    return res.json();
+    const { data, message } = (await response.json()) as { data: User; message: string };
+    return { data, message };
 }
 
-export async function IniciarSesion(username: string, password: string): Promise<LoginResponse> {
-    const res = await fetch(import.meta.env.VITE_API_URL_AUTH + "/iniciar-sesion", {
+export async function IniciarSesion(username: string, password: string): Promise<ReponseUsuario> {
+    const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/iniciar-sesion", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -33,34 +36,32 @@ export async function IniciarSesion(username: string, password: string): Promise
         body: JSON.stringify({ username, password }),
     });
 
-    if (!res.ok) {
-        const data = await res.json().catch(() => null);
-        throw new Error(data?.message || "Error en login");
-    }
+    await handleApiError(response);
 
-    return res.json();
+    const { data, message } = (await response.json()) as { data: User; message: string };
+    return { data, message };
+
 }
 
-export async function CerrarSesion(): Promise<void> {
-    const res = await fetch(import.meta.env.VITE_API_URL_AUTH + "/cerrar-sesion", {
+export async function CerrarSesion(): Promise<ReponseUsuario> {
+    const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/cerrar-sesion", {
         method: "POST",
         credentials: "include",
     });
 
-    if (!res.ok) {
-        throw new Error("Error al cerrar sesión");
-    }
+    await handleApiError(response);
+
+    const { data, message } = (await response.json()) as { data: User; message: string };
+    return { data, message };
 }
 
 export async function obtenerUsuario() {
-    const res = await fetch(import.meta.env.VITE_API_URL_AUTH + "/usuario", {
+    const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/usuario", {
         method: "GET",
         credentials: "include",
     });
 
-    if (!res.ok) {
-        throw new Error("No autenticado");
-    }
-
-    return res.json();
+    await handleApiError(response);
+    const { data, message } = (await response.json()) as { data: User; message: string };
+    return { data, message };
 }
