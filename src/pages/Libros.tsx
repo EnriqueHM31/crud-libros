@@ -25,12 +25,12 @@ export default function Libros() {
         <Layout>
             <ModalLibro open={open} onClose={() => setOpen(false)} book={selected} />
             <div className="flex min-h-screen max-w-7xl flex-col gap-5 bg-white text-black dark:bg-black dark:text-white">
-                <div className="mt-15 flex items-center justify-between gap-2 flex-col md:flex-row">
-                    <h1 className="text-2xl md:text-4xl font-bold">Catalogo de libros</h1>
+                <div className="mt-15 flex flex-col items-center justify-between gap-2 md:flex-row">
+                    <h1 className="text-2xl font-bold md:text-4xl">Catalogo de libros</h1>
                     <p className="text-sm font-bold text-black dark:text-zinc-400">Mostrando {total} libros</p>
                 </div>
 
-                <p className="w-full text-black dark:text-gray-400 text-center md:text-left">
+                <p className="w-full text-center text-black md:text-left dark:text-gray-400">
                     En esta página encontrarás el catálogo de libros disponibles en la librería HM. Aquí podrás explorar los títulos, filtrar por idioma o
                     categoría y visualizar la información básica de cada libro para ubicarlo de forma rápida y sencilla.
                 </p>
