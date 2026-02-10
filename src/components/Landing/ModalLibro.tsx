@@ -22,7 +22,7 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-lg h-screen"
+                    className="fixed inset-0 z-50 flex h-screen items-center justify-center bg-black/70 backdrop-blur-lg"
                 >
                     {/* modal */}
                     <motion.div
@@ -42,7 +42,7 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                             <FiX size={22} />
                         </motion.button>
 
-                        <div className="grid md:grid-cols-2 overflow-y-auto">
+                        <div className="grid overflow-y-auto md:grid-cols-2">
                             {/* LEFT IMAGE */}
                             <motion.div whileHover={{ scale: 1.02 }} className="relative flex items-center justify-center bg-neutral-950 p-8">
                                 <motion.img
@@ -92,8 +92,9 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                                     onClick={() => (fav ? quitarFavorito(book.id) : agregarFavorito(book))}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className={`k mt-4 cursor-pointer rounded-xl py-3 font-medium transition ${fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                        }`}
+                                    className={`k mt-4 cursor-pointer rounded-xl py-3 font-medium transition ${
+                                        fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                    }`}
                                 >
                                     {fav ? "Quitar de favoritos" : "Añadir a favoritos"}
                                 </motion.button>
