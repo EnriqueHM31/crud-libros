@@ -90,7 +90,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 isAuthenticated: true,
                 checking: false,
             });
-
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
