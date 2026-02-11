@@ -32,7 +32,6 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
 
         try {
             await login(formLogin.username, formLogin.password);
-            toast.success("Bienvenido a Librería HM");
             onClose();
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error al iniciar sesión");
