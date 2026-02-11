@@ -11,7 +11,7 @@ import LoginModal from "./ModalLogin";
 
 export default function Navbar() {
     const { mode } = useThemeStore();
-    const { user } = useAuthStore();
+    const { user, logout } = useAuthStore();
     const modalAuth = useOpen();
     const navbar = useOpen();
     const location = useLocation();
@@ -60,7 +60,7 @@ export default function Navbar() {
                         {
                             user ? (
                                 <motion.button
-                                    onClick={modalAuth.open}
+                                    onClick={logout}
                                     initial={{ scale: 0.6 }}
                                     animate={{ scale: 1, transition: { duration: 0.5 } }}
                                     exit={{ scale: 0.9 }}
@@ -152,7 +152,7 @@ export default function Navbar() {
                                 {
                                     user ? (
                                         <motion.button
-                                            onClick={modalAuth.open}
+                                            onClick={logout}
                                             initial={{ scale: 0.6 }}
                                             animate={{ scale: 1, transition: { duration: 0.5 } }}
                                             exit={{ scale: 0.9 }}
