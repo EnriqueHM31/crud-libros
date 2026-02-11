@@ -9,7 +9,7 @@ export interface ReponseUsuario {
     data: User;
     message: string;
 }
-export async function registrarUsuario(username: string, correo: string, password: string): Promise<ReponseUsuario> {
+export async function registrarUsuario({ username, password, correo }: { username: string; password: string; correo: string }): Promise<ReponseUsuario> {
     const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/registrar-usuario", {
         method: "POST",
         headers: {
