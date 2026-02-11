@@ -52,9 +52,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                     return;
                 }
 
-                const existe = get().favoritos.find(
-                    (l) => l.book.id === libro.id && l.username === username
-                );
+                const existe = get().favoritos.find((l) => l.book.id === libro.id && l.username === username);
 
                 if (existe) {
                     toast.error("Ya está en favoritos");
@@ -62,10 +60,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 }
 
                 set({
-                    favoritos: [
-                        ...get().favoritos,
-                        { book: libro, read: false, username },
-                    ],
+                    favoritos: [...get().favoritos, { book: libro, read: false, username }],
                 });
 
                 toast.success(`Libro ${libro.volumeInfo.title} agregado`);
@@ -76,9 +71,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 if (!username) return;
 
                 set({
-                    favoritos: get().favoritos.filter(
-                        (l) => !(l.book.id === id && l.username === username)
-                    ),
+                    favoritos: get().favoritos.filter((l) => !(l.book.id === id && l.username === username)),
                 });
 
                 toast.info("Libro eliminado");
@@ -89,11 +82,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 if (!username) return;
 
                 set({
-                    favoritos: get().favoritos.map((l) =>
-                        l.book.id === id && l.username === username
-                            ? { ...l, read: !l.read }
-                            : l
-                    ),
+                    favoritos: get().favoritos.map((l) => (l.book.id === id && l.username === username ? { ...l, read: !l.read } : l)),
                 });
             },
 
@@ -103,9 +92,7 @@ export const useFavoritosStore = create<FavoritosStore>()(
                 const username = get().usernameActivo;
                 if (!username) return false;
 
-                return get().favoritos.some(
-                    (l) => l.book.id === id && l.username === username
-                );
+                return get().favoritos.some((l) => l.book.id === id && l.username === username);
             },
 
             totalFavoritos: () => {
