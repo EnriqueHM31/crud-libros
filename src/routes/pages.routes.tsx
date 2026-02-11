@@ -1,7 +1,8 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import LoadingBooks from "../components/Atomos/Loading";
 import LoginDemo from "../pages/LoginDemo";
+import { useAuthStore } from "@/store/autenticacion.store";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -12,7 +13,14 @@ const Contacto = lazy(() => import("../pages/Contacto"));
 const Favoritos = lazy(() => import("../pages/Favoritos"));
 
 export function PagesRoutes() {
+    const { checkAuth, checking } = useAuthStore();
     const location = useLocation();
+
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
+
+    if (checking) return <div>Cargando sesión...</div>;
     return (
         <Suspense
             fallback={
