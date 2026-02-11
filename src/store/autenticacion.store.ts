@@ -107,7 +107,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ loading: true, error: null });
 
-            const response = await registrarUsuario(username, correo, password);
+            const response = await registrarUsuario({ username, password, correo });
             const { data, message } = response;
 
             const { username: Usuario, id } = data;
