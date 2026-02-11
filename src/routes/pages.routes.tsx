@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import LoadingBooks from "../components/Atomos/Loading";
 import LoginDemo from "../pages/LoginDemo";
 import { useAuthStore } from "@/store/autenticacion.store";
+import RutaProtegida from "@/layout/RutaProtegida";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -39,8 +40,11 @@ export function PagesRoutes() {
                 <Route path="/usuario" element={null}>
                     <Route path="libros" element={<Libros />} />
                     <Route path="contacto" element={<Contacto />} />
-                    <Route path="favoritos" element={<Favoritos />} />
-                    <Route path="pedidos" element={<Pedidos />} />
+                </Route>
+
+                <Route element={<RutaProtegida />}>
+                    <Route path="/usuario/favoritos" element={<Favoritos />} />
+                    <Route path="/usuario/pedidos" element={<Pedidos />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
             </Routes>
