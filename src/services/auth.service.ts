@@ -63,7 +63,6 @@ export async function obtenerUsuario() {
         credentials: "include",
     });
 
-    await handleApiError(response);
     const { data, message } = (await response.json()) as { data: User; message: string };
     return { data, message };
 }
