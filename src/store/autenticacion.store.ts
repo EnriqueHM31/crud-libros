@@ -80,7 +80,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ checking: true });
 
-            const { data, message } = await obtenerUsuario();
+            const { data } = await obtenerUsuario();
 
             const { username: Usuario, id } = data;
 
@@ -91,7 +91,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 checking: false,
             });
 
-            toast.success(message ?? "Sesión iniciada correctamente");
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
