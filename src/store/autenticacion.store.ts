@@ -65,7 +65,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             toast.success(message ?? "Sesión cerrada correctamente");
             useFavoritosStore.getState().setUsuario(data.username);
-
         } catch {
             // aunque falle backend, limpiamos estado
         }
