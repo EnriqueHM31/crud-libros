@@ -2,15 +2,20 @@ import type { GoogleBook } from "@/types/libro";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { useAuthStore } from "./autenticacion.store";
+
+/* ========================= */
 
 export interface LibroFav {
     book: GoogleBook;
     read: boolean;
+    username: string; // dueño del favorito
 }
 
 interface FavoritosStore {
     favoritos: LibroFav[];
+    usernameActivo: string | null;
+
+    setUsuario: (username: string | null) => void;
 
     agregarFavorito: (libro: GoogleBook) => void;
     quitarFavorito: (id: string) => void;
@@ -19,88 +24,108 @@ interface FavoritosStore {
     esFavorito: (id: string) => boolean;
     totalFavoritos: () => number;
 
-    cargarFavoritosUsuario: () => void;
+    limpiarFavoritos: () => void;
 }
 
-export const getStorageKey = () => {
-    const { user } = useAuthStore.getState();
-    if (!user) return "libros-favoritos-anon";
-    return `libros-favoritos-${user.username || user.id}`;
-};
+/* ========================= */
 
 export const useFavoritosStore = create<FavoritosStore>()(
     persist(
         (set, get) => ({
             favoritos: [],
+            usernameActivo: null,
 
-            cargarFavoritosUsuario: () => {
-                const key = getStorageKey();
-                const data = localStorage.getItem(key);
-                if (data) {
-                    const parsed = JSON.parse(data);
-                    set({ favoritos: parsed.state?.favoritos || [] });
-                } else {
-                    set({ favoritos: [] });
-                }
+            /* ========= SYNC USER ========= */
+
+            setUsuario: (username) => {
+                set({ usernameActivo: username });
             },
+
+            /* ========= CRUD ========= */
 
             agregarFavorito: (libro) => {
                 if (!libro?.id) return;
 
-                const { user } = useAuthStore.getState();
-                if (!user) {
-                    toast.error("Inicia sesión para agregar favoritos");
+                const username = get().usernameActivo;
+                if (!username) {
+                    toast.error("No hay usuario activo");
                     return;
                 }
 
-                const existe = get().favoritos.find((l) => l.book.id === libro.id);
+                const existe = get().favoritos.find(
+                    (l) => l.book.id === libro.id && l.username === username
+                );
+
                 if (existe) {
                     toast.error("Ya está en favoritos");
                     return;
                 }
 
                 set({
-                    favoritos: [...get().favoritos, { book: libro, read: false }],
+                    favoritos: [
+                        ...get().favoritos,
+                        { book: libro, read: false, username },
+                    ],
                 });
 
                 toast.success(`Libro ${libro.volumeInfo.title} agregado`);
             },
 
             quitarFavorito: (id) => {
-                const { user } = useAuthStore.getState();
-                if (!user) return;
-
-                const libro = get().favoritos.find((l) => l.book.id === id);
-                if (!libro) return;
+                const username = get().usernameActivo;
+                if (!username) return;
 
                 set({
-                    favoritos: get().favoritos.filter((l) => l.book.id !== id),
+                    favoritos: get().favoritos.filter(
+                        (l) => !(l.book.id === id && l.username === username)
+                    ),
                 });
 
-                toast.info(`Libro eliminado`);
+                toast.info("Libro eliminado");
             },
 
             toggleLeido: (id) => {
-                const libro = get().favoritos.find((l) => l.book.id === id);
-                if (!libro) return;
-
-                const nuevo = !libro.read;
+                const username = get().usernameActivo;
+                if (!username) return;
 
                 set({
                     favoritos: get().favoritos.map((l) =>
-                        l.book.id === id ? { ...l, read: nuevo } : l
+                        l.book.id === id && l.username === username
+                            ? { ...l, read: !l.read }
+                            : l
                     ),
                 });
             },
 
+            /* ========= SELECTORS ========= */
+
             esFavorito: (id) => {
-                return get().favoritos.some((l) => l.book.id === id);
+                const username = get().usernameActivo;
+                if (!username) return false;
+
+                return get().favoritos.some(
+                    (l) => l.book.id === id && l.username === username
+                );
             },
 
-            totalFavoritos: () => get().favoritos.length,
+            totalFavoritos: () => {
+                const username = get().usernameActivo;
+                if (!username) return 0;
+
+                return get().favoritos.filter((l) => l.username === username).length;
+            },
+
+            limpiarFavoritos: () => {
+                const username = get().usernameActivo;
+                if (!username) return;
+
+                set({
+                    favoritos: get().favoritos.filter((l) => l.username !== username),
+                });
+            },
         }),
         {
-            name: getStorageKey(),
+            name: "favoritos",
             storage: createJSONStorage(() => localStorage),
         }
     )
