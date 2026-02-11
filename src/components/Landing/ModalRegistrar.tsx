@@ -35,7 +35,7 @@ export default function RegistrarseModal({ open, onClose, openIniciarSesion }: R
 
         const { username, correo, password } = form;
 
-        await registrar(username, correo, password);
+        await registrar({ username, correo, password });
 
         onClose();
 
