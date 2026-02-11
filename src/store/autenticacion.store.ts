@@ -42,13 +42,13 @@ export const useAuthStore = create<AuthStore>((set) => ({
             const { username: Usuario, id } = data;
             set({
                 user: { id, username: Usuario },
-                username: username,
+                username: Usuario,
                 isAuthenticated: true,
                 loading: false,
             });
 
             toast.success(message ?? "Sesión iniciada correctamente");
-
+            useFavoritosStore.getState().setUsuario(Usuario);
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -61,10 +61,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
     logout: async () => {
         try {
-            const { message } = await CerrarSesion();
+            const { message, data } = await CerrarSesion();
 
             toast.success(message ?? "Sesión cerrada correctamente");
-            useFavoritosStore.setState({ favoritos: [] });
+            useFavoritosStore.getState().setUsuario(data.username);
 
         } catch {
             // aunque falle backend, limpiamos estado
