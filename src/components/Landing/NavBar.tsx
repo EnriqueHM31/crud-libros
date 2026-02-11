@@ -57,34 +57,31 @@ export default function Navbar() {
                                 </motion.div>
                             </Link>
                         ))}
-                        {
-                            user ? (
-                                <motion.button
-                                    onClick={logout}
-                                    initial={{ scale: 0.6 }}
-                                    animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                    exit={{ scale: 0.9 }}
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
-                                >
-                                    Cerrar Sesion
-                                </motion.button>
-                            ) : (
-                                <motion.button
-                                    onClick={modalAuth.open}
-                                    initial={{ scale: 0.6 }}
-                                    animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                    exit={{ scale: 0.9 }}
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                    className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
-                                >
-                                    Iniciar Sesion
-                                </motion.button>
-
-                            )
-                        }
+                        {user ? (
+                            <motion.button
+                                onClick={logout}
+                                initial={{ scale: 0.6 }}
+                                animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                exit={{ scale: 0.9 }}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                            >
+                                Cerrar Sesion
+                            </motion.button>
+                        ) : (
+                            <motion.button
+                                onClick={modalAuth.open}
+                                initial={{ scale: 0.6 }}
+                                animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                exit={{ scale: 0.9 }}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                            >
+                                Iniciar Sesion
+                            </motion.button>
+                        )}
 
                         <BotonTheme />
                     </div>
@@ -149,34 +146,31 @@ export default function Navbar() {
                                         </motion.div>
                                     </Link>
                                 ))}
-                                {
-                                    user ? (
-                                        <motion.button
-                                            onClick={logout}
-                                            initial={{ scale: 0.6 }}
-                                            animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                            exit={{ scale: 0.9 }}
-                                            whileHover={{ scale: 1.03 }}
-                                            whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                            className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
-                                        >
-                                            Cerrar Sesion
-                                        </motion.button>
-                                    ) : (
-                                        <motion.button
-                                            onClick={modalAuth.open}
-                                            initial={{ scale: 0.6 }}
-                                            animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                            exit={{ scale: 0.9 }}
-                                            whileHover={{ scale: 1.03 }}
-                                            whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                            className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
-                                        >
-                                            Iniciar Sesion
-                                        </motion.button>
-
-                                    )
-                                }
+                                {user ? (
+                                    <motion.button
+                                        onClick={logout}
+                                        initial={{ scale: 0.6 }}
+                                        animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                        exit={{ scale: 0.9 }}
+                                        whileHover={{ scale: 1.03 }}
+                                        whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                        className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                                    >
+                                        Cerrar Sesion
+                                    </motion.button>
+                                ) : (
+                                    <motion.button
+                                        onClick={modalAuth.open}
+                                        initial={{ scale: 0.6 }}
+                                        animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                        exit={{ scale: 0.9 }}
+                                        whileHover={{ scale: 1.03 }}
+                                        whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                        className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                                    >
+                                        Iniciar Sesion
+                                    </motion.button>
+                                )}
                             </div>
                         </motion.div>
                     </>
