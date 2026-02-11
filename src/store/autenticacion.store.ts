@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { CerrarSesion, IniciarSesion, obtenerUsuario, registrarUsuario } from "@/services/auth.service";
 import { getUserFriendlyError } from "@/utils/errors";
 import { toast } from "sonner";
-import { getStorageKey, useFavoritosStore } from "./favoritosLibros.store";
+import { useFavoritosStore } from "./favoritosLibros.store";
 
 interface User {
     id: string;
@@ -49,9 +49,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             toast.success(message ?? "Sesión iniciada correctamente");
 
-            const { cargarFavoritosUsuario } = useFavoritosStore.getState();
-            cargarFavoritosUsuario();
-
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -67,7 +64,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
             const { message } = await CerrarSesion();
 
             toast.success(message ?? "Sesión cerrada correctamente");
-            localStorage.removeItem(getStorageKey());
             useFavoritosStore.setState({ favoritos: [] });
 
         } catch {
