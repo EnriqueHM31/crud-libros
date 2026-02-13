@@ -1,5 +1,6 @@
 import CardFavorito from "@/components/Landing/CardFavorito";
 import ModalLibro from "@/components/Landing/ModalLibro";
+import NoResultsFavoritos from "@/components/Landing/NoResultsFavoritos";
 import Layout from "@/layout/Layout";
 import { useFavoritosStore, type LibroFav } from "@/store/favoritosLibros.store";
 import type { GoogleBook } from "@/types/libro";
@@ -18,10 +19,7 @@ export default function Favoritos() {
         <Layout>
             <ModalLibro open={open} onClose={() => setOpen(false)} book={selected} />
             {favoritos.length === 0 ? (
-                <section className="p-6">
-                    <h1 className="mb-2 text-2xl font-bold">Favoritos</h1>
-                    <p className="text-gray-500">No tienes libros favoritos aún.</p>
-                </section>
+                <NoResultsFavoritos />
             ) : (
                 <section className="flex w-full flex-col gap-4 overflow-hidden">
                     <div className="mt-15 flex flex-col items-center justify-between gap-2 md:flex-row">
