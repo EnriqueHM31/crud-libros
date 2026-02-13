@@ -35,13 +35,26 @@ export default function RegistrarseModal({ open, onClose, openIniciarSesion }: R
 
         const { username, correo, password } = form;
 
-        await registrar({ username, correo, password });
+        const resp = await registrar({ username, correo, password }) as { ok: boolean };
 
-        onClose();
+        if (resp.ok) {
+            // si tu registrar devuelve error:
 
-        setTimeout(() => {
-            openIniciarSesion();
-        }, 500);
+            // éxito
+            setForm({
+                username: "",
+                correo: "",
+                password: ""
+            });
+
+            onClose();
+
+            setTimeout(() => {
+                openIniciarSesion();
+            }, 500);
+        }
+
+
     };
 
     return (
