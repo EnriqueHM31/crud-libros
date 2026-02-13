@@ -48,7 +48,7 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                                 <motion.img
                                     src={book.volumeInfo.imageLinks?.thumbnail || "/no-image.jpg"}
                                     alt={book.volumeInfo.title}
-                                    className="h-[200px] object-contain md:h-[360px] w-full md:object-contain"
+                                    className="h-[200px] w-full object-contain md:h-[360px] md:object-contain"
                                 />
 
                                 <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
@@ -91,8 +91,9 @@ export default function ModalLibro({ open, onClose, book }: Props) {
                                     onClick={() => (fav ? quitarFavorito(book.id) : agregarFavorito(book))}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className={`k mt-4 cursor-pointer rounded-xl py-3 font-medium transition ${fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
-                                        }`}
+                                    className={`k mt-4 cursor-pointer rounded-xl py-3 font-medium transition ${
+                                        fav ? "bg-red-700 hover:bg-red-400" : "bg-zinc-300 text-black hover:bg-zinc-500 hover:text-white"
+                                    }`}
                                 >
                                     {fav ? "Quitar de favoritos" : "Añadir a favoritos"}
                                 </motion.button>
