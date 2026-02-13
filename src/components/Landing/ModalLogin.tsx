@@ -1,7 +1,6 @@
 import IMGLOGO from "@/../public/icono.svg";
 import { useOpen } from "@/hooks/useOpen";
 import { useAuthStore } from "@/store/autenticacion.store";
-import { getUserFriendlyError } from "@/utils/errors";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { FiLock, FiUser, FiX } from "react-icons/fi";
@@ -30,12 +29,10 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
             return;
         }
 
-        try {
-            await login(formLogin.username, formLogin.password);
+        const { ok } = await login(formLogin.username, formLogin.password);
+
+        if (ok) {
             onClose();
-        } catch (err) {
-            const { message } = getUserFriendlyError(err, "Error al iniciar sesión");
-            toast.error(message || "Error al iniciar sesión");
         }
     };
 
