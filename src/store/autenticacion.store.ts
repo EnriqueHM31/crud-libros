@@ -19,7 +19,7 @@ interface AuthStore {
     isAuthenticated: boolean;
 
     registrar: ({ username, password, correo }: { username: string; password: string; correo: string }) => Promise<{ ok: boolean }>;
-    login: (username: string, password: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<{ ok: boolean }>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
 }
@@ -49,6 +49,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             toast.success(message ?? "Sesión iniciada correctamente");
             useFavoritosStore.getState().setUsuario(Usuario);
+            return { ok: true };
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -56,6 +57,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 loading: false,
                 isAuthenticated: false,
             });
+            return { ok: false };
         }
     },
 
@@ -65,6 +67,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             toast.success(message ?? "Sesión cerrada correctamente");
             useFavoritosStore.getState().setUsuario(data.username);
+            set({ user: null, username: null, isAuthenticated: false });
         } catch {
             // aunque falle backend, limpiamos estado
         }
