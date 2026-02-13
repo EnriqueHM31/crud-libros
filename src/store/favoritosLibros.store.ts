@@ -2,6 +2,7 @@ import type { GoogleBook } from "@/types/libro";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { useAuthStore } from "./autenticacion.store";
 
 /* ========================= */
 
@@ -46,9 +47,16 @@ export const useFavoritosStore = create<FavoritosStore>()(
             agregarFavorito: (libro) => {
                 if (!libro?.id) return;
 
+                const autenticado = useAuthStore.getState().isAuthenticated;
+
+                if (!autenticado) {
+                    toast.error("Debes estar autenticado para añadir libros a favoritos");
+                    return;
+                }
+
                 const username = get().usernameActivo;
                 if (!username) {
-                    toast.error("No hay usuario activo");
+                    toast.error("");
                     return;
                 }
 
