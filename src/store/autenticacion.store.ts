@@ -18,7 +18,7 @@ interface AuthStore {
     error: string | null;
     isAuthenticated: boolean;
 
-    registrar: ({ username, password, correo }: { username: string; password: string; correo: string }) => Promise<void>;
+    registrar: ({ username, password, correo }: { username: string; password: string; correo: string }) => Promise<{ ok: boolean }>;
     login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
@@ -113,9 +113,11 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 username: Usuario,
                 isAuthenticated: true,
                 loading: false,
+                error: null,
             });
 
             toast.success(message ?? "Registro exitoso");
+            return { ok: true };
         } catch (err) {
             const { message } = getUserFriendlyError(err, "Error en login");
             set({
@@ -123,6 +125,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 loading: false,
                 isAuthenticated: false,
             });
+            return { ok: false };
         }
     },
 }));
