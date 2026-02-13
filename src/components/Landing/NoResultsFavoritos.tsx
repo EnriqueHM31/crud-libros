@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 export default function NoResultsFavoritos() {
     return (
-        <div className="min-h-[80dvh] flex items-center justify-center ">
+        <div className="flex min-h-[80dvh] items-center justify-center">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-center max-w-lg"
+                className="max-w-lg text-center"
             >
                 {/* SVG animado */}
                 <motion.svg
@@ -67,7 +67,7 @@ export default function NoResultsFavoritos() {
                 </motion.svg>
 
                 <motion.h2
-                    className="text-2xl font-semibold dark:text-gray-200 mb-2"
+                    className="mb-2 text-2xl font-semibold dark:text-gray-200"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
@@ -75,20 +75,11 @@ export default function NoResultsFavoritos() {
                     No tienes favoritos aún
                 </motion.h2>
 
-                <motion.p
-                    className="dark:text-gray-400 mb-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                >
+                <motion.p className="mb-6 dark:text-gray-400" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                     Explora la librería y guarda tus libros favoritos para verlos aquí.
                 </motion.p>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                >
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
                     <Link to="/usuario/libros">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
