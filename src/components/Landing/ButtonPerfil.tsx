@@ -1,18 +1,21 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useOpen } from "@/hooks/useOpen";
 import { useAuthStore } from "@/store/autenticacion.store";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function ProfileButton() {
     const { user } = useAuthStore();
-    const [open, setOpen] = useState(false);
+    const perfilModal = useOpen();
     const btnRef = useRef<HTMLButtonElement | null>(null);
     const panelRef = useRef<HTMLDivElement | null>(null);
 
     const initial = user?.username?.charAt(0)?.toUpperCase() || "?";
 
+
+
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
-            if (!open) return;
+            if (!perfilModal.isOpen) return;
             const target = e.target as Node;
             if (
                 panelRef.current &&
@@ -20,27 +23,27 @@ export default function ProfileButton() {
                 btnRef.current &&
                 !btnRef.current.contains(target)
             ) {
-                setOpen(false);
+                perfilModal.close();
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [open]);
-
+    }, [perfilModal]);
+    if (initial === "?") return null;
     return (
         <div className="relative inline-block">
             <button
                 ref={btnRef}
-                onClick={() => setOpen((v) => !v)}
+                onClick={perfilModal.toggle}
                 className="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center font-semibold hover:bg-zinc-700 transition cursor-pointer"
                 aria-haspopup="dialog"
-                aria-expanded={open}
+                aria-expanded={perfilModal.isOpen}
             >
                 {initial}
             </button>
 
             <AnimatePresence>
-                {open && (
+                {perfilModal.isOpen && (
                     <motion.div
                         ref={panelRef}
                         initial={{ opacity: 0, y: -6, scale: 0.96 }}
