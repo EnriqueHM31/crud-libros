@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FiLock, FiUser, FiX } from "react-icons/fi";
 import { toast } from "sonner";
 import RegistrarseModal from "./ModalRegistrar";
+import ButtonEye from "./ButtonEye";
 
 interface LoginModalProps {
     open: boolean;
@@ -16,6 +17,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
     const [formLogin, setFormLogin] = useState({ username: "", password: "" });
     const { loading, login } = useAuthStore();
     const modalRegistrar = useOpen();
+    const ButtonPassword = useOpen();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -91,7 +93,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                                 <div className="relative">
                                     <FiLock className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                     <input
-                                        type="password"
+                                        type={ButtonPassword.isOpen ? "text" : "password"}
                                         name="password"
                                         autoComplete="current-password"
                                         value={formLogin.password}
@@ -99,6 +101,7 @@ export default function LoginModal({ open, onClose, openIniciarSesion }: LoginMo
                                         placeholder="Contraseña"
                                         className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white"
                                     />
+                                    <ButtonEye show={ButtonPassword.isOpen} setShow={ButtonPassword.toggle} />
                                 </div>
 
                                 <motion.button
