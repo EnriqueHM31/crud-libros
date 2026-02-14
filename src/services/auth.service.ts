@@ -67,3 +67,24 @@ export async function obtenerUsuario() {
     const { data, message } = (await response.json()) as { data: User; message: string };
     return { data, message };
 }
+
+
+
+export async function cambiarContrasena(currentPassword: string, newPassword: string) {
+    const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/cambiar-contrasena", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "include", // clave para cookies
+        body: JSON.stringify({
+            currentPassword,
+            newPassword,
+        }),
+    });
+
+    await handleApiError(response);
+
+    const { data, message } = (await response.json()) as { data: User; message: string };
+    return { data, message };
+}       
