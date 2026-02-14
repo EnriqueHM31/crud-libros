@@ -81,7 +81,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                                 <h2>Librería HM</h2>
                             </div>
                             <h2 className="text-xl font-bold text-white">Cambiar contraseña</h2>
-                            <p className=" text-sm text-zinc-400">Actualiza tus credenciales de acceso</p>
+                            <p className="text-sm text-zinc-400">Actualiza tus credenciales de acceso</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
