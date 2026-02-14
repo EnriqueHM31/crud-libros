@@ -3,6 +3,7 @@ import { handleApiError } from "@/utils/errors";
 export interface User {
     id: string;
     username: string;
+    correo: string;
 }
 
 export interface ReponseUsuario {
