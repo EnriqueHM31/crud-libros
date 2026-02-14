@@ -3,6 +3,9 @@ import { useState } from "react";
 import { FiLock, FiX } from "react-icons/fi";
 import { toast } from "sonner";
 import { useAuthStore } from "@/store/autenticacion.store";
+import ButtonEye from "./ButtonEye";
+import { useOpen } from "@/hooks/useOpen";
+import IMGLOGO from "@/../public/icono.svg";
 
 interface ModalPasswordProps {
     open: boolean;
@@ -11,6 +14,9 @@ interface ModalPasswordProps {
 
 export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
     const { changePassword, loading } = useAuthStore();
+    const ButtonPassword1 = useOpen();
+    const ButtonPassword2 = useOpen();
+    const ButtonPassword3 = useOpen();
 
     const [form, setForm] = useState({
         currentPassword: "",
@@ -69,47 +75,55 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                         <button onClick={onClose} className="absolute top-4 right-4 cursor-pointer text-zinc-400 hover:text-white">
                             <FiX size={20} />
                         </button>
-
-                        <div className="text-center">
+                        <div className="flex flex-col items-center gap-3 text-center">
+                            <div className="flex items-center gap-2 text-2xl font-bold text-white">
+                                <img src={IMGLOGO} className="h-10 w-auto saturate-30" />
+                                <h2>Librería HM</h2>
+                            </div>
                             <h2 className="text-xl font-bold text-white">Cambiar contraseña</h2>
-                            <p className="mt-1 text-sm text-zinc-400">Actualiza tus credenciales de acceso</p>
+                            <p className=" text-sm text-zinc-400">Actualiza tus credenciales de acceso</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
                             <div className="relative">
                                 <FiLock className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
-                                    type="password"
+                                    type={ButtonPassword1.isOpen ? "text" : "password"}
                                     name="currentPassword"
                                     value={form.currentPassword}
                                     onChange={handleChange}
                                     placeholder="Contraseña actual"
                                     className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white"
                                 />
+
+                                <ButtonEye show={ButtonPassword1.isOpen} setShow={ButtonPassword1.toggle} />
                             </div>
 
                             <div className="relative">
                                 <FiLock className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
-                                    type="password"
+                                    type={ButtonPassword2.isOpen ? "text" : "password"}
                                     name="newPassword"
                                     value={form.newPassword}
                                     onChange={handleChange}
                                     placeholder="Nueva contraseña"
                                     className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white"
                                 />
+                                <ButtonEye show={ButtonPassword2.isOpen} setShow={ButtonPassword2.toggle} />
                             </div>
 
                             <div className="relative">
                                 <FiLock className="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-500" />
                                 <input
-                                    type="password"
+                                    type={ButtonPassword3.isOpen ? "text" : "password"}
                                     name="confirmPassword"
                                     value={form.confirmPassword}
                                     onChange={handleChange}
                                     placeholder="Confirmar contraseña"
                                     className="w-full rounded-xl border border-zinc-700 bg-zinc-900 py-3 pr-3 pl-10 text-white"
                                 />
+
+                                <ButtonEye show={ButtonPassword3.isOpen} setShow={ButtonPassword3.toggle} />
                             </div>
 
                             <motion.button
