@@ -9,6 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
 import LoginModal from "./ModalLogin";
 import ProfileButton from "./ButtonPerfil";
+import ModalPassword from "./ModalPassword";
 
 export default function Navbar() {
     const { mode } = useThemeStore();
@@ -16,6 +17,7 @@ export default function Navbar() {
     const modalAuth = useOpen();
     const navbar = useOpen();
     const location = useLocation();
+    const modalPassword = useOpen();
 
     const filteredLinks = links.filter((link) => {
         if (link.private && !user) return false;
@@ -24,6 +26,7 @@ export default function Navbar() {
 
     return (
         <>
+            <ModalPassword open={modalPassword.isOpen} onClose={modalPassword.close} />
             <LoginModal open={modalAuth.isOpen} onClose={modalAuth.close} openIniciarSesion={modalAuth.open} />
             {/* NAVBAR */}
             <nav
@@ -72,7 +75,7 @@ export default function Navbar() {
                                     Cerrar Sesion
                                 </motion.button>
 
-                                <ProfileButton />
+                                <ProfileButton OpenModalPassword={modalPassword.toggle} />
                             </>
                         ) : (
                             <motion.button
