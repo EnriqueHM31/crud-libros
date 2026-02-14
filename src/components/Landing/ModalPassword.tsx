@@ -34,23 +34,18 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
             return;
         }
 
-        if (form.newPassword.length < 6) {
-            toast.error("La nueva contraseña debe tener al menos 6 caracteres");
-            return;
-        }
-
         if (form.newPassword !== form.confirmPassword) {
             toast.error("Las contraseñas no coinciden");
             return;
         }
 
-        const { ok, msg } = await changePassword(
+        const { ok, message } = await changePassword(
             form.currentPassword,
             form.newPassword
         );
 
         if (!ok) {
-            toast.error(msg || "No se pudo cambiar la contraseña");
+            toast.error(message || "No se pudo cambiar la contraseña");
             return;
         }
 
@@ -63,7 +58,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
         <AnimatePresence>
             {open && (
                 <motion.div
-                    className="fixed inset-0 z-[120] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+                    className="fixed inset-0 z-120 flex items-center justify-center bg-black/70 backdrop-blur-sm"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -77,7 +72,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                     >
                         <button
                             onClick={onClose}
-                            className="absolute top-4 right-4 text-zinc-400 hover:text-white"
+                            className="absolute top-4 right-4 text-zinc-400 hover:text-white cursor-pointer"
                         >
                             <FiX size={20} />
                         </button>
@@ -133,7 +128,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                                 whileTap={{ scale: 0.95 }}
                                 disabled={loading}
                                 type="submit"
-                                className="mt-3 rounded-xl bg-white py-3 font-semibold text-black"
+                                className="mt-3 rounded-xl bg-white py-3 font-semibold text-black cursor-pointer"
                             >
                                 {loading ? "Actualizando..." : "Guardar cambios"}
                             </motion.button>
