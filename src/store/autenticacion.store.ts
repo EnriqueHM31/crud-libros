@@ -7,6 +7,7 @@ import { useFavoritosStore } from "./favoritosLibros.store";
 interface User {
     id: string;
     username: string;
+    correo: string;
 }
 
 interface AuthStore {
@@ -39,9 +40,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             const { data, message } = await IniciarSesion(username, password);
 
-            const { username: Usuario, id } = data;
+            const { username: Usuario, id, correo } = data;
             set({
-                user: { id, username: Usuario },
+                user: { id, username: Usuario, correo },
                 username: Usuario,
                 isAuthenticated: true,
                 loading: false,
@@ -85,10 +86,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
             const { data } = await obtenerUsuario();
 
-            const { username: Usuario, id } = data;
+            const { username: Usuario, id, correo } = data;
 
             set({
-                user: { id, username: Usuario },
+                user: { id, username: Usuario, correo },
                 username: Usuario,
                 isAuthenticated: true,
                 checking: false,
@@ -110,9 +111,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
             const response = await registrarUsuario({ username, password, correo });
             const { data, message } = response;
 
-            const { username: Usuario, id } = data;
+            const { username: Usuario, id, correo: Correo } = data;
             set({
-                user: { id, username: Usuario },
+                user: { id, username: Usuario, correo: Correo },
                 username: Usuario,
                 isAuthenticated: true,
                 loading: false,
