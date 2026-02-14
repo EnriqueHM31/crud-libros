@@ -137,7 +137,12 @@ export const useAuthStore = create<AuthStore>((set) => ({
         try {
             set({ loading: true, error: null });
 
-            const { data, message } = await cambiarContrasena(currentPassword, newPassword);
+            const username = useAuthStore.getState().username;
+
+            if (!username) {
+                throw new Error("Usuario no autenticado");
+            }
+            const { data, message } = await cambiarContrasena(currentPassword, newPassword, username);
 
             set({ loading: false, error: null, user: data });
             return { ok: true, message };
