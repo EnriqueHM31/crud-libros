@@ -32,7 +32,7 @@ export default function ProfileButton() {
             <button
                 ref={btnRef}
                 onClick={() => setOpen((v) => !v)}
-                className="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center font-semibold hover:bg-zinc-700 transition"
+                className="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center font-semibold hover:bg-zinc-700 transition cursor-pointer"
                 aria-haspopup="dialog"
                 aria-expanded={open}
             >
@@ -70,7 +70,7 @@ export default function ProfileButton() {
                                         // navegación o handler de cambio de contraseña
                                         // ej: navigate("/cambiar-password")
                                     }}
-                                    className="text-sm text-blue-400 hover:underline underline-offset-4"
+                                    className="text-sm text-blue-400 hover:underline underline-offset-4 cursor-pointer hover:text-blue-300 transition duration-300"
                                 >
                                     Cambiar contraseña
                                 </button>
