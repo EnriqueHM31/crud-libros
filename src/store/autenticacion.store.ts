@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { CerrarSesion, IniciarSesion, obtenerUsuario, registrarUsuario } from "@/services/auth.service";
+import { cambiarContrasena, CerrarSesion, IniciarSesion, obtenerUsuario, registrarUsuario } from "@/services/auth.service";
 import { getUserFriendlyError } from "@/utils/errors";
 import { toast } from "sonner";
 import { useFavoritosStore } from "./favoritosLibros.store";
@@ -23,6 +23,7 @@ interface AuthStore {
     login: (username: string, password: string) => Promise<{ ok: boolean }>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
+    changePassword: (currentPassword: string, newPassword: string) => Promise<{ ok: boolean; message?: string }>;
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -130,6 +131,20 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 isAuthenticated: false,
             });
             return { ok: false };
+        }
+    },
+    changePassword: async (currentPassword, newPassword) => {
+        try {
+            set({ loading: true, error: null });
+
+            const { data, message } = await cambiarContrasena(currentPassword, newPassword);
+
+            set({ loading: false, error: null, user: data });
+            return { ok: true, message };
+        } catch (err) {
+            const { message } = getUserFriendlyError(err, "Error en cambio de contraseña");
+            set({ loading: false, error: message });
+            return { ok: false, message };
         }
     },
 }));
