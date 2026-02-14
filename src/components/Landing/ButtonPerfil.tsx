@@ -68,9 +68,6 @@ export default function ProfileButton({ OpenModalPassword }: { OpenModalPassword
                     </motion.div>
                 )}
             </AnimatePresence>
-
-
-
         </div>
     );
 }
