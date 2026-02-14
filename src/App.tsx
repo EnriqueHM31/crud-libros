@@ -8,7 +8,7 @@ function App() {
             <PagesRoutes />
 
             <Toaster
-                position="top-right"
+                position="bottom-right"
                 toastOptions={{
                     className: "bg-primary-dark text-white dark:bg-blue-600 dark:text-white",
                 }}
