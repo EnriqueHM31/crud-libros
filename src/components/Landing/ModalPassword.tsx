@@ -23,8 +23,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
         setForm((p) => ({ ...p, [name]: value }));
     };
 
-    const reset = () =>
-        setForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
+    const reset = () => setForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -39,10 +38,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
             return;
         }
 
-        const { ok, message } = await changePassword(
-            form.currentPassword,
-            form.newPassword
-        );
+        const { ok, message } = await changePassword(form.currentPassword, form.newPassword);
 
         if (!ok) {
             toast.error(message || "No se pudo cambiar la contraseña");
@@ -70,20 +66,13 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                         transition={{ duration: 0.35 }}
                         className="relative w-[420px] max-w-[95%] rounded-2xl border border-zinc-700 bg-zinc-950 p-8 shadow-2xl"
                     >
-                        <button
-                            onClick={onClose}
-                            className="absolute top-4 right-4 text-zinc-400 hover:text-white cursor-pointer"
-                        >
+                        <button onClick={onClose} className="absolute top-4 right-4 cursor-pointer text-zinc-400 hover:text-white">
                             <FiX size={20} />
                         </button>
 
                         <div className="text-center">
-                            <h2 className="text-xl font-bold text-white">
-                                Cambiar contraseña
-                            </h2>
-                            <p className="text-sm text-zinc-400 mt-1">
-                                Actualiza tus credenciales de acceso
-                            </p>
+                            <h2 className="text-xl font-bold text-white">Cambiar contraseña</h2>
+                            <p className="mt-1 text-sm text-zinc-400">Actualiza tus credenciales de acceso</p>
                         </div>
 
                         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
@@ -128,7 +117,7 @@ export default function ModalPassword({ open, onClose }: ModalPasswordProps) {
                                 whileTap={{ scale: 0.95 }}
                                 disabled={loading}
                                 type="submit"
-                                className="mt-3 rounded-xl bg-white py-3 font-semibold text-black cursor-pointer"
+                                className="mt-3 cursor-pointer rounded-xl bg-white py-3 font-semibold text-black"
                             >
                                 {loading ? "Actualizando..." : "Guardar cambios"}
                             </motion.button>
