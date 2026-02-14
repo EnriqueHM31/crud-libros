@@ -2,12 +2,14 @@ import { useOpen } from "@/hooks/useOpen";
 import { useAuthStore } from "@/store/autenticacion.store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import ModalPassword from "./ModalPassword";
 
 export default function ProfileButton() {
     const { user } = useAuthStore();
     const perfilModal = useOpen();
     const btnRef = useRef<HTMLButtonElement | null>(null);
     const panelRef = useRef<HTMLDivElement | null>(null);
+    const modalPassword = useOpen();
 
     const initial = user?.username?.charAt(0)?.toUpperCase() || "?";
 
@@ -58,10 +60,7 @@ export default function ProfileButton() {
 
                             <div className="pt-2">
                                 <button
-                                    onClick={() => {
-                                        // navegación o handler de cambio de contraseña
-                                        // ej: navigate("/cambiar-password")
-                                    }}
+                                    onClick={modalPassword.toggle}
                                     className="cursor-pointer text-sm text-blue-400 underline-offset-4 transition duration-300 hover:text-blue-300 hover:underline"
                                 >
                                     Cambiar contraseña
@@ -71,6 +70,9 @@ export default function ProfileButton() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            <ModalPassword open={modalPassword.isOpen} onClose={modalPassword.close} />
+
         </div>
     );
 }
