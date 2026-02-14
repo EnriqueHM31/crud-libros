@@ -88,8 +88,6 @@ export default function Navbar() {
                             </motion.button>
                         )}
 
-
-
                         <BotonTheme />
                     </div>
 
