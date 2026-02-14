@@ -8,6 +8,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import BotonTheme from "./BotonTheme";
 import LoginModal from "./ModalLogin";
+import ProfileButton from "./ButtonPerfil";
 
 export default function Navbar() {
     const { mode } = useThemeStore();
@@ -58,17 +59,21 @@ export default function Navbar() {
                             </Link>
                         ))}
                         {user ? (
-                            <motion.button
-                                onClick={logout}
-                                initial={{ scale: 0.6 }}
-                                animate={{ scale: 1, transition: { duration: 0.5 } }}
-                                exit={{ scale: 0.9 }}
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
-                                className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
-                            >
-                                Cerrar Sesion
-                            </motion.button>
+                            <>
+                                <motion.button
+                                    onClick={logout}
+                                    initial={{ scale: 0.6 }}
+                                    animate={{ scale: 1, transition: { duration: 0.5 } }}
+                                    exit={{ scale: 0.9 }}
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.77, transition: { duration: 0.3 } }}
+                                    className="cursor-pointer rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-gray-500 hover:text-white dark:bg-white dark:text-black"
+                                >
+                                    Cerrar Sesion
+                                </motion.button>
+
+                                <ProfileButton />
+                            </>
                         ) : (
                             <motion.button
                                 onClick={modalAuth.open}
@@ -82,6 +87,8 @@ export default function Navbar() {
                                 Iniciar Sesion
                             </motion.button>
                         )}
+
+
 
                         <BotonTheme />
                     </div>
