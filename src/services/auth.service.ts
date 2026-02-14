@@ -68,7 +68,7 @@ export async function obtenerUsuario() {
     return { data, message };
 }
 
-export async function cambiarContrasena(currentPassword: string, newPassword: string) {
+export async function cambiarContrasena(currentPassword: string, newPassword: string, username: string) {
     const response = await fetch(import.meta.env.VITE_API_URL_AUTH + "/cambiar-contrasena", {
         method: "POST",
         headers: {
@@ -78,6 +78,7 @@ export async function cambiarContrasena(currentPassword: string, newPassword: st
         body: JSON.stringify({
             currentPassword,
             newPassword,
+            username,
         }),
     });
 
